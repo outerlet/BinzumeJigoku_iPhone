@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  SettingViewController.h
 //  binzumejigoku
 //
 //  Created by Shizuo Ichitake on 2016/07/29.
@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface SettingViewController : UIViewController
 
 @end
-

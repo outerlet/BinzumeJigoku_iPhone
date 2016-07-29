@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  HistoryViewController.h
 //  binzumejigoku
 //
 //  Created by Shizuo Ichitake on 2016/07/29.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface HistoryViewController : UIViewController
 
 @end
-
