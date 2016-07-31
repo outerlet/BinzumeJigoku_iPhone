@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MainPageView.h"
 
 /**
  * 読む章を選択するためのViewController<br />
  * アプリケーションのメイン画面
  */
-@interface MainViewController : UIViewController {
+@interface MainViewController : UIViewController <MainPageViewDelegate> {
     @private
     UIScrollView*   _scrollView;
 }

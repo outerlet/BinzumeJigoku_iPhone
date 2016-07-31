@@ -7,6 +7,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define DEFAULT_FONT_NAME @"Hiragino Mincho ProN W3"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

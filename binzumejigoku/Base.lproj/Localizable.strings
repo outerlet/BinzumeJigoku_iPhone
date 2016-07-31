@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  binzumejigoku
+
+  Created by Shizuo Ichitake on 2016/07/31.
+  Copyright © 2016年 1-Take. All rights reserved.
+*/
+// General Phrase
+"phrase_ok"		= "OK";
+"phrase_cancel"	= "キャンセル";
+
+// MainViewController
+"section_name_0" = "前置き";
+"section_name_1" = "第一の瓶の内容";
+"section_name_2" = "第二の瓶の内容";
+"section_name_3" = "第三の瓶の内容";
+"section_summary_0" = "役場から海洋研究所への手紙";
+"section_summary_1" = "神様からも人間からも救われ得ぬ\n哀しき二人より";
+"section_summary_2" = "ああ神様…………\n\n私たち二人は、こんな苛責に会いながら、病気一つせずに、日に増し丸々と肥って、康強に、美しく長って行くのです、\n\nこの島の清らかな風と、水と、豊穣な食物と、美しい、楽しい、花と鳥とに護られて…………";
+"section_summary_3" = "ハヤク、タスケニ、キテクダサイ。";
+
+// SettingViewController
+"setting_section_title_settings"	= "表示設定";
+"setting_section_title_purchase"	= "ご寄付";
+"setting_section_title_other"		= "その他";
+"setting_subject_text_speed"		= "文字送りの早さ";
+"setting_subject_text_size"			= "文字の大きさ";
+"setting_subject_purchase"			= "投げ銭 (任意)";
+"setting_subject_about_work"		= "このアプリについて";
+"setting_description_text_size"		= "文字の大きさを設定します";
+"setting_description_text_speed"	= "文字送りの早さを設定します";
+"setting_description_purchase"		= "このアプリを気に入って貰えたらご寄付頂けると嬉しいです";
+"setting_description_about_work"	= "『瓶詰地獄』についての簡単な情報です";
+
+// HistoryViewController
+"history_confirm_load"	= "ロードしますか？";

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AlertControllerHandler.h"
 
-@interface HistoryViewController : UIViewController
+@interface HistoryViewController : UIViewController <AlertControllerHandlerDelegate>
 
 @end

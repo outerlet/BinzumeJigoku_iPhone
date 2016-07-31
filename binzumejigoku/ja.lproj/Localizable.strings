@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  binzumejigoku
+
+  Created by Shizuo Ichitake on 2016/07/31.
+  Copyright © 2016年 1-Take. All rights reserved.
+*/
+"SectionName0" = "前置き";
+"SectionName1" = "第一の瓶の内容";
+"SectionName2" = "第二の瓶の内容";
+"SectionName3" = "第三の瓶の内容";
+"SectionSummary0" = "役場から海洋研究所への手紙";
+"SectionSummary1" = "神様からも人間からも救われ得ぬ\n哀しき二人より";
+"SectionSummary2" = "ああ神様…………\n\n私たち二人は、こんな苛責に会いながら、病気一つせずに、日に増し丸々と肥って、康強に、美しく長って行くのです、\n\nこの島の清らかな風と、水と、豊穣な食物と、美しい、楽しい、花と鳥とに護られて…………";
+"SectionSummary3" = "ハヤク、タスケニ、キテクダサイ。";

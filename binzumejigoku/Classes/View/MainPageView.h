@@ -8,8 +8,27 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainPageView : UIView
+@class MainPageView;
 
-- (id)initWithFrame:(CGRect)frame text:(NSString*)text textColor:(UIColor*)textColor backgroundColor:(UIColor*)backgroundColor;
+@protocol MainPageViewDelegate <NSObject>
+
+- (void)viewDidTouch:(MainPageView*)view;
+
+@end
+
+@interface MainPageView : UIView {
+    @private
+	UILabel*		_titleLabel;
+	UILabel*		_summaryLabel;
+	UIImageView*	_backgroundImageView;
+}
+
+@property (nonatomic) id<MainPageViewDelegate>	delegate;
+
+@property (nonatomic, readwrite)	NSString*	title;
+@property (nonatomic, readwrite)	NSString*	summary;
+@property (nonatomic, readwrite)	UIImage*	backgroundImage;
+
+- (id)initWithFrame:(CGRect)frame withTag:(NSInteger)tag;
 
 @end
