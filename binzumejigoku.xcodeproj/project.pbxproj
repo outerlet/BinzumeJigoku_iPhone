@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C0B10141D686B3A00148096 /* ClearTextElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B10061D686B3A00148096 /* ClearTextElement.m */; };
+		5C0B10151D686B3A00148096 /* ContentsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B10081D686B3A00148096 /* ContentsElement.m */; };
+		5C0B10161D686B3A00148096 /* ContentsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B100A1D686B3A00148096 /* ContentsParser.m */; };
+		5C0B10171D686B3A00148096 /* ImageElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B100D1D686B3A00148096 /* ImageElement.m */; };
+		5C0B10181D686B3A00148096 /* TextElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B100F1D686B3A00148096 /* TextElement.m */; };
+		5C0B10191D686B3A00148096 /* TitleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B10111D686B3A00148096 /* TitleElement.m */; };
+		5C0B101A1D686B3A00148096 /* WaitElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B10131D686B3A00148096 /* WaitElement.m */; };
 		5C20B5D71D4B8B3C0014E6F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C20B5D61D4B8B3C0014E6F9 /* main.m */; };
 		5C7575B11D4DD9260094D5B3 /* section0_00.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575A91D4DD9260094D5B3 /* section0_00.jpg */; };
 		5C7575B21D4DD9260094D5B3 /* section0_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575AA1D4DD9260094D5B3 /* section0_01.jpg */; };
@@ -18,9 +25,12 @@
 		5C7575B81D4DD9260094D5B3 /* title_00.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575B01D4DD9260094D5B3 /* title_00.jpg */; };
 		5C7575C11D4DDC130094D5B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575C31D4DDC130094D5B3 /* Localizable.strings */; };
 		5C7575C71D4DEA910094D5B3 /* ContentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7575C61D4DEA910094D5B3 /* ContentsViewController.m */; };
-		5C7575CD1D4DF7790094D5B3 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7575CC1D4DF7790094D5B3 /* SettingTableViewCell.m */; };
 		5C7575CF1D4E25C00094D5B3 /* save_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575CE1D4E25C00094D5B3 /* save_button.png */; };
 		5C7575D61D4E300D0094D5B3 /* AlertControllerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7575D51D4E300D0094D5B3 /* AlertControllerHandler.m */; };
+		5C97062B1D6869D000A14813 /* NSString+CustomDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C97062A1D6869D000A14813 /* NSString+CustomDecoder.m */; };
+		5CC1B8A11D4F74F30003DD38 /* contents_binzume_jigoku.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CC1B8A01D4F74F30003DD38 /* contents_binzume_jigoku.xml */; };
+		5CC1B8AA1D4F7E790003DD38 /* AppSetting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CC1B8A91D4F7E790003DD38 /* AppSetting.plist */; };
+		5CC1B8AD1D4F7F7B0003DD38 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC1B8AC1D4F7F7B0003DD38 /* SettingTableViewCell.m */; };
 		5CC6E30D1D4B91E00073FC30 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6E30C1D4B91E00073FC30 /* AppDelegate.m */; };
 		5CC6E3161D4B97D00073FC30 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6E3151D4B97D00073FC30 /* MainViewController.m */; };
 		5CC6E3191D4B97E30073FC30 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6E3181D4B97E30073FC30 /* SettingViewController.m */; };
@@ -29,9 +39,25 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C0B10041D686B3A00148096 /* ChainType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChainType.h; path = Classes/Contents/ChainType.h; sourceTree = "<group>"; };
+		5C0B10051D686B3A00148096 /* ClearTextElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClearTextElement.h; path = Classes/Contents/ClearTextElement.h; sourceTree = "<group>"; };
+		5C0B10061D686B3A00148096 /* ClearTextElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClearTextElement.m; path = Classes/Contents/ClearTextElement.m; sourceTree = "<group>"; };
+		5C0B10071D686B3A00148096 /* ContentsElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsElement.h; path = Classes/Contents/ContentsElement.h; sourceTree = "<group>"; };
+		5C0B10081D686B3A00148096 /* ContentsElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsElement.m; path = Classes/Contents/ContentsElement.m; sourceTree = "<group>"; };
+		5C0B10091D686B3A00148096 /* ContentsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsParser.h; path = Classes/Contents/ContentsParser.h; sourceTree = "<group>"; };
+		5C0B100A1D686B3A00148096 /* ContentsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsParser.m; path = Classes/Contents/ContentsParser.m; sourceTree = "<group>"; };
+		5C0B100B1D686B3A00148096 /* ContentsType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsType.h; path = Classes/Contents/ContentsType.h; sourceTree = "<group>"; };
+		5C0B100C1D686B3A00148096 /* ImageElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageElement.h; path = Classes/Contents/ImageElement.h; sourceTree = "<group>"; };
+		5C0B100D1D686B3A00148096 /* ImageElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageElement.m; path = Classes/Contents/ImageElement.m; sourceTree = "<group>"; };
+		5C0B100E1D686B3A00148096 /* TextElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextElement.h; path = Classes/Contents/TextElement.h; sourceTree = "<group>"; };
+		5C0B100F1D686B3A00148096 /* TextElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextElement.m; path = Classes/Contents/TextElement.m; sourceTree = "<group>"; };
+		5C0B10101D686B3A00148096 /* TitleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TitleElement.h; path = Classes/Contents/TitleElement.h; sourceTree = "<group>"; };
+		5C0B10111D686B3A00148096 /* TitleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TitleElement.m; path = Classes/Contents/TitleElement.m; sourceTree = "<group>"; };
+		5C0B10121D686B3A00148096 /* WaitElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaitElement.h; path = Classes/Contents/WaitElement.h; sourceTree = "<group>"; };
+		5C0B10131D686B3A00148096 /* WaitElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaitElement.m; path = Classes/Contents/WaitElement.m; sourceTree = "<group>"; };
 		5C20B5D21D4B8B3C0014E6F9 /* binzumejigoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = binzumejigoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C20B5D61D4B8B3C0014E6F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5C20B5E61D4B8B3C0014E6F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5C20B5E61D4B8B3C0014E6F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = binzumejigoku/Info.plist; sourceTree = "<group>"; };
 		5C7575A91D4DD9260094D5B3 /* section0_00.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section0_00.jpg; path = Resources/Images/section0_00.jpg; sourceTree = "<group>"; };
 		5C7575AA1D4DD9260094D5B3 /* section0_01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section0_01.jpg; path = Resources/Images/section0_01.jpg; sourceTree = "<group>"; };
 		5C7575AB1D4DD9260094D5B3 /* section1_00.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section1_00.jpg; path = Resources/Images/section1_00.jpg; sourceTree = "<group>"; };
@@ -43,11 +69,15 @@
 		5C7575C41D4DDC140094D5B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5C7575C51D4DEA910094D5B3 /* ContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsViewController.h; path = Classes/ViewController/ContentsViewController.h; sourceTree = "<group>"; };
 		5C7575C61D4DEA910094D5B3 /* ContentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsViewController.m; path = Classes/ViewController/ContentsViewController.m; sourceTree = "<group>"; };
-		5C7575CB1D4DF7790094D5B3 /* SettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewCell.h; sourceTree = "<group>"; };
-		5C7575CC1D4DF7790094D5B3 /* SettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewCell.m; sourceTree = "<group>"; };
 		5C7575CE1D4E25C00094D5B3 /* save_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = save_button.png; path = Resources/Images/save_button.png; sourceTree = "<group>"; };
 		5C7575D41D4E300D0094D5B3 /* AlertControllerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertControllerHandler.h; path = Classes/Util/AlertControllerHandler.h; sourceTree = "<group>"; };
 		5C7575D51D4E300D0094D5B3 /* AlertControllerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertControllerHandler.m; path = Classes/Util/AlertControllerHandler.m; sourceTree = "<group>"; };
+		5C9706291D6869D000A14813 /* NSString+CustomDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CustomDecoder.h"; sourceTree = "<group>"; };
+		5C97062A1D6869D000A14813 /* NSString+CustomDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CustomDecoder.m"; sourceTree = "<group>"; };
+		5CC1B8A01D4F74F30003DD38 /* contents_binzume_jigoku.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = contents_binzume_jigoku.xml; path = Resources/XML/contents_binzume_jigoku.xml; sourceTree = "<group>"; };
+		5CC1B8A91D4F7E790003DD38 /* AppSetting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppSetting.plist; path = binzumejigoku/AppSetting.plist; sourceTree = "<group>"; };
+		5CC1B8AB1D4F7F7B0003DD38 /* SettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingTableViewCell.h; path = Classes/View/SettingTableViewCell.h; sourceTree = "<group>"; };
+		5CC1B8AC1D4F7F7B0003DD38 /* SettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingTableViewCell.m; path = Classes/View/SettingTableViewCell.m; sourceTree = "<group>"; };
 		5CC6E30B1D4B91E00073FC30 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		5CC6E30C1D4B91E00073FC30 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		5CC6E3141D4B97D00073FC30 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/ViewController/MainViewController.h; sourceTree = "<group>"; };
@@ -75,6 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				5C20B5D41D4B8B3C0014E6F9 /* binzumejigoku */,
+				5C20B5E61D4B8B3C0014E6F9 /* Info.plist */,
+				5CC1B8A91D4F7E790003DD38 /* AppSetting.plist */,
 				5C20B5D31D4B8B3C0014E6F9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,7 +124,6 @@
 			children = (
 				5C7575A71D4DD8CE0094D5B3 /* Resources */,
 				5CC6E3091D4B91C60073FC30 /* Classes */,
-				5C20B5E61D4B8B3C0014E6F9 /* Info.plist */,
 				5C20B5D51D4B8B3C0014E6F9 /* Supporting Files */,
 			);
 			path = binzumejigoku;
@@ -110,6 +141,7 @@
 		5C7575A71D4DD8CE0094D5B3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5CC1B89F1D4F74DB0003DD38 /* XML */,
 				5C7575A81D4DD9040094D5B3 /* Images */,
 			);
 			name = Resources;
@@ -140,9 +172,52 @@
 			name = Util;
 			sourceTree = "<group>";
 		};
+		5C9706281D68699E00A14813 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				5C9706291D6869D000A14813 /* NSString+CustomDecoder.h */,
+				5C97062A1D6869D000A14813 /* NSString+CustomDecoder.m */,
+			);
+			name = Category;
+			path = Classes/Category;
+			sourceTree = "<group>";
+		};
+		5CC1B89F1D4F74DB0003DD38 /* XML */ = {
+			isa = PBXGroup;
+			children = (
+				5CC1B8A01D4F74F30003DD38 /* contents_binzume_jigoku.xml */,
+			);
+			name = XML;
+			sourceTree = "<group>";
+		};
+		5CC1B8A51D4F7CCA0003DD38 /* Contents */ = {
+			isa = PBXGroup;
+			children = (
+				5C0B10041D686B3A00148096 /* ChainType.h */,
+				5C0B100B1D686B3A00148096 /* ContentsType.h */,
+				5C0B10091D686B3A00148096 /* ContentsParser.h */,
+				5C0B100A1D686B3A00148096 /* ContentsParser.m */,
+				5C0B10071D686B3A00148096 /* ContentsElement.h */,
+				5C0B10081D686B3A00148096 /* ContentsElement.m */,
+				5C0B100C1D686B3A00148096 /* ImageElement.h */,
+				5C0B100D1D686B3A00148096 /* ImageElement.m */,
+				5C0B10121D686B3A00148096 /* WaitElement.h */,
+				5C0B10131D686B3A00148096 /* WaitElement.m */,
+				5C0B10101D686B3A00148096 /* TitleElement.h */,
+				5C0B10111D686B3A00148096 /* TitleElement.m */,
+				5C0B100E1D686B3A00148096 /* TextElement.h */,
+				5C0B100F1D686B3A00148096 /* TextElement.m */,
+				5C0B10051D686B3A00148096 /* ClearTextElement.h */,
+				5C0B10061D686B3A00148096 /* ClearTextElement.m */,
+			);
+			name = Contents;
+			sourceTree = "<group>";
+		};
 		5CC6E3091D4B91C60073FC30 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5C9706281D68699E00A14813 /* Category */,
+				5CC1B8A51D4F7CCA0003DD38 /* Contents */,
 				5C7575D31D4E2FF70094D5B3 /* Util */,
 				5CC6E30A1D4B91D00073FC30 /* ViewController */,
 				5CC6E31D1D4B9D0E0073FC30 /* View */,
@@ -170,10 +245,10 @@
 		5CC6E31D1D4B9D0E0073FC30 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5CC1B8AB1D4F7F7B0003DD38 /* SettingTableViewCell.h */,
+				5CC1B8AC1D4F7F7B0003DD38 /* SettingTableViewCell.m */,
 				5CC6E31E1D4B9D540073FC30 /* MainPageView.h */,
 				5CC6E31F1D4B9D540073FC30 /* MainPageView.m */,
-				5C7575CB1D4DF7790094D5B3 /* SettingTableViewCell.h */,
-				5C7575CC1D4DF7790094D5B3 /* SettingTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -238,9 +313,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C7575B41D4DD9260094D5B3 /* section1_01.jpg in Resources */,
+				5CC1B8AA1D4F7E790003DD38 /* AppSetting.plist in Resources */,
 				5C7575B71D4DD9260094D5B3 /* section3_00.jpg in Resources */,
 				5C7575B11D4DD9260094D5B3 /* section0_00.jpg in Resources */,
 				5C7575B51D4DD9260094D5B3 /* section2_00.jpg in Resources */,
+				5CC1B8A11D4F74F30003DD38 /* contents_binzume_jigoku.xml in Resources */,
 				5C7575CF1D4E25C00094D5B3 /* save_button.png in Resources */,
 				5C7575C11D4DDC130094D5B3 /* Localizable.strings in Resources */,
 				5C7575B81D4DD9260094D5B3 /* title_00.jpg in Resources */,
@@ -257,12 +334,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CC1B8AD1D4F7F7B0003DD38 /* SettingTableViewCell.m in Sources */,
 				5C7575C71D4DEA910094D5B3 /* ContentsViewController.m in Sources */,
+				5C97062B1D6869D000A14813 /* NSString+CustomDecoder.m in Sources */,
+				5C0B10141D686B3A00148096 /* ClearTextElement.m in Sources */,
 				5CC6E30D1D4B91E00073FC30 /* AppDelegate.m in Sources */,
-				5C7575CD1D4DF7790094D5B3 /* SettingTableViewCell.m in Sources */,
+				5C0B101A1D686B3A00148096 /* WaitElement.m in Sources */,
+				5C0B10191D686B3A00148096 /* TitleElement.m in Sources */,
 				5C20B5D71D4B8B3C0014E6F9 /* main.m in Sources */,
+				5C0B10171D686B3A00148096 /* ImageElement.m in Sources */,
 				5CC6E3201D4B9D540073FC30 /* MainPageView.m in Sources */,
 				5CC6E3161D4B97D00073FC30 /* MainViewController.m in Sources */,
+				5C0B10181D686B3A00148096 /* TextElement.m in Sources */,
+				5C0B10151D686B3A00148096 /* ContentsElement.m in Sources */,
+				5C0B10161D686B3A00148096 /* ContentsParser.m in Sources */,
 				5CC6E3191D4B97E30073FC30 /* SettingViewController.m in Sources */,
 				5C7575D61D4E300D0094D5B3 /* AlertControllerHandler.m in Sources */,
 				5CC6E31C1D4B97FB0073FC30 /* HistoryViewController.m in Sources */,

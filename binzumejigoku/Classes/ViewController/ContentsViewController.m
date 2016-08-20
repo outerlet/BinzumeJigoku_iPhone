@@ -7,6 +7,8 @@
 //
 
 #import "ContentsViewController.h"
+#import "ContentsParser.h"
+#import "ContentsElement.h"
 
 @interface ContentsViewController ()
 
@@ -36,6 +38,15 @@
 	label.center = self.view.center;
 	
 	[self.view addSubview:label];
+	
+	ContentsParser* parser = [[ContentsParser alloc] init];
+	[parser parse];
+	
+	NSLog(@"ELEMENT COUNT = %lu", (unsigned long)parser.elements.count);
+	
+	for (ContentsElement* e in parser.elements) {
+		NSLog(@"%@", [e stringValue]);
+	}
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

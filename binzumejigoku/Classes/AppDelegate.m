@@ -27,11 +27,11 @@
     mainController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:0];
     [tabController addChildViewController:mainController];
     
-    HistoryViewController* historyController = [[HistoryViewController alloc] init];
+    HistoryViewController* historyController = [[HistoryViewController alloc] initWithBackgroundType:HistoryBackgroundTypeLaunchImage];
     historyController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:1];
     [tabController addChildViewController:historyController];
     
-    SettingViewController* settingController = [[SettingViewController alloc] init];
+	SettingViewController* settingController = [[SettingViewController alloc] init];
     settingController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:2];
     [tabController addChildViewController:settingController];
     

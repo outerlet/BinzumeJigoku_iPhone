@@ -1,0 +1,16 @@
+<!--
+	AppSetting.plist
+	binzumejigoku
+	Created by Shizuo Ichitake on 2016/08/01.
+	Copyright (c) 2016年 1-Take. All rights reserved.
+-->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+    	<key>ContentsFilePrefix</key>
+		<string>contents_binzume_jigoku</string>
+		<key>ContentsFileSuffix</key>
+		<string>xml</string>
+    </dict>
+</plist>

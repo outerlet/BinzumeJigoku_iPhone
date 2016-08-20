@@ -21,13 +21,27 @@ static const CGFloat kButtonHeight			= 100.0f;
 
 @implementation HistoryViewController
 
+- (id)initWithBackgroundType:(HistoryBackgroundType)backgroundType {
+	if (self = [super init]) {
+		_backgroundType = backgroundType;
+	}
+	
+	return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	UIImageView* imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-	imageView.contentMode = UIViewContentModeScaleAspectFill;
-	imageView.image = [UIImage imageNamed:@"title_00.jpg"];
-	[self.view addSubview:imageView];
+	if (_backgroundType == HistoryBackgroundTypeLaunchImage) {
+		UIImageView* imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+		imageView.contentMode = UIViewContentModeScaleAspectFill;
+		imageView.image = [UIImage imageNamed:@"title_00.jpg"];
+		[self.view addSubview:imageView];
+	} else if (_backgroundType == HistoryBackgroundTypeBlackTranslucent) {
+		UIView* view = [[UIView alloc] initWithFrame:self.view.bounds];
+		view.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
+		[self.view addSubview:view];
+	}
 	
 	CGRect buttonFrame = CGRectMake(0.0f, 0.0f, self.view.bounds.size.width * 0.8f, kButtonHeight);
 	
