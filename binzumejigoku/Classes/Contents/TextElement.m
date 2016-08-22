@@ -35,17 +35,15 @@
 @property (nonatomic, readwrite) UIColor*			color;
 @property (nonatomic, readwrite) NSString*			text;
 
-- (NSTextAlignment)convertToTextAlignment:(NSString*)str;
-
 @end
 
 @implementation TextElement
 
-- (id)initWithAttribute:(NSDictionary *)attrs object:(id)obj {
-	if (self = [super initWithAttribute:attrs object:obj]) {
-		self.alignment = [self convertToTextAlignment:[attrs objectForKey:@"align"]];
-		self.indent = [[attrs objectForKey:@"indent"] integerValue];
-		self.color = [[attrs objectForKey:@"color"] decodeToColor];
+- (id)initWithSection:(NSInteger)section sequence:(NSInteger)sequence attribute:(NSDictionary *)attrs object:(id)obj {
+	if (self = [super initWithSection:section sequence:sequence attribute:attrs object:obj]) {
+		_alignmentString = [attrs objectForKey:@"align"];
+		_indentString = [attrs objectForKey:@"indent"];
+		_colorString = [attrs objectForKey:@"color"];
 		self.text = (NSString*)obj;
 	}
 	return self;
@@ -59,11 +57,15 @@
 	return [NSString stringWithFormat:@"Text : text = %@", self.text];
 }
 
-- (NSTextAlignment)convertToTextAlignment:(NSString*)str {
-	if ([[str lowercaseString] isEqualToString:@"right"]) {
-		return NSTextAlignmentRight;
-	}
-	return NSTextAlignmentLeft;
+- (NSManagedObject*)createManagedObject:(NSFetchedResultsController *)fetchedResultsController {
+	NSManagedObject* obj = [super createManagedObject:fetchedResultsController];
+	
+	[obj setValue:_alignmentString forKey:AttributeNameValue0];
+	[obj setValue:_indentString forKey:AttributeNameValue1];
+	[obj setValue:_colorString forKey:AttributeNameValue2];
+	[obj setValue:self.text forKey:AttributeNameText];
+	
+	return obj;
 }
 
 @end

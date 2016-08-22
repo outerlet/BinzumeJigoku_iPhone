@@ -14,7 +14,12 @@ typedef NS_ENUM(NSUInteger, ImageEffect) {
 	ImageEffectCut,
 };
 
-@interface ImageElement : ContentsElement
+@interface ImageElement : ContentsElement {
+	@private
+	NSString*	_imageName;
+	NSString*	_durationString;
+	NSString*	_effectString;
+}
 
 @property (nonatomic, readonly) UIImage*	image;
 @property (nonatomic, readonly) double		duration;

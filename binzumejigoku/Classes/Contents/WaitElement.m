@@ -16,9 +16,9 @@
 
 @implementation WaitElement
 
-- (id)initWithAttribute:(NSDictionary *)attrs object:(id)obj {
-	if (self = [super initWithAttribute:attrs object:obj]) {
-		self.duration = [[attrs objectForKey:@"duration"] doubleValue];
+- (id)initWithSection:(NSInteger)section sequence:(NSInteger)sequence attribute:(NSDictionary *)attrs object:(id)obj {
+	if (self = [super initWithSection:section sequence:sequence attribute:attrs object:obj]) {
+		_durationString = [attrs objectForKey:@"duration"];
 	}
 	return self;
 }
@@ -29,6 +29,14 @@
 
 - (NSString*)stringValue {
 	return [NSString stringWithFormat:@"Wait : duration = %f", self.duration];
+}
+
+- (NSManagedObject*)createManagedObject:(NSFetchedResultsController *)fetchedResultsController {
+	NSManagedObject* obj = [super createManagedObject:fetchedResultsController];
+	
+	[obj setValue:_durationString forKey:AttributeNameValue0];
+	
+	return obj;
 }
 
 @end

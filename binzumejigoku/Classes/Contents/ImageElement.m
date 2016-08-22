@@ -7,36 +7,23 @@
 //
 
 #import "ImageElement.h"
+#import "NSString+CustomDecoder.h"
 
-@interface ImageElement () {
-	NSString*	_src;
-}
+@interface ImageElement ()
 
 @property (nonatomic, readwrite) UIImage*		image;
 @property (nonatomic, readwrite) double			duration;
 @property (nonatomic, readwrite) ImageEffect	imageEffect;
 
-- (ImageEffect)convertToImageEffect:(NSString*)str;
-
 @end
 
 @implementation ImageElement
 
-- (id)initWithAttribute:(NSDictionary *)attrs object:(id)obj {
-	if (self = [super initWithAttribute:attrs object:obj]) {
-		// 画像
-		_src = [attrs objectForKey:@"src"];
-		UIImage* img = [UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", _src]];
-		if (!img) {
-			img = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", _src]];
-		}
-		self.image = img;
-		
-		// エフェクトを掛ける所要時間
-		self.duration = [[attrs objectForKey:@"duration"] doubleValue];
-		
-		// エフェクトの種類(フェード or カット)
-		self.imageEffect = [self convertToImageEffect:[attrs objectForKey:@"effect"]];
+- (id)initWithSection:(NSInteger)section sequence:(NSInteger)sequence attribute:(NSDictionary *)attrs object:(id)obj {
+	if (self = [super initWithSection:section sequence:sequence attribute:attrs object:obj]) {
+		_imageName = [attrs objectForKey:@"src"];
+		_durationString = [attrs objectForKey:@"duration"];
+		_effectString = [attrs objectForKey:@"effect"];
 	}
 	return self;
 }
@@ -46,17 +33,17 @@
 }
 
 - (NSString*)stringValue {
-	return [NSString stringWithFormat:@"Image : src = %@", _src];
+	return [NSString stringWithFormat:@"Image : src = %@", _imageName];
 }
 
-- (ImageEffect)convertToImageEffect:(NSString*)str {
-	if ([[str lowercaseString] isEqualToString:@"fade"]) {
-		return ImageEffectFade;
-	} else if ([[str lowercaseString] isEqualToString:@"cut"]) {
-		return ImageEffectCut;
-	}
+- (NSManagedObject*)createManagedObject:(NSFetchedResultsController*)fetchedResultsController {
+	NSManagedObject* obj = [super createManagedObject:fetchedResultsController];
 	
-	return ImageEffectUnknown;
+	[obj setValue:_imageName forKey:AttributeNameValue0];
+	[obj setValue:_durationString forKey:AttributeNameValue1];
+	[obj setValue:_effectString forKey:AttributeNameValue2];
+	
+	return obj;
 }
 
 @end

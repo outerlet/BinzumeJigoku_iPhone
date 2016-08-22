@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ContentsViewController : UIViewController
+@class ContentsParser;
+
+@interface ContentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+	@private
+	UITableView*	_tableView;
+	ContentsParser*	_parser;
+}
 
 @property (nonatomic, readonly) NSInteger sectionIndex;
 

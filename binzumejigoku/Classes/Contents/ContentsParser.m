@@ -7,6 +7,7 @@
 //
 
 #import "ContentsParser.h"
+#import "AppDelegate.h"
 #import "TextElement.h"
 #import "ContentsElement.h"
 #import "ImageElement.h"
@@ -16,11 +17,12 @@
 #import "ClearTextElement.h"
 #import "NSString+CustomDecoder.h"
 
-static NSString* const kSettingPlistName	= @"AppSetting";
+static NSString* const SettingPlistName	= @"AppSetting";
 
 @interface ContentsParser ()
 
-@property (nonatomic, readwrite) NSArray*	elements;
+@property (nonatomic, readwrite)	NSArray*		elements;
+@property (nonatomic, readonly)		AppDelegate*	appDelegate;
 
 @end
 
@@ -30,7 +32,7 @@ static NSString* const kSettingPlistName	= @"AppSetting";
 	if (self = [super init]) {
 		NSBundle* bundle = [NSBundle mainBundle];
 		
-		NSDictionary* settings = [NSDictionary dictionaryWithContentsOfFile:[bundle pathForResource:kSettingPlistName ofType:@"plist"]];
+		NSDictionary* settings = [NSDictionary dictionaryWithContentsOfFile:[bundle pathForResource:SettingPlistName ofType:@"plist"]];
 		
 		NSString* path = [bundle pathForResource:[settings objectForKey:@"ContentsFilePrefix"]
 										  ofType:[settings objectForKey:@"ContentsFileSuffix"]];
@@ -40,6 +42,7 @@ static NSString* const kSettingPlistName	= @"AppSetting";
 		
 		_mutableElements = [[NSMutableArray alloc] init];
 		
+		_sequence = 0;
 		_currentType = ContentsTypeUnknown;
 	}
 	
@@ -53,6 +56,10 @@ static NSString* const kSettingPlistName	= @"AppSetting";
 	[_parser parse];
 	
 	self.elements = [NSArray arrayWithArray:_mutableElements];
+}
+
+- (AppDelegate*)appDelegate {
+	return (AppDelegate*)[UIApplication sharedApplication].delegate;
 }
 
 #pragma mark - NSXMLParser Delegate
@@ -81,18 +88,20 @@ static NSString* const kSettingPlistName	= @"AppSetting";
 
 // 文字列を検出した
 - (void)parser:(NSXMLParser*)parser foundCharacters:(NSString*)string {
+	NSString* str = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	
 	switch (_currentType) {
  		case ContentsTypeTitle:
-			_currentObject = string;
+			_currentObject = str;
 			break;
 		case ContentsTypeText:
-			[_currentObject appendString:string];
+			[_currentObject appendString:str];
 			break;
 		case ContentsTypeTextRuby:
-			[_currentObject appendString:[NSString stringWithFormat:@"%@%@%@", _rubyClosure, string, _rubyClosure]];
+			[_currentObject appendString:[NSString stringWithFormat:@"%@%@%@", _rubyClosure, str, _rubyClosure]];
 			break;
 		case ContentsTypeTextUTF16:
-			[_currentObject appendString:[string decodeUTF16String]];
+			[_currentObject appendString:[str decodeUTF16String]];
 			break;
 		default:
 			break;
@@ -132,13 +141,47 @@ static NSString* const kSettingPlistName	= @"AppSetting";
 		}
 		
 		if (cls) {
-			[_mutableElements addObject:[[cls alloc] initWithAttribute:_currentAttributes object:_currentObject]];
+			[_mutableElements addObject:[[cls alloc] initWithSection:_section
+															sequence:_sequence++
+														   attribute:_currentAttributes
+															  object:_currentObject]];
 		}
 		
 		_currentType = ContentsTypeUnknown;
 		_currentAttributes = nil;
 		_currentObject = nil;
 	}
+}
+
+#pragma mark - Core Data
+
+- (NSFetchedResultsController*)fetchedResultsController {
+	if (_fetchedResultsController != nil) {
+		return _fetchedResultsController;
+	}
+	
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Person"
+											  inManagedObjectContext:self.appDelegate.managedObjectContext];
+	[fetchRequest setEntity:entity];
+	[fetchRequest setFetchBatchSize:20];
+	
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+	[fetchRequest setSortDescriptors:@[sortDescriptor]];
+	
+	_fetchedResultsController =
+			[[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+												managedObjectContext:self.appDelegate.managedObjectContext
+												  sectionNameKeyPath:nil
+														   cacheName:@"Master"];
+	
+	NSError *error = nil;
+	if (![self.fetchedResultsController performFetch:&error]) {
+		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		abort();
+	}
+	
+	return _fetchedResultsController;
 }
 
 @end

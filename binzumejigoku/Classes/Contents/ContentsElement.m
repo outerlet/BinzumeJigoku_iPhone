@@ -7,10 +7,13 @@
 //
 
 #import "ContentsElement.h"
+#import "NSString+CustomDecoder.h"
 
 @interface ContentsElement ()
 
-@property (nonatomic, readwrite) ChainType chainType;
+@property (nonatomic, readwrite)	NSInteger	section;
+@property (nonatomic, readwrite)	NSInteger	sequence;
+@property (nonatomic, readwrite)	ChainType	chainType;
 
 - (ChainType)convertToChainType:(NSString*)str;
 
@@ -18,9 +21,11 @@
 
 @implementation ContentsElement
 
-- (id)initWithAttribute:(NSDictionary*)attrs object:(id)obj {
+- (id)initWithSection:(NSInteger)section sequence:(NSInteger)sequence attribute:(NSDictionary *)attrs object:(id)obj {
 	if (self = [super init]) {
-		self.chainType = [self convertToChainType:[attrs objectForKey:@"chain"]];
+		self.section = section;
+		self.sequence = sequence;
+		_chainString = [attrs objectForKey:@"chain"];
 	}
 	return self;
 }
@@ -33,14 +38,17 @@
 	return @"SuperClass";
 }
 
-- (ChainType)convertToChainType:(NSString *)str {
-	if ([[str lowercaseString] isEqualToString:@"wait"]) {
-		return ChainTypeWait;
-	} else if ([[str lowercaseString] isEqualToString:@"immediate"]) {
-		return ChainTypeImmediate;
-	}
+- (NSManagedObject*)createManagedObject:(NSFetchedResultsController*)fetchedResultsController {
+	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
+	NSEntityDescription *entity = [[fetchedResultsController fetchRequest] entity];
+	NSManagedObject* obj = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
 	
-	return ChainTypeNone;
+	[obj setValue:[NSNumber numberWithInteger:self.section] forKey:AttributeNameSection];
+	[obj setValue:[NSNumber numberWithInteger:self.sequence] forKey:AttributeNameSequence];
+	[obj setValue:[NSString stringWithContentsType:self.contentsType] forKey:AttributeNameType];
+	[obj setValue:_chainString forKey:AttributeNameCommon0];
+	
+	return obj;
 }
 
 @end

@@ -8,7 +8,10 @@
 
 #import "ContentsElement.h"
 
-@interface WaitElement : ContentsElement
+@interface WaitElement : ContentsElement {
+	@private
+	NSString*	_durationString;
+}
 
 @property (nonatomic, readonly) double	duration;
 

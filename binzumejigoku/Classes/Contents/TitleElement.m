@@ -16,8 +16,8 @@
 
 @implementation TitleElement
 
-- (id)initWithAttribute:(NSDictionary *)attrs object:(id)obj {
-	if (self = [super initWithAttribute:attrs object:obj]) {
+- (id)initWithSection:(NSInteger)section sequence:(NSInteger)sequence attribute:(NSDictionary *)attrs object:(id)obj {
+	if (self = [super initWithSection:section sequence:sequence attribute:attrs object:obj]) {
 		self.title = (NSString*)obj;
 	}
 	return self;
@@ -29,6 +29,14 @@
 
 - (NSString*)stringValue {
 	return [NSString stringWithFormat:@"Title : text = %@", self.title];
+}
+
+- (NSManagedObject*)createManagedObject:(NSFetchedResultsController *)fetchedResultsController {
+	NSManagedObject* obj = [super createManagedObject:fetchedResultsController];
+	
+	[obj setValue:self.title forKey:AttributeNameText];
+	
+	return obj;
 }
 
 @end

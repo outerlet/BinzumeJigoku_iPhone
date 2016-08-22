@@ -30,26 +30,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	UILabel* label = [[UILabel alloc] initWithFrame:self.view.frame];
-	label.textColor = [UIColor whiteColor];
-	label.backgroundColor = [UIColor blackColor];
-	label.textAlignment = NSTextAlignmentCenter;
-	label.text = [NSString stringWithFormat:@"CONTENTS VIEW CONTROLLER : %02ld", _sectionIndex];
-	label.center = self.view.center;
+	_tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+	_tableView.delegate = self;
+	_tableView.dataSource = self;
+	_tableView.center = self.view.center;
+	[self.view addSubview:_tableView];
 	
-	[self.view addSubview:label];
-	
-	ContentsParser* parser = [[ContentsParser alloc] init];
-	[parser parse];
-	
-	NSLog(@"ELEMENT COUNT = %lu", (unsigned long)parser.elements.count);
-	
-	for (ContentsElement* e in parser.elements) {
-		NSLog(@"%@", [e stringValue]);
-	}
+	_parser = [[ContentsParser alloc] init];
+	[_parser parse];
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
+	return 1;
+}
+
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
+	return _parser.elements.count;
+}
+
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
+	NSString* cellId = [NSString stringWithFormat:@"CELL_%02ld", indexPath.row];
+	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+	
+	if (!cell) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+		cell.textLabel.text = [[_parser.elements objectAtIndex:indexPath.row] stringValue];
+	}
+	
+	return cell;
+}
+
+- (void)touchesBegan:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 

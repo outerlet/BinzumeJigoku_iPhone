@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 #import "ContentsType.h"
 
 @interface ContentsParser : NSObject <NSXMLParserDelegate> {
 	@private
-	NSXMLParser*	_parser;
+	NSXMLParser*				_parser;
+	NSFetchedResultsController*	_fetchedResultsController;
 	
 	NSInteger		_section;
 	NSString*		_rubyClosure;
@@ -24,7 +26,8 @@
 	id				_currentObject;
 }
 
-@property (nonatomic, readonly) NSArray*	elements;
+@property (nonatomic, readonly) NSArray*					elements;
+@property (nonatomic, readonly)	NSFetchedResultsController*	fetchedResultsController;
 
 - (void)parse;
 

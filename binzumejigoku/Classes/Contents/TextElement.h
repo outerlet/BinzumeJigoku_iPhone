@@ -17,7 +17,12 @@
 
 @end
 
-@interface TextElement : ContentsElement
+@interface TextElement : ContentsElement {
+	@private
+	NSString*	_alignmentString;
+	NSString*	_indentString;
+	NSString*	_colorString;
+}
 
 @property (nonatomic, readonly) NSTextAlignment	alignment;
 @property (nonatomic, readonly) NSInteger		indent;

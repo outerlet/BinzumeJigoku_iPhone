@@ -10,6 +10,6 @@
 
 @interface TitleElement : ContentsElement
 
-@property (nonatomic, readonly) double	duration;
+@property (nonatomic, readonly) NSString*	title;
 
 @end

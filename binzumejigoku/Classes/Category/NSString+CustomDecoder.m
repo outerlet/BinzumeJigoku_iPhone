@@ -10,6 +10,24 @@
 
 @implementation NSString (CustomDecoder)
 
++ (NSString*)stringWithContentsType:(ContentsType)contentsType {
+	switch (contentsType) {
+		case ContentsTypeImage:
+			return @"image";
+		case ContentsTypeWait:
+			return @"wait";
+		case ContentsTypeTitle:
+			return @"title";
+		case ContentsTypeText:
+			return @"text";
+		case ContentsTypeClearText:
+			return @"clear-text";
+		default: ;
+	}
+	
+	return nil;
+}
+
 - (UIColor*)decodeToColor {
 	NSString* str = [self hasPrefix:@"#"] ? [self substringFromIndex:1] : self;
 	
@@ -31,16 +49,23 @@
 }
 
 - (NSString*)decodeUTF16String {
-	NSMutableString* converted = [self mutableCopy];
+	NSString* source = [self hasPrefix:@"\\u"] ? self : [NSString stringWithFormat:@"\\u%@", self];
+	NSMutableString* converted = [source mutableCopy];
 	CFStringTransform((CFMutableStringRef)converted, NULL, CFSTR("Any-Hex/Java"), YES);
 	
 	return [NSString stringWithString:converted];
 }
 
+- (ChainType)decodeToChainType {
+	if ([[self lowercaseString] isEqualToString:@"wait"]) {
+		return ChainTypeWait;
+	} else if ([[self lowercaseString] isEqualToString:@"immediate"]) {
+		return ChainTypeImmediate;
+	}
+	
+	return ChainTypeNone;
+}
 
-/**
- * selfに与えられた文字列から、それに合致するContentsTypeを返却する
- */
 - (ContentsType)decodeToContentsType {
 	if ([self isEqualToString:@"meta-data"]) {
 		return ContentsTypeMetaData;
@@ -63,6 +88,32 @@
 	}
 	
 	return ContentsTypeUnknown;
+}
+
+- (ImageEffect)decodeToImageEffect {
+	if ([[self lowercaseString] isEqualToString:@"fade"]) {
+		return ImageEffectFade;
+	} else if ([[self lowercaseString] isEqualToString:@"cut"]) {
+		return ImageEffectCut;
+	}
+	
+	return ImageEffectUnknown;
+}
+
+- (UIImage*)decodeToUIImage {
+	UIImage* img = [UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", self]];
+	if (!img) {
+		img = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", self]];
+	}
+	
+	return img;
+}
+
+- (NSTextAlignment)decodeToTextAlignment {
+	if ([[self lowercaseString] isEqualToString:@"right"]) {
+		return NSTextAlignmentRight;
+	}
+	return NSTextAlignmentLeft;
 }
 
 @end

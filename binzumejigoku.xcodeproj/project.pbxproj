@@ -15,6 +15,7 @@
 		5C0B10191D686B3A00148096 /* TitleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B10111D686B3A00148096 /* TitleElement.m */; };
 		5C0B101A1D686B3A00148096 /* WaitElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B10131D686B3A00148096 /* WaitElement.m */; };
 		5C20B5D71D4B8B3C0014E6F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C20B5D61D4B8B3C0014E6F9 /* main.m */; };
+		5C3D6B121D6B222700F24098 /* BinzumeJigoku.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C3D6B101D6B222700F24098 /* BinzumeJigoku.xcdatamodeld */; };
 		5C7575B11D4DD9260094D5B3 /* section0_00.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575A91D4DD9260094D5B3 /* section0_00.jpg */; };
 		5C7575B21D4DD9260094D5B3 /* section0_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575AA1D4DD9260094D5B3 /* section0_01.jpg */; };
 		5C7575B31D4DD9260094D5B3 /* section1_00.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575AB1D4DD9260094D5B3 /* section1_00.jpg */; };
@@ -58,6 +59,7 @@
 		5C20B5D21D4B8B3C0014E6F9 /* binzumejigoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = binzumejigoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C20B5D61D4B8B3C0014E6F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5C20B5E61D4B8B3C0014E6F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = binzumejigoku/Info.plist; sourceTree = "<group>"; };
+		5C3D6B111D6B222700F24098 /* BinzumeJigoku.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BinzumeJigoku.xcdatamodel; sourceTree = "<group>"; };
 		5C7575A91D4DD9260094D5B3 /* section0_00.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section0_00.jpg; path = Resources/Images/section0_00.jpg; sourceTree = "<group>"; };
 		5C7575AA1D4DD9260094D5B3 /* section0_01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section0_01.jpg; path = Resources/Images/section0_01.jpg; sourceTree = "<group>"; };
 		5C7575AB1D4DD9260094D5B3 /* section1_00.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section1_00.jpg; path = Resources/Images/section1_00.jpg; sourceTree = "<group>"; };
@@ -138,9 +140,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5C3D6B0F1D6B21EC00F24098 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				5C3D6B101D6B222700F24098 /* BinzumeJigoku.xcdatamodeld */,
+			);
+			name = CoreData;
+			path = Resources/CoreData;
+			sourceTree = "<group>";
+		};
 		5C7575A71D4DD8CE0094D5B3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5C3D6B0F1D6B21EC00F24098 /* CoreData */,
 				5CC1B89F1D4F74DB0003DD38 /* XML */,
 				5C7575A81D4DD9040094D5B3 /* Images */,
 			);
@@ -347,6 +359,7 @@
 				5CC6E3161D4B97D00073FC30 /* MainViewController.m in Sources */,
 				5C0B10181D686B3A00148096 /* TextElement.m in Sources */,
 				5C0B10151D686B3A00148096 /* ContentsElement.m in Sources */,
+				5C3D6B121D6B222700F24098 /* BinzumeJigoku.xcdatamodeld in Sources */,
 				5C0B10161D686B3A00148096 /* ContentsParser.m in Sources */,
 				5CC6E3191D4B97E30073FC30 /* SettingViewController.m in Sources */,
 				5C7575D61D4E300D0094D5B3 /* AlertControllerHandler.m in Sources */,
@@ -498,6 +511,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5C3D6B101D6B222700F24098 /* BinzumeJigoku.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5C3D6B111D6B222700F24098 /* BinzumeJigoku.xcdatamodel */,
+			);
+			currentVersion = 5C3D6B111D6B222700F24098 /* BinzumeJigoku.xcdatamodel */;
+			path = BinzumeJigoku.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5C20B5CA1D4B8B3C0014E6F9 /* Project object */;
 }
