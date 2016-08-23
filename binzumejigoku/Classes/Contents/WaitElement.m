@@ -31,8 +31,8 @@
 	return [NSString stringWithFormat:@"Wait : duration = %f", self.duration];
 }
 
-- (NSManagedObject*)createManagedObject:(NSFetchedResultsController *)fetchedResultsController {
-	NSManagedObject* obj = [super createManagedObject:fetchedResultsController];
+- (NSManagedObject*)createManagedObject {
+	NSManagedObject* obj = [super createManagedObject];
 	
 	[obj setValue:_durationString forKey:AttributeNameValue0];
 	

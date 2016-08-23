@@ -8,6 +8,7 @@
 
 #import "SettingViewController.h"
 #import "SettingTableViewCell.h"
+#import "CoreDataHandler.h"
 
 static NSString* const kCellIdPrefix			= @"CELL-ID_%02ld_%02ld";
 static const CGFloat kHeightForSectionHeader	= 40.0f;
@@ -87,6 +88,15 @@ static const CGFloat kHeightForRow				= 80.0f;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+	NSArray* results = [[CoreDataHandler sharedInstance] newFetchedResultController].fetchedObjects;
+	for (NSManagedObject* obj in results) {
+		NSNumber* sec = [obj valueForKey:@"section"];
+		NSNumber* seq = [obj valueForKey:@"sequence"];
+		NSString* type = [obj valueForKey:@"type"];
+		
+		NSLog(@"section = %ld, sequence = %ld, type = %@", [sec integerValue], [seq integerValue], type);
+	}
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {

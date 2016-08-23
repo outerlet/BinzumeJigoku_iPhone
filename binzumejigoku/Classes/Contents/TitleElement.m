@@ -31,8 +31,8 @@
 	return [NSString stringWithFormat:@"Title : text = %@", self.title];
 }
 
-- (NSManagedObject*)createManagedObject:(NSFetchedResultsController *)fetchedResultsController {
-	NSManagedObject* obj = [super createManagedObject:fetchedResultsController];
+- (NSManagedObject*)createManagedObject {
+	NSManagedObject* obj = [super createManagedObject];
 	
 	[obj setValue:self.title forKey:AttributeNameText];
 	

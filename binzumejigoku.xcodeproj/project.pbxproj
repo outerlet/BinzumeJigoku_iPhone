@@ -29,6 +29,7 @@
 		5C7575CF1D4E25C00094D5B3 /* save_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575CE1D4E25C00094D5B3 /* save_button.png */; };
 		5C7575D61D4E300D0094D5B3 /* AlertControllerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7575D51D4E300D0094D5B3 /* AlertControllerHandler.m */; };
 		5C97062B1D6869D000A14813 /* NSString+CustomDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C97062A1D6869D000A14813 /* NSString+CustomDecoder.m */; };
+		5C9C8F711D6C7F3000E80264 /* CoreDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9C8F701D6C7F3000E80264 /* CoreDataHandler.m */; };
 		5CC1B8A11D4F74F30003DD38 /* contents_binzume_jigoku.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CC1B8A01D4F74F30003DD38 /* contents_binzume_jigoku.xml */; };
 		5CC1B8AA1D4F7E790003DD38 /* AppSetting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CC1B8A91D4F7E790003DD38 /* AppSetting.plist */; };
 		5CC1B8AD1D4F7F7B0003DD38 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC1B8AC1D4F7F7B0003DD38 /* SettingTableViewCell.m */; };
@@ -76,6 +77,8 @@
 		5C7575D51D4E300D0094D5B3 /* AlertControllerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertControllerHandler.m; path = Classes/Util/AlertControllerHandler.m; sourceTree = "<group>"; };
 		5C9706291D6869D000A14813 /* NSString+CustomDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CustomDecoder.h"; sourceTree = "<group>"; };
 		5C97062A1D6869D000A14813 /* NSString+CustomDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CustomDecoder.m"; sourceTree = "<group>"; };
+		5C9C8F6F1D6C7F3000E80264 /* CoreDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHandler.h; sourceTree = "<group>"; };
+		5C9C8F701D6C7F3000E80264 /* CoreDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHandler.m; sourceTree = "<group>"; };
 		5CC1B8A01D4F74F30003DD38 /* contents_binzume_jigoku.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = contents_binzume_jigoku.xml; path = Resources/XML/contents_binzume_jigoku.xml; sourceTree = "<group>"; };
 		5CC1B8A91D4F7E790003DD38 /* AppSetting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppSetting.plist; path = binzumejigoku/AppSetting.plist; sourceTree = "<group>"; };
 		5CC1B8AB1D4F7F7B0003DD38 /* SettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingTableViewCell.h; path = Classes/View/SettingTableViewCell.h; sourceTree = "<group>"; };
@@ -194,6 +197,16 @@
 			path = Classes/Category;
 			sourceTree = "<group>";
 		};
+		5C9C8F6E1D6C7EFF00E80264 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				5C9C8F6F1D6C7F3000E80264 /* CoreDataHandler.h */,
+				5C9C8F701D6C7F3000E80264 /* CoreDataHandler.m */,
+			);
+			name = CoreData;
+			path = Classes/CoreData;
+			sourceTree = "<group>";
+		};
 		5CC1B89F1D4F74DB0003DD38 /* XML */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +241,7 @@
 		5CC6E3091D4B91C60073FC30 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5C9C8F6E1D6C7EFF00E80264 /* CoreData */,
 				5C9706281D68699E00A14813 /* Category */,
 				5CC1B8A51D4F7CCA0003DD38 /* Contents */,
 				5C7575D31D4E2FF70094D5B3 /* Util */,
@@ -348,6 +362,7 @@
 			files = (
 				5CC1B8AD1D4F7F7B0003DD38 /* SettingTableViewCell.m in Sources */,
 				5C7575C71D4DEA910094D5B3 /* ContentsViewController.m in Sources */,
+				5C9C8F711D6C7F3000E80264 /* CoreDataHandler.m in Sources */,
 				5C97062B1D6869D000A14813 /* NSString+CustomDecoder.m in Sources */,
 				5C0B10141D686B3A00148096 /* ClearTextElement.m in Sources */,
 				5CC6E30D1D4B91E00073FC30 /* AppDelegate.m in Sources */,

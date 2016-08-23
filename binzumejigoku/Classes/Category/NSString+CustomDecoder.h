@@ -11,6 +11,9 @@
 #import "ContentsType.h"
 #import "ImageElement.h"
 
+/**
+ * このアプリで使う様々なオブジェクトを生成するためにNSStringを拡張したカテゴリ
+ */
 @interface NSString (CustomDecoder)
 
 /**

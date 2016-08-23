@@ -36,8 +36,8 @@
 	return [NSString stringWithFormat:@"Image : src = %@", _imageName];
 }
 
-- (NSManagedObject*)createManagedObject:(NSFetchedResultsController*)fetchedResultsController {
-	NSManagedObject* obj = [super createManagedObject:fetchedResultsController];
+- (NSManagedObject*)createManagedObject {
+	NSManagedObject* obj = [super createManagedObject];
 	
 	[obj setValue:_imageName forKey:AttributeNameValue0];
 	[obj setValue:_durationString forKey:AttributeNameValue1];

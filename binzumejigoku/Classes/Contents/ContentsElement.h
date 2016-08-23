@@ -40,8 +40,20 @@ static NSString* const AttributeNameText		= @"text";
 @property (nonatomic, readonly) ChainType		chainType;
 @property (nonatomic, readonly) ContentsType	contentsType;
 
+/**
+ * イニシャライザ<br />
+ * XMLをパースした結果からこのクラスのオブジェクトを生成するときはこちらを使う
+ */
 - (id)initWithSection:(NSInteger)section sequence:(NSInteger)sequence attribute:(NSDictionary*)attrs object:(id)obj;
+
+/**
+ * オブジェクトを表現する文字列を返却する
+ */
 - (NSString*)stringValue;
-- (NSManagedObject*)createManagedObject:(NSFetchedResultsController*)fetchedResultsController;
+
+/**
+ * "Contents"エンティティにデータを保存するためのManaged Objectを生成する
+ */
+- (NSManagedObject*)createManagedObject;
 
 @end

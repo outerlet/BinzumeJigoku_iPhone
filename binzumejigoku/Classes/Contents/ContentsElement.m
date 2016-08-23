@@ -7,15 +7,15 @@
 //
 
 #import "ContentsElement.h"
+#import "AppDelegate.h"
 #import "NSString+CustomDecoder.h"
+#import "CoreDataHandler.h"
 
 @interface ContentsElement ()
 
-@property (nonatomic, readwrite)	NSInteger	section;
-@property (nonatomic, readwrite)	NSInteger	sequence;
-@property (nonatomic, readwrite)	ChainType	chainType;
-
-- (ChainType)convertToChainType:(NSString*)str;
+@property (nonatomic, readwrite)	NSInteger		section;
+@property (nonatomic, readwrite)	NSInteger		sequence;
+@property (nonatomic, readwrite)	ChainType		chainType;
 
 @end
 
@@ -38,10 +38,8 @@
 	return @"SuperClass";
 }
 
-- (NSManagedObject*)createManagedObject:(NSFetchedResultsController*)fetchedResultsController {
-	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
-	NSEntityDescription *entity = [[fetchedResultsController fetchRequest] entity];
-	NSManagedObject* obj = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+- (NSManagedObject*)createManagedObject {
+	NSManagedObject* obj = [[CoreDataHandler sharedInstance] createManagedObject];
 	
 	[obj setValue:[NSNumber numberWithInteger:self.section] forKey:AttributeNameSection];
 	[obj setValue:[NSNumber numberWithInteger:self.sequence] forKey:AttributeNameSequence];

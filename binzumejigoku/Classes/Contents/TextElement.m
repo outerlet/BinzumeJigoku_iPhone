@@ -57,8 +57,8 @@
 	return [NSString stringWithFormat:@"Text : text = %@", self.text];
 }
 
-- (NSManagedObject*)createManagedObject:(NSFetchedResultsController *)fetchedResultsController {
-	NSManagedObject* obj = [super createManagedObject:fetchedResultsController];
+- (NSManagedObject*)createManagedObject {
+	NSManagedObject* obj = [super createManagedObject];
 	
 	[obj setValue:_alignmentString forKey:AttributeNameValue0];
 	[obj setValue:_indentString forKey:AttributeNameValue1];

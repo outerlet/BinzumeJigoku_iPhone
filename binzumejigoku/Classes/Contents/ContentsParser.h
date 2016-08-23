@@ -7,28 +7,34 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
 #import "ContentsType.h"
+
+@protocol ContentsParserDelegate <NSObject>
+
+- (void)parseDidFinished;
+- (void)parseErrorDidOccurred:(NSError*)error;
+
+@end
 
 @interface ContentsParser : NSObject <NSXMLParserDelegate> {
 	@private
-	NSXMLParser*				_parser;
-	NSFetchedResultsController*	_fetchedResultsController;
+	NSXMLParser*	_parser;
 	
 	NSInteger		_section;
 	NSString*		_rubyClosure;
 	NSString*		_rubyDelimiter;
 	
-	NSMutableArray*	_mutableElements;
 	NSInteger		_sequence;
 	ContentsType	_currentType;
 	NSDictionary*	_currentAttributes;
 	id				_currentObject;
 }
 
-@property (nonatomic, readonly) NSArray*					elements;
-@property (nonatomic, readonly)	NSFetchedResultsController*	fetchedResultsController;
+@property (nonatomic)	id<ContentsParserDelegate>	delegate;
 
+/**
+ *	XMLのパースを開始する
+ */
 - (void)parse;
 
 @end

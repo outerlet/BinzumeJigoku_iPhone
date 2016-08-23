@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ContentsParser.h"
 
-@class ContentsParser;
-
-@interface ContentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface ContentsViewController : UIViewController <ContentsParserDelegate> {
 	@private
-	UITableView*	_tableView;
 	ContentsParser*	_parser;
 }
 

@@ -7,7 +7,7 @@
         <attribute name="section" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="sequence" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="value0" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="value1" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="value2" optional="YES" attributeType="String" syncable="YES"/>

@@ -7,7 +7,7 @@
 //
 
 #import "ContentsParser.h"
-#import "AppDelegate.h"
+#import "CoreDataHandler.h"
 #import "TextElement.h"
 #import "ContentsElement.h"
 #import "ImageElement.h"
@@ -18,13 +18,6 @@
 #import "NSString+CustomDecoder.h"
 
 static NSString* const SettingPlistName	= @"AppSetting";
-
-@interface ContentsParser ()
-
-@property (nonatomic, readwrite)	NSArray*		elements;
-@property (nonatomic, readonly)		AppDelegate*	appDelegate;
-
-@end
 
 @implementation ContentsParser
 
@@ -40,8 +33,6 @@ static NSString* const SettingPlistName	= @"AppSetting";
 		_parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path]];
 		_parser.delegate = self;
 		
-		_mutableElements = [[NSMutableArray alloc] init];
-		
 		_sequence = 0;
 		_currentType = ContentsTypeUnknown;
 	}
@@ -49,17 +40,23 @@ static NSString* const SettingPlistName	= @"AppSetting";
 	return self;
 }
 
-/**
- *	XMLのパースを開始した
- */
 - (void)parse {
 	[_parser parse];
-	
-	self.elements = [NSArray arrayWithArray:_mutableElements];
-}
 
-- (AppDelegate*)appDelegate {
-	return (AppDelegate*)[UIApplication sharedApplication].delegate;
+	NSError *error = nil;
+	BOOL result = [[CoreDataHandler sharedInstance] commitManagedObjects:&error];
+	
+	if (self.delegate) {
+		if (result) {
+			if ([self.delegate respondsToSelector:@selector(parseDidFinished)]) {
+				[self.delegate parseDidFinished];
+			}
+		} else {
+			if ([self.delegate respondsToSelector:@selector(parseErrorDidOccurred:)]) {
+				[self.delegate parseErrorDidOccurred:error];
+			}
+		}
+	}
 }
 
 #pragma mark - NSXMLParser Delegate
@@ -82,6 +79,7 @@ static NSString* const SettingPlistName	= @"AppSetting";
 			_rubyDelimiter = [attributeDict objectForKey:@"ruby_delimiter"];
 		} else if (type == ContentsTypeSection) {
 			_section = [[attributeDict objectForKey:@"index"] integerValue];
+			_sequence = 0;
 		}
 	}
 }
@@ -141,47 +139,17 @@ static NSString* const SettingPlistName	= @"AppSetting";
 		}
 		
 		if (cls) {
-			[_mutableElements addObject:[[cls alloc] initWithSection:_section
-															sequence:_sequence++
-														   attribute:_currentAttributes
-															  object:_currentObject]];
+			ContentsElement* elm = [[cls alloc] initWithSection:_section
+													   sequence:_sequence++
+													  attribute:_currentAttributes
+														 object:_currentObject];
+			[elm createManagedObject];
 		}
 		
 		_currentType = ContentsTypeUnknown;
 		_currentAttributes = nil;
 		_currentObject = nil;
 	}
-}
-
-#pragma mark - Core Data
-
-- (NSFetchedResultsController*)fetchedResultsController {
-	if (_fetchedResultsController != nil) {
-		return _fetchedResultsController;
-	}
-	
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Person"
-											  inManagedObjectContext:self.appDelegate.managedObjectContext];
-	[fetchRequest setEntity:entity];
-	[fetchRequest setFetchBatchSize:20];
-	
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-	[fetchRequest setSortDescriptors:@[sortDescriptor]];
-	
-	_fetchedResultsController =
-			[[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-												managedObjectContext:self.appDelegate.managedObjectContext
-												  sectionNameKeyPath:nil
-														   cacheName:@"Master"];
-	
-	NSError *error = nil;
-	if (![self.fetchedResultsController performFetch:&error]) {
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-		abort();
-	}
-	
-	return _fetchedResultsController;
 }
 
 @end
