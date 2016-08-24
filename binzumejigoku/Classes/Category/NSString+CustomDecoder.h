@@ -49,7 +49,7 @@
 /**
  * 画像のプレフィックス(=拡張子なし)からUIImageオブジェクトを生成する
  */
-- (UIImage*)decodeToUIImage;
+- (UIImage*)decodeToImage;
 
 /**
  * "align"属性に相当するNSTextAlignmentの値を返却する

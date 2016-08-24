@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ContentsParser.h"
 
-@interface ContentsViewController : UIViewController <ContentsParserDelegate> {
-	@private
-	ContentsParser*	_parser;
-}
+@interface ContentsViewController : UIViewController
 
 @property (nonatomic, readonly) NSInteger sectionIndex;
 
+/**
+ * イニシャライザ<br />
+ * セクション番号からインスタンスを生成する
+ */
 - (id)initWithSectionIndex:(NSInteger)sectionIndex;
 
 @end

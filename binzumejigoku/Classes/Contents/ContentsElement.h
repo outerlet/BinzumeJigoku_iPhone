@@ -42,9 +42,15 @@ static NSString* const AttributeNameText		= @"text";
 
 /**
  * イニシャライザ<br />
- * XMLをパースした結果からこのクラスのオブジェクトを生成するときはこちらを使う
+ * XMLをパースした結果からオブジェクトを生成するときはこちらを使う
  */
 - (id)initWithSection:(NSInteger)section sequence:(NSInteger)sequence attribute:(NSDictionary*)attrs object:(id)obj;
+
+/**
+ * イニシャライザ<br />
+ * Core Dataを使ってfetchした結果得られたManaged Objectからオブジェクトを生成するときはこちらを使う
+ */
+- (id)initWithManagedObject:(NSManagedObject*)managedObject;
 
 /**
  * オブジェクトを表現する文字列を返却する

@@ -30,6 +30,15 @@
 	return self;
 }
 
+- (id)initWithManagedObject:(NSManagedObject*)managedObject {
+	if (self = [super init]) {
+		self.section = [[managedObject valueForKey:AttributeNameSection] integerValue];
+		self.sequence = [[managedObject valueForKey:AttributeNameSequence] integerValue];
+		self.chainType = [[managedObject valueForKey:AttributeNameCommon0] decodeToChainType];
+	}
+	return self;
+}
+
 - (ContentsType)contentsType {
 	return ContentsTypeUnknown;
 }

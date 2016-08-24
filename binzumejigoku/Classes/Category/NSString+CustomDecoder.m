@@ -100,7 +100,7 @@
 	return ImageEffectUnknown;
 }
 
-- (UIImage*)decodeToUIImage {
+- (UIImage*)decodeToImage {
 	UIImage* img = [UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", self]];
 	if (!img) {
 		img = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", self]];

@@ -97,26 +97,27 @@ static CoreDataHandler*	_instance = nil;
 										 inManagedObjectContext:self.managedObjectContext];
 }
 
-- (BOOL)commitManagedObjects:(NSError**)error {
+- (BOOL)commit:(NSError**)error {
 	return [self.managedObjectContext save:error];
 }
 
-- (NSFetchedResultsController*)newFetchedResultController {
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:ENTITY_NAME
-											  inManagedObjectContext:self.managedObjectContext];
-	[fetchRequest setEntity:entity];
-	[fetchRequest setFetchBatchSize:20];
+- (NSFetchedResultsController*)fetch:(NSInteger)sectionIndex {
+	NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:ENTITY_NAME];
+	request.fetchBatchSize = 20;
+
+	// セクションで絞り込み
+	request.predicate = [NSPredicate predicateWithFormat:@"section = %ld", sectionIndex];
 	
+	// ソート条件指定
 	NSSortDescriptor *sectionDescriptor = [[NSSortDescriptor alloc] initWithKey:@"section" ascending:YES];
 	NSSortDescriptor *sequenceDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sequence" ascending:YES];
-	[fetchRequest setSortDescriptors:@[sectionDescriptor, sequenceDescriptor]];
+	request.sortDescriptors = @[sectionDescriptor, sequenceDescriptor];
 	
 	NSFetchedResultsController* fetchedResultsController =
-	[[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-										managedObjectContext:self.managedObjectContext
-										  sectionNameKeyPath:nil
-												   cacheName:@"Master"];
+			[[NSFetchedResultsController alloc] initWithFetchRequest:request
+												managedObjectContext:self.managedObjectContext
+												  sectionNameKeyPath:nil
+														   cacheName:@"Master"];
 	
 	NSError *error = nil;
 	if (![fetchedResultsController performFetch:&error]) {

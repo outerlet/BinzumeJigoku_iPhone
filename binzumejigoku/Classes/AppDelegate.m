@@ -20,28 +20,38 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-	
-    UITabBarController* tabController = [[UITabBarController alloc] init];
+
+	ContentsParser* parser = [[ContentsParser alloc] init];
+	parser.delegate = self;
+	[parser parse];
+
+    return YES;
+}
+
+- (void)parseDidFinished {
+	UITabBarController* tabController = [[UITabBarController alloc] init];
 	
 	// 物語を選択する、メインとなるViewController
-    MainViewController* mainController = [[MainViewController alloc] init];
-    mainController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:0];
-    [tabController addChildViewController:mainController];
+	MainViewController* mainController = [[MainViewController alloc] init];
+	mainController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:0];
+	[tabController addChildViewController:mainController];
 	
 	// セーブ&ロードを担当するViewController
-    HistoryViewController* historyController = [[HistoryViewController alloc] initWithBackgroundType:HistoryBackgroundTypeLaunchImage];
-    historyController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:1];
-    [tabController addChildViewController:historyController];
+	HistoryViewController* historyController = [[HistoryViewController alloc] initWithBackgroundType:HistoryBackgroundTypeLaunchImage];
+	historyController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:1];
+	[tabController addChildViewController:historyController];
 	
 	// 設定画面を表示するViewController
 	SettingViewController* settingController = [[SettingViewController alloc] init];
-    settingController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:2];
-    [tabController addChildViewController:settingController];
-    
-    self.window.rootViewController = tabController;
-    [self.window makeKeyAndVisible];
+	settingController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:2];
+	[tabController addChildViewController:settingController];
+	
+	self.window.rootViewController = tabController;
+	[self.window makeKeyAndVisible];
+}
 
-    return YES;
+- (void)parseErrorDidOccurred:(NSError *)error {
+	NSLog(@"XML parse error : %@", error);
 }
 
 @end

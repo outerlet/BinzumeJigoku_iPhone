@@ -44,7 +44,7 @@ static NSString* const SettingPlistName	= @"AppSetting";
 	[_parser parse];
 
 	NSError *error = nil;
-	BOOL result = [[CoreDataHandler sharedInstance] commitManagedObjects:&error];
+	BOOL result = [[CoreDataHandler sharedInstance] commit:&error];
 	
 	if (self.delegate) {
 		if (result) {

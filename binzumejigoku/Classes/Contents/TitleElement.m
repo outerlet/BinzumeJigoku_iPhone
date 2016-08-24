@@ -23,6 +23,13 @@
 	return self;
 }
 
+- (id)initWithManagedObject:(NSManagedObject *)managedObject {
+	if (self = [super initWithManagedObject:managedObject]) {
+		self.title = [managedObject valueForKey:AttributeNameText];
+	}
+	return self;
+}
+
 - (ContentsType)contentsType {
 	return ContentsTypeTitle;
 }

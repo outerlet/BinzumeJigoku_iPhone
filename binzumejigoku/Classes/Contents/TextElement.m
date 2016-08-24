@@ -49,6 +49,16 @@
 	return self;
 }
 
+- (id)initWithManagedObject:(NSManagedObject *)managedObject {
+	if (self = [super initWithManagedObject:managedObject]) {
+		self.alignment = [[managedObject valueForKey:AttributeNameValue0] decodeToTextAlignment];
+		self.indent = [[managedObject valueForKey:AttributeNameValue1] integerValue];
+		self.color = [[managedObject valueForKey:AttributeNameValue2] decodeToColor];
+		self.text = [managedObject valueForKey:AttributeNameText];
+	}
+	return self;
+}
+
 - (ContentsType)contentsType {
 	return ContentsTypeText;
 }

@@ -23,6 +23,13 @@
 	return self;
 }
 
+- (id)initWithManagedObject:(NSManagedObject *)managedObject {
+	if (self = [super initWithManagedObject:managedObject]) {
+		self.duration = [[managedObject valueForKey:AttributeNameValue0] doubleValue];
+	}
+	return self;
+}
+
 - (ContentsType)contentsType {
 	return ContentsTypeWait;
 }

@@ -6,10 +6,11 @@
 //  Copyright © 2016年 1-Take. All rights reserved.
 
 #import <UIKit/UIKit.h>
+#import "ContentsParser.h"
 
 #define DEFAULT_FONT_NAME @"Hiragino Mincho ProN W3"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, ContentsParserDelegate>
 
 @property (strong, nonatomic)	UIWindow*	window;
 

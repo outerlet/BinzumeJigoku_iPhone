@@ -37,11 +37,11 @@
  * これまでcreateManagedObjectで生成したManaged Objectをまとめて保存する<br />
  * 保存処理の成否は戻り値で、その際のエラーはerrorに参照渡しで返る
  */
-- (BOOL)commitManagedObjects:(NSError**)error;
+- (BOOL)commit:(NSError**)error;
 
 /**
  * エンティティ"Contents"をクエリして得られるFetched Results Controllerを返す
  */
-- (NSFetchedResultsController*)newFetchedResultController;
+- (NSFetchedResultsController*)fetch:(NSInteger)sectionIndex;
 
 @end

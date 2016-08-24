@@ -28,6 +28,15 @@
 	return self;
 }
 
+- (id)initWithManagedObject:(NSManagedObject *)managedObject {
+	if (self = [super initWithManagedObject:managedObject]) {
+		self.image = [[managedObject valueForKey:AttributeNameValue0] decodeToImage];
+		self.duration = [[managedObject valueForKey:AttributeNameValue1] doubleValue];
+		self.imageEffect = [[managedObject valueForKey:AttributeNameValue2] decodeToImageEffect];
+	}
+	return self;
+}
+
 - (ContentsType)contentsType {
 	return ContentsTypeImage;
 }
