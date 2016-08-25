@@ -12,7 +12,7 @@
 #import "ImageElement.h"
 
 /**
- * このアプリで使う様々なオブジェクトを生成するためにNSStringを拡張したカテゴリ
+ * このアプリで使う様々なオブジェクトを生成するためにNSStringを拡張するカテゴリ
  */
 @interface NSString (CustomDecoder)
 

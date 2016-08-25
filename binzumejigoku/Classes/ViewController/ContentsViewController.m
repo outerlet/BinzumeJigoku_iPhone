@@ -41,14 +41,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-	UILabel* label = [[UILabel alloc] initWithFrame:self.view.bounds];
-	label.center = self.view.center;
-	label.backgroundColor = [UIColor whiteColor];
-	label.textColor = [UIColor blackColor];
-	label.textAlignment = NSTextAlignmentCenter;
-	label.text = @"Contents View Controller";
-	[self.view addSubview:label];
+
+	_titleView = [[TitleView alloc] initWithFrame:self.view.bounds
+													  title:@"Hello,world."
+													   font:[UIFont systemFontOfSize:24.0f]];
+	_titleView.delegate = self;
+	[self.view addSubview:_titleView];
 	
 	NSMutableArray* array = [[NSMutableArray alloc] init];
 	CoreDataHandler* handler = [CoreDataHandler sharedInstance];
@@ -66,7 +64,7 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
-	[self dismissViewControllerAnimated:YES completion:nil];
+	[_titleView startAnimationWithDuration:3.0f];
 }
 
 - (ContentsElement*)elementByManagedObject:(NSManagedObject*)managedObject {
@@ -93,6 +91,10 @@
 	}
 	
 	return [[cls alloc] initWithManagedObject:managedObject];
+}
+
+- (void)titleViewAnimationDidFinish:(TitleView *)titleView {
+	NSLog(@"Title view animated.");
 }
 
 @end

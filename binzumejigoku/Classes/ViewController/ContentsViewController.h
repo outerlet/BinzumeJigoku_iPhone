@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TitleView.h"
 
-@interface ContentsViewController : UIViewController
+@class TitleView;
+
+@interface ContentsViewController : UIViewController <TitleViewDelegate> {
+	@private
+	TitleView*	_titleView;
+}
 
 @property (nonatomic, readonly) NSInteger sectionIndex;
 
