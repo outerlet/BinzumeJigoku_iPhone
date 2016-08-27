@@ -6,60 +6,56 @@
 //  Copyright © 2016年 1-Take. All rights reserved.
 //
 
-#import "TitleView.h"
+#import "ContentsTitleView.h"
 
-@interface TitleView ()
+@interface ContentsTitleView ()
 
 - (void)startDismissAnimation;
 - (void)titleViewAnimationDidFinish;
 
 @end
 
-@implementation TitleView
+@implementation ContentsTitleView
 
-- (id)initWithFrame:(CGRect)frame title:(NSString*)title font:(UIFont*)font {
-	if (self = [super initWithFrame:frame]) {
-		NSMutableArray* labels = [[NSMutableArray alloc] init];
+- (void)setTitle:(NSString*)title font:(UIFont*)font {
+	NSMutableArray* labels = [[NSMutableArray alloc] init];
+	
+	NSDictionary* attrs = @{ NSFontAttributeName : font };
+	CGFloat totalWidth = 0.0f;
+	
+	// 1文字ごとを描画するのに必要なサイズを求めつつ文字数と同じだけのUILabelを生成
+	for (NSInteger idx = 0 ; idx < title.length ; idx++) {
+		NSString* str = [title substringWithRange:NSMakeRange(idx, 1)];
+		CGSize size = [str sizeWithAttributes:attrs];
 		
-		NSDictionary* attrs = @{ NSFontAttributeName : font };
-		CGFloat totalWidth = 0.0f;
+		totalWidth += size.width;
 		
-		// 1文字ごとを描画するのに必要なサイズを求めつつ文字数と同じだけのUILabelを生成
-		for (NSInteger idx = 0 ; idx < title.length ; idx++) {
-			NSString* str = [title substringWithRange:NSMakeRange(idx, 1)];
-			CGSize size = [str sizeWithAttributes:attrs];
-			
-			totalWidth += size.width;
-			
-			UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, size.width, size.height)];
-			label.font = font;
-			label.backgroundColor = [UIColor clearColor];
-			label.textColor = [UIColor blackColor];
-			label.textAlignment = NSTextAlignmentCenter;
-			label.alpha = 0.0f;
-			label.text = str;
-			[self addSubview:label];
-			
-			[labels addObject:label];
-		}
+		UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, size.width, size.height)];
+		label.font = font;
+		label.backgroundColor = [UIColor clearColor];
+		label.textColor = [UIColor blackColor];
+		label.textAlignment = NSTextAlignmentCenter;
+		label.alpha = 0.0f;
+		label.text = str;
+		[self addSubview:label];
 		
-		_titleLabels = [NSArray arrayWithArray:labels];
-		
-		CGPoint pos = self.center;
-		pos.x -= (totalWidth / 2);
-		
-		// 先に生成したUILabelを適切な場所に配置
-		for (NSInteger idx = 0 ; idx < _titleLabels.count ; idx++) {
-			UILabel* label = [_titleLabels objectAtIndex:idx];
-			
-			CGFloat half = label.frame.size.width / 2;
-			pos.x += half;
-			label.center = pos;
-			pos.x += half;
-		}
+		[labels addObject:label];
 	}
 	
-	return self;
+	_titleLabels = [NSArray arrayWithArray:labels];
+	
+	CGPoint pos = self.center;
+	pos.x -= (totalWidth / 2);
+	
+	// 先に生成したUILabelを適切な場所に配置
+	for (NSInteger idx = 0 ; idx < _titleLabels.count ; idx++) {
+		UILabel* label = [_titleLabels objectAtIndex:idx];
+		
+		CGFloat half = label.frame.size.width / 2;
+		pos.x += half;
+		label.center = pos;
+		pos.x += half;
+	}
 }
 
 - (void)startAnimationWithDuration:(NSTimeInterval)duration {

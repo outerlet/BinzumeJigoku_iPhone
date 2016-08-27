@@ -35,6 +35,7 @@
 - (id)initWithSectionIndex:(NSInteger)sectionIndex {
 	if (self = [super init]) {
 		self.sectionIndex = sectionIndex;
+		_touchCount = 0;
 	}
 	return self;
 }
@@ -42,11 +43,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	_titleView = [[TitleView alloc] initWithFrame:self.view.bounds
-													  title:@"Hello,world."
-													   font:[UIFont systemFontOfSize:24.0f]];
-	_titleView.delegate = self;
-	[self.view addSubview:_titleView];
+	_imageView = [[ContentsImageView alloc] initWithFrame:self.view.bounds];
+	[self.view addSubview:_imageView];
 	
 	NSMutableArray* array = [[NSMutableArray alloc] init];
 	CoreDataHandler* handler = [CoreDataHandler sharedInstance];
@@ -64,7 +62,23 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
-	[_titleView startAnimationWithDuration:3.0f];
+	++_touchCount;
+	
+	switch (_touchCount) {
+		case 1:
+			[_imageView setNextImage:[UIImage imageNamed:@"section0_00.jpg"]];
+			[_imageView startAnimationWithEffect:ImageEffectCut duration:1.0f];
+			break;
+		case 2:
+			[_imageView setNextImage:[UIImage imageNamed:@"section0_01.jpg"]];
+			[_imageView startAnimationWithEffect:ImageEffectCut duration:1.0f];
+			break;
+		default:
+			[_imageView setNextImage:nil];
+			[_imageView startAnimationWithEffect:ImageEffectCut duration:1.0f];
+			_touchCount = 0;
+			break;
+	}
 }
 
 - (ContentsElement*)elementByManagedObject:(NSManagedObject*)managedObject {
@@ -93,8 +107,8 @@
 	return [[cls alloc] initWithManagedObject:managedObject];
 }
 
-- (void)titleViewAnimationDidFinish:(TitleView *)titleView {
-	NSLog(@"Title view animated.");
+- (void)imageViewAnimationDidFinish:(ContentsImageView *)imageView {
+	
 }
 
 @end

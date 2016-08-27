@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TitleView.h"
+#import "ContentsImageView.h"
 
 @class TitleView;
 
-@interface ContentsViewController : UIViewController <TitleViewDelegate> {
+@interface ContentsViewController : UIViewController <ContentsImageViewDelegate> {
 	@private
-	TitleView*	_titleView;
+	ContentsImageView*	_imageView;
+	NSInteger			_touchCount;
 }
 
 @property (nonatomic, readonly) NSInteger sectionIndex;
