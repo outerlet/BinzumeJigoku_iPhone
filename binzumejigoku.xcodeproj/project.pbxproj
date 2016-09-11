@@ -16,6 +16,9 @@
 		5C0B101A1D686B3A00148096 /* WaitElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B10131D686B3A00148096 /* WaitElement.m */; };
 		5C20B5D71D4B8B3C0014E6F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C20B5D61D4B8B3C0014E6F9 /* main.m */; };
 		5C3D6B121D6B222700F24098 /* BinzumeJigoku.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C3D6B101D6B222700F24098 /* BinzumeJigoku.xcdatamodeld */; };
+		5C3E23951D8591E900760EA7 /* UIView+Adjustment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E23941D8591E900760EA7 /* UIView+Adjustment.m */; };
+		5C3E239A1D85921C00760EA7 /* RubyOnelineTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E23971D85921C00760EA7 /* RubyOnelineTextView.m */; };
+		5C3E239B1D85921C00760EA7 /* RubyTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E23991D85921C00760EA7 /* RubyTextView.m */; };
 		5C4849551D718EE90045068C /* ContentsImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4849541D718EE90045068C /* ContentsImageView.m */; };
 		5C7575B11D4DD9260094D5B3 /* section0_00.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575A91D4DD9260094D5B3 /* section0_00.jpg */; };
 		5C7575B21D4DD9260094D5B3 /* section0_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575AA1D4DD9260094D5B3 /* section0_01.jpg */; };
@@ -63,6 +66,12 @@
 		5C20B5D61D4B8B3C0014E6F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5C20B5E61D4B8B3C0014E6F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = binzumejigoku/Info.plist; sourceTree = "<group>"; };
 		5C3D6B111D6B222700F24098 /* BinzumeJigoku.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BinzumeJigoku.xcdatamodel; sourceTree = "<group>"; };
+		5C3E23931D8591E900760EA7 /* UIView+Adjustment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Adjustment.h"; sourceTree = "<group>"; };
+		5C3E23941D8591E900760EA7 /* UIView+Adjustment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Adjustment.m"; sourceTree = "<group>"; };
+		5C3E23961D85921C00760EA7 /* RubyOnelineTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RubyOnelineTextView.h; path = Classes/View/RubyOnelineTextView.h; sourceTree = "<group>"; };
+		5C3E23971D85921C00760EA7 /* RubyOnelineTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RubyOnelineTextView.m; path = Classes/View/RubyOnelineTextView.m; sourceTree = "<group>"; };
+		5C3E23981D85921C00760EA7 /* RubyTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RubyTextView.h; path = Classes/View/RubyTextView.h; sourceTree = "<group>"; };
+		5C3E23991D85921C00760EA7 /* RubyTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RubyTextView.m; path = Classes/View/RubyTextView.m; sourceTree = "<group>"; };
 		5C4849531D718EE90045068C /* ContentsImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsImageView.h; path = Classes/View/ContentsImageView.h; sourceTree = "<group>"; };
 		5C4849541D718EE90045068C /* ContentsImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsImageView.m; path = Classes/View/ContentsImageView.m; sourceTree = "<group>"; };
 		5C7575A91D4DD9260094D5B3 /* section0_00.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section0_00.jpg; path = Resources/Images/section0_00.jpg; sourceTree = "<group>"; };
@@ -196,6 +205,8 @@
 		5C9706281D68699E00A14813 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				5C3E23931D8591E900760EA7 /* UIView+Adjustment.h */,
+				5C3E23941D8591E900760EA7 /* UIView+Adjustment.m */,
 				5C9706291D6869D000A14813 /* NSString+CustomDecoder.h */,
 				5C97062A1D6869D000A14813 /* NSString+CustomDecoder.m */,
 			);
@@ -277,6 +288,10 @@
 		5CC6E31D1D4B9D0E0073FC30 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5C3E23961D85921C00760EA7 /* RubyOnelineTextView.h */,
+				5C3E23971D85921C00760EA7 /* RubyOnelineTextView.m */,
+				5C3E23981D85921C00760EA7 /* RubyTextView.h */,
+				5C3E23991D85921C00760EA7 /* RubyTextView.m */,
 				5CC1B8AB1D4F7F7B0003DD38 /* SettingTableViewCell.h */,
 				5CC1B8AC1D4F7F7B0003DD38 /* SettingTableViewCell.m */,
 				5CC6E31E1D4B9D540073FC30 /* MainPageView.h */,
@@ -373,6 +388,7 @@
 				5CC1B8AD1D4F7F7B0003DD38 /* SettingTableViewCell.m in Sources */,
 				5C7575C71D4DEA910094D5B3 /* ContentsViewController.m in Sources */,
 				5C9C8F711D6C7F3000E80264 /* CoreDataHandler.m in Sources */,
+				5C3E239B1D85921C00760EA7 /* RubyTextView.m in Sources */,
 				5C97062B1D6869D000A14813 /* NSString+CustomDecoder.m in Sources */,
 				5C0B10141D686B3A00148096 /* ClearTextElement.m in Sources */,
 				5CC6E30D1D4B91E00073FC30 /* AppDelegate.m in Sources */,
@@ -385,6 +401,8 @@
 				5CC6E3161D4B97D00073FC30 /* MainViewController.m in Sources */,
 				5C0B10181D686B3A00148096 /* TextElement.m in Sources */,
 				5C0B10151D686B3A00148096 /* ContentsElement.m in Sources */,
+				5C3E23951D8591E900760EA7 /* UIView+Adjustment.m in Sources */,
+				5C3E239A1D85921C00760EA7 /* RubyOnelineTextView.m in Sources */,
 				5C4849551D718EE90045068C /* ContentsImageView.m in Sources */,
 				5C3D6B121D6B222700F24098 /* BinzumeJigoku.xcdatamodeld in Sources */,
 				5C0B10161D686B3A00148096 /* ContentsParser.m in Sources */,
