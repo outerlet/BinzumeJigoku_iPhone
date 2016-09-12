@@ -26,6 +26,9 @@
  */
 - (ContentsElement*)elementByManagedObject:(NSManagedObject*)managedObject;
 
+- (void)handleImageElement:(ImageElement*)element;
+- (void)handlerTextElement:(TextElement*)element;
+
 @end
 
 @implementation ContentsViewController
@@ -34,8 +37,8 @@
 
 - (id)initWithSectionIndex:(NSInteger)sectionIndex {
 	if (self = [super init]) {
-		self.sectionIndex = sectionIndex;
-		_touchCount = 0;
+		_sectionIndex = sectionIndex;
+		_currentIndex = -1;
 	}
 	return self;
 }
@@ -43,41 +46,50 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	// 背景画像
 	_imageView = [[ContentsImageView alloc] initWithFrame:self.view.bounds];
+	_imageView.delegate = self;
 	[self.view addSubview:_imageView];
 	
-	NSMutableArray* array = [[NSMutableArray alloc] init];
+	// テキスト
+	_textView = [[RubyTextView alloc] initWithWidth:self.view.bounds.size.width];
+	_textView.delegate = self;
+	[self.view addSubview:_textView];
+	
+	NSMutableArray* contents = [[NSMutableArray alloc] init];
 	CoreDataHandler* handler = [CoreDataHandler sharedInstance];
-	NSFetchedResultsController* result = [handler fetch:self.sectionIndex];
+	NSFetchedResultsController* result = [handler fetch:_sectionIndex];
 	for (NSManagedObject* obj in result.fetchedObjects) {
 		ContentsElement* e = [self elementByManagedObject:obj];
 		if (e) {
-			[array addObject:e];
+			[contents addObject:e];
 		}
 	}
 	
-	for (ContentsElement* e in array) {
-		NSLog(@"%@", [e stringValue]);
-	}
+	_contents = [NSArray arrayWithArray:contents];
 }
 
 - (void)touchesBegan:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
-	++_touchCount;
-	
-	switch (_touchCount) {
-		case 1:
-			[_imageView setNextImage:[UIImage imageNamed:@"section0_00.jpg"]];
-			[_imageView startAnimationWithEffect:ImageEffectCut duration:1.0f];
-			break;
-		case 2:
-			[_imageView setNextImage:[UIImage imageNamed:@"section0_01.jpg"]];
-			[_imageView startAnimationWithEffect:ImageEffectCut duration:1.0f];
-			break;
-		default:
-			[_imageView setNextImage:nil];
-			[_imageView startAnimationWithEffect:ImageEffectCut duration:1.0f];
-			_touchCount = 0;
-			break;
+	if (++_currentIndex < _contents.count) {
+		ContentsElement* e = [_contents objectAtIndex:_currentIndex];
+		
+		switch (e.contentsType) {
+			case ContentsTypeImage:
+				[self handleImageElement:(ImageElement*)e];
+				break;
+			case ContentsTypeText:
+				break;
+			case ContentsTypeTitle:
+				break;
+			case ContentsTypeWait:
+				break;
+			case ContentsTypeClearText:
+				break;
+			default:
+				break;
+		}
+	} else {
+		[self dismissViewControllerAnimated:YES completion:nil];
 	}
 }
 
@@ -107,7 +119,20 @@
 	return [[cls alloc] initWithManagedObject:managedObject];
 }
 
+- (void)handleImageElement:(ImageElement*)element {
+	[_imageView setNextImage:element.image];
+	[_imageView startAnimationWithEffect:element.imageEffect duration:element.duration];
+}
+
+- (void)handlerTextElement:(TextElement*)element {
+	
+}
+
 - (void)imageViewAnimationDidFinish:(ContentsImageView *)imageView {
+	
+}
+
+- (void)rubyTextStreamingDidFinish:(RubyTextView *)textView {
 	
 }
 

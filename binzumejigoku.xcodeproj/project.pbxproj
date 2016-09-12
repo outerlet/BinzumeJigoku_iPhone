@@ -33,6 +33,7 @@
 		5C7575CF1D4E25C00094D5B3 /* save_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575CE1D4E25C00094D5B3 /* save_button.png */; };
 		5C7575D61D4E300D0094D5B3 /* AlertControllerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7575D51D4E300D0094D5B3 /* AlertControllerHandler.m */; };
 		5C7C44861D6F172D00C6DFAA /* ContentsTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7C44851D6F172D00C6DFAA /* ContentsTitleView.m */; };
+		5C8722FF1D86D770001AAF22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C8722FE1D86D770001AAF22 /* LaunchScreen.storyboard */; };
 		5C97062B1D6869D000A14813 /* NSString+CustomDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C97062A1D6869D000A14813 /* NSString+CustomDecoder.m */; };
 		5C9C8F711D6C7F3000E80264 /* CoreDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9C8F701D6C7F3000E80264 /* CoreDataHandler.m */; };
 		5CC1B8A11D4F74F30003DD38 /* contents_binzume_jigoku.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CC1B8A01D4F74F30003DD38 /* contents_binzume_jigoku.xml */; };
@@ -90,6 +91,7 @@
 		5C7575D51D4E300D0094D5B3 /* AlertControllerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertControllerHandler.m; path = Classes/Util/AlertControllerHandler.m; sourceTree = "<group>"; };
 		5C7C44841D6F172D00C6DFAA /* ContentsTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsTitleView.h; path = Classes/View/ContentsTitleView.h; sourceTree = "<group>"; };
 		5C7C44851D6F172D00C6DFAA /* ContentsTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsTitleView.m; path = Classes/View/ContentsTitleView.m; sourceTree = "<group>"; };
+		5C8722FE1D86D770001AAF22 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C9706291D6869D000A14813 /* NSString+CustomDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CustomDecoder.h"; sourceTree = "<group>"; };
 		5C97062A1D6869D000A14813 /* NSString+CustomDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CustomDecoder.m"; sourceTree = "<group>"; };
 		5C9C8F6F1D6C7F3000E80264 /* CoreDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHandler.h; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		5C20B5D41D4B8B3C0014E6F9 /* binzumejigoku */ = {
 			isa = PBXGroup;
 			children = (
+				5C8722FA1D86D50A001AAF22 /* UserInterface */,
 				5C7575A71D4DD8CE0094D5B3 /* Resources */,
 				5CC6E3091D4B91C60073FC30 /* Classes */,
 				5C20B5D51D4B8B3C0014E6F9 /* Supporting Files */,
@@ -200,6 +203,22 @@
 				5C7575D51D4E300D0094D5B3 /* AlertControllerHandler.m */,
 			);
 			name = Util;
+			sourceTree = "<group>";
+		};
+		5C8722FA1D86D50A001AAF22 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				5C8722FB1D86D51B001AAF22 /* Storyboard */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		5C8722FB1D86D51B001AAF22 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				5C8722FE1D86D770001AAF22 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 		5C9706281D68699E00A14813 /* Category */ = {
@@ -288,10 +307,10 @@
 		5CC6E31D1D4B9D0E0073FC30 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5C3E23961D85921C00760EA7 /* RubyOnelineTextView.h */,
-				5C3E23971D85921C00760EA7 /* RubyOnelineTextView.m */,
 				5C3E23981D85921C00760EA7 /* RubyTextView.h */,
 				5C3E23991D85921C00760EA7 /* RubyTextView.m */,
+				5C3E23961D85921C00760EA7 /* RubyOnelineTextView.h */,
+				5C3E23971D85921C00760EA7 /* RubyOnelineTextView.m */,
 				5CC1B8AB1D4F7F7B0003DD38 /* SettingTableViewCell.h */,
 				5CC1B8AC1D4F7F7B0003DD38 /* SettingTableViewCell.m */,
 				5CC6E31E1D4B9D540073FC30 /* MainPageView.h */,
@@ -367,6 +386,7 @@
 				5CC1B8AA1D4F7E790003DD38 /* AppSetting.plist in Resources */,
 				5C7575B71D4DD9260094D5B3 /* section3_00.jpg in Resources */,
 				5C7575B11D4DD9260094D5B3 /* section0_00.jpg in Resources */,
+				5C8722FF1D86D770001AAF22 /* LaunchScreen.storyboard in Resources */,
 				5C7575B51D4DD9260094D5B3 /* section2_00.jpg in Resources */,
 				5CC1B8A11D4F74F30003DD38 /* contents_binzume_jigoku.xml in Resources */,
 				5C7575CF1D4E25C00094D5B3 /* save_button.png in Resources */,
@@ -463,7 +483,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -501,7 +521,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

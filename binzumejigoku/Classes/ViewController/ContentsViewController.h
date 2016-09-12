@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "ContentsImageView.h"
+#import "RubyTextView.h"
 
 @class TitleView;
 
-@interface ContentsViewController : UIViewController <ContentsImageViewDelegate> {
+@interface ContentsViewController : UIViewController <ContentsImageViewDelegate, RubyTextViewDelegate> {
 	@private
 	ContentsImageView*	_imageView;
-	NSInteger			_touchCount;
+	RubyTextView*		_textView;
+	NSArray*			_contents;
+	NSInteger			_currentIndex;
 }
 
 @property (nonatomic, readonly) NSInteger sectionIndex;
