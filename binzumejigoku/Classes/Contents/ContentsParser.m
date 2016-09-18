@@ -46,6 +46,11 @@ static NSString* const SettingPlistName	= @"AppSetting";
 	NSError *error = nil;
 	BOOL result = [[CoreDataHandler sharedInstance] commit:&error];
 	
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setObject:_rubyClosure forKey:@"RUBY_CLOSURE"];
+	[defaults setObject:_rubyDelimiter forKey:@"RUBY_DELIMITER"];
+	[defaults synchronize];
+	
 	if (self.delegate) {
 		if (result) {
 			if ([self.delegate respondsToSelector:@selector(parseDidFinished)]) {

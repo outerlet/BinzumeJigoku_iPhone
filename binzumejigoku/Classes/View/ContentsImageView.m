@@ -13,7 +13,6 @@ static const NSInteger IMAGE_VIEW_NUMBER = 2;
 @interface ContentsImageView ()
 
 - (UIImageView*)imageViewByHidden:(BOOL)hidden;
-- (void)animationDidEnd;
 
 @end
 
@@ -42,7 +41,7 @@ static const NSInteger IMAGE_VIEW_NUMBER = 2;
 	_nextImage = image;
 }
 
-- (void)startAnimationWithEffect:(ImageEffect)effect duration:(NSTimeInterval)duration {
+- (void)startAnimationWithEffect:(ImageEffect)effect duration:(NSTimeInterval)duration completion:(void (^)(void))completion {
 	UIImageView* current = [self imageViewByHidden:NO];
 	
 	// エラー対策。現在何の画像も表示しておらず次に表示すべきものも無い場合は何もしない
@@ -71,7 +70,7 @@ static const NSInteger IMAGE_VIEW_NUMBER = 2;
 	
 	// executionが終了したときに実行すべきブロック
 	// 使わなくなったUIImageViewをhiddenにして_nextImageをクリアしている
-	void (^completion)(void) = ^(void) {
+	void (^finished)(void) = ^(void) {
 		if (current) {
 			current.hidden = YES;
 		}
@@ -84,13 +83,20 @@ static const NSInteger IMAGE_VIEW_NUMBER = 2;
 		[UIView animateWithDuration:duration
 						 animations:execution
 						 completion:^(BOOL isFinished) {
-							 completion();
+							 finished();
+							 
+							 if (completion) {
+								 completion();
+							 }
 						 }];
 	// カットなら即座にアルファ値を変更
 	} else if (effect == ImageEffectCut) {
 		execution();
-		completion();
-		[self animationDidEnd];
+		finished();
+		
+		if (completion) {
+			completion();
+		}
 	}
 }
 
@@ -102,12 +108,6 @@ static const NSInteger IMAGE_VIEW_NUMBER = 2;
 		}
 	}
 	return nil;
-}
-
-- (void)animationDidEnd {
-	if (self.delegate && [self.delegate respondsToSelector:@selector(imageViewAnimationDidFinish:)]) {
-		[self.delegate imageViewAnimationDidFinish:self];
-	}
 }
 
 @end

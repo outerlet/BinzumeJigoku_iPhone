@@ -15,19 +15,20 @@
 @interface RubyOnelineTextView : UIView {
 	@private
 	NSMutableAttributedString*	_attributedString;
-	CGSize						_size;
 }
 
-/** このViewに表示されるAttributed String(ただしMutable) */
-@property (nonatomic, readonly)	NSMutableAttributedString*	attributedString;
-
 /** このViewのサイズ */
-@property (nonatomic, readonly)	CGSize	size;
+@property (nonatomic, readonly)	CGSize	requiredSize;
+
+/** このViewに表示されるテキストの文字数 */
+@property (nonatomic, readonly)	NSInteger	length;
 
 /**
  * イニシャライザ
  * @param attributedString	このViewに表示するAttributed String
  */
 - (id)initWithMutableAttributedString:(NSMutableAttributedString*)attributedString;
+
+- (void)appendAttributedString:(NSAttributedString*)appendage;
 
 @end

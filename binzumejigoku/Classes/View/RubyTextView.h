@@ -8,38 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-@class RubyTextView;
-
-/**
- * RubyTextViewに関するイベントを捕捉するためのデリゲート
- */
-@protocol RubyTextViewDelegate <NSObject>
-
-/**
- * RubyTextView.startStreamingで開始されたテキストのストリーム表示が終了した
- * @param textView	ストリーム表示を終えたRubyTextView
- */
-- (void)rubyTextStreamingDidFinish:(RubyTextView*)textView;
-
-@end
+@class RubyOnelineTextView;
 
 @interface RubyTextView : UIView {
 	@private
-	NSMutableArray*	_subviews;	// ルビ付テキスト1行を表示するRubyOnelineTextViewの配列
-	NSTimer*		_timer;		// テキストの表示を更新するためのタイマー
+	NSMutableArray<RubyOnelineTextView*>*	_subviews;	// ルビ付テキスト1行を表示するRubyOnelineTextViewの配列
+	NSTimer*		_timer;								// テキストの表示を更新するためのタイマー
 	
-	BOOL			_isNewLine;	// 次に文字列をappendする前に改行を入れるかどうか
-	NSInteger		_lineIndex;	// 現在描画中の行を示すインデックス値
+	BOOL			_isNewLine;							// 次に文字列をappendする前に改行を入れるかどうか
+	NSInteger		_lineIndex;							// 現在描画中の行を示すインデックス値
+	
+	void (^_completion)(void);							// ストリーム表示が完了した時に呼び出されるブロック
 }
 
 /** テキストカラー */
 @property (nonatomic)	UIColor*	textColor;
 
 /** フォント */
-@property (nonatomic)	UIFont*	font;
-
-/** デリゲート */
-@property (nonatomic)	id<RubyTextViewDelegate>	delegate;
+@property (nonatomic)	UIFont*		font;
 
 /**
  * イニシャライザ。幅を指定してViewを初期化する
@@ -69,6 +55,6 @@
  *　テキストのストリーム表示を開始する
  * @param interval	テキストの表示更新間隔
  */
-- (void)startStreaming:(NSTimeInterval)interval;
+- (void)startStreaming:(NSTimeInterval)interval completion:(void (^)(void))completion;
 
 @end

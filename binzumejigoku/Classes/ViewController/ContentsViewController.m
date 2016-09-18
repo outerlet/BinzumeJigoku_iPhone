@@ -15,6 +15,8 @@
 #import "TitleElement.h"
 #import "TextElement.h"
 #import "ClearTextElement.h"
+#import "ContentsImageView.h"
+#import "ContentsTextView.h"
 #import "NSString+CustomDecoder.h"
 
 @interface ContentsViewController ()
@@ -27,7 +29,7 @@
 - (ContentsElement*)elementByManagedObject:(NSManagedObject*)managedObject;
 
 - (void)handleImageElement:(ImageElement*)element;
-- (void)handlerTextElement:(TextElement*)element;
+- (void)handleTextElement:(TextElement*)element;
 
 @end
 
@@ -48,12 +50,12 @@
 
 	// 背景画像
 	_imageView = [[ContentsImageView alloc] initWithFrame:self.view.bounds];
-	_imageView.delegate = self;
 	[self.view addSubview:_imageView];
 	
 	// テキスト
-	_textView = [[RubyTextView alloc] initWithWidth:self.view.bounds.size.width];
-	_textView.delegate = self;
+	_textView = [[ContentsTextView alloc] initWithFrame:self.view.bounds];
+	_textView.font = [UIFont fontWithName:@"Hiragino Mincho ProN W3" size:20.0f];
+	_textView.textColor = [UIColor blackColor];
 	[self.view addSubview:_textView];
 	
 	NSMutableArray* contents = [[NSMutableArray alloc] init];
@@ -78,6 +80,7 @@
 				[self handleImageElement:(ImageElement*)e];
 				break;
 			case ContentsTypeText:
+				[self handleTextElement:(TextElement*)e];
 				break;
 			case ContentsTypeTitle:
 				break;
@@ -121,19 +124,18 @@
 
 - (void)handleImageElement:(ImageElement*)element {
 	[_imageView setNextImage:element.image];
-	[_imageView startAnimationWithEffect:element.imageEffect duration:element.duration];
+	[_imageView startAnimationWithEffect:element.imageEffect
+								duration:element.duration
+							  completion:^(void) {
+								  NSLog(@"Image Finished.");
+							  }];
 }
 
-- (void)handlerTextElement:(TextElement*)element {
-	
-}
-
-- (void)imageViewAnimationDidFinish:(ContentsImageView *)imageView {
-	
-}
-
-- (void)rubyTextStreamingDidFinish:(RubyTextView *)textView {
-	
+- (void)handleTextElement:(TextElement*)element {
+	[_textView setNextText:element.text];
+	[_textView startStreaming:0.2f completion:^(void) {
+		NSLog(@"Text Finished.");
+	}];
 }
 
 @end

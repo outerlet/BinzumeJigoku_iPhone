@@ -7,15 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ContentsImageView.h"
-#import "RubyTextView.h"
 
-@class TitleView;
+@class ContentsImageView;
+@class ContentsTextView;
 
-@interface ContentsViewController : UIViewController <ContentsImageViewDelegate, RubyTextViewDelegate> {
+@interface ContentsViewController : UIViewController {
 	@private
 	ContentsImageView*	_imageView;
-	RubyTextView*		_textView;
+	ContentsTextView*	_textView;
 	NSArray*			_contents;
 	NSInteger			_currentIndex;
 }

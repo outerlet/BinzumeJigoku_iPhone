@@ -21,25 +21,29 @@
 	if (self = [super init]) {
 		_attributedString = attributedString;
 		
-		// テキスト＋ルビの描画領域を示すバウンディングボックス
-		// ルビもテキストと同じだけの高さを取ると見ておけば余裕があるようなので単純にAttributed Stringの倍
-		_size = _attributedString.size;
-		_size.height *= 2.0f;
-
-		// 初期サイズと表示位置はどちらも0
+		// 徐々に幅を広げていくので、初期の幅と表示位置はどちらも0、高さは必要なだけ
 		CGRect frame = CGRectZero;
-		frame.size.height = _size.height;
+		frame.size.height = self.requiredSize.height;
 		self.frame = frame;
 	}
 	return self;
 }
 
-- (NSMutableAttributedString*)attributedString {
-	return _attributedString;
+- (void)appendAttributedString:(NSAttributedString *)appendage {
+	[_attributedString appendAttributedString:appendage];
 }
 
-- (CGSize)size {
-	return _size;
+// テキスト＋ルビの描画領域を示すバウンディングボックスのサイズ
+- (CGSize)requiredSize {
+	// ルビもテキストと同じだけの高さを取ると見ておけば余裕があるようなので単純にAttributed Stringの倍
+	CGSize size = _attributedString.size;
+	size.height *= 2.0f;
+	
+	return size;
+}
+
+- (NSInteger)length {
+	return _attributedString.length;
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -50,7 +54,7 @@
 
 	// 描画位置をバウンディングボックスの高さ75%にすると、日本語でもアルファベットでもルビと文字がいい具合にその中に収まる
 	CTLineRef line = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)_attributedString);
-	CGContextSetTextPosition(context, 0.0f, _size.height * -0.75f);
+	CGContextSetTextPosition(context, 0.0f, self.requiredSize.height * -0.75f);
 	CTLineDraw(line, context);
 	CFRelease(line);
 }

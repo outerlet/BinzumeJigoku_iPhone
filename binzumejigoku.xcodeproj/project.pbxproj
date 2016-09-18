@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C05542E1D8ACD0700A422C5 /* ContentsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C05542D1D8ACD0700A422C5 /* ContentsTextView.m */; };
 		5C0B10141D686B3A00148096 /* ClearTextElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B10061D686B3A00148096 /* ClearTextElement.m */; };
 		5C0B10151D686B3A00148096 /* ContentsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B10081D686B3A00148096 /* ContentsElement.m */; };
 		5C0B10161D686B3A00148096 /* ContentsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B100A1D686B3A00148096 /* ContentsParser.m */; };
@@ -47,6 +48,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C05542C1D8ACD0700A422C5 /* ContentsTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsTextView.h; path = Classes/View/ContentsTextView.h; sourceTree = "<group>"; };
+		5C05542D1D8ACD0700A422C5 /* ContentsTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsTextView.m; path = Classes/View/ContentsTextView.m; sourceTree = "<group>"; };
 		5C0B10041D686B3A00148096 /* ChainType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChainType.h; path = Classes/Contents/ChainType.h; sourceTree = "<group>"; };
 		5C0B10051D686B3A00148096 /* ClearTextElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClearTextElement.h; path = Classes/Contents/ClearTextElement.h; sourceTree = "<group>"; };
 		5C0B10061D686B3A00148096 /* ClearTextElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClearTextElement.m; path = Classes/Contents/ClearTextElement.m; sourceTree = "<group>"; };
@@ -319,6 +322,8 @@
 				5C7C44851D6F172D00C6DFAA /* ContentsTitleView.m */,
 				5C4849531D718EE90045068C /* ContentsImageView.h */,
 				5C4849541D718EE90045068C /* ContentsImageView.m */,
+				5C05542C1D8ACD0700A422C5 /* ContentsTextView.h */,
+				5C05542D1D8ACD0700A422C5 /* ContentsTextView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -349,7 +354,7 @@
 		5C20B5CA1D4B8B3C0014E6F9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "1-Take";
 				TargetAttributes = {
 					5C20B5D11D4B8B3C0014E6F9 = {
@@ -416,6 +421,7 @@
 				5C7C44861D6F172D00C6DFAA /* ContentsTitleView.m in Sources */,
 				5C0B10191D686B3A00148096 /* TitleElement.m in Sources */,
 				5C20B5D71D4B8B3C0014E6F9 /* main.m in Sources */,
+				5C05542E1D8ACD0700A422C5 /* ContentsTextView.m in Sources */,
 				5C0B10171D686B3A00148096 /* ImageElement.m in Sources */,
 				5CC6E3201D4B9D540073FC30 /* MainPageView.m in Sources */,
 				5CC6E3161D4B97D00073FC30 /* MainViewController.m in Sources */,
@@ -450,6 +456,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -460,8 +467,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -494,6 +503,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -504,8 +514,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -533,6 +545,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 44UZBLNCCX;
 				INFOPLIST_FILE = binzumejigoku/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -546,6 +559,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 44UZBLNCCX;
 				INFOPLIST_FILE = binzumejigoku/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

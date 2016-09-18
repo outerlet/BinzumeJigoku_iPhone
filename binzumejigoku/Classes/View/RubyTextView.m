@@ -39,12 +39,16 @@ static const CGFloat RUBY_SIZE_FACTOR	= 0.5f;	// テキストに対するルビ�
 
 @implementation RubyTextView
 
+@synthesize font = _font;
+@synthesize textColor = _textColor;
+
 - (id)initWithWidth:(CGFloat)width {
 	if (self = [super initWithFrame:CGRectMake(0.0f, 0.0f, width, 0.0f)]) {
 		_subviews = [[NSMutableArray alloc] init];
 		
 		_isNewLine = NO;
 		_lineIndex = 0;
+		_completion = nil;
 	}
 	return self;
 }
@@ -54,19 +58,19 @@ static const CGFloat RUBY_SIZE_FACTOR	= 0.5f;	// テキストに対するルビ�
 }
 
 - (void)appendText:(NSString*)text annotation:(NSString*)annotation {
-	NSMutableAttributedString* append = [self createAnnotatedString:text annotation:annotation];
+	NSMutableAttributedString* appendage = [self createAnnotatedString:text annotation:annotation];
 	
-	if (_subviews.count == 0) {
-		[self addNewLine:append];
-	} else {
+	if (_subviews.count > 0) {
 		RubyOnelineTextView* latest = [_subviews lastObject];
 		
-		if (append.size.width + latest.size.width >= self.bounds.size.width || _isNewLine) {
-			[self addNewLine:append];
+		if (appendage.size.width + latest.requiredSize.width >= self.bounds.size.width || _isNewLine) {
+			[self addNewLine:appendage];
 			_isNewLine = NO;
 		} else {
-			[latest.attributedString appendAttributedString:append];
+			[latest appendAttributedString:appendage];
 		}
+	} else {
+		[self addNewLine:appendage];
 	}
 }
 
@@ -74,7 +78,9 @@ static const CGFloat RUBY_SIZE_FACTOR	= 0.5f;	// テキストに対するルビ�
 	_isNewLine = YES;
 }
 
-- (void)startStreaming:(NSTimeInterval)interval {
+- (void)startStreaming:(NSTimeInterval)interval completion:(void (^)(void))completion {
+	_completion = completion;
+	
 	_timer = [NSTimer scheduledTimerWithTimeInterval:interval
 											  target:self
 											selector:@selector(timerIntervalDidPass)
@@ -82,36 +88,43 @@ static const CGFloat RUBY_SIZE_FACTOR	= 0.5f;	// テキストに対するルビ�
 											 repeats:YES];
 }
 
-- (void)drawRect:(CGRect)rect {
-	if (_subviews.count > 0) {
-		CGFloat height = 0.0f;
-		
-		for (NSInteger idx = 0 ; idx < _subviews.count ; idx++) {
-			// Adjustmentカテゴリのメソッドを使ってViewを移動
-			RubyOnelineTextView* textView = [_subviews objectAtIndex:idx];
-			[textView moveTo:CGPointMake(0.0f, height)];
-			
-			height += textView.size.height;
-		}
-	}
-}
-
 - (void)timerIntervalDidPass {
 	RubyOnelineTextView* current = [_subviews objectAtIndex:_lineIndex];
 	
 	// Adjustmentカテゴリのメソッドを使ってViewをリサイズ
-	CGFloat w = current.size.width / current.attributedString.length;
+	CGFloat w = current.requiredSize.width / current.length;
 	[current resizeBy:CGSizeMake(w, 0.0f)];
 	[current setNeedsDisplay];
 	
-	if (current.frame.size.width >= current.size.width) {
+	if (current.frame.size.width > current.requiredSize.width) {
 		++_lineIndex;
 		
 		if (_lineIndex >= _subviews.count) {
 			[_timer invalidate];
 			
-			if (self.delegate) {
-				[self.delegate rubyTextStreamingDidFinish:self];
+			if (_completion) {
+				_completion();
+			}
+		}
+	}
+}
+
+- (void)animationDidComplete {
+	RubyOnelineTextView* current = [_subviews objectAtIndex:_lineIndex];
+	
+	// Adjustmentカテゴリのメソッドを使ってViewをリサイズ
+	CGFloat w = current.requiredSize.width / current.length;
+	[current resizeBy:CGSizeMake(w, 0.0f)];
+	[current setNeedsDisplay];
+	
+	if (current.frame.size.width >= current.requiredSize.width) {
+		++_lineIndex;
+		
+		if (_lineIndex >= _subviews.count) {
+			[_timer invalidate];
+			
+			if (_completion) {
+				_completion();
 			}
 		}
 	}
@@ -122,9 +135,15 @@ static const CGFloat RUBY_SIZE_FACTOR	= 0.5f;	// テキストに対するルビ�
 	textView.backgroundColor = self.backgroundColor;
 	
 	[self addSubview:textView];
+	
+	if (_subviews.count > 0) {
+		RubyOnelineTextView* latest = [_subviews lastObject];
+		[textView moveTo:CGPointMake(0.0f, latest.frame.origin.y + latest.frame.size.height)];
+	}
+	
 	[_subviews addObject:textView];
 	
-	[self resizeBy:CGSizeMake(0.0f, textView.size.height)];
+	[self resizeBy:CGSizeMake(0.0f, textView.requiredSize.height)];
 }
 
 - (NSMutableAttributedString*)createAnnotatedString:(NSString*)string annotation:(NSString*)annotation {

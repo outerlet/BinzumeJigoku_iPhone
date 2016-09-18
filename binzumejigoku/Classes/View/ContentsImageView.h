@@ -9,20 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ImageElement.h"
 
-@class ContentsImageView;
-
-/**
- * ContentsImageViewで発生したイベント(=アニメーション)を捕捉するためのデリゲート
- */
-@protocol ContentsImageViewDelegate <NSObject>
-
-/**
- * ContentsImageViewのアニメーションが終了した
- */
-- (void)imageViewAnimationDidFinish:(ContentsImageView*)imageView;
-
-@end
-
 /**
  * 画像を表示するためのView
  */
@@ -31,8 +17,6 @@
 	NSArray*	_imageViews;
 	UIImage*	_nextImage;
 }
-
-@property (nonatomic)	id<ContentsImageViewDelegate>	delegate;
 
 /**
  * 次に表示する画像をセットする。現在表示している画像を非表示にするだけならimageにnilを与える<br />
@@ -43,6 +27,6 @@
 /**
  * setNextImageでセットした画像を表示させるアニメーションを、effectに指定した効果で開始する
  */
-- (void)startAnimationWithEffect:(ImageEffect)effect duration:(NSTimeInterval)duration;
+- (void)startAnimationWithEffect:(ImageEffect)effect duration:(NSTimeInterval)duration completion:(void (^)(void))completion;
 
 @end
