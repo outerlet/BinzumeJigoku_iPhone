@@ -7,52 +7,140 @@
 //
 
 #import "RubyOnelineTextView.h"
-#import <CoreText/CoreText.h>
+#import "UIView+Adjustment.h"
 
-@import QuartzCore;
+@interface RubyOnelineTextView ()
+
+- (NSMutableAttributedString*)createAttributedString:(NSString*)string isRuby:(BOOL)isRuby;
+
+@end
 
 @implementation RubyOnelineTextView
 
-/**
- * 描画するAttributed StringをもとにこのViewを初期化する
- * @param attributedString	このViewに描画されるAttributed String
- */
-- (id)initWithMutableAttributedString:(NSMutableAttributedString*)attributedString {
-	if (self = [super init]) {
-		_attributedString = attributedString;
-		
-		// テキスト＋ルビの描画領域を示すバウンディングボックス
-		// ルビもテキストと同じだけの高さを取ると見ておけば余裕があるようなので単純にAttributed Stringの倍
-		_size = _attributedString.size;
-		_size.height *= 2.0f;
+@synthesize rubySizeFactor = _rubySizeFactor;
 
-		// 初期サイズと表示位置はどちらも0
-		CGRect frame = CGRectZero;
-		frame.size.height = _size.height;
-		self.frame = frame;
+#pragma mark - イニシャライザ
+
+- (id)initWithFrame:(CGRect)frame {
+	if (self = [super initWithFrame:frame]) {
+		_attributedRubys = [[NSMutableDictionary alloc] init];
+		_attributedText = [[NSMutableAttributedString alloc] init];
+		
+		// ルビのデフォルトのサイズはテキストに対して50%
+		// ルビとテキストの高さの比率は6:4くらいがよく見える(ルビのフォントサイズがテキストの50%である場合)
+		_rubySizeFactor = 0.5f;
+		_rubyHeight = frame.size.height * 0.4f;
+		_textHeight = frame.size.height - _rubyHeight;
+		_initializedFrame = frame;
 	}
 	return self;
 }
 
-- (NSMutableAttributedString*)attributedString {
-	return _attributedString;
+#pragma mark - プロパティ
+
+- (CGSize)requiredSize {
+	return CGSizeMake(_attributedText.size.width, _initializedFrame.size.height);
 }
 
-- (CGSize)size {
-	return _size;
+- (NSInteger)textLength {
+	return _attributedText.length;
+}
+
+#pragma mark - インスタンスメソッド
+
+- (BOOL)append:(NSString *)text ruby:(NSString *)ruby {
+	NSMutableAttributedString* appendText = [self createAttributedString:text isRuby:NO];
+	
+	BOOL appended;
+	
+	// ルビありの場合
+	if (ruby) {
+		NSMutableAttributedString* appendRuby = [self createAttributedString:ruby isRuby:YES];
+		
+		CGFloat width = 0.0f;
+		
+		// 幅が足りない方の長さはカーニングで補う
+		if (appendText.size.width > appendRuby.size.width) {
+			CGFloat kerning = (appendText.size.width - appendRuby.size.width) / (appendRuby.length - 1);
+			
+			[appendRuby addAttribute:NSKernAttributeName value:[NSNumber numberWithFloat:kerning] range:NSMakeRange(0, appendRuby.length)];
+			
+			width = appendText.size.width;
+		} else {
+			CGFloat kerning = (appendRuby.size.width - appendText.size.width) / (appendText.length - 1);
+			
+			[appendText addAttribute:NSKernAttributeName value:[NSNumber numberWithFloat:kerning] range:NSMakeRange(0, appendText.length)];
+			
+			width = appendRuby.size.width;
+		}
+
+		appended = (_attributedText.size.width + width <= _initializedFrame.size.width);
+		
+		if (appended) {
+			CGRect frame = CGRectMake(_attributedText.size.width, _rubyHeight - appendRuby.size.height, appendRuby.size.width, appendRuby.size.height);
+			[_attributedRubys setObject:appendRuby forKey:[NSValue valueWithCGRect:frame]];
+			[_attributedText appendAttributedString:appendText];
+		}
+	// ルビ無しの場合
+	} else {
+		appended = (_attributedText.size.width + appendText.size.width <= _initializedFrame.size.width);
+		
+		if (appended) {
+			[_attributedText appendAttributedString:appendText];
+		}
+	}
+	
+	return appended;
+}
+
+- (void)startStreamingWithDuration:(NSTimeInterval)duration completion:(void (^)(void))completion {
+	[self setNeedsLayout];
+	
+	[UIView animateWithDuration:duration
+					 animations:^(void) {
+						 [self sizeToFit];
+						 [self setNeedsLayout];
+					 }
+					 completion:^(BOOL finished) {
+						 completion();
+					 }];
+}
+
+- (NSMutableAttributedString*)createAttributedString:(NSString*)string isRuby:(BOOL)isRuby {
+	NSMutableParagraphStyle* style = [[NSMutableParagraphStyle alloc] init];
+	[style setAlignment:NSTextAlignmentCenter];
+	
+	UIFont* font;
+	if (isRuby) {
+		font = [UIFont fontWithName:self.font.fontName size:self.font.pointSize * self.rubySizeFactor];
+	} else {
+		font = self.font;
+	}
+	
+	NSMutableAttributedString* attributed = [[NSMutableAttributedString alloc] initWithString:string];
+	[attributed addAttribute:NSForegroundColorAttributeName value:self.textColor range:NSMakeRange(0, string.length)];
+	[attributed addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, string.length)];
+	[attributed addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, string.length)];
+	
+	return attributed;
+}
+
+#pragma mark - オーバーライドメソッド
+
+- (void)sizeToFit {
+	[self resizeTo:self.requiredSize];
 }
 
 - (void)drawRect:(CGRect)rect {
-	// グラフィックスコンテキストの取得と座標空間の反転
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGContextTranslateCTM(context, 0.0f, 0.0f);
-	CGContextScaleCTM(context, 1.0f, -1.0f);
-
-	// 描画位置をバウンディングボックスの高さ75%にすると、日本語でもアルファベットでもルビと文字がいい具合にその中に収まる
-	CTLineRef line = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)_attributedString);
-	CGContextSetTextPosition(context, 0.0f, _size.height * -0.75f);
-	CTLineDraw(line, context);
-	CFRelease(line);
+	for (NSValue* value in _attributedRubys.allKeys) {
+		[[_attributedRubys objectForKey:value] drawWithRect:[value CGRectValue]
+													options:NSStringDrawingUsesLineFragmentOrigin
+													context:nil];
+	}
+	
+	[_attributedText drawWithRect:CGRectMake(0.0f, _rubyHeight, _attributedText.size.width, _attributedText.size.height)
+						  options:NSStringDrawingUsesLineFragmentOrigin
+						  context:nil];
 }
 
 @end

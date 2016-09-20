@@ -7,6 +7,8 @@
 //
 
 #import "ContentsViewController.h"
+
+#import "AppDelegate.h"
 #import "CoreDataHandler.h"
 #import "ContentsType.h"
 #import "ContentsElement.h"
@@ -14,6 +16,8 @@
 #import "WaitElement.h"
 #import "TitleElement.h"
 #import "TextElement.h"
+#import "ContentsTitleView.h"
+#import "ContentsImageView.h"
 #import "ClearTextElement.h"
 #import "NSString+CustomDecoder.h"
 
@@ -26,6 +30,7 @@
  */
 - (ContentsElement*)elementByManagedObject:(NSManagedObject*)managedObject;
 
+- (void)handleTitleElement:(TitleElement*)element;
 - (void)handleImageElement:(ImageElement*)element;
 - (void)handlerTextElement:(TextElement*)element;
 
@@ -48,14 +53,13 @@
 
 	// 背景画像
 	_imageView = [[ContentsImageView alloc] initWithFrame:self.view.bounds];
-	_imageView.delegate = self;
 	[self.view addSubview:_imageView];
 	
-	// テキスト
-	_textView = [[RubyTextView alloc] initWithWidth:self.view.bounds.size.width];
-	_textView.delegate = self;
-	[self.view addSubview:_textView];
+	// タイトル
+	_titleView = [[ContentsTitleView alloc] initWithFrame:self.view.bounds];
+	[self.view addSubview:_titleView];
 	
+	// CoreDataに保存したコンテンツを読み込む
 	NSMutableArray* contents = [[NSMutableArray alloc] init];
 	CoreDataHandler* handler = [CoreDataHandler sharedInstance];
 	NSFetchedResultsController* result = [handler fetch:_sectionIndex];
@@ -78,8 +82,10 @@
 				[self handleImageElement:(ImageElement*)e];
 				break;
 			case ContentsTypeText:
+				[self handlerTextElement:(TextElement*)e];
 				break;
 			case ContentsTypeTitle:
+				[self handleTitleElement:(TitleElement*)e];
 				break;
 			case ContentsTypeWait:
 				break;
@@ -119,20 +125,24 @@
 	return [[cls alloc] initWithManagedObject:managedObject];
 }
 
+- (void)handleTitleElement:(TitleElement *)element {
+	[_titleView setTitle:element.title font:[UIFont fontWithName:DEFAULT_FONT_NAME size:36.0f]];
+	[_titleView startAnimationWithDuration:3.0f
+								completion:^(void) {
+									NSLog(@"TitleView Animation Did Finished.");
+								}];
+}
+
 - (void)handleImageElement:(ImageElement*)element {
 	[_imageView setNextImage:element.image];
-	[_imageView startAnimationWithEffect:element.imageEffect duration:element.duration];
+	[_imageView startAnimationWithEffect:element.imageEffect
+								duration:element.duration
+							  completion:^(void) {
+								  NSLog(@"ImageView Animation Did Finished.");
+							  }];
 }
 
 - (void)handlerTextElement:(TextElement*)element {
-	
-}
-
-- (void)imageViewAnimationDidFinish:(ContentsImageView *)imageView {
-	
-}
-
-- (void)rubyTextStreamingDidFinish:(RubyTextView *)textView {
 	
 }
 

@@ -20,7 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-
+	
 	ContentsParser* parser = [[ContentsParser alloc] init];
 	parser.delegate = self;
 	[parser parse];
@@ -28,7 +28,7 @@
     return YES;
 }
 
-- (void)parseDidFinished {
+- (void)parseDidFinished:(BOOL)executed {
 	UITabBarController* tabController = [[UITabBarController alloc] init];
 	
 	// 物語を選択する、メインとなるViewController

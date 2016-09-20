@@ -9,9 +9,21 @@
 #import <Foundation/Foundation.h>
 #import "ContentsType.h"
 
+/**
+ * XMLをパースした後に呼び出されるデリゲート
+ */
 @protocol ContentsParserDelegate <NSObject>
 
-- (void)parseDidFinished;
+/**
+ * XMLのパース処理が完了した後に呼び出される
+ * @param	executed	実際にXMLのパース処理が行われたかどうか.既にパース済みの場合はNOが入る
+ */
+- (void)parseDidFinished:(BOOL)executed;
+
+/**
+ * XMLのパースに失敗した際に呼び出される
+ * @param	error	パース処理が失敗した際のエラー内容
+ */
 - (void)parseErrorDidOccurred:(NSError*)error;
 
 @end

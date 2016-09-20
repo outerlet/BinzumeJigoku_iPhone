@@ -41,20 +41,24 @@ static NSString* const SettingPlistName	= @"AppSetting";
 }
 
 - (void)parse {
-	[_parser parse];
-
-	NSError *error = nil;
-	BOOL result = [[CoreDataHandler sharedInstance] commit:&error];
+	CoreDataHandler* handler = [CoreDataHandler sharedInstance];
 	
-	if (self.delegate) {
-		if (result) {
-			if ([self.delegate respondsToSelector:@selector(parseDidFinished)]) {
-				[self.delegate parseDidFinished];
-			}
-		} else {
-			if ([self.delegate respondsToSelector:@selector(parseErrorDidOccurred:)]) {
+	if (!handler.contentsInstalled) {
+		[_parser parse];
+		
+		NSError *error = nil;
+		BOOL result = [handler commit:&error];
+		
+		if (self.delegate) {
+			if (result) {
+				[self.delegate parseDidFinished:YES];
+			} else {
 				[self.delegate parseErrorDidOccurred:error];
 			}
+		}
+	} else {
+		if (self.delegate) {
+			[self.delegate parseDidFinished:NO];
 		}
 	}
 }

@@ -9,139 +9,106 @@
 #import "RubyTextView.h"
 #import "RubyOnelineTextView.h"
 #import "UIView+Adjustment.h"
-#import <CoreText/CoreText.h>
 
-static const CGFloat RUBY_SIZE_FACTOR	= 0.5f;	// テキストに対するルビのサイズを示す倍率
+static const CGFloat kRubySizeFactor	= 0.5f;
+static const CGFloat kOnelineHeight		= 48.0f;
 
 @interface RubyTextView ()
 
-/**
- * NSTimerの更新間隔が経過する度に呼び出されるメソッド
- */
-- (void)timerIntervalDidPass;
-
-/**
- * Attributed Stringを表示する新しい行(RubyOnelineTextView)を追加する
- * @param attributedString
- */
-- (void)addNewLine:(NSMutableAttributedString*)attributedString;
-
-/**
- * 本文にstringが、ルビにannotationが設定されたNSMutableAttributedStringを生成する<br />
- * ルビ無しテキストを生成する場合はannotationにnilを与える
- * @param string		本文のテキスト
- * @param annotation	stringに対して設定するルビ。ルビを付与しないならnil
- * @return	ルビ入りのMutable Attributed String
- */
-- (NSMutableAttributedString*)createAnnotatedString:(NSString*)string annotation:(NSString*)annotation;
+// [非公開メソッド]新しい行を幅が0の状態で末尾に追加する
+- (RubyOnelineTextView*)addNewLine;
 
 @end
 
 @implementation RubyTextView
 
+@synthesize font = _font;
+@synthesize textColor = _textColor;
+
 - (id)initWithWidth:(CGFloat)width {
 	if (self = [super initWithFrame:CGRectMake(0.0f, 0.0f, width, 0.0f)]) {
 		_subviews = [[NSMutableArray alloc] init];
-		
-		_isNewLine = NO;
-		_lineIndex = 0;
+		_index = 0;
 	}
 	return self;
 }
 
-- (void)appendText:(NSString*)text {
-	[self appendText:text annotation:nil];
-}
-
-- (void)appendText:(NSString*)text annotation:(NSString*)annotation {
-	NSMutableAttributedString* append = [self createAnnotatedString:text annotation:annotation];
-	
-	if (_subviews.count == 0) {
-		[self addNewLine:append];
-	} else {
+- (void)append:(NSString*)text {
+	for (NSInteger idx = 0 ; idx < text.length ; idx++) {
 		RubyOnelineTextView* latest = [_subviews lastObject];
 		
-		if (append.size.width + latest.size.width >= self.bounds.size.width || _isNewLine) {
-			[self addNewLine:append];
-			_isNewLine = NO;
-		} else {
-			[latest.attributedString appendAttributedString:append];
+		if (!latest) {
+			latest = [self addNewLine];
 		}
+		
+		NSString* appendText = [text substringWithRange:NSMakeRange(idx, 1)];
+		BOOL appended = [latest append:appendText ruby:nil];
+		
+		if (!appended) {
+			[[self addNewLine] append:appendText ruby:nil];
+		}
+	}
+}
+
+- (void)append:(NSString*)text ruby:(NSString*)ruby {
+	RubyOnelineTextView* latest = [_subviews lastObject];
+	
+	if (!latest) {
+		latest = [self addNewLine];
+	}
+	
+	BOOL appended = [latest append:text ruby:ruby];
+	
+	if (!appended) {
+		[[self addNewLine] append:text ruby:ruby];
+	}
+}
+
+- (void)sizeToFit {
+	for (RubyOnelineTextView* oneline in _subviews) {
+		[oneline sizeToFit];
 	}
 }
 
 - (void)newLine {
-	_isNewLine = YES;
+	[self addNewLine];
 }
 
-- (void)startStreaming:(NSTimeInterval)interval {
-	_timer = [NSTimer scheduledTimerWithTimeInterval:interval
-											  target:self
-											selector:@selector(timerIntervalDidPass)
-											userInfo:nil
-											 repeats:YES];
-}
-
-- (void)drawRect:(CGRect)rect {
-	if (_subviews.count > 0) {
-		CGFloat height = 0.0f;
-		
-		for (NSInteger idx = 0 ; idx < _subviews.count ; idx++) {
-			// Adjustmentカテゴリのメソッドを使ってViewを移動
-			RubyOnelineTextView* textView = [_subviews objectAtIndex:idx];
-			[textView moveTo:CGPointMake(0.0f, height)];
-			
-			height += textView.size.height;
-		}
+- (void)startStreamingByInterval:(NSTimeInterval)interval completion:(void (^)(void))completion {
+	if (completion) {
+		_completion = completion;
 	}
+
+	RubyOnelineTextView* textView = [_subviews objectAtIndex:_index];
+	
+	[textView startStreamingWithDuration:interval * textView.textLength
+							  completion:^(void) {
+								  if (_index++ < _subviews.count - 1) {
+									  [self startStreamingByInterval:interval completion:nil];
+								  } else {
+									  _completion();
+								  }
+							  }];
 }
 
-- (void)timerIntervalDidPass {
-	RubyOnelineTextView* current = [_subviews objectAtIndex:_lineIndex];
+- (RubyOnelineTextView*)addNewLine {
+	RubyOnelineTextView* newLine = [[RubyOnelineTextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.bounds.size.width, kOnelineHeight)];
+	newLine.textColor = _textColor;
+	newLine.font = _font;
+	newLine.rubySizeFactor = kRubySizeFactor;
+	[newLine resizeTo:CGSizeMake(0.0f, newLine.frame.size.height)];
 	
-	// Adjustmentカテゴリのメソッドを使ってViewをリサイズ
-	CGFloat w = current.size.width / current.attributedString.length;
-	[current resizeBy:CGSizeMake(w, 0.0f)];
-	[current setNeedsDisplay];
-	
-	if (current.frame.size.width >= current.size.width) {
-		++_lineIndex;
-		
-		if (_lineIndex >= _subviews.count) {
-			[_timer invalidate];
-			
-			if (self.delegate) {
-				[self.delegate rubyTextStreamingDidFinish:self];
-			}
-		}
-	}
-}
-
-- (void)addNewLine:(NSMutableAttributedString*)attributedString {
-	RubyOnelineTextView* textView = [[RubyOnelineTextView alloc] initWithMutableAttributedString:attributedString];
-	textView.backgroundColor = self.backgroundColor;
-	
-	[self addSubview:textView];
-	[_subviews addObject:textView];
-	
-	[self resizeBy:CGSizeMake(0.0f, textView.size.height)];
-}
-
-- (NSMutableAttributedString*)createAnnotatedString:(NSString*)string annotation:(NSString*)annotation {
-	NSMutableDictionary* attrs = [[NSMutableDictionary alloc] init];
-	[attrs setObject:_font forKey:NSFontAttributeName];
-	[attrs setObject:_textColor forKey:NSForegroundColorAttributeName];
-	
-	if (annotation) {
-		CFStringRef furigana[kCTRubyPositionCount] = { (__bridge CFStringRef)annotation, NULL, NULL, NULL };
-		CTRubyAnnotationRef ruby = CTRubyAnnotationCreate(kCTRubyAlignmentAuto, kCTRubyOverhangAuto, RUBY_SIZE_FACTOR, furigana);
-		
-		[attrs setObject:(__bridge id)ruby forKey:(NSString*)kCTRubyAnnotationAttributeName];
-		
-		CFRelease(ruby);
+	RubyOnelineTextView* latest = [_subviews lastObject];
+	if (latest) {
+		[newLine moveTo:CGPointMake(0.0f, latest.frame.origin.y + latest.frame.size.height)];
 	}
 	
-	return [[NSMutableAttributedString alloc] initWithString:string attributes:attrs];
+	[_subviews addObject:newLine];
+	[self addSubview:newLine];
+	
+	[self resizeBy:CGSizeMake(0.0f, newLine.frame.size.height)];
+	
+	return newLine;
 }
 
 @end

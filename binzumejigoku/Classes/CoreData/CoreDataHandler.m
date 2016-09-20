@@ -8,8 +8,8 @@
 
 #import "CoreDataHandler.h"
 
-static NSString* const DATA_MODEL_NAME	= @"BinzumeJigoku";
-static NSString* const ENTITY_NAME		= @"Contents";
+static NSString* const kDataModelName	= @"BinzumeJigoku";
+static NSString* const kEntityName		= @"Contents";
 
 @interface CoreDataHandler ()
 
@@ -56,7 +56,7 @@ static CoreDataHandler*	_instance = nil;
 		return _managedObjectModel;
 	}
 	
-	NSURL *modelURL = [[NSBundle mainBundle] URLForResource:DATA_MODEL_NAME withExtension:@"momd"];
+	NSURL *modelURL = [[NSBundle mainBundle] URLForResource:kDataModelName withExtension:@"momd"];
 	_managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
 	
 	return _managedObjectModel;
@@ -69,7 +69,7 @@ static CoreDataHandler*	_instance = nil;
 	
 	_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
 	
-	NSString* storeName = [NSString stringWithFormat:@"%@.sqlite", DATA_MODEL_NAME];
+	NSString* storeName = [NSString stringWithFormat:@"%@.sqlite", kDataModelName];
 	NSURL* storeURL = [self.applicationDocumentsDirectory URLByAppendingPathComponent:storeName];
 	NSError* error = nil;
 	
@@ -93,7 +93,7 @@ static CoreDataHandler*	_instance = nil;
 }
 
 - (NSManagedObject*)createManagedObject {
-	return [NSEntityDescription insertNewObjectForEntityForName:ENTITY_NAME
+	return [NSEntityDescription insertNewObjectForEntityForName:kEntityName
 										 inManagedObjectContext:self.managedObjectContext];
 }
 
@@ -102,7 +102,7 @@ static CoreDataHandler*	_instance = nil;
 }
 
 - (NSFetchedResultsController*)fetch:(NSInteger)sectionIndex {
-	NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:ENTITY_NAME];
+	NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:kEntityName];
 	request.fetchBatchSize = 20;
 
 	// セクションで絞り込み
@@ -126,6 +126,15 @@ static CoreDataHandler*	_instance = nil;
 	}
 	
 	return fetchedResultsController;
+}
+
+- (BOOL)contentsInstalled {
+	NSURL* url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
+														 inDomains:NSUserDomainMask] lastObject];
+	NSString* storeName = [NSString stringWithFormat:@"%@.sqlite", kDataModelName];
+	NSURL* storeURL = [url URLByAppendingPathComponent:storeName];
+	
+	return [[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]];
 }
 
 @end

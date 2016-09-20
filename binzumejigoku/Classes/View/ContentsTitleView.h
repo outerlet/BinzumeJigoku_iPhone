@@ -8,20 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class ContentsTitleView;
-
-/**
- * TitleViewに関するイベントを捕捉するためのデリゲート
- */
-@protocol ContentsTitleViewDelegate <NSObject>
-
-/**
- * TitleViewのアニメーションが終了した
- */
-- (void)titleViewAnimationDidFinish:(ContentsTitleView*)titleView;
-
-@end
-
 /**
  * 章のタイトルを表示するView
  */
@@ -30,9 +16,9 @@
 	NSArray*		_titleLabels;
 	NSTimeInterval	_sequenceTime;
 	NSTimeInterval	_labelUnitTime;
+	
+	void (^_completion)(void);
 }
-
-@property (nonatomic)	id<ContentsTitleViewDelegate>	delegate;
 
 /**
  * タイトルとフォントを設定する
@@ -42,6 +28,6 @@
 /**
  * タイトルのアニメーションをdurationに指定した時間で実行する
  */
-- (void)startAnimationWithDuration:(NSTimeInterval)duration;
+- (void)startAnimationWithDuration:(NSTimeInterval)duration completion:(void (^)(void))completion;
 
 @end

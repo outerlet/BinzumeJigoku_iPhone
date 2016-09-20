@@ -8,67 +8,61 @@
 
 #import <UIKit/UIKit.h>
 
-@class RubyTextView;
+@class RubyOnelineTextView;
 
 /**
- * RubyTextViewに関するイベントを捕捉するためのデリゲート
+ * ルビ入りテキストを複数行表示する<br />
+ RubyOnelineTextViewと異なり改行は自動的に入る
  */
-@protocol RubyTextViewDelegate <NSObject>
-
-/**
- * RubyTextView.startStreamingで開始されたテキストのストリーム表示が終了した
- * @param textView	ストリーム表示を終えたRubyTextView
- */
-- (void)rubyTextStreamingDidFinish:(RubyTextView*)textView;
-
-@end
-
 @interface RubyTextView : UIView {
 	@private
-	NSMutableArray*	_subviews;	// ルビ付テキスト1行を表示するRubyOnelineTextViewの配列
-	NSTimer*		_timer;		// テキストの表示を更新するためのタイマー
+	NSMutableArray<RubyOnelineTextView*>*	_subviews;
 	
-	BOOL			_isNewLine;	// 次に文字列をappendする前に改行を入れるかどうか
-	NSInteger		_lineIndex;	// 現在描画中の行を示すインデックス値
+	NSInteger	_index;
+	void		(^_completion)(void);
 }
 
-/** テキストカラー */
-@property (nonatomic)	UIColor*	textColor;
+/** テキスト色 */
+@property (nonatomic)			UIColor*	textColor;
 
-/** フォント */
-@property (nonatomic)	UIFont*	font;
+/** テキストフォント */
+@property (nonatomic)			UIFont*		font;
 
-/** デリゲート */
-@property (nonatomic)	id<RubyTextViewDelegate>	delegate;
+/** このViewに描画されるテキストをすべて表示するのに必要なサイズ */
+@property (nonatomic,readonly)	CGSize		requiredSize;
 
 /**
- * イニシャライザ。幅を指定してViewを初期化する
- * @param width	Viewの幅
+ * イニシャライザ<br />
+ * Viewの高さはappendされるテキストによって決定されるので、最大幅だけ決めて初期化する
+ * @param	width	Viewの最大幅
+ * @return	インスタンス
  */
 - (id)initWithWidth:(CGFloat)width;
 
 /**
- * このViewに表示されるルビ無しのテキストを追加する
- * @param string	本文のテキスト
+ * Viewに描画するテキストを追加する
+ * @param	text	テキスト
  */
-- (void)appendText:(NSString*)text;
+- (void)append:(NSString*)text;
 
 /**
- * このViewに表示されるテキストを追加する。ルビ無しテキストにする場合はannotationにnilを与える
- * @param string		本文のテキスト
- * @param annotation	stringに対して設定するルビ
+ * Viewに描画するテキストとルビを追加する
+ * @param	text	テキスト
+ * @param	ruby	ルビ
+ * @return	インスタンス
  */
-- (void)appendText:(NSString*)text annotation:(NSString*)annotation;
+- (void)append:(NSString*)text ruby:(NSString*)ruby;
 
 /**
- * 次にappendTextされるものを次の行に表示する
+ * 空行を挿入する
  */
 - (void)newLine;
 
 /**
- *　テキストのストリーム表示を開始する
- * @param interval	テキストの表示更新間隔
+ * テキストのストリーム表示を開始する
+ * @param	interval	テキスト1文字あたりの描画にかける時間(sec)
+ * @param	completion	ストリーム表示が完了した時に呼び出されるブロック
  */
-- (void)startStreaming:(NSTimeInterval)interval;
+- (void)startStreamingByInterval:(NSTimeInterval)interval completion:(void (^)(void))completion;
 
 @end

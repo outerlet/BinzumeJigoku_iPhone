@@ -11,7 +11,6 @@
 @interface ContentsTitleView ()
 
 - (void)startDismissAnimation;
-- (void)titleViewAnimationDidFinish;
 
 @end
 
@@ -58,27 +57,26 @@
 	}
 }
 
-- (void)startAnimationWithDuration:(NSTimeInterval)duration {
+- (void)startAnimationWithDuration:(NSTimeInterval)duration completion:(void (^)(void))completion {
 	_sequenceTime = duration / 3;
 	_labelUnitTime = _sequenceTime / (_titleLabels.count + 1);
 	
+	_completion = completion;
+	
 	for (NSInteger idx = 0 ; idx < _titleLabels.count ; idx++) {
 		UILabel* label = [_titleLabels objectAtIndex:idx];
-		
-		void (^completion)(BOOL finished) = nil;
-		if (idx == _titleLabels.count - 1) {
-			completion = ^(BOOL finished) {
-				[self startDismissAnimation];
-			};
-		}
-		
+
 		[UIView animateWithDuration:_labelUnitTime * 2
 							  delay:_labelUnitTime * idx
 							options:UIViewAnimationOptionCurveLinear
 						 animations:^(void) {
 							 label.alpha = 1.0f;
 						 }
-						 completion:completion];
+						 completion:^(BOOL finished) {
+							 if (idx == _titleLabels.count - 1) {
+							 	[self startDismissAnimation];
+							 }
+						 }];
 	}
 }
 
@@ -86,26 +84,17 @@
 	for (NSInteger idx = 0 ; idx < _titleLabels.count ; idx++) {
 		UILabel* label = [_titleLabels objectAtIndex:idx];
 		
-		void (^completion)(BOOL finished) = nil;
-		if (idx == _titleLabels.count - 1) {
-			completion = ^(BOOL finished) {
-				[self titleViewAnimationDidFinish];
-			};
-		}
-		
 		[UIView animateWithDuration:_labelUnitTime * 2
 							  delay:_sequenceTime + _labelUnitTime * idx
 							options:UIViewAnimationOptionCurveLinear
 						 animations:^(void) {
 							 label.alpha = 0.0f;
 						 }
-						 completion:completion];
-	}
-}
-
-- (void)titleViewAnimationDidFinish {
-	if (self.delegate && [self.delegate respondsToSelector:@selector(titleViewAnimationDidFinish:)]) {
-		[self.delegate titleViewAnimationDidFinish:self];
+						 completion:^(BOOL finished) {
+							 if (idx == _titleLabels.count - 1 && _completion) {
+								 _completion();
+							 }
+						 }];
 	}
 }
 
