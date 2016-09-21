@@ -8,6 +8,7 @@
 
 #import "ContentsParser.h"
 #import "CoreDataHandler.h"
+#import "ContentsInterface.h"
 #import "TextElement.h"
 #import "ContentsElement.h"
 #import "ImageElement.h"
@@ -51,6 +52,10 @@ static NSString* const SettingPlistName	= @"AppSetting";
 		
 		if (self.delegate) {
 			if (result) {
+				ContentsInterface* cif = [ContentsInterface sharedInstance];
+				cif.rubyClosure = _rubyClosure;
+				cif.rubyDelimiter = _rubyDelimiter;
+				
 				[self.delegate parseDidFinished:YES];
 			} else {
 				[self.delegate parseErrorDidOccurred:error];

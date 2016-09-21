@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ContentsInterface.h"
 #import "MainViewController.h"
 #import "HistoryViewController.h"
 #import "SettingViewController.h"
@@ -20,6 +21,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
+	
+	[[ContentsInterface sharedInstance] initialize];
 	
 	ContentsParser* parser = [[ContentsParser alloc] init];
 	parser.delegate = self;

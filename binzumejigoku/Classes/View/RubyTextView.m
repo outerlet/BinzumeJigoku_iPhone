@@ -51,6 +51,11 @@ static const CGFloat kOnelineHeight		= 48.0f;
 }
 
 - (void)append:(NSString*)text ruby:(NSString*)ruby {
+	if (!ruby) {
+		[self append:text];
+		return;
+	}
+	
 	RubyOnelineTextView* latest = [_subviews lastObject];
 	
 	if (!latest) {
@@ -104,6 +109,7 @@ static const CGFloat kOnelineHeight		= 48.0f;
 	}
 	
 	[_subviews addObject:newLine];
+	
 	[self addSubview:newLine];
 	
 	[self resizeBy:CGSizeMake(0.0f, newLine.frame.size.height)];

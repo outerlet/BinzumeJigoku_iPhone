@@ -9,12 +9,24 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/**
+ * AlertControllerHandlerを使って表示したアラートに対してインタラクションが
+ * 発生した時にそのイベントを受け取るデリゲートメソッド
+ */
 @protocol AlertControllerHandlerDelegate <NSObject>
 
+/**
+ * アラートに対してインタラクションが発生したというイベントを受け取る
+ * @param	alertTag	イニシャライザで指定した、アラートを一意に特定するためのタグ
+ * @param	actionTag	addAction:style:tag:で指定した、インタラクションを一意に特定するためのタグ
+ */
 - (void)alertDidConfirmAt:(NSInteger)alertTag action:(NSInteger)actionTag;
 
 @end
 
+/**
+ * UIAlertControllerを使用するためのインターフェイス
+ */
 @interface AlertControllerHandler : NSObject {
 	@private
 	NSInteger				_tag;
@@ -26,8 +38,30 @@
 
 @property (nonatomic)	id<AlertControllerHandlerDelegate>	delegate;
 
+/**
+ * イニシャライザ
+ * @param	title	アラートのタイトル
+ * @param	message	アラートのメッセージ
+ * @param	style	アラートのスタイル
+ * @param	tag		アラートを一意に特定するためのタグ
+ * @return	インスタンス
+ */
+
 - (id)initWithTitle:(NSString*)title message:(NSString*)message preferrdStyle:(UIAlertControllerStyle)style tag:(NSInteger)tag;
+
+/**
+ * アラートにアクションを追加する
+ * @param	title	アクションのタイトル
+ * @param	style	アクションのスタイル
+ * @param	tag		アクションを一意に特定するためのタグ
+ */
 - (void)addAction:(NSString*)title style:(UIAlertActionStyle)style tag:(NSInteger)tag;
+
+/**
+ * イニシャライザとaddAction:style:tag:で指定したパラメータをもとにUIAlertControllerの
+ * インスタンスを生成する
+ * @return	UIAlertControllerのインスタンス
+ */
 - (UIAlertController*)build;
 
 @end

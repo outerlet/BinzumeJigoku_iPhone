@@ -83,6 +83,8 @@
 		}
 	// ルビ無しの場合
 	} else {
+		NSLog(@"%@, %@, %@", NSStringFromCGSize(_attributedText.size), NSStringFromCGSize(appendText.size), NSStringFromCGRect(_initializedFrame));
+		
 		appended = (_attributedText.size.width + appendText.size.width <= _initializedFrame.size.width);
 		
 		if (appended) {

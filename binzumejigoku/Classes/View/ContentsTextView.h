@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ContentsTextView : UIView
+@class RubyTextView;
+@class TextElement;
+
+@interface ContentsTextView : UIView {
+	@private
+	NSMutableArray<RubyTextView*>*	_subviews;
+	
+	NSString*	_rubyClosure;
+	NSString*	_rubyDelimiter;
+}
+
+- (void)setTextElement:(TextElement*)textElement;
 
 @end

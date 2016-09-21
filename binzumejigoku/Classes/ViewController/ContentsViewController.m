@@ -13,12 +13,13 @@
 #import "ContentsType.h"
 #import "ContentsElement.h"
 #import "ImageElement.h"
-#import "WaitElement.h"
 #import "TitleElement.h"
 #import "TextElement.h"
+#import "WaitElement.h"
+#import "ClearTextElement.h"
 #import "ContentsTitleView.h"
 #import "ContentsImageView.h"
-#import "ClearTextElement.h"
+#import "ContentsTextView.h"
 #import "NSString+CustomDecoder.h"
 
 @interface ContentsViewController ()
@@ -54,6 +55,10 @@
 	// 背景画像
 	_imageView = [[ContentsImageView alloc] initWithFrame:self.view.bounds];
 	[self.view addSubview:_imageView];
+	
+	// テキスト
+	_textView = [[ContentsTextView alloc] initWithFrame:self.view.bounds];
+	[self.view addSubview:_textView];
 	
 	// タイトル
 	_titleView = [[ContentsTitleView alloc] initWithFrame:self.view.bounds];
@@ -143,7 +148,7 @@
 }
 
 - (void)handlerTextElement:(TextElement*)element {
-	
+	[_textView setTextElement:element];
 }
 
 @end

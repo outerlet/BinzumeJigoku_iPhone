@@ -37,6 +37,7 @@
 		5C97062B1D6869D000A14813 /* NSString+CustomDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C97062A1D6869D000A14813 /* NSString+CustomDecoder.m */; };
 		5C9C8F711D6C7F3000E80264 /* CoreDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9C8F701D6C7F3000E80264 /* CoreDataHandler.m */; };
 		5CA7EE771D91155300A41B1D /* ContentsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA7EE761D91155300A41B1D /* ContentsTextView.m */; };
+		5CA7EE7D1D91504200A41B1D /* ContentsInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA7EE7C1D91504200A41B1D /* ContentsInterface.m */; };
 		5CC1B8A11D4F74F30003DD38 /* contents_binzume_jigoku.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CC1B8A01D4F74F30003DD38 /* contents_binzume_jigoku.xml */; };
 		5CC1B8AA1D4F7E790003DD38 /* AppSetting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CC1B8A91D4F7E790003DD38 /* AppSetting.plist */; };
 		5CC1B8AD1D4F7F7B0003DD38 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC1B8AC1D4F7F7B0003DD38 /* SettingTableViewCell.m */; };
@@ -99,6 +100,8 @@
 		5C9C8F701D6C7F3000E80264 /* CoreDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHandler.m; sourceTree = "<group>"; };
 		5CA7EE751D91155300A41B1D /* ContentsTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsTextView.h; path = Classes/View/ContentsTextView.h; sourceTree = "<group>"; };
 		5CA7EE761D91155300A41B1D /* ContentsTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsTextView.m; path = Classes/View/ContentsTextView.m; sourceTree = "<group>"; };
+		5CA7EE7B1D91504200A41B1D /* ContentsInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsInterface.h; path = Classes/Contents/ContentsInterface.h; sourceTree = "<group>"; };
+		5CA7EE7C1D91504200A41B1D /* ContentsInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsInterface.m; path = Classes/Contents/ContentsInterface.m; sourceTree = "<group>"; };
 		5CC1B8A01D4F74F30003DD38 /* contents_binzume_jigoku.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = contents_binzume_jigoku.xml; path = Resources/XML/contents_binzume_jigoku.xml; sourceTree = "<group>"; };
 		5CC1B8A91D4F7E790003DD38 /* AppSetting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppSetting.plist; path = binzumejigoku/AppSetting.plist; sourceTree = "<group>"; };
 		5CC1B8AB1D4F7F7B0003DD38 /* SettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingTableViewCell.h; path = Classes/View/SettingTableViewCell.h; sourceTree = "<group>"; };
@@ -257,6 +260,8 @@
 		5CC1B8A51D4F7CCA0003DD38 /* Contents */ = {
 			isa = PBXGroup;
 			children = (
+				5CA7EE7B1D91504200A41B1D /* ContentsInterface.h */,
+				5CA7EE7C1D91504200A41B1D /* ContentsInterface.m */,
 				5C0B10041D686B3A00148096 /* ChainType.h */,
 				5C0B100B1D686B3A00148096 /* ContentsType.h */,
 				5C0B10091D686B3A00148096 /* ContentsParser.h */,
@@ -425,6 +430,7 @@
 				5C0B10171D686B3A00148096 /* ImageElement.m in Sources */,
 				5CC6E3201D4B9D540073FC30 /* MainPageView.m in Sources */,
 				5CC6E3161D4B97D00073FC30 /* MainViewController.m in Sources */,
+				5CA7EE7D1D91504200A41B1D /* ContentsInterface.m in Sources */,
 				5C0B10181D686B3A00148096 /* TextElement.m in Sources */,
 				5C0B10151D686B3A00148096 /* ContentsElement.m in Sources */,
 				5C3E23951D8591E900760EA7 /* UIView+Adjustment.m in Sources */,
