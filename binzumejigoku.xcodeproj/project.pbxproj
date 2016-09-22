@@ -33,6 +33,8 @@
 		5C7575CF1D4E25C00094D5B3 /* save_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575CE1D4E25C00094D5B3 /* save_button.png */; };
 		5C7575D61D4E300D0094D5B3 /* AlertControllerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7575D51D4E300D0094D5B3 /* AlertControllerHandler.m */; };
 		5C7C44861D6F172D00C6DFAA /* ContentsTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7C44851D6F172D00C6DFAA /* ContentsTitleView.m */; };
+		5C7DD3DA1D9407FD00C0B6DC /* ic_wait_advance.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7DD3D91D9407FD00C0B6DC /* ic_wait_advance.png */; };
+		5C7DD3DD1D9408B700C0B6DC /* ContentsWaitingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7DD3DC1D9408B700C0B6DC /* ContentsWaitingIndicatorView.m */; };
 		5C8722FF1D86D770001AAF22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C8722FE1D86D770001AAF22 /* LaunchScreen.storyboard */; };
 		5C97062B1D6869D000A14813 /* NSString+CustomDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C97062A1D6869D000A14813 /* NSString+CustomDecoder.m */; };
 		5C9C8F711D6C7F3000E80264 /* CoreDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9C8F701D6C7F3000E80264 /* CoreDataHandler.m */; };
@@ -93,6 +95,9 @@
 		5C7575D51D4E300D0094D5B3 /* AlertControllerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertControllerHandler.m; path = Classes/Util/AlertControllerHandler.m; sourceTree = "<group>"; };
 		5C7C44841D6F172D00C6DFAA /* ContentsTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsTitleView.h; path = Classes/View/ContentsTitleView.h; sourceTree = "<group>"; };
 		5C7C44851D6F172D00C6DFAA /* ContentsTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsTitleView.m; path = Classes/View/ContentsTitleView.m; sourceTree = "<group>"; };
+		5C7DD3D91D9407FD00C0B6DC /* ic_wait_advance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_wait_advance.png; path = Resources/Images/ic_wait_advance.png; sourceTree = "<group>"; };
+		5C7DD3DB1D9408B700C0B6DC /* ContentsWaitingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsWaitingIndicatorView.h; path = Classes/View/ContentsWaitingIndicatorView.h; sourceTree = "<group>"; };
+		5C7DD3DC1D9408B700C0B6DC /* ContentsWaitingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsWaitingIndicatorView.m; path = Classes/View/ContentsWaitingIndicatorView.m; sourceTree = "<group>"; };
 		5C8722FE1D86D770001AAF22 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C9706291D6869D000A14813 /* NSString+CustomDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CustomDecoder.h"; sourceTree = "<group>"; };
 		5C97062A1D6869D000A14813 /* NSString+CustomDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CustomDecoder.m"; sourceTree = "<group>"; };
@@ -189,6 +194,7 @@
 		5C7575A81D4DD9040094D5B3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C7DD3D91D9407FD00C0B6DC /* ic_wait_advance.png */,
 				5C7575CE1D4E25C00094D5B3 /* save_button.png */,
 				5C7575A91D4DD9260094D5B3 /* section0_00.jpg */,
 				5C7575AA1D4DD9260094D5B3 /* section0_01.jpg */,
@@ -329,6 +335,8 @@
 				5C4849541D718EE90045068C /* ContentsImageView.m */,
 				5CA7EE751D91155300A41B1D /* ContentsTextView.h */,
 				5CA7EE761D91155300A41B1D /* ContentsTextView.m */,
+				5C7DD3DB1D9408B700C0B6DC /* ContentsWaitingIndicatorView.h */,
+				5C7DD3DC1D9408B700C0B6DC /* ContentsWaitingIndicatorView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -393,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C7575B41D4DD9260094D5B3 /* section1_01.jpg in Resources */,
+				5C7DD3DA1D9407FD00C0B6DC /* ic_wait_advance.png in Resources */,
 				5CC1B8AA1D4F7E790003DD38 /* AppSetting.plist in Resources */,
 				5C7575B71D4DD9260094D5B3 /* section3_00.jpg in Resources */,
 				5C7575B11D4DD9260094D5B3 /* section0_00.jpg in Resources */,
@@ -437,6 +446,7 @@
 				5C3E239A1D85921C00760EA7 /* RubyOnelineTextView.m in Sources */,
 				5C4849551D718EE90045068C /* ContentsImageView.m in Sources */,
 				5C3D6B121D6B222700F24098 /* BinzumeJigoku.xcdatamodeld in Sources */,
+				5C7DD3DD1D9408B700C0B6DC /* ContentsWaitingIndicatorView.m in Sources */,
 				5C0B10161D686B3A00148096 /* ContentsParser.m in Sources */,
 				5CC6E3191D4B97E30073FC30 /* SettingViewController.m in Sources */,
 				5C7575D61D4E300D0094D5B3 /* AlertControllerHandler.m in Sources */,

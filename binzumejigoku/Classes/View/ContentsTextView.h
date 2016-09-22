@@ -20,5 +20,7 @@
 }
 
 - (void)setTextElement:(TextElement*)textElement;
+- (void)startStreamingWithInterval:(NSTimeInterval)interval completion:(void (^)(void))completion;
+- (void)clearAllTexts;
 
 @end

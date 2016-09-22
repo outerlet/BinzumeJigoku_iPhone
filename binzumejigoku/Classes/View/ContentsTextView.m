@@ -28,33 +28,54 @@
 }
 
 - (void)setTextElement:(TextElement*)textElement {
-	RubyTextView* textView = [[RubyTextView alloc] initWithWidth:self.bounds.size.width];
-	textView.backgroundColor = [UIColor clearColor];
-	textView.textColor = textElement.color;
-	textView.font = [UIFont fontWithName:DEFAULT_FONT_NAME size:DEFAULT_FONT_SIZE];
+	RubyTextView* newView = [[RubyTextView alloc] initWithWidth:self.bounds.size.width];
+	newView.backgroundColor = [UIColor clearColor];
+	newView.textColor = textElement.color;
+	newView.font = [UIFont fontWithName:DEFAULT_FONT_NAME size:DEFAULT_FONT_SIZE];
 	
 	NSArray<NSString*>* components = [textElement.text componentsSeparatedByString:_rubyClosure];
+	
 	for (NSString* component in components) {
 		if (component && component.length > 0) {
 			if ([component containsString:_rubyDelimiter]) {
 				NSArray<NSString*>* elms = [component componentsSeparatedByString:_rubyDelimiter];
-				[textView append:[elms firstObject] ruby:[elms lastObject]];
+				[newView append:[elms firstObject] ruby:[elms lastObject]];
 			} else {
-				[textView append:component];
+				[newView append:component];
 			}
 		}
 	}
 	
-	[textView sizeToFit];
-	
-	RubyTextView* latest = [_subviews lastObject];
-	if (latest) {
-		[textView moveTo:CGPointMake(0.0f, latest.frame.origin.y + latest.frame.size.height)];
+	RubyTextView* latestView = [_subviews lastObject];
+	if (latestView) {
+		CGFloat bottomOfLatest = latestView.frame.origin.y + latestView.frame.size.height;
+		
+		if (bottomOfLatest + newView.frame.size.height > self.bounds.size.height) {
+			[self clearAllTexts];
+		} else {
+			[newView moveTo:CGPointMake(0.0f, latestView.frame.origin.y + latestView.frame.size.height)];
+		}
 	}
 	
-	[_subviews addObject:textView];
+	[_subviews addObject:newView];
 	
-	[self addSubview:textView];
+	[self addSubview:newView];
+}
+
+- (void)startStreamingWithInterval:(NSTimeInterval)interval completion:(void (^)(void))completion {
+	RubyTextView* latestView = [_subviews lastObject];
+	
+	if (latestView) {
+		[latestView startStreamingByInterval:interval completion:completion];
+	}
+}
+
+- (void)clearAllTexts {
+	for (RubyTextView* tv in _subviews) {
+		[tv removeFromSuperview];
+	}
+	
+	[_subviews removeAllObjects];
 }
 
 @end

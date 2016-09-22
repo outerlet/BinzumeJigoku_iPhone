@@ -12,14 +12,18 @@
 @class ContentsTitleView;
 @class ContentsImageView;
 @class ContentsTextView;
+@class ContentsWaitingIndicatorView;
 
 @interface ContentsViewController : UIViewController {
 	@private
-	ContentsTitleView*	_titleView;
-	ContentsImageView*	_imageView;
-	ContentsTextView*	_textView;
-	NSArray*			_contents;
-	NSInteger			_currentIndex;
+	ContentsTitleView*				_titleView;
+	ContentsImageView*				_imageView;
+	ContentsTextView*				_textView;
+	ContentsWaitingIndicatorView*	_indicatorView;
+	
+	NSArray*	_contents;
+	NSInteger	_currentIndex;
+	BOOL		_isContentsOngoing;
 }
 
 @property (nonatomic, readonly) NSInteger sectionIndex;

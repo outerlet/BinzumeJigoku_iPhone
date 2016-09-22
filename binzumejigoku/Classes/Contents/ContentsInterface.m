@@ -8,8 +8,8 @@
 
 #import "ContentsInterface.h"
 
-NSString* const kKeyOfRubyDelimiter	= @"KEY_OF_RUBY_DELIMITER";
-NSString* const kKeyOfRubyClosure	= @"KEY_OF_RUBY_CLOSURE";
+NSString* const kKeyOfRubyClosure	= @"KEY_OF_RUBY_CLOSURE";	// NSUserDefaultsのキー文字列(rubyClosure)
+NSString* const kKeyOfRubyDelimiter	= @"KEY_OF_RUBY_DELIMITER"; // NSUserDefaultsのキー文字列(rubyDelimiter)
 
 @implementation ContentsInterface
 
@@ -27,7 +27,7 @@ static ContentsInterface*	_instance;
 - (void)initialize {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	_rubyClosure = [defaults stringForKey:kKeyOfRubyClosure];
-	_rubyDelimiter = [defaults stringForKey:kKeyOfRubyClosure];
+	_rubyDelimiter = [defaults stringForKey:kKeyOfRubyDelimiter];
 }
 
 - (NSString*)rubyClosure {

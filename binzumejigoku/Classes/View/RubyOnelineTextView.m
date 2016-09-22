@@ -61,13 +61,17 @@
 		
 		// 幅が足りない方の長さはカーニングで補う
 		if (appendText.size.width > appendRuby.size.width) {
-			CGFloat kerning = (appendText.size.width - appendRuby.size.width) / (appendRuby.length - 1);
+			CGFloat difference = appendText.size.width - appendRuby.size.width;
+			NSInteger numberOfInterval = (appendRuby.length > 1) ? (appendRuby.length - 1) : 1;
+			CGFloat kerning = difference / numberOfInterval;
 			
 			[appendRuby addAttribute:NSKernAttributeName value:[NSNumber numberWithFloat:kerning] range:NSMakeRange(0, appendRuby.length)];
 			
 			width = appendText.size.width;
 		} else {
-			CGFloat kerning = (appendRuby.size.width - appendText.size.width) / (appendText.length - 1);
+			CGFloat difference = appendRuby.size.width - appendText.size.width;
+			NSInteger numberOfInterval = (appendText.length > 1) ? appendText.length - 1 : 1;
+			CGFloat kerning = difference / numberOfInterval;
 			
 			[appendText addAttribute:NSKernAttributeName value:[NSNumber numberWithFloat:kerning] range:NSMakeRange(0, appendText.length)];
 			
@@ -83,8 +87,6 @@
 		}
 	// ルビ無しの場合
 	} else {
-		NSLog(@"%@, %@, %@", NSStringFromCGSize(_attributedText.size), NSStringFromCGSize(appendText.size), NSStringFromCGRect(_initializedFrame));
-		
 		appended = (_attributedText.size.width + appendText.size.width <= _initializedFrame.size.width);
 		
 		if (appended) {
