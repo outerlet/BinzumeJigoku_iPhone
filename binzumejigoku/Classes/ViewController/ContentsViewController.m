@@ -30,18 +30,23 @@ const CGFloat kSideMarginOfViews	= 10.0f;
 
 @property (nonatomic, readwrite) NSInteger	sectionIndex;
 
+- (void)advanceContents:(ContentsElement*)element;
+
 // NSManagedObjectからContentsElementオブジェクトを生成する
 - (ContentsElement*)elementByManagedObject:(NSManagedObject*)managedObject;
 
 // handle~で始まるメソッド群ではそれぞれのContentsElementに対応した処理を実行する
-- (void)handleTitleElement:(TitleElement*)element;
-- (void)handleImageElement:(ImageElement*)element;
-- (void)handleTextElement:(TextElement*)element;
-- (void)handleWaitElement:(WaitElement*)element;
+- (void)handleTitleElement:(TitleElement*)titleElement;
+- (void)handleImageElement:(ImageElement*)imageElement;
+- (void)handleTextElement:(TextElement*)textElement;
+- (void)handleWaitElement:(WaitElement*)waitElement;
+
+// handle~で始まるメソッドが、その中で呼び出す共通処理
+- (void)commonElementHandle:(ContentsElement*)element;
 
 // handle~で始まるメソッド群がそれぞれの処理を終了した時に共通で呼び出すメソッド
 // 各メソッドにある完了ブロックで定義すると同じ処理が複数箇所に分散してしまうので
-- (void)contentsElementDidConsume;
+- (void)contentsElementDidConsume:(ContentsElement*)element;
 
 @end
 
@@ -98,8 +103,16 @@ const CGFloat kSideMarginOfViews	= 10.0f;
 	_contents = [NSArray arrayWithArray:contents];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+	[self advanceContents:nil];
+}
+
 - (void)touchesBegan:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
-	if (!_isContentsOngoing) {
+	[self advanceContents:nil];
+}
+
+- (void)advanceContents:(ContentsElement*)element {
+	if (!_isContentsOngoing || (element && element.chainType != ChainTypeNone)) {
 		if (++_currentIndex < _contents.count) {
 			[_indicatorView stopAnimation];
 			
@@ -120,6 +133,7 @@ const CGFloat kSideMarginOfViews	= 10.0f;
 					break;
 				case ContentsTypeClearText:
 					[_textView clearAllTexts];
+					[self contentsElementDidConsume:e];
 					return;
 				default:
 					return;
@@ -158,46 +172,67 @@ const CGFloat kSideMarginOfViews	= 10.0f;
 	return [[cls alloc] initWithManagedObject:managedObject];
 }
 
-- (void)handleTitleElement:(TitleElement *)element {
-	[_titleView setTitle:element.title font:[UIFont fontWithName:DEFAULT_FONT_NAME size:36.0f]];
+- (void)handleTitleElement:(TitleElement *)titleElement {
+	[_titleView setTitle:titleElement.title
+					font:[UIFont fontWithName:DEFAULT_FONT_NAME
+										 size:36.0f]];
+	
 	[_titleView startAnimationWithDuration:3.0f
 								completion:^(void) {
 									NSLog(@"TitleView Animation Did Finish.");
-									[self contentsElementDidConsume];
+									[self contentsElementDidConsume:titleElement];
 								}];
+	
+	[self commonElementHandle:titleElement];
 }
 
-- (void)handleImageElement:(ImageElement*)element {
-	[_imageView setNextImage:element.image];
-	[_imageView startAnimationWithEffect:element.imageEffect
-								duration:element.duration
+- (void)handleImageElement:(ImageElement*)imageElement {
+	[_imageView setNextImage:imageElement.image];
+	
+	[_imageView startAnimationWithEffect:imageElement.imageEffect
+								duration:imageElement.duration
 							  completion:^(void) {
 								  NSLog(@"ImageView Animation Did Finish.");
-								  [self contentsElementDidConsume];
+								  [self contentsElementDidConsume:imageElement];
 							  }];
+	
+	[self commonElementHandle:imageElement];
 }
 
-- (void)handleTextElement:(TextElement*)element {
-	[_textView setTextElement:element];
-	[_textView startStreamingWithInterval:0.1f
+- (void)handleTextElement:(TextElement*)textElement {
+	[_textView setTextElement:textElement];
+	
+	[_textView startStreamingWithInterval:0.05f
 							   completion:^(void) {
 								   NSLog(@"TextView Animation Did Finish.");
 								   [_indicatorView startAnimation];
-								   [self contentsElementDidConsume];
+								   [self contentsElementDidConsume:textElement];
 							   }];
+	
+	[self commonElementHandle:textElement];
 }
 
-- (void)handleWaitElement:(WaitElement *)element {
-	[NSTimer scheduledTimerWithTimeInterval:element.duration
+- (void)handleWaitElement:(WaitElement *)waitElement {
+	[NSTimer scheduledTimerWithTimeInterval:waitElement.duration
 									repeats:NO
 									  block:^(NSTimer* timer) {
 										  NSLog(@"Wait Interval Did Pass.");
-										  [self contentsElementDidConsume];
+										  [self contentsElementDidConsume:waitElement];
 									  }];
 }
 
-- (void)contentsElementDidConsume {
-	_isContentsOngoing = NO;
+- (void)commonElementHandle:(ContentsElement*)element {
+	if (element.chainType == ChainTypeImmediate) {
+		[self advanceContents:element];
+	}
+}
+
+- (void)contentsElementDidConsume:(ContentsElement*)element {
+	if (element.chainType != ChainTypeNone) {
+		[self advanceContents:element];
+	} else {
+		_isContentsOngoing = NO;
+	}
 }
 
 @end

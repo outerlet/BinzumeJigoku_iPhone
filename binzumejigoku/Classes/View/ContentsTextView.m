@@ -33,15 +33,32 @@
 	newView.textColor = textElement.color;
 	newView.font = [UIFont fontWithName:DEFAULT_FONT_NAME size:DEFAULT_FONT_SIZE];
 	
-	NSArray<NSString*>* components = [textElement.text componentsSeparatedByString:_rubyClosure];
+	// indentの数だけ付加する全角スペースを作成
+	NSMutableString* indent = [[NSMutableString alloc] init];
+	for (NSInteger idx = 0 ; idx < textElement.indent ; idx++) {
+		[indent appendString:@"　"];
+	}
+	
+	// alignment次第でスペースを挿入する位置を変える
+	// NSTextAlignmentCenterの場合はインデントとか無視
+	NSString* text = nil;
+	if (textElement.alignment == NSTextAlignmentLeft) {
+		text = [NSString stringWithFormat:@"%@%@", indent, textElement.text];
+	} else if (textElement.alignment == NSTextAlignmentRight) {
+		text = [NSString stringWithFormat:@"%@%@", textElement.text, indent];
+	} else {
+		text = textElement.text;
+	}
+	
+	NSArray<NSString*>* components = [text componentsSeparatedByString:_rubyClosure];
 	
 	for (NSString* component in components) {
 		if (component && component.length > 0) {
 			if ([component containsString:_rubyDelimiter]) {
 				NSArray<NSString*>* elms = [component componentsSeparatedByString:_rubyDelimiter];
-				[newView append:[elms firstObject] ruby:[elms lastObject]];
+				[newView append:[elms firstObject] ruby:[elms lastObject] alignment:textElement.alignment];
 			} else {
-				[newView append:component];
+				[newView append:component alignment:textElement.alignment];
 			}
 		}
 	}

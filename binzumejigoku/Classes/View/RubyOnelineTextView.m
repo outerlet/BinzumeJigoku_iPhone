@@ -112,7 +112,7 @@
 
 - (NSMutableAttributedString*)createAttributedString:(NSString*)string isRuby:(BOOL)isRuby {
 	NSMutableParagraphStyle* style = [[NSMutableParagraphStyle alloc] init];
-	[style setAlignment:NSTextAlignmentCenter];
+	style.alignment = NSTextAlignmentLeft;
 	
 	UIFont* font;
 	if (isRuby) {
@@ -136,12 +136,14 @@
 }
 
 - (void)drawRect:(CGRect)rect {
+	// ルビ
 	for (NSValue* value in _attributedRubys.allKeys) {
 		[[_attributedRubys objectForKey:value] drawWithRect:[value CGRectValue]
 													options:NSStringDrawingUsesLineFragmentOrigin
 													context:nil];
 	}
 	
+	// テキスト
 	[_attributedText drawWithRect:CGRectMake(0.0f, _rubyHeight, _attributedText.size.width, _attributedText.size.height)
 						  options:NSStringDrawingUsesLineFragmentOrigin
 						  context:nil];

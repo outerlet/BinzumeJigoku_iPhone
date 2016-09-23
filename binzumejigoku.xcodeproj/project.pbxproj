@@ -36,6 +36,9 @@
 		5C7DD3DA1D9407FD00C0B6DC /* ic_wait_advance.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7DD3D91D9407FD00C0B6DC /* ic_wait_advance.png */; };
 		5C7DD3DD1D9408B700C0B6DC /* ContentsWaitingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7DD3DC1D9408B700C0B6DC /* ContentsWaitingIndicatorView.m */; };
 		5C8722FF1D86D770001AAF22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C8722FE1D86D770001AAF22 /* LaunchScreen.storyboard */; };
+		5C8CBD801D9565CF009A7C02 /* section2_02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C8CBD7D1D9565CF009A7C02 /* section2_02.jpg */; };
+		5C8CBD811D9565CF009A7C02 /* section2_03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C8CBD7E1D9565CF009A7C02 /* section2_03.jpg */; };
+		5C8CBD821D9565CF009A7C02 /* section2_04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C8CBD7F1D9565CF009A7C02 /* section2_04.jpg */; };
 		5C97062B1D6869D000A14813 /* NSString+CustomDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C97062A1D6869D000A14813 /* NSString+CustomDecoder.m */; };
 		5C9C8F711D6C7F3000E80264 /* CoreDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9C8F701D6C7F3000E80264 /* CoreDataHandler.m */; };
 		5CA7EE771D91155300A41B1D /* ContentsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA7EE761D91155300A41B1D /* ContentsTextView.m */; };
@@ -99,6 +102,9 @@
 		5C7DD3DB1D9408B700C0B6DC /* ContentsWaitingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsWaitingIndicatorView.h; path = Classes/View/ContentsWaitingIndicatorView.h; sourceTree = "<group>"; };
 		5C7DD3DC1D9408B700C0B6DC /* ContentsWaitingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsWaitingIndicatorView.m; path = Classes/View/ContentsWaitingIndicatorView.m; sourceTree = "<group>"; };
 		5C8722FE1D86D770001AAF22 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5C8CBD7D1D9565CF009A7C02 /* section2_02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section2_02.jpg; path = Resources/Images/section2_02.jpg; sourceTree = "<group>"; };
+		5C8CBD7E1D9565CF009A7C02 /* section2_03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section2_03.jpg; path = Resources/Images/section2_03.jpg; sourceTree = "<group>"; };
+		5C8CBD7F1D9565CF009A7C02 /* section2_04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section2_04.jpg; path = Resources/Images/section2_04.jpg; sourceTree = "<group>"; };
 		5C9706291D6869D000A14813 /* NSString+CustomDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CustomDecoder.h"; sourceTree = "<group>"; };
 		5C97062A1D6869D000A14813 /* NSString+CustomDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CustomDecoder.m"; sourceTree = "<group>"; };
 		5C9C8F6F1D6C7F3000E80264 /* CoreDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHandler.h; sourceTree = "<group>"; };
@@ -202,6 +208,9 @@
 				5C7575AC1D4DD9260094D5B3 /* section1_01.jpg */,
 				5C7575AD1D4DD9260094D5B3 /* section2_00.jpg */,
 				5C7575AE1D4DD9260094D5B3 /* section2_01.jpg */,
+				5C8CBD7D1D9565CF009A7C02 /* section2_02.jpg */,
+				5C8CBD7E1D9565CF009A7C02 /* section2_03.jpg */,
+				5C8CBD7F1D9565CF009A7C02 /* section2_04.jpg */,
 				5C7575AF1D4DD9260094D5B3 /* section3_00.jpg */,
 				5C7575B01D4DD9260094D5B3 /* title_00.jpg */,
 			);
@@ -405,10 +414,13 @@
 				5CC1B8AA1D4F7E790003DD38 /* AppSetting.plist in Resources */,
 				5C7575B71D4DD9260094D5B3 /* section3_00.jpg in Resources */,
 				5C7575B11D4DD9260094D5B3 /* section0_00.jpg in Resources */,
+				5C8CBD801D9565CF009A7C02 /* section2_02.jpg in Resources */,
 				5C8722FF1D86D770001AAF22 /* LaunchScreen.storyboard in Resources */,
+				5C8CBD811D9565CF009A7C02 /* section2_03.jpg in Resources */,
 				5C7575B51D4DD9260094D5B3 /* section2_00.jpg in Resources */,
 				5CC1B8A11D4F74F30003DD38 /* contents_binzume_jigoku.xml in Resources */,
 				5C7575CF1D4E25C00094D5B3 /* save_button.png in Resources */,
+				5C8CBD821D9565CF009A7C02 /* section2_04.jpg in Resources */,
 				5C7575C11D4DDC130094D5B3 /* Localizable.strings in Resources */,
 				5C7575B81D4DD9260094D5B3 /* title_00.jpg in Resources */,
 				5C7575B31D4DD9260094D5B3 /* section1_00.jpg in Resources */,

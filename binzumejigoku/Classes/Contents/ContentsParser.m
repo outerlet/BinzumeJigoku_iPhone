@@ -77,7 +77,7 @@ static NSString* const SettingPlistName	= @"AppSetting";
 	if (type != ContentsTypeUnknown) {
 		_currentType = type;
 		
-		if (type >= ContentsTypeContentsValue) {
+		if (type >= ContentsTypeContentsValue && type < ContentsTypeContentsSubtype) {
 			_currentAttributes = attributeDict;
 			
 			if (type == ContentsTypeText) {
@@ -122,7 +122,7 @@ static NSString* const SettingPlistName	= @"AppSetting";
 	// 開始タグと終了タグが合致しないというのはあっていい事態ではないのでASSERTでチェック
 	// NSAssert(_currentType != type, @"XML START TAG NOT MATCHES END TAG");
 	
-	if (_currentType == ContentsTypeTextRuby || _currentType == ContentsTypeTextUTF16) {
+	if (_currentType >= ContentsTypeContentsSubtype) {
 		_currentType = ContentsTypeText;
 	} else if (_currentType != ContentsTypeUnknown) {
 		id cls = nil;

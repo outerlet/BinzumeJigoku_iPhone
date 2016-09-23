@@ -110,8 +110,12 @@
 }
 
 - (NSTextAlignment)decodeToTextAlignment {
-	if ([[self lowercaseString] isEqualToString:@"right"]) {
+	NSString* comparison = [self lowercaseString];
+	
+	if ([comparison isEqualToString:@"right"]) {
 		return NSTextAlignmentRight;
+	} else if ([comparison isEqualToString:@"center"]) {
+		return NSTextAlignmentCenter;
 	}
 	return NSTextAlignmentLeft;
 }

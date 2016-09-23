@@ -30,6 +30,10 @@
 	return self;
 }
 
+- (ChainType)chainType {
+	return ChainTypeWait;
+}
+
 - (ContentsType)contentsType {
 	return ContentsTypeWait;
 }

@@ -43,7 +43,7 @@
  * Viewに描画するテキストを追加する
  * @param	text	テキスト
  */
-- (void)append:(NSString*)text;
+- (void)append:(NSString*)text alignment:(NSTextAlignment)alignment;
 
 /**
  * Viewに描画するテキストとルビを追加する
@@ -51,7 +51,7 @@
  * @param	ruby	ルビ
  * @return	インスタンス
  */
-- (void)append:(NSString*)text ruby:(NSString*)ruby;
+- (void)append:(NSString*)text ruby:(NSString*)ruby alignment:(NSTextAlignment)alignment;
 
 /**
  * 空行を挿入する

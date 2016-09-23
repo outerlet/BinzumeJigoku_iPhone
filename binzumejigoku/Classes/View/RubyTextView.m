@@ -18,6 +18,9 @@ static const CGFloat kOnelineHeight		= 48.0f;
 // [非公開メソッド]新しい行を幅が0の状態で末尾に追加する
 - (RubyOnelineTextView*)addNewLine;
 
+// [非公開メソッド]NSTextAilgnmentの値次第でviewの位置を調整する
+- (void)repositionByAlignment:(RubyOnelineTextView*)view alignment:(NSTextAlignment)alignment;
+
 @end
 
 @implementation RubyTextView
@@ -33,7 +36,7 @@ static const CGFloat kOnelineHeight		= 48.0f;
 	return self;
 }
 
-- (void)append:(NSString*)text {
+- (void)append:(NSString*)text alignment:(NSTextAlignment)alignment {
 	for (NSInteger idx = 0 ; idx < text.length ; idx++) {
 		RubyOnelineTextView* latest = [_subviews lastObject];
 		
@@ -45,14 +48,19 @@ static const CGFloat kOnelineHeight		= 48.0f;
 		BOOL appended = [latest append:appendText ruby:nil];
 		
 		if (!appended) {
-			[[self addNewLine] append:appendText ruby:nil];
+			latest = [self addNewLine];
+			[latest append:appendText ruby:nil];
+		}
+		
+		if (idx == text.length - 1) {
+			[self repositionByAlignment:latest alignment:alignment];
 		}
 	}
 }
 
-- (void)append:(NSString*)text ruby:(NSString*)ruby {
+- (void)append:(NSString*)text ruby:(NSString*)ruby alignment:(NSTextAlignment)alignment {
 	if (!ruby) {
-		[self append:text];
+		[self append:text alignment:alignment];
 		return;
 	}
 	
@@ -65,8 +73,11 @@ static const CGFloat kOnelineHeight		= 48.0f;
 	BOOL appended = [latest append:text ruby:ruby];
 	
 	if (!appended) {
-		[[self addNewLine] append:text ruby:ruby];
+		latest = [self addNewLine];
+		[latest append:text ruby:ruby];
 	}
+	
+	[self repositionByAlignment:latest alignment:alignment];
 }
 
 - (void)sizeToFit {
@@ -115,6 +126,16 @@ static const CGFloat kOnelineHeight		= 48.0f;
 	[self resizeBy:CGSizeMake(0.0f, newLine.frame.size.height)];
 	
 	return newLine;
+}
+
+- (void)repositionByAlignment:(RubyOnelineTextView*)view alignment:(NSTextAlignment)alignment {
+	if (alignment == NSTextAlignmentRight) {
+		CGPoint pos = CGPointMake(self.bounds.size.width - view.requiredSize.width, view.frame.origin.y);
+		[view moveTo:pos];
+	} else if (alignment == NSTextAlignmentCenter) {
+		CGPoint pos = CGPointMake((self.bounds.size.width - view.requiredSize.width) / 2.0f, view.frame.origin.y);
+		[view moveTo:pos];
+	}
 }
 
 @end
