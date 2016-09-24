@@ -9,6 +9,7 @@
 #import "HistoryViewController.h"
 #import "AppDelegate.h"
 #import "AlertControllerHandler.h"
+#import "ContentsInterface.h"
 
 static const NSInteger kNumberOfSaveSlot	= 3;
 static const CGFloat kButtonHeight			= 100.0f;
@@ -32,6 +33,8 @@ static const CGFloat kButtonHeight			= 100.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	ContentsInterface* cif = [ContentsInterface sharedInstance];
+	
 	if (_backgroundType == HistoryBackgroundTypeLaunchImage) {
 		UIImageView* imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
 		imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -47,7 +50,7 @@ static const CGFloat kButtonHeight			= 100.0f;
 	
 	for (NSInteger idx = 0 ; idx < kNumberOfSaveSlot ; idx++) {
 		UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-		button.titleLabel.font = [UIFont fontWithName:DEFAULT_FONT_NAME size:20.0f];
+		button.titleLabel.font = [UIFont fontWithName:cif.fontName size:cif.historyButtonTextSize];
 		[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 		[button setTitle:[NSString stringWithFormat:@"BUTTON %ld", idx] forState:UIControlStateNormal];
 		[button setBackgroundImage:[UIImage imageNamed:@"save_button.png"] forState:UIControlStateNormal];

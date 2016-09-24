@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AlertControllerHandler.h"
 
-@interface SettingViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@class WorkDetailView;
+
+@interface SettingViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, AlertControllerHandlerDelegate> {
+	@private
+	WorkDetailView*	_workDetailView;
+}
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AlertControllerHandler.h"
 
 @class TitleView;
 @class ContentsTitleView;
@@ -14,7 +15,7 @@
 @class ContentsTextView;
 @class ContentsWaitingIndicatorView;
 
-@interface ContentsViewController : UIViewController {
+@interface ContentsViewController : UIViewController <AlertControllerHandlerDelegate> {
 	@private
 	ContentsTitleView*				_titleView;
 	ContentsImageView*				_imageView;

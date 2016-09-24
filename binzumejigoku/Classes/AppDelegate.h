@@ -8,9 +8,6 @@
 #import <UIKit/UIKit.h>
 #import "ContentsParser.h"
 
-#define DEFAULT_FONT_NAME @"Hiragino Mincho ProN W3"
-#define DEFAULT_FONT_SIZE 20.0f
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate, ContentsParserDelegate>
 
 @property (strong, nonatomic)	UIWindow*	window;

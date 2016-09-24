@@ -1,16 +1,38 @@
-<!--
-	AppSetting.plist
-	binzumejigoku
-	Created by Shizuo Ichitake on 2016/08/01.
-	Copyright (c) 2016年 1-Take. All rights reserved.
--->
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-    	<key>ContentsFilePrefix</key>
-		<string>contents_binzume_jigoku</string>
-		<key>ContentsFileSuffix</key>
-		<string>xml</string>
-    </dict>
+<dict>
+	<key>ContentsFileSuffix</key>
+	<string>xml</string>
+	<key>ContentsFilePrefix</key>
+	<string>contents_binzume_jigoku</string>
+	<key>FontName</key>
+	<string>Hiragino Mincho ProN W3</string>
+	<key>TitleTextSize</key>
+	<integer>36</integer>
+	<key>HistoryButtonTextSize</key>
+	<integer>20</integer>
+	<key>SummaryTitleTextSize</key>
+	<integer>28</integer>
+	<key>SummaryDescriptionTextSize</key>
+	<integer>20</integer>
+	<key>SettingSubjectTextSize</key>
+	<integer>16</integer>
+	<key>SettingDescriptionTextSize</key>
+	<integer>12</integer>
+	<key>SettingSubviewTextSize</key>
+	<integer>18</integer>
+	<key>TextSpeed</key>
+	<array>
+		<real>0.05</real>
+		<real>0.1</real>
+		<real>0.2</real>
+	</array>
+	<key>TextSize</key>
+	<array>
+		<integer>16</integer>
+		<integer>20</integer>
+		<integer>24</integer>
+	</array>
+</dict>
 </plist>

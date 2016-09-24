@@ -28,10 +28,12 @@
 }
 
 - (void)setTextElement:(TextElement*)textElement {
+	ContentsInterface* cif = [ContentsInterface sharedInstance];
+	
 	RubyTextView* newView = [[RubyTextView alloc] initWithWidth:self.bounds.size.width];
 	newView.backgroundColor = [UIColor clearColor];
 	newView.textColor = textElement.color;
-	newView.font = [UIFont fontWithName:DEFAULT_FONT_NAME size:DEFAULT_FONT_SIZE];
+	newView.font = [UIFont fontWithName:cif.fontName size:cif.textSize];
 	
 	// indentの数だけ付加する全角スペースを作成
 	NSMutableString* indent = [[NSMutableString alloc] init];

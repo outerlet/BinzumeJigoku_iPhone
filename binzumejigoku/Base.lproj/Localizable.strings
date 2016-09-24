@@ -5,9 +5,29 @@
   Created by Shizuo Ichitake on 2016/07/31.
   Copyright © 2016年 1-Take. All rights reserved.
 */
-// General Phrase
-"phrase_ok"		= "OK";
-"phrase_cancel"	= "キャンセル";
+// General Phrases
+"phrase_ok"				= "はい";
+"phrase_cancel"			= "キャンセル";
+"phrase_back"			= "戻る";
+"phrase_next_section"	= "次の章";
+"phrase_normal"			= "普通";
+"phrase_large"			= "大きい";
+"phrase_small"			= "小さい";
+"phrase_fast"			= "早い";
+"phrase_slow"			= "遅い";
+
+// General Messages
+"message_confirm_back"				= "物語を中断して前の画面に戻りますか？";
+"message_section_finished"			= "章が終了しました。";
+"message_last_section_finished"		= "最後の章が終了しました。前の画面に戻ります。";
+"message_save_confirmation"			= "セーブしますか？";
+"message_save_successful"			= "セーブしました。";
+"message_save_failure"				= "セーブに失敗しました。";
+"message_load_confirmation_latest"	= "前回の続きから始めますか？";
+"message_load_confirmation"			= "ロードしますか？";
+"message_load_successful"			= "ロードしました。";
+"message_load_failure"				= "ロードに失敗しました。";
+"message_force_application"			= "アプリを終了します。";
 
 // MainViewController
 "section_name_0" = "前置き";
@@ -31,6 +51,6 @@
 "setting_description_text_speed"	= "文字送りの早さを設定します";
 "setting_description_purchase"		= "このアプリを気に入って貰えたらご寄付頂けると嬉しいです";
 "setting_description_about_work"	= "『瓶詰地獄』についての簡単な情報です";
-
+"setting_detail_about_work"			= "【底本】\n「夢野久作怪奇幻想傑作選　あやかしの鼓」角川ホラー文庫、角川書店\n1998（平成10）年4月10日初版発行\n\n【初出】\n「猟奇」\n1928（昭和3）年10月\n\n【入力】\n林裕司\n\n【校正】\n浜野　智\n1998年11月10日公開\n2012年12月19日修正\n\n【青空文庫作成ファイル】\nこのファイルは、インターネットの図書館、青空文庫 ( http://www.aozora.gr.jp/ ) で作られました。入力、校正、制作にあたったのは、ボランティアの皆さんです。";
 // HistoryViewController
 "history_confirm_load"	= "ロードしますか？";

@@ -9,6 +9,7 @@
 #import "ContentsViewController.h"
 
 #import "AppDelegate.h"
+#import "ContentsInterface.h"
 #import "CoreDataHandler.h"
 #import "ContentsType.h"
 #import "ContentsElement.h"
@@ -23,13 +24,22 @@
 #import "ContentsWaitingIndicatorView.h"
 #import "NSString+CustomDecoder.h"
 
-const CGFloat kHeightOfIndicator	= 40.0f;
-const CGFloat kSideMarginOfViews	= 10.0f;
+const CGFloat kHeightOfIndicator		= 40.0f;
+const CGFloat kSideMarginOfViews		= 10.0f;
+const NSInteger kAlertTagEndOfSection	= 10001;
+const NSInteger kAlertTagEndOfContents	= 10002;
+const NSInteger	kAlertTagConfirmNext	= 10010;
+const NSInteger	kAlertTagConfirmBack	= 10011;
+const NSInteger	kAlertTagConfirmFinish	= 10020;
 
 @interface ContentsViewController ()
 
 @property (nonatomic, readwrite) NSInteger	sectionIndex;
 
+// CoreDataに保存したコンテンツを読み込む
+- (void)loadContentsFromCoreData;
+	
+// コンテンツを先にひとつ進める
 - (void)advanceContents:(ContentsElement*)element;
 
 // NSManagedObjectからContentsElementオブジェクトを生成する
@@ -88,8 +98,19 @@ const CGFloat kSideMarginOfViews	= 10.0f;
 	// タイトル
 	_titleView = [[ContentsTitleView alloc] initWithFrame:self.view.bounds];
 	[self.view addSubview:_titleView];
-	
-	// CoreDataに保存したコンテンツを読み込む
+
+	[self loadContentsFromCoreData];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[self advanceContents:nil];
+}
+
+- (void)touchesBegan:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
+	[self advanceContents:nil];
+}
+
+- (void)loadContentsFromCoreData {
 	NSMutableArray* contents = [[NSMutableArray alloc] init];
 	CoreDataHandler* handler = [CoreDataHandler sharedInstance];
 	NSFetchedResultsController* result = [handler fetch:_sectionIndex];
@@ -103,12 +124,25 @@ const CGFloat kSideMarginOfViews	= 10.0f;
 	_contents = [NSArray arrayWithArray:contents];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-	[self advanceContents:nil];
-}
-
-- (void)touchesBegan:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
-	[self advanceContents:nil];
+- (void)alertDidConfirmAt:(NSInteger)alertTag action:(NSInteger)actionTag {
+	// 章の終了時に発生するアラート
+	if (alertTag == kAlertTagEndOfSection) {
+		// 次へ行く場合
+		if (actionTag == kAlertTagConfirmNext) {
+			++_sectionIndex;
+			_currentIndex = -1;
+			_isContentsOngoing = NO;
+			
+			[self loadContentsFromCoreData];
+			[self advanceContents:nil];
+		// 前の画面に戻る場合
+		} else {
+			[self dismissViewControllerAnimated:YES completion:nil];
+		}
+	// 物語の終了時に発生するアラート(常に前の画面に戻る)
+	} else if (alertTag == kAlertTagEndOfContents) {
+		[self dismissViewControllerAnimated:YES completion:nil];
+	}
 }
 
 - (void)advanceContents:(ContentsElement*)element {
@@ -141,7 +175,29 @@ const CGFloat kSideMarginOfViews	= 10.0f;
 			
 			_isContentsOngoing = YES;
 		} else {
-			[self dismissViewControllerAnimated:YES completion:nil];
+			AlertControllerHandler* handler;
+			
+			ContentsInterface* cif = [ContentsInterface sharedInstance];
+			if (element.section < cif.maxSectionIndex) {
+				NSString* msg = NSLocalizedString(@"message_section_finished", @"END-OF-SECTION");
+				handler = [[AlertControllerHandler alloc] initWithTitle:nil
+																message:msg
+														  preferrdStyle:UIAlertControllerStyleAlert
+																	tag:kAlertTagEndOfSection];
+				[handler addAction:NSLocalizedString(@"phrase_next_section", @"GO-NEXT-SECTION") style:UIAlertActionStyleDefault tag:kAlertTagConfirmNext];
+				[handler addAction:NSLocalizedString(@"phrase_back", @"GO-BACK") style:UIAlertActionStyleCancel tag:kAlertTagConfirmBack];
+			} else {
+				NSString* msg = NSLocalizedString(@"message_last_section_finished", @"END-OF-SECTION");
+				handler = [[AlertControllerHandler alloc] initWithTitle:nil
+																message:msg
+														  preferrdStyle:UIAlertControllerStyleAlert
+																	tag:kAlertTagEndOfContents];
+				[handler addAction:NSLocalizedString(@"phrase_ok", @"OK") style:UIAlertActionStyleDefault tag:kAlertTagConfirmFinish];
+			}
+			
+			handler.delegate = self;
+			
+			[self presentViewController:[handler build] animated:YES completion:nil];
 		}
 	}
 }
@@ -173,9 +229,9 @@ const CGFloat kSideMarginOfViews	= 10.0f;
 }
 
 - (void)handleTitleElement:(TitleElement *)titleElement {
-	[_titleView setTitle:titleElement.title
-					font:[UIFont fontWithName:DEFAULT_FONT_NAME
-										 size:36.0f]];
+	ContentsInterface* cif = [ContentsInterface sharedInstance];
+	
+	[_titleView setTitle:titleElement.title font:[UIFont fontWithName:cif.fontName size:cif.titleTextSize]];
 	
 	[_titleView startAnimationWithDuration:3.0f
 								completion:^(void) {
@@ -202,7 +258,7 @@ const CGFloat kSideMarginOfViews	= 10.0f;
 - (void)handleTextElement:(TextElement*)textElement {
 	[_textView setTextElement:textElement];
 	
-	[_textView startStreamingWithInterval:0.05f
+	[_textView startStreamingWithInterval:[ContentsInterface sharedInstance].textSpeedInterval
 							   completion:^(void) {
 								   NSLog(@"TextView Animation Did Finish.");
 								   [_indicatorView startAnimation];

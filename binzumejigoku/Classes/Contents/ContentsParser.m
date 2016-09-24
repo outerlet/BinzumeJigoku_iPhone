@@ -24,14 +24,7 @@ static NSString* const SettingPlistName	= @"AppSetting";
 
 - (id)init {
 	if (self = [super init]) {
-		NSBundle* bundle = [NSBundle mainBundle];
-		
-		NSDictionary* settings = [NSDictionary dictionaryWithContentsOfFile:[bundle pathForResource:SettingPlistName ofType:@"plist"]];
-		
-		NSString* path = [bundle pathForResource:[settings objectForKey:@"ContentsFilePrefix"]
-										  ofType:[settings objectForKey:@"ContentsFileSuffix"]];
-		
-		_parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path]];
+		_parser = [[NSXMLParser alloc] initWithContentsOfURL:[ContentsInterface sharedInstance].contentsFileUrl];
 		_parser.delegate = self;
 		
 		_sequence = 0;
@@ -53,6 +46,7 @@ static NSString* const SettingPlistName	= @"AppSetting";
 		if (self.delegate) {
 			if (result) {
 				ContentsInterface* cif = [ContentsInterface sharedInstance];
+				cif.maxSectionIndex = _section;
 				cif.rubyClosure = _rubyClosure;
 				cif.rubyDelimiter = _rubyDelimiter;
 				
