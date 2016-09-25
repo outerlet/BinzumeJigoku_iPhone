@@ -7,15 +7,10 @@
 //
 
 #import "CoreDataHandler.h"
+#import "Utility.h"
 
 static NSString* const kDataModelName	= @"BinzumeJigoku";
 static NSString* const kEntityName		= @"Contents";
-
-@interface CoreDataHandler ()
-
-@property (nonatomic, readonly) NSURL* applicationDocumentsDirectory;
-
-@end
 
 @implementation CoreDataHandler
 
@@ -28,11 +23,6 @@ static CoreDataHandler*	_instance = nil;
 		}
 	}
 	return _instance;
-}
-
-- (NSURL*)applicationDocumentsDirectory {
-	return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
-												   inDomains:NSUserDomainMask] lastObject];
 }
 
 - (NSManagedObjectContext*)managedObjectContext {
@@ -70,7 +60,7 @@ static CoreDataHandler*	_instance = nil;
 	_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
 	
 	NSString* storeName = [NSString stringWithFormat:@"%@.sqlite", kDataModelName];
-	NSURL* storeURL = [self.applicationDocumentsDirectory URLByAppendingPathComponent:storeName];
+	NSURL* storeURL = [[Utility applicationDocumentDirectory] URLByAppendingPathComponent:storeName];
 	NSError* error = nil;
 	
 	if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
@@ -129,10 +119,8 @@ static CoreDataHandler*	_instance = nil;
 }
 
 - (BOOL)contentsInstalled {
-	NSURL* url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
-														 inDomains:NSUserDomainMask] lastObject];
 	NSString* storeName = [NSString stringWithFormat:@"%@.sqlite", kDataModelName];
-	NSURL* storeURL = [url URLByAppendingPathComponent:storeName];
+	NSURL* storeURL = [[Utility applicationDocumentDirectory] URLByAppendingPathComponent:storeName];
 	
 	return [[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]];
 }
