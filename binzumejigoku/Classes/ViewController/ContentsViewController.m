@@ -22,10 +22,12 @@
 #import "ContentsImageView.h"
 #import "ContentsTextView.h"
 #import "ContentsWaitingIndicatorView.h"
+#import "GestureHintView.h"
 #import "NSString+CustomDecoder.h"
 
 const CGFloat kHeightOfIndicator		= 40.0f;
 const CGFloat kSideMarginOfViews		= 10.0f;
+const CGFloat kLongPressActionLength	= 30.0f;
 const NSInteger kAlertTagEndOfSection	= 10001;
 const NSInteger kAlertTagEndOfContents	= 10002;
 const NSInteger	kAlertTagConfirmNext	= 10010;
@@ -58,6 +60,9 @@ const NSInteger	kAlertTagConfirmFinish	= 10020;
 // 各メソッドにある完了ブロックで定義すると同じ処理が複数箇所に分散してしまうので
 - (void)contentsElementDidConsume:(ContentsElement*)element;
 
+// ロングプレスを検知したイベントをハンドリングする
+- (void)longPressDidDetect:(UILongPressGestureRecognizer*)gestureRecognizer;
+
 @end
 
 @implementation ContentsViewController
@@ -69,6 +74,9 @@ const NSInteger	kAlertTagConfirmFinish	= 10020;
 		_sectionIndex = sectionIndex;
 		_currentIndex = -1;
 		_isContentsOngoing = NO;
+		
+		_beganPoint = CGPointZero;
+		_endPoint = CGPointZero;
 	}
 	return self;
 }
@@ -98,6 +106,20 @@ const NSInteger	kAlertTagConfirmFinish	= 10020;
 	// タイトル
 	_titleView = [[ContentsTitleView alloc] initWithFrame:self.view.bounds];
 	[self.view addSubview:_titleView];
+	
+	// ジェスチャ(=ロングプレス)のヒントを表示するView
+	UIFont* font = [UIFont fontWithName:[ContentsInterface sharedInstance].fontName size:20.0f];
+	_gestureHintView = [[GestureHintView alloc] initWithFrame:self.view.bounds
+														 font:font
+														hints:NSLocalizedString(@"phrase_text_history", nil), NSLocalizedString(@"message_how_to_save", nil), NSLocalizedString(@"phrase_back", nil), nil];
+	[self.view addSubview:_gestureHintView];
+	
+	// ジェスチャレコグナイザの設定
+	_gestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+																	   action:@selector(longPressDidDetect:)];
+	_gestureRecognizer.minimumPressDuration = 0.6f;
+	_gestureRecognizer.enabled = NO;
+	[self.view addGestureRecognizer:_gestureRecognizer];
 
 	[self loadContentsFromCoreData];
 }
@@ -106,7 +128,7 @@ const NSInteger	kAlertTagConfirmFinish	= 10020;
 	[self advanceContents:nil];
 }
 
-- (void)touchesBegan:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
+- (void)touchesEnded:(NSSet<UITouch*>*)touches withEvent:(UIEvent *)event {
 	[self advanceContents:nil];
 }
 
@@ -287,7 +309,35 @@ const NSInteger	kAlertTagConfirmFinish	= 10020;
 	if (element.chainType != ChainTypeNone) {
 		[self advanceContents:element];
 	} else {
+		_gestureRecognizer.enabled = YES;
 		_isContentsOngoing = NO;
+	}
+}
+
+- (void)longPressDidDetect:(UILongPressGestureRecognizer*)gestureRecognizer {
+	if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+		_beganPoint = [gestureRecognizer locationInView:self.view];
+
+		CGFloat saveX = (_beganPoint.x < self.view.bounds.size.width / 2.0f) ? _beganPoint.x + 120.0f : _beganPoint.x - 120.0f;
+		
+		[_gestureHintView setCenterAtIndex:0 center:CGPointMake(_beganPoint.x, _beganPoint.y - 120.0f)];
+		[_gestureHintView setCenterAtIndex:1 center:CGPointMake(saveX, _beganPoint.y)];
+		[_gestureHintView setCenterAtIndex:2 center:CGPointMake(_beganPoint.x, _beganPoint.y + 120.0f)];
+		[_gestureHintView showWithDuration:0.6f hint:0.1f];
+	} else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+		_endPoint = [gestureRecognizer locationInView:self.view];
+
+		[_gestureHintView hideWithDuration:0.6f hint:0.1f];
+		
+		if (fabs(_beganPoint.y - _endPoint.y) <= kLongPressActionLength) {
+			NSLog(@"Open Save View");
+		} else {
+			if (_endPoint.y < _beganPoint.y) {
+				NSLog(@"Open Text History");
+			} else {
+				[self dismissViewControllerAnimated:YES completion:nil];
+			}
+		}
 	}
 }
 

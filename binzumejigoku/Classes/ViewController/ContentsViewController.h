@@ -14,6 +14,7 @@
 @class ContentsImageView;
 @class ContentsTextView;
 @class ContentsWaitingIndicatorView;
+@class GestureHintView;
 
 @interface ContentsViewController : UIViewController <AlertControllerHandlerDelegate> {
 	@private
@@ -21,10 +22,15 @@
 	ContentsImageView*				_imageView;
 	ContentsTextView*				_textView;
 	ContentsWaitingIndicatorView*	_indicatorView;
+	GestureHintView*				_gestureHintView;
 	
-	NSArray*	_contents;
-	NSInteger	_currentIndex;
-	BOOL		_isContentsOngoing;
+	NSArray*						_contents;
+	NSInteger						_currentIndex;
+	BOOL							_isContentsOngoing;
+	
+	UILongPressGestureRecognizer*	_gestureRecognizer;
+	CGPoint							_beganPoint;
+	CGPoint							_endPoint;
 }
 
 @property (nonatomic, readonly) NSInteger sectionIndex;

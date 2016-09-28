@@ -14,6 +14,7 @@
 		5C0B10181D686B3A00148096 /* TextElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B100F1D686B3A00148096 /* TextElement.m */; };
 		5C0B10191D686B3A00148096 /* TitleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B10111D686B3A00148096 /* TitleElement.m */; };
 		5C0B101A1D686B3A00148096 /* WaitElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B10131D686B3A00148096 /* WaitElement.m */; };
+		5C0E49671D9AA4840030D584 /* GestureHintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0E49661D9AA4840030D584 /* GestureHintView.m */; };
 		5C20B5D71D4B8B3C0014E6F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C20B5D61D4B8B3C0014E6F9 /* main.m */; };
 		5C3D6B121D6B222700F24098 /* BinzumeJigoku.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C3D6B101D6B222700F24098 /* BinzumeJigoku.xcdatamodeld */; };
 		5C3E23951D8591E900760EA7 /* UIView+Adjustment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E23941D8591E900760EA7 /* UIView+Adjustment.m */; };
@@ -72,6 +73,8 @@
 		5C0B10111D686B3A00148096 /* TitleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TitleElement.m; path = Classes/Contents/TitleElement.m; sourceTree = "<group>"; };
 		5C0B10121D686B3A00148096 /* WaitElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaitElement.h; path = Classes/Contents/WaitElement.h; sourceTree = "<group>"; };
 		5C0B10131D686B3A00148096 /* WaitElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaitElement.m; path = Classes/Contents/WaitElement.m; sourceTree = "<group>"; };
+		5C0E49651D9AA4840030D584 /* GestureHintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GestureHintView.h; path = Classes/View/GestureHintView.h; sourceTree = "<group>"; };
+		5C0E49661D9AA4840030D584 /* GestureHintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GestureHintView.m; path = Classes/View/GestureHintView.m; sourceTree = "<group>"; };
 		5C20B5D21D4B8B3C0014E6F9 /* binzumejigoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = binzumejigoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C20B5D61D4B8B3C0014E6F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5C20B5E61D4B8B3C0014E6F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = binzumejigoku/Info.plist; sourceTree = "<group>"; };
@@ -365,6 +368,8 @@
 				5CA7EE761D91155300A41B1D /* ContentsTextView.m */,
 				5C7DD3DB1D9408B700C0B6DC /* ContentsWaitingIndicatorView.h */,
 				5C7DD3DC1D9408B700C0B6DC /* ContentsWaitingIndicatorView.m */,
+				5C0E49651D9AA4840030D584 /* GestureHintView.h */,
+				5C0E49661D9AA4840030D584 /* GestureHintView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -468,6 +473,7 @@
 				5C7C44861D6F172D00C6DFAA /* ContentsTitleView.m in Sources */,
 				5C0B10191D686B3A00148096 /* TitleElement.m in Sources */,
 				5C20B5D71D4B8B3C0014E6F9 /* main.m in Sources */,
+				5C0E49671D9AA4840030D584 /* GestureHintView.m in Sources */,
 				5CA7EE771D91155300A41B1D /* ContentsTextView.m in Sources */,
 				5C0B10171D686B3A00148096 /* ImageElement.m in Sources */,
 				5CC6E3201D4B9D540073FC30 /* MainPageView.m in Sources */,

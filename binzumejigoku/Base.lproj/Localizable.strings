@@ -15,6 +15,7 @@
 "phrase_small"			= "小さい";
 "phrase_fast"			= "早い";
 "phrase_slow"			= "遅い";
+"phrase_text_history"	= "テキスト履歴";
 
 // General Messages
 "message_confirm_back"				= "物語を中断して前の画面に戻りますか？";
@@ -28,6 +29,7 @@
 "message_load_successful"			= "ロードしました。";
 "message_load_failure"				= "ロードに失敗しました。";
 "message_force_application"			= "アプリを終了します。";
+"message_how_to_save"				= "そのまま離すと\nセーブ";
 
 // MainViewController
 "section_name_0" = "前置き";
