@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C0583F41D9BEB9700815912 /* HistorySelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0583F31D9BEB9700815912 /* HistorySelectView.m */; };
+		5C0583F61D9BF07500815912 /* ic_cancel_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C0583F51D9BF07500815912 /* ic_cancel_white.png */; };
+		5C0583F81D9BF56500815912 /* ic_swap_horiz_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C0583F71D9BF56500815912 /* ic_swap_horiz_white.png */; };
 		5C0B10141D686B3A00148096 /* ClearTextElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B10061D686B3A00148096 /* ClearTextElement.m */; };
 		5C0B10151D686B3A00148096 /* ContentsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B10081D686B3A00148096 /* ContentsElement.m */; };
 		5C0B10161D686B3A00148096 /* ContentsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B100A1D686B3A00148096 /* ContentsParser.m */; };
@@ -57,6 +60,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C0583F21D9BEB9700815912 /* HistorySelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HistorySelectView.h; path = Classes/View/HistorySelectView.h; sourceTree = "<group>"; };
+		5C0583F31D9BEB9700815912 /* HistorySelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistorySelectView.m; path = Classes/View/HistorySelectView.m; sourceTree = "<group>"; };
+		5C0583F51D9BF07500815912 /* ic_cancel_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_cancel_white.png; path = Resources/Images/ic_cancel_white.png; sourceTree = "<group>"; };
+		5C0583F71D9BF56500815912 /* ic_swap_horiz_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_swap_horiz_white.png; path = Resources/Images/ic_swap_horiz_white.png; sourceTree = "<group>"; };
 		5C0B10041D686B3A00148096 /* ChainType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChainType.h; path = Classes/Contents/ChainType.h; sourceTree = "<group>"; };
 		5C0B10051D686B3A00148096 /* ClearTextElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClearTextElement.h; path = Classes/Contents/ClearTextElement.h; sourceTree = "<group>"; };
 		5C0B10061D686B3A00148096 /* ClearTextElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClearTextElement.m; path = Classes/Contents/ClearTextElement.m; sourceTree = "<group>"; };
@@ -209,6 +216,8 @@
 		5C7575A81D4DD9040094D5B3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C0583F51D9BF07500815912 /* ic_cancel_white.png */,
+				5C0583F71D9BF56500815912 /* ic_swap_horiz_white.png */,
 				5C7DD3D91D9407FD00C0B6DC /* ic_wait_advance.png */,
 				5C7575CE1D4E25C00094D5B3 /* save_button.png */,
 				5C7575A91D4DD9260094D5B3 /* section0_00.jpg */,
@@ -370,6 +379,8 @@
 				5C7DD3DC1D9408B700C0B6DC /* ContentsWaitingIndicatorView.m */,
 				5C0E49651D9AA4840030D584 /* GestureHintView.h */,
 				5C0E49661D9AA4840030D584 /* GestureHintView.m */,
+				5C0583F21D9BEB9700815912 /* HistorySelectView.h */,
+				5C0583F31D9BEB9700815912 /* HistorySelectView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -444,11 +455,13 @@
 				5C7575B51D4DD9260094D5B3 /* section2_00.jpg in Resources */,
 				5CC1B8A11D4F74F30003DD38 /* contents_binzume_jigoku.xml in Resources */,
 				5C7575CF1D4E25C00094D5B3 /* save_button.png in Resources */,
+				5C0583F61D9BF07500815912 /* ic_cancel_white.png in Resources */,
 				5C8CBD821D9565CF009A7C02 /* section2_04.jpg in Resources */,
 				5C7575C11D4DDC130094D5B3 /* Localizable.strings in Resources */,
 				5C7575B81D4DD9260094D5B3 /* title_00.jpg in Resources */,
 				5C7575B31D4DD9260094D5B3 /* section1_00.jpg in Resources */,
 				5C7575B21D4DD9260094D5B3 /* section0_01.jpg in Resources */,
+				5C0583F81D9BF56500815912 /* ic_swap_horiz_white.png in Resources */,
 				5C7575B61D4DD9260094D5B3 /* section2_01.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,6 +479,7 @@
 				5C9C8F711D6C7F3000E80264 /* CoreDataHandler.m in Sources */,
 				5CBF62AF1D980A5E00D9C880 /* Utility.m in Sources */,
 				5C3E239B1D85921C00760EA7 /* RubyTextView.m in Sources */,
+				5C0583F41D9BEB9700815912 /* HistorySelectView.m in Sources */,
 				5C97062B1D6869D000A14813 /* NSString+CustomDecoder.m in Sources */,
 				5C0B10141D686B3A00148096 /* ClearTextElement.m in Sources */,
 				5CC6E30D1D4B91E00073FC30 /* AppDelegate.m in Sources */,

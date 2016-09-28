@@ -51,6 +51,8 @@
 @property (nonatomic, readonly)	CGFloat	settingDescriptionTextSize;
 @property (nonatomic, readonly)	CGFloat	settingSubviewTextSize;
 
+@property (nonatomic, readonly)	NSInteger	numberOfHistories;
+
 /** 1文字あたりのテキスト送り早さ(sec) */
 @property (nonatomic)	CGFloat	textSpeedInterval;
 

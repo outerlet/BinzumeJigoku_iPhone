@@ -40,7 +40,7 @@
 	[tabController addChildViewController:mainController];
 	
 	// セーブ&ロードを担当するViewController
-	HistoryViewController* historyController = [[HistoryViewController alloc] initWithBackgroundType:HistoryBackgroundTypeLaunchImage];
+	HistoryViewController* historyController = [[HistoryViewController alloc] init];
 	historyController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:1];
 	[tabController addChildViewController:historyController];
 	

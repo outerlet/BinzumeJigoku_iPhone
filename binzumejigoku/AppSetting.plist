@@ -17,9 +17,9 @@
 	<key>SummaryDescriptionTextSize</key>
 	<integer>20</integer>
 	<key>SettingSubjectTextSize</key>
-	<integer>16</integer>
+	<integer>18</integer>
 	<key>SettingDescriptionTextSize</key>
-	<integer>12</integer>
+	<integer>14</integer>
 	<key>SettingSubviewTextSize</key>
 	<integer>18</integer>
 	<key>TextSpeed</key>
@@ -34,5 +34,7 @@
 		<integer>20</integer>
 		<integer>24</integer>
 	</array>
+	<key>NumberOfHistories</key>
+	<integer>3</integer>
 </dict>
 </plist>

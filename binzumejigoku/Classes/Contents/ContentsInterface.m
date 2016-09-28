@@ -124,6 +124,10 @@ static ContentsInterface*	_instance;
 	return (CGFloat)[[self.settings objectForKey:@"SettingSubviewTextSize"] floatValue];
 }
 
+- (NSInteger)numberOfHistories {
+	return [[self.settings objectForKey:@"NumberOfHistories"] integerValue];
+}
+
 - (CGFloat)textSpeedInterval {
 	return _textSpeedInterval;
 }

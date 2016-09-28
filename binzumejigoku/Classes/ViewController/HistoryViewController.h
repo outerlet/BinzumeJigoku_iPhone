@@ -8,17 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "AlertControllerHandler.h"
+#import "HistorySelectView.h"
 
-typedef NS_ENUM(NSUInteger, HistoryBackgroundType) {
-	HistoryBackgroundTypeBlackTranslucent = 0,
-	HistoryBackgroundTypeLaunchImage,
-};
-
-@interface HistoryViewController : UIViewController <AlertControllerHandlerDelegate> {
-	@private
-	HistoryBackgroundType _backgroundType;
-}
-
-- (id)initWithBackgroundType:(HistoryBackgroundType)backgroundType;
+@interface HistoryViewController : UIViewController <HistorySelectViewDelegate, AlertControllerHandlerDelegate>
 
 @end
