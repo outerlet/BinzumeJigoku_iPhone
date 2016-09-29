@@ -7,6 +7,7 @@
 //
 
 #import "ContentsInterface.h"
+#import "SaveData.h"
 
 NSString* const kKeyOfMaxSectionIndex	= @"KEY_OF_MAX_SECTION_INDEX";		// NSUserDefaultsのキー文字列(maxSectionIndex)
 NSString* const kKeyOfRubyClosure		= @"KEY_OF_RUBY_CLOSURE";			// NSUserDefaultsのキー文字列(rubyClosure)
@@ -32,6 +33,7 @@ static ContentsInterface*	_instance;
 
 - (void)initialize {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	
 	_maxSectionIndex = [defaults integerForKey:kKeyOfMaxSectionIndex];
 	_rubyClosure = [defaults stringForKey:kKeyOfRubyClosure];
 	_rubyDelimiter = [defaults stringForKey:kKeyOfRubyDelimiter];
@@ -45,8 +47,25 @@ static ContentsInterface*	_instance;
 	if (_textSize == 0.0f) {
 		self.textSize = (CGFloat)[[[self.settings objectForKey:@"TextSize"] objectAtIndex:1] floatValue];
 	}
-}
 	
+	NSMutableArray* saveDatas = [[NSMutableArray alloc] init];
+	for (NSInteger idx = 0 ; idx <= 3 ; idx++) {
+		SaveData* saveData = [[SaveData alloc] initWithSlotNumber:idx];
+		BOOL saved = [saveData load];
+		
+		if (saved) {
+			NSLog(@"SLOT = %ld, SECTION = %ld, SEQUENCE = %ld", (long)saveData.slotNumber, (long)saveData.section, (long)saveData.sequence);
+		}
+		
+		[saveDatas addObject:saveData];
+	}
+	_saveDatas = [NSArray arrayWithArray:saveDatas];
+}
+
+- (SaveData*)saveDataAtSlotNumber:(NSInteger)slotNumber {
+	return [_saveDatas objectAtIndex:slotNumber];
+}
+
 - (NSInteger)maxSectionIndex {
 	return _maxSectionIndex;
 }

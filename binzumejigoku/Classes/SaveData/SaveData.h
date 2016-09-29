@@ -12,14 +12,17 @@
 
 @interface SaveData : UIView <NSCoding>
 
-@property (nonatomic, readonly)	NSInteger					slotNumber;
-@property (nonatomic)			NSInteger					section;
-@property (nonatomic, readonly)	NSMutableArray<NSString*>*	textHistories;
+@property (nonatomic, readonly)	NSInteger									slotNumber;
+@property (nonatomic)			NSInteger									section;
+@property (nonatomic, readonly)	NSInteger									sequence;
+@property (nonatomic, readonly)	NSMutableDictionary<NSNumber*, NSNumber*>*	elementSequences;
+@property (nonatomic, readonly)	NSMutableArray<NSString*>*					textHistories;
 
 - (id)initWithSlotNumber:(NSInteger)slotNumber;
 - (void)addElement:(ContentsElement*)element;
+- (void)copyFrom:(SaveData*)other;
 - (void)save;
-- (void)load;
+- (BOOL)load;
 - (void)reset;
 
 @end

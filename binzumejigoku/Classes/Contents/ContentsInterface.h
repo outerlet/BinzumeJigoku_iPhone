@@ -9,16 +9,19 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class SaveData;
+
 /**
  * コンテンツの表示に関係する共通機能やプロパティを提供するシングルトンクラス
  */
 @interface ContentsInterface : NSObject {
 	@private
-	NSInteger	_maxSectionIndex;
-	NSString*	_rubyClosure;
-	NSString*	_rubyDelimiter;
-	CGFloat		_textSpeedInterval;
-	CGFloat		_textSize;
+	NSInteger			_maxSectionIndex;
+	NSString*			_rubyClosure;
+	NSString*			_rubyDelimiter;
+	CGFloat				_textSpeedInterval;
+	CGFloat				_textSize;
+	NSArray<SaveData*>*	_saveDatas;
 }
 
 @property (nonatomic, readonly)	NSDictionary*	settings;
@@ -70,5 +73,7 @@
  * オブジェクトを初期する
  */
 - (void)initialize;
+
+- (SaveData*)saveDataAtSlotNumber:(NSInteger)slotNumber;
 
 @end

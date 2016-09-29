@@ -23,11 +23,13 @@
 #import "ContentsTextView.h"
 #import "ContentsWaitingIndicatorView.h"
 #import "GestureHintView.h"
+#import "SaveData.h"
 #import "NSString+CustomDecoder.h"
 
 const CGFloat kHeightOfIndicator		= 40.0f;
 const CGFloat kSideMarginOfViews		= 10.0f;
-const CGFloat kLongPressActionLength	= 30.0f;
+const CGFloat kLongPressActionLength	= 20.0f;
+const CGFloat kLongPressAvailableLength	= 10.0f;
 const NSInteger kAlertTagEndOfSection	= 10001;
 const NSInteger kAlertTagEndOfContents	= 10002;
 const NSInteger	kAlertTagConfirmNext	= 10010;
@@ -111,7 +113,7 @@ const NSInteger	kAlertTagConfirmFinish	= 10020;
 	UIFont* font = [UIFont fontWithName:[ContentsInterface sharedInstance].fontName size:20.0f];
 	_gestureHintView = [[GestureHintView alloc] initWithFrame:self.view.bounds
 														 font:font
-														hints:NSLocalizedString(@"phrase_text_history", nil), NSLocalizedString(@"message_how_to_save", nil), NSLocalizedString(@"phrase_back", nil), nil];
+														hints:NSLocalizedString(@"phrase_text_history", nil), NSLocalizedString(@"phrase_save", nil), NSLocalizedString(@"phrase_back", nil), nil];
 	[self.view addSubview:_gestureHintView];
 	
 	// ジェスチャレコグナイザの設定
@@ -133,9 +135,11 @@ const NSInteger	kAlertTagConfirmFinish	= 10020;
 }
 
 - (void)loadContentsFromCoreData {
-	NSMutableArray* contents = [[NSMutableArray alloc] init];
 	CoreDataHandler* handler = [CoreDataHandler sharedInstance];
 	NSFetchedResultsController* result = [handler fetch:_sectionIndex];
+	
+	NSMutableArray* contents = [[NSMutableArray alloc] init];
+
 	for (NSManagedObject* obj in result.fetchedObjects) {
 		ContentsElement* e = [self elementByManagedObject:obj];
 		if (e) {
@@ -144,6 +148,8 @@ const NSInteger	kAlertTagConfirmFinish	= 10020;
 	}
 	
 	_contents = [NSArray arrayWithArray:contents];
+	
+	[[ContentsInterface sharedInstance] saveDataAtSlotNumber:0].section = _sectionIndex;
 }
 
 - (void)alertDidConfirmAt:(NSInteger)alertTag action:(NSInteger)actionTag {
@@ -306,6 +312,10 @@ const NSInteger	kAlertTagConfirmFinish	= 10020;
 }
 
 - (void)contentsElementDidConsume:(ContentsElement*)element {
+	SaveData* autoSave = [[ContentsInterface sharedInstance] saveDataAtSlotNumber:0];
+	[autoSave addElement:element];
+	[autoSave save];
+	
 	if (element.chainType != ChainTypeNone) {
 		[self advanceContents:element];
 	} else {
@@ -318,7 +328,8 @@ const NSInteger	kAlertTagConfirmFinish	= 10020;
 	if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
 		_beganPoint = [gestureRecognizer locationInView:self.view];
 
-		CGFloat saveX = (_beganPoint.x < self.view.bounds.size.width / 2.0f) ? _beganPoint.x + 120.0f : _beganPoint.x - 120.0f;
+		BOOL isLeft = (_beganPoint.x < self.view.bounds.size.width / 2.0f);
+		CGFloat saveX = isLeft ? _beganPoint.x + 120.0f : _beganPoint.x - 120.0f;
 		
 		[_gestureHintView setCenterAtIndex:0 center:CGPointMake(_beganPoint.x, _beganPoint.y - 120.0f)];
 		[_gestureHintView setCenterAtIndex:1 center:CGPointMake(saveX, _beganPoint.y)];
@@ -329,13 +340,23 @@ const NSInteger	kAlertTagConfirmFinish	= 10020;
 
 		[_gestureHintView hideWithDuration:0.6f hint:0.1f];
 		
-		if (fabs(_beganPoint.y - _endPoint.y) <= kLongPressActionLength) {
-			NSLog(@"Open Save View");
+		// 上方向(テキスト履歴)
+		if (_beganPoint.y - _endPoint.y >= kLongPressActionLength && fabs(_endPoint.x - _beganPoint.x) <= kLongPressAvailableLength) {
+			NSLog(@"Open Text History.");
+		// 下方向(閉じる)
+		} else if (_endPoint.y - _beganPoint.y >= kLongPressActionLength && fabs(_endPoint.x - _beganPoint.x) <= kLongPressAvailableLength) {
+			[self dismissViewControllerAnimated:YES completion:nil];
 		} else {
-			if (_endPoint.y < _beganPoint.y) {
-				NSLog(@"Open Text History");
+			BOOL isLeft = (_beganPoint.x < self.view.bounds.size.width / 2.0f);
+			
+			// 画面左側でロングタップが開始された場合、右方向ならセーブ
+			if (isLeft && (_endPoint.x - _beganPoint.x) >= kLongPressActionLength && fabs(_endPoint.y - _beganPoint.y) <= kLongPressAvailableLength) {
+				NSLog(@"Save.");
+			// 画面右側でロングタップが開始された場合、左方向ならセーブ
+			} else if (!isLeft && (_beganPoint.x - _endPoint.x) >= kLongPressActionLength && fabs(_beganPoint.y - _endPoint.y) <= kLongPressAvailableLength) {
+				NSLog(@"Save.");
 			} else {
-				[self dismissViewControllerAnimated:YES completion:nil];
+				// Do nothing.
 			}
 		}
 	}

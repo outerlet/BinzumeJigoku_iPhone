@@ -8,12 +8,13 @@
 
 #import "SaveData.h"
 #import "ContentsElement.h"
+#import "ImageElement.h"
 #import "TextElement.h"
 #import "Utility.h"
 
 static NSString* const kEncodeKeyForSaveData			= @"BINZUMEJIGOKU_SAVE_DATA";
 static NSString* const kEncodeKeyForSection				= @"SECTION";
-static NSString* const kEncodeKeyForLastSequence		= @"LAST_SEQUENCE";
+static NSString* const kEncodeKeyForSequence			= @"SEQUENCE";
 static NSString* const kEncodeKeyForTextHistories		= @"TEXT_HISTORIES";
 static NSString* const kEncodeKeyForElementSequences	= @"ELEMENT_SEQUENCES";
 static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
@@ -21,29 +22,19 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 @interface SaveData ()
 
 @property (nonatomic, readwrite)	NSInteger									slotNumber;
-@property (nonatomic)				NSInteger									lastSequence;
-@property (nonatomic)				NSMutableDictionary<NSNumber*, NSNumber*>*	elementSequences;
+@property (nonatomic, readwrite)	NSInteger									sequence;
+@property (nonatomic, readwrite)	NSMutableDictionary<NSNumber*, NSNumber*>*	elementSequences;
 @property (nonatomic, readwrite)	NSMutableArray<NSString*>*					textHistories;
 
 @end
 
 @implementation SaveData
 
-@synthesize section = _section;
 @synthesize slotNumber = _slotNumber;
-@synthesize lastSequence = _lastSequence;
+@synthesize section = _section;
+@synthesize sequence = _sequence;
 @synthesize elementSequences = _elementSequences;
 @synthesize textHistories = _textHistories;
-
-- (id)initWithCoder:(NSCoder*)aDecoder {
-	if (self = [super init]) {
-		_section = [aDecoder decodeIntegerForKey:kEncodeKeyForSection];
-		_lastSequence = [aDecoder decodeIntegerForKey:kEncodeKeyForLastSequence];
-		_textHistories = [aDecoder decodeObjectForKey:kEncodeKeyForTextHistories];
-		_elementSequences = [aDecoder decodeObjectForKey:kEncodeKeyForElementSequences];
-	}
-	return self;
-}
 
 - (id)initWithSlotNumber:(NSInteger)slotNumber {
 	if (self = [super init]) {
@@ -54,19 +45,32 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 	return self;
 }
 
+- (id)initWithCoder:(NSCoder*)aDecoder {
+	if (self = [super init]) {
+		_section = [aDecoder decodeIntegerForKey:kEncodeKeyForSection];
+		_sequence = [aDecoder decodeIntegerForKey:kEncodeKeyForSequence];
+		_textHistories = [aDecoder decodeObjectForKey:kEncodeKeyForTextHistories];
+		_elementSequences = [aDecoder decodeObjectForKey:kEncodeKeyForElementSequences];
+	}
+	return self;
+}
+
 - (void)encodeWithCoder:(NSCoder *)aCoder {
 	[aCoder encodeInteger:_section forKey:kEncodeKeyForSection];
-	[aCoder encodeInteger:_lastSequence forKey:kEncodeKeyForLastSequence];
+	[aCoder encodeInteger:_sequence forKey:kEncodeKeyForSequence];
 	[aCoder encodeObject:_textHistories forKey:kEncodeKeyForTextHistories];
 	[aCoder encodeObject:_elementSequences forKey:kEncodeKeyForElementSequences];
 }
 
 - (void)addElement:(ContentsElement*)element {
 	if (element.section == _section) {
-		_lastSequence = element.sequence;
+		_sequence = element.sequence;
 
 		if (element.contentsType == ContentsTypeImage) {
-			
+			if (((ImageElement*)element).image) {
+				[_elementSequences setObject:[NSNumber numberWithInteger:element.sequence]
+									  forKey:@(element.contentsType)];
+			}
 		} else if (element.contentsType == ContentsTypeText) {
 			[_elementSequences setObject:[NSNumber numberWithInteger:element.sequence]
 								  forKey:@(element.contentsType)];
@@ -74,6 +78,15 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 			[_textHistories addObject:((TextElement*)element).text];
 		}
 	}
+}
+
+- (void)copyFrom:(SaveData*)other {
+	[self reset];
+	
+	_section = other.section;
+	_sequence = other.sequence;
+	_textHistories = other.textHistories;
+	_elementSequences = other.elementSequences;
 }
 
 - (void)save {
@@ -88,24 +101,27 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 	[data writeToURL:fileURL atomically:YES];
 }
 
-- (void)load {
+- (BOOL)load {
 	NSString* fileName = [NSString stringWithFormat:@"%@_%ld.dat", kFilePrefixOfSaveData, _slotNumber];
 	NSURL* fileURL = [[Utility applicationDocumentDirectory] URLByAppendingPathComponent:fileName];
 	
-	NSMutableData* data = [NSMutableData dataWithContentsOfURL:fileURL];
-	NSKeyedUnarchiver* decoder = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-	SaveData* saveData = [decoder decodeObjectForKey:kEncodeKeyForSaveData];
-	[decoder finishDecoding];
+	NSData* data = [NSData dataWithContentsOfURL:fileURL];
+	if (data) {
+		NSKeyedUnarchiver* decoder = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+		SaveData* saveData = [decoder decodeObjectForKey:kEncodeKeyForSaveData];
+		[decoder finishDecoding];
+		
+		[self copyFrom:saveData];
+		
+		return YES;
+	}
 	
-	_section = saveData.section;
-	_lastSequence = saveData.lastSequence;
-	_textHistories = saveData.textHistories;
-	_elementSequences = saveData.elementSequences;
+	return NO;
 }
 
 - (void)reset {
 	_section = -1;
-	_lastSequence = -1;
+	_sequence = -1;
 	
 	if (!_textHistories) {
 		_textHistories = [[NSMutableArray alloc] init];
