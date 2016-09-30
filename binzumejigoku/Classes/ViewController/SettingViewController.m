@@ -16,6 +16,7 @@ static NSString* const kCellIdPrefix			= @"CELL-ID_%02ld_%02ld";
 
 static const CGFloat kHeightForSectionHeader	= 40.0f;
 static const CGFloat kHeightForRow				= 80.0f;
+static const CGFloat kSettingSubviewTextSize	= 18.0f;
 
 static const NSInteger kAlertTagTextSpeed				= 10001;
 static const NSInteger kAlertActionTagTextSpeedSlow		= 2;
@@ -45,7 +46,7 @@ static const NSInteger kAlertActionTagTextSizeLarge		= 2;
 		UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.bounds.size.width - 20.0f, 0.0f)];
 		label.backgroundColor = [UIColor clearColor];
 		label.textColor = [UIColor blackColor];
-		label.font = [UIFont fontWithName:cif.fontName size:cif.settingSubviewTextSize];
+		label.font = [UIFont fontWithName:cif.fontName size:kSettingSubviewTextSize];
 		label.textAlignment = NSTextAlignmentLeft;
 		label.numberOfLines = 0;
 		label.userInteractionEnabled = NO;

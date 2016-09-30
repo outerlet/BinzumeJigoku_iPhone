@@ -10,18 +10,6 @@
 	<string>Hiragino Mincho ProN W3</string>
 	<key>TitleTextSize</key>
 	<integer>36</integer>
-	<key>HistoryButtonTextSize</key>
-	<integer>20</integer>
-	<key>SummaryTitleTextSize</key>
-	<integer>28</integer>
-	<key>SummaryDescriptionTextSize</key>
-	<integer>20</integer>
-	<key>SettingSubjectTextSize</key>
-	<integer>18</integer>
-	<key>SettingDescriptionTextSize</key>
-	<integer>14</integer>
-	<key>SettingSubviewTextSize</key>
-	<integer>18</integer>
 	<key>TextSpeed</key>
 	<array>
 		<real>0.05</real>

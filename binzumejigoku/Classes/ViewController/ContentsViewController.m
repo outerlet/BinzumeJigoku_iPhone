@@ -24,17 +24,19 @@
 #import "ContentsWaitingIndicatorView.h"
 #import "GestureHintView.h"
 #import "SaveData.h"
+#import "HistorySelectView.h"
 #import "NSString+CustomDecoder.h"
 
 const CGFloat kHeightOfIndicator		= 40.0f;
 const CGFloat kSideMarginOfViews		= 10.0f;
-const CGFloat kLongPressActionLength	= 20.0f;
+const CGFloat kLongPressActionLength	= 10.0f;
 const CGFloat kLongPressAvailableLength	= 10.0f;
 const NSInteger kAlertTagEndOfSection	= 10001;
 const NSInteger kAlertTagEndOfContents	= 10002;
 const NSInteger	kAlertTagConfirmNext	= 10010;
 const NSInteger	kAlertTagConfirmBack	= 10011;
 const NSInteger	kAlertTagConfirmFinish	= 10020;
+const CGFloat kContentsTitleTextSize	= 36.0f;
 
 @interface ContentsViewController ()
 
@@ -122,6 +124,12 @@ const NSInteger	kAlertTagConfirmFinish	= 10020;
 	_gestureRecognizer.minimumPressDuration = 0.6f;
 	_gestureRecognizer.enabled = NO;
 	[self.view addGestureRecognizer:_gestureRecognizer];
+	
+	// セーブデータ選択用View
+	_historyView = [[HistorySelectView alloc] initWithFrame:self.view.bounds withClose:YES withSwitch:YES];
+	_historyView.saveMode = YES;
+	[_historyView dismissAnimated:NO completion:nil];
+	[self.view addSubview:_historyView];
 
 	[self loadContentsFromCoreData];
 }
@@ -259,7 +267,8 @@ const NSInteger	kAlertTagConfirmFinish	= 10020;
 - (void)handleTitleElement:(TitleElement *)titleElement {
 	ContentsInterface* cif = [ContentsInterface sharedInstance];
 	
-	[_titleView setTitle:titleElement.title font:[UIFont fontWithName:cif.fontName size:cif.titleTextSize]];
+	[_titleView setTitle:titleElement.title font:[UIFont fontWithName:cif.fontName
+																 size:kContentsTitleTextSize]];
 	
 	[_titleView startAnimationWithDuration:3.0f
 								completion:^(void) {
@@ -351,12 +360,12 @@ const NSInteger	kAlertTagConfirmFinish	= 10020;
 			
 			// 画面左側でロングタップが開始された場合、右方向ならセーブ
 			if (isLeft && (_endPoint.x - _beganPoint.x) >= kLongPressActionLength && fabs(_endPoint.y - _beganPoint.y) <= kLongPressAvailableLength) {
-				NSLog(@"Save.");
+				[_historyView showAnimated:YES completion:nil];
 			// 画面右側でロングタップが開始された場合、左方向ならセーブ
 			} else if (!isLeft && (_beganPoint.x - _endPoint.x) >= kLongPressActionLength && fabs(_beganPoint.y - _endPoint.y) <= kLongPressAvailableLength) {
-				NSLog(@"Save.");
+				[_historyView showAnimated:YES completion:nil];
 			} else {
-				// Do nothing.
+				// そのまま離したら何もしない
 			}
 		}
 	}

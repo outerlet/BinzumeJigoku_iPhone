@@ -12,9 +12,13 @@
 
 static const CGFloat kSaveButtonHeight			= 100.0f;
 static const CGFloat kOptionalButtonSideLength	= 36.0f;
-static const CGFloat kOptionalButtonMargin		= 12.0f;
+static const CGFloat kOptionalButtonMargin		= 24.0f;
+static const CGFloat kModeLabelTextSize			= 30.0f;
+static const CGFloat kHistoryButtonTextSize		= 18.0f;
 
 @interface HistorySelectView ()
+
+@property (nonatomic, readonly)	CGFloat	marginTop;
 
 - (void)closeButtonDidPush:(UIImageView*)sender;
 - (void)switchButtonDidPush:(UIImageView*)sender;
@@ -24,39 +28,51 @@ static const CGFloat kOptionalButtonMargin		= 12.0f;
 
 @implementation HistorySelectView
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame withClose:(BOOL)withClose withSwitch:(BOOL)withSwitch {
 	if (self = [super initWithFrame:frame]) {
 		self.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.5f];
-
+		
 		ContentsInterface* cif = [ContentsInterface sharedInstance];
 		
-		CGRect closeFrame = CGRectMake(0.0f, 0.0f, kOptionalButtonSideLength, kOptionalButtonSideLength);
-		closeFrame.origin.x = self.bounds.size.width - closeFrame.size.width - kOptionalButtonMargin;
-		closeFrame.origin.y += [UIApplication sharedApplication].statusBarFrame.size.height + kOptionalButtonMargin;
+		_modeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		_modeLabel.font = [UIFont fontWithName:cif.fontName size:kModeLabelTextSize];
+		_modeLabel.textColor = [UIColor whiteColor];
+		[self addSubview:_modeLabel];
+		self.saveMode = YES;
+
+		CGRect frm = CGRectMake(0.0f, self.marginTop, kOptionalButtonSideLength, kOptionalButtonSideLength);
+		frm.origin.x = self.bounds.size.width - frm.size.width - kOptionalButtonMargin;
 		
-		_closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		_closeButton.frame = closeFrame;
-		[_closeButton setImage:[UIImage imageNamed:@"ic_cancel_white.png"] forState:UIControlStateNormal];
-		[_closeButton addTarget:self
-						 action:@selector(closeButtonDidPush:)
-			   forControlEvents:UIControlEventTouchUpInside];
-		[self addSubview:_closeButton];
+		if (withClose) {
+			_closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+			_closeButton.frame = frm;
+			[_closeButton setImage:[UIImage imageNamed:@"ic_cancel_white.png"] forState:UIControlStateNormal];
+			[_closeButton addTarget:self
+							 action:@selector(closeButtonDidPush:)
+				   forControlEvents:UIControlEventTouchUpInside];
+			[self addSubview:_closeButton];
+			
+			frm.origin.x -= (kOptionalButtonSideLength + kOptionalButtonMargin);
+		}
 		
-		_switchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		_switchButton.frame = closeFrame;
-		[_switchButton moveBy:CGSizeMake((kOptionalButtonSideLength * 2 + kOptionalButtonMargin) * -1.0f, 0.0f)];
-		[_switchButton setImage:[UIImage imageNamed:@"ic_swap_horiz_white.png"] forState:UIControlStateNormal];
-		[_switchButton addTarget:self
-						  action:@selector(switchButtonDidPush:)
-				forControlEvents:UIControlEventTouchUpInside];
-		[self addSubview:_switchButton];
+		if (withSwitch) {
+			_switchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+			_switchButton.frame = frm;
+			[_switchButton setImage:[UIImage imageNamed:@"ic_swap_horiz_white.png"] forState:UIControlStateNormal];
+			[_switchButton addTarget:self
+							  action:@selector(switchButtonDidPush:)
+					forControlEvents:UIControlEventTouchUpInside];
+			[self addSubview:_switchButton];
+		}
 		
 		CGRect buttonFrame = CGRectMake(0.0f, 0.0f, self.bounds.size.width * 0.8f, kSaveButtonHeight);
 		
-		for (NSInteger idx = 0 ; idx < cif.numberOfHistories ; idx++) {
+		NSInteger numberOfHistories = [cif integerSetting:@"NumberOfHistories"];
+		
+		for (NSInteger idx = 0 ; idx < numberOfHistories ; idx++) {
 			UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 			button.titleLabel.font = [UIFont fontWithName:cif.fontName
-													 size:cif.historyButtonTextSize];
+													 size:kHistoryButtonTextSize];
 			[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 			[button setTitle:[NSString stringWithFormat:@"BUTTON %ld", idx] forState:UIControlStateNormal];
 			[button setBackgroundImage:[UIImage imageNamed:@"save_button.png"] forState:UIControlStateNormal];
@@ -70,17 +86,93 @@ static const CGFloat kOptionalButtonMargin		= 12.0f;
 	return self;
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {}
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {}
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {}
+
+- (CGFloat)marginTop {
+	return [UIApplication sharedApplication].statusBarFrame.size.height + kOptionalButtonMargin;
+}
+
+- (void)setSaveMode:(BOOL)saveMode {
+	_isSaveMode = saveMode;
+	
+	_modeLabel.text = saveMode ? NSLocalizedString(@"phrase_save", nil) : NSLocalizedString(@"phrase_load", nil);
+	[_modeLabel sizeToFit];
+	[_modeLabel moveTo:CGPointMake((self.bounds.size.width - _modeLabel.frame.size.width) / 2.0f, self.marginTop)];
+}
+
+- (BOOL)saveMode {
+	return _isSaveMode;
+}
+
+- (void)showAnimated:(BOOL)animated completion:(void (^)(void))completion {
+	if (!self.hidden) {
+		return;
+	}
+
+	self.alpha = 0.0f;
+	self.hidden = NO;
+	
+	if (animated) {
+		[UIView animateWithDuration:0.5f
+						 animations:^(void) {
+							 self.alpha = 1.0f;
+						 }
+						 completion:^(BOOL finished) {
+							 if (completion) {
+								 completion();
+							 }
+						 }];
+	} else {
+		self.alpha = 1.0f;
+		if (completion) {
+			completion();
+		}
+	}
+}
+
+- (void)dismissAnimated:(BOOL)animated completion:(void (^)(void))completion {
+	if (self.hidden) {
+		return;
+	}
+	
+	self.alpha = 1.0f;
+	
+	if (animated) {
+		[UIView animateWithDuration:0.5f
+						 animations:^(void) {
+							 self.alpha = 0.0f;
+						 }
+						 completion:^(BOOL finished) {
+							 self.hidden = YES;
+							 
+							 if (completion) {
+								 completion();
+							 }
+						 }];
+	} else {
+		self.alpha = 0.0f;
+		self.hidden = YES;
+		
+		if (completion) {
+			completion();
+		}
+	}
+}
+
 - (void)closeButtonDidPush:(UIImageView*)sender {
-	NSLog(@"CLOSE BUTTON DID PUSH");
+	[self dismissAnimated:YES completion:nil];
 }
 
 - (void)switchButtonDidPush:(UIImageView*)sender {
-	NSLog(@"SWITCH BUTTON DID PUSH");
+	self.saveMode = !self.saveMode;
 }
 
 - (void)saveButtonDidPush:(UIButton*)sender {
 	if (self.delegate) {
-		[self.delegate historyDidSelected:sender.tag];
+		SaveData* saveData = [[ContentsInterface sharedInstance] saveDataAtSlotNumber:sender.tag];
+		[self.delegate historyDidSelected:saveData forSave:_isSaveMode];
 	}
 }
 

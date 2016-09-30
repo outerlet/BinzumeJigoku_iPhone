@@ -10,7 +10,9 @@
 #import "AppDelegate.h"
 #import "ContentsInterface.h"
 
-static const CGFloat kCellSidePadding		= 40.0f;
+static const CGFloat kCellSidePadding				= 40.0f;
+static const CGFloat kSettingSubjectTextSize		= 18.0f;
+static const CGFloat kSettingDescriptionTextSize	= 14.0f;
 
 @interface SettingTableViewCell ()
 
@@ -28,7 +30,7 @@ static const CGFloat kCellSidePadding		= 40.0f;
 		self.subjectLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		self.subjectLabel.backgroundColor = [UIColor clearColor];
 		self.subjectLabel.textColor = [UIColor blackColor];
-		self.subjectLabel.font = [UIFont fontWithName:cif.fontName size:cif.settingSubjectTextSize];
+		self.subjectLabel.font = [UIFont fontWithName:cif.fontName size:kSettingSubjectTextSize];
 		self.subjectLabel.textAlignment = NSTextAlignmentLeft;
 		self.subjectLabel.lineBreakMode = NSLineBreakByTruncatingTail;
 		self.subjectLabel.numberOfLines = 1;
@@ -37,7 +39,7 @@ static const CGFloat kCellSidePadding		= 40.0f;
 		self.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		self.descriptionLabel.backgroundColor = [UIColor clearColor];
 		self.descriptionLabel.textColor = [UIColor blackColor];
-		self.descriptionLabel.font = [UIFont fontWithName:cif.fontName size:cif.settingDescriptionTextSize];
+		self.descriptionLabel.font = [UIFont fontWithName:cif.fontName size:kSettingDescriptionTextSize];
 		self.descriptionLabel.textAlignment = NSTextAlignmentRight;
 		self.descriptionLabel.lineBreakMode = NSLineBreakByTruncatingTail;
 		self.descriptionLabel.numberOfLines = 1;

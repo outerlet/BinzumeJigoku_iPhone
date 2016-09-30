@@ -41,21 +41,6 @@
 /** フォント名 */
 @property (nonatomic, readonly)	NSString*	fontName;
 
-/** 章タイトルのテキストサイズ(pt) */
-@property (nonatomic, readonly)	CGFloat	titleTextSize;
-
-/** セーブデータ選択ボタンのテキストサイズ */
-@property (nonatomic, readonly)	CGFloat	historyButtonTextSize;
-
-@property (nonatomic, readonly)	CGFloat	summaryTitleTextSize;
-@property (nonatomic, readonly)	CGFloat	summaryDescriptionTextSize;
-
-@property (nonatomic, readonly)	CGFloat	settingSubjectTextSize;
-@property (nonatomic, readonly)	CGFloat	settingDescriptionTextSize;
-@property (nonatomic, readonly)	CGFloat	settingSubviewTextSize;
-
-@property (nonatomic, readonly)	NSInteger	numberOfHistories;
-
 /** 1文字あたりのテキスト送り早さ(sec) */
 @property (nonatomic)	CGFloat	textSpeedInterval;
 
@@ -74,6 +59,25 @@
  */
 - (void)initialize;
 
+/**
+ * 任意のセーブスロット番号にあるセーブデータを返却する
+ * @param	slotNumber	セーブスロット番号
+ * @return	スロット番号に対応するセーブデータ
+ */
 - (SaveData*)saveDataAtSlotNumber:(NSInteger)slotNumber;
+
+/**
+ * AppSetting.plistから任意のキー文字列に対応するNSInteger値を取得する
+ * @param	key	plistから値を取得するためのキー文字列
+ * @return	plistに記録されているNSInteger値
+ */
+- (NSInteger)integerSetting:(NSString*)key;
+
+/**
+ * AppSetting.plistから任意のキー文字列に対応するCGFloat値を取得する
+ * @param	key	plistから値を取得するためのキー文字列
+ * @return	plistに記録されているCGFloat値
+ */
+- (CGFloat)floatSetting:(NSString*)key;
 
 @end

@@ -66,6 +66,14 @@ static ContentsInterface*	_instance;
 	return [_saveDatas objectAtIndex:slotNumber];
 }
 
+- (NSInteger)integerSetting:(NSString*)key {
+	return [[self.settings objectForKey:key] integerValue];
+}
+
+- (CGFloat)floatSetting:(NSString*)key {
+	return (CGFloat)[[self.settings objectForKey:key] floatValue];
+}
+
 - (NSInteger)maxSectionIndex {
 	return _maxSectionIndex;
 }
@@ -111,40 +119,6 @@ static ContentsInterface*	_instance;
 
 - (NSString*)fontName {
 	return [self.settings objectForKey:@"FontName"];
-}
-
-- (CGFloat)titleTextSize {
-	NSDictionary* settings = self.settings;
-	CGFloat size = (CGFloat)[[settings objectForKey:@"TitleTextSize"] floatValue];
-	return size;
-}
-
-- (CGFloat)historyButtonTextSize {
-	return (CGFloat)[[self.settings objectForKey:@"HistoryButtonTextSize"] floatValue];
-}
-
-- (CGFloat)summaryTitleTextSize {
-	return (CGFloat)[[self.settings objectForKey:@"SummaryTitleTextSize"] floatValue];
-}
-
-- (CGFloat)summaryDescriptionTextSize {
-	return (CGFloat)[[self.settings objectForKey:@"SummaryDescriptionTextSize"] floatValue];
-}
-
-- (CGFloat)settingSubjectTextSize {
-	return (CGFloat)[[self.settings objectForKey:@"SettingSubjectTextSize"] floatValue];
-}
-
-- (CGFloat)settingDescriptionTextSize {
-	return (CGFloat)[[self.settings objectForKey:@"SettingDescriptionTextSize"] floatValue];
-}
-
-- (CGFloat)settingSubviewTextSize {
-	return (CGFloat)[[self.settings objectForKey:@"SettingSubviewTextSize"] floatValue];
-}
-
-- (NSInteger)numberOfHistories {
-	return [[self.settings objectForKey:@"NumberOfHistories"] integerValue];
 }
 
 - (CGFloat)textSpeedInterval {

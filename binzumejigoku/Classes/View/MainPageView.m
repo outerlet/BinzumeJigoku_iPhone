@@ -10,7 +10,9 @@
 #import "AppDelegate.h"
 #import "ContentsInterface.h"
 
-static const CGFloat kSummaryMarginSide	= 14.0f;
+static const CGFloat kSummaryMarginSide				= 14.0f;
+static const CGFloat kSummaryTitleTextSize			= 28.0f;
+static const CGFloat kSummaryDescriptionTextSize	= 20.0f;
 
 @interface MainPageView ()
 
@@ -43,7 +45,7 @@ static const CGFloat kSummaryMarginSide	= 14.0f;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.textColor = [UIColor blackColor];
-		_titleLabel.font = [UIFont fontWithName:cif.fontName size:cif.summaryTitleTextSize];
+		_titleLabel.font = [UIFont fontWithName:cif.fontName size:kSummaryTitleTextSize];
         _titleLabel.numberOfLines = 1;
         _titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         [self addSubview:_titleLabel];
@@ -54,7 +56,7 @@ static const CGFloat kSummaryMarginSide	= 14.0f;
 		_summaryLabel.textAlignment = NSTextAlignmentLeft;
 		_summaryLabel.backgroundColor = [UIColor clearColor];
 		_summaryLabel.textColor = [UIColor blackColor];
-		_summaryLabel.font = [UIFont fontWithName:cif.fontName size:cif.summaryDescriptionTextSize];
+		_summaryLabel.font = [UIFont fontWithName:cif.fontName size:kSummaryDescriptionTextSize];
 		_summaryLabel.numberOfLines = 0;
 		[self addSubview:_summaryLabel];
 		

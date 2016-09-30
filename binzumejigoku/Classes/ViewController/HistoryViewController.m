@@ -20,12 +20,15 @@
 	imageView.image = [UIImage imageNamed:@"title_00.jpg"];
 	[self.view addSubview:imageView];
 	
-	HistorySelectView* historyView = [[HistorySelectView alloc] initWithFrame:self.view.bounds];
+	HistorySelectView* historyView = [[HistorySelectView alloc] initWithFrame:self.view.bounds
+																	withClose:NO
+																   withSwitch:NO];
+	historyView.saveMode = NO;
 	historyView.delegate = self;
 	[self.view addSubview:historyView];
 }
 
-- (void)historyDidSelected:(NSInteger)slotNumber {
+- (void)historyDidSelected:(SaveData*)saveData forSave:(BOOL)forSave {
 	AlertControllerHandler* alert = [[AlertControllerHandler alloc] initWithTitle:nil message:NSLocalizedString(@"history_confirm_load", nil) preferrdStyle:UIAlertControllerStyleAlert tag:0];
 	alert.delegate = self;
 	[alert addAction:NSLocalizedString(@"phrase_ok", nil) style:UIAlertActionStyleDefault tag:0];

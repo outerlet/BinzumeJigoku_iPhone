@@ -17,6 +17,7 @@
 "phrase_slow"			= "遅い";
 "phrase_text_history"	= "テキスト履歴";
 "phrase_save"			= "セーブ";
+"phrase_load"			= "ロード";
 
 // General Messages
 "message_confirm_back"				= "物語を中断して前の画面に戻りますか？";

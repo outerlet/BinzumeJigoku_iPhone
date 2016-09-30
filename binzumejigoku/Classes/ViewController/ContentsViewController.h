@@ -15,6 +15,7 @@
 @class ContentsTextView;
 @class ContentsWaitingIndicatorView;
 @class GestureHintView;
+@class HistorySelectView;
 
 @interface ContentsViewController : UIViewController <AlertControllerHandlerDelegate> {
 	@private
@@ -23,6 +24,7 @@
 	ContentsTextView*				_textView;
 	ContentsWaitingIndicatorView*	_indicatorView;
 	GestureHintView*				_gestureHintView;
+	HistorySelectView*				_historyView;
 	
 	NSArray*						_contents;
 	NSInteger						_currentIndex;
