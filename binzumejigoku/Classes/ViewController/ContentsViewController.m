@@ -126,7 +126,7 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 	[self.view addGestureRecognizer:_gestureRecognizer];
 	
 	// セーブデータ選択用View
-	_historyView = [[HistorySelectView alloc] initWithFrame:self.view.bounds withClose:YES withSwitch:YES];
+	_historyView = [[HistorySelectView alloc] initWithFrame:self.view.bounds closable:YES loadOnly:NO];
 	_historyView.saveMode = YES;
 	[_historyView dismissAnimated:NO completion:nil];
 	[self.view addSubview:_historyView];
@@ -334,6 +334,10 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 }
 
 - (void)longPressDidDetect:(UILongPressGestureRecognizer*)gestureRecognizer {
+	if (_historyView.shown || _isContentsOngoing) {
+		return;
+	}
+	
 	if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
 		_beganPoint = [gestureRecognizer locationInView:self.view];
 

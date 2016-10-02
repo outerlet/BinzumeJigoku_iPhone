@@ -21,8 +21,8 @@
 	[self.view addSubview:imageView];
 	
 	HistorySelectView* historyView = [[HistorySelectView alloc] initWithFrame:self.view.bounds
-																	withClose:NO
-																   withSwitch:NO];
+																	closable:NO
+																   	loadOnly:YES];
 	historyView.saveMode = NO;
 	historyView.delegate = self;
 	[self.view addSubview:historyView];

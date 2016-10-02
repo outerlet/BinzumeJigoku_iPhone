@@ -39,17 +39,19 @@
 /** セーブモードかどうか。セーブモードならYES、ロードならNO */
 @property (nonatomic)	BOOL	saveMode;
 
+@property (nonatomic, readonly)	BOOL	shown;
+
 /** Viewで発生したイベントを捕捉するデリゲートオブジェクト */
 @property (nonatomic)	id<HistorySelectViewDelegate>	delegate;
 
 /**
  * イニシャライザ
  * @param	frame		Viewを初期化するためのバウンディングボックス
- * @param	withClose	Viewを閉じる(非表示にする)ボタンをつけるならYES
- * @param	withSwitch	Viewのセーブ・ロードを切り替えるボタンをつけるならYES
+ * @param	closable	Viewを閉じる(非表示にする)ボタンをつけるならYES
+ * @param	loadOnly	ロード専用(Viewのセーブ・ロードを切り替えるボタンをつけない)ならYES
  * @return	初期化されたインスタンス
  */
-- (id)initWithFrame:(CGRect)frame withClose:(BOOL)withClose withSwitch:(BOOL)withSwitch;
+- (id)initWithFrame:(CGRect)frame closable:(BOOL)closable loadOnly:(BOOL)loadOnly;
 
 - (void)showAnimated:(BOOL)animated completion:(void (^)(void))completion;
 - (void)dismissAnimated:(BOOL)animated completion:(void (^)(void))completion;

@@ -28,7 +28,7 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 
 @implementation HistorySelectView
 
-- (id)initWithFrame:(CGRect)frame withClose:(BOOL)withClose withSwitch:(BOOL)withSwitch {
+- (id)initWithFrame:(CGRect)frame closable:(BOOL)closable loadOnly:(BOOL)loadOnly {
 	if (self = [super initWithFrame:frame]) {
 		self.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.5f];
 		
@@ -43,7 +43,7 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 		CGRect frm = CGRectMake(0.0f, self.marginTop, kOptionalButtonSideLength, kOptionalButtonSideLength);
 		frm.origin.x = self.bounds.size.width - frm.size.width - kOptionalButtonMargin;
 		
-		if (withClose) {
+		if (closable) {
 			_closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
 			_closeButton.frame = frm;
 			[_closeButton setImage:[UIImage imageNamed:@"ic_cancel_white.png"] forState:UIControlStateNormal];
@@ -55,7 +55,7 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 			frm.origin.x -= (kOptionalButtonSideLength + kOptionalButtonMargin);
 		}
 		
-		if (withSwitch) {
+		if (!loadOnly) {
 			_switchButton = [UIButton buttonWithType:UIButtonTypeCustom];
 			_switchButton.frame = frm;
 			[_switchButton setImage:[UIImage imageNamed:@"ic_swap_horiz_white.png"] forState:UIControlStateNormal];
@@ -104,6 +104,10 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 
 - (BOOL)saveMode {
 	return _isSaveMode;
+}
+
+- (BOOL)shown {
+	return (!self.hidden && self.alpha == 1.0f);
 }
 
 - (void)showAnimated:(BOOL)animated completion:(void (^)(void))completion {
