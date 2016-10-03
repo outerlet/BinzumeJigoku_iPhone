@@ -13,7 +13,7 @@
 @interface SaveData : UIView <NSCoding>
 
 @property (nonatomic, readonly)	NSInteger									slotNumber;
-@property (nonatomic)			NSInteger									section;
+@property (nonatomic)			NSInteger									sectionIndex;
 @property (nonatomic, readonly)	NSInteger									sequence;
 @property (nonatomic, readonly)	NSMutableDictionary<NSNumber*, NSNumber*>*	elementSequences;
 @property (nonatomic, readonly)	NSMutableArray<NSString*>*					textHistories;

@@ -10,6 +10,11 @@
 #import "AlertControllerHandler.h"
 #import "HistorySelectView.h"
 
-@interface HistoryViewController : UIViewController <HistorySelectViewDelegate, AlertControllerHandlerDelegate>
+@class SaveData;
+
+@interface HistoryViewController : UIViewController <HistorySelectViewDelegate, AlertControllerHandlerDelegate> {
+	@private
+	SaveData*	_selected;
+}
 
 @end

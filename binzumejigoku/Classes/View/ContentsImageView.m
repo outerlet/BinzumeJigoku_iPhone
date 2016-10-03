@@ -95,6 +95,20 @@ static const NSInteger IMAGE_VIEW_NUMBER = 2;
 	}
 }
 
+- (void)showImmediate {
+	UIImageView* current = [self imageViewByHidden:NO];
+	UIImageView* next = [self imageViewByHidden:YES];
+	
+	if (current) {
+		current.alpha = 0.0f;
+		current.hidden = YES;
+	}
+	
+	next.image = _nextImage;
+	next.alpha = 1.0f;
+	next.hidden = NO;
+}
+
 - (UIImageView*)imageViewByHidden:(BOOL)hidden {
 	for (NSInteger idx = 0 ; idx < _imageViews.count ; idx++) {
 		UIImageView* imageView = [_imageViews objectAtIndex:idx];

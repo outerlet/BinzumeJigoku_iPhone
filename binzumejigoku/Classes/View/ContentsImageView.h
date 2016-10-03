@@ -31,4 +31,6 @@
  */
 - (void)startAnimationWithEffect:(ImageEffect)effect duration:(NSTimeInterval)duration completion:(void (^)(void))completion;
 
+- (void)showImmediate;
+
 @end

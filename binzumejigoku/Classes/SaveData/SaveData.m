@@ -13,7 +13,7 @@
 #import "Utility.h"
 
 static NSString* const kEncodeKeyForSaveData			= @"BINZUMEJIGOKU_SAVE_DATA";
-static NSString* const kEncodeKeyForSection				= @"SECTION";
+static NSString* const kEncodeKeyForSectionIndex		= @"SECTION_INDEX";
 static NSString* const kEncodeKeyForSequence			= @"SEQUENCE";
 static NSString* const kEncodeKeyForTextHistories		= @"TEXT_HISTORIES";
 static NSString* const kEncodeKeyForElementSequences	= @"ELEMENT_SEQUENCES";
@@ -31,7 +31,7 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 @implementation SaveData
 
 @synthesize slotNumber = _slotNumber;
-@synthesize section = _section;
+@synthesize sectionIndex = _sectionIndex;
 @synthesize sequence = _sequence;
 @synthesize elementSequences = _elementSequences;
 @synthesize textHistories = _textHistories;
@@ -47,7 +47,7 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 
 - (id)initWithCoder:(NSCoder*)aDecoder {
 	if (self = [super init]) {
-		_section = [aDecoder decodeIntegerForKey:kEncodeKeyForSection];
+		_sectionIndex = [aDecoder decodeIntegerForKey:kEncodeKeyForSectionIndex];
 		_sequence = [aDecoder decodeIntegerForKey:kEncodeKeyForSequence];
 		_textHistories = [aDecoder decodeObjectForKey:kEncodeKeyForTextHistories];
 		_elementSequences = [aDecoder decodeObjectForKey:kEncodeKeyForElementSequences];
@@ -56,14 +56,14 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-	[aCoder encodeInteger:_section forKey:kEncodeKeyForSection];
+	[aCoder encodeInteger:_sectionIndex forKey:kEncodeKeyForSectionIndex];
 	[aCoder encodeInteger:_sequence forKey:kEncodeKeyForSequence];
 	[aCoder encodeObject:_textHistories forKey:kEncodeKeyForTextHistories];
 	[aCoder encodeObject:_elementSequences forKey:kEncodeKeyForElementSequences];
 }
 
 - (void)addElement:(ContentsElement*)element {
-	if (element.section == _section) {
+	if (element.section == _sectionIndex) {
 		_sequence = element.sequence;
 
 		if (element.contentsType == ContentsTypeImage) {
@@ -72,9 +72,6 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 									  forKey:@(element.contentsType)];
 			}
 		} else if (element.contentsType == ContentsTypeText) {
-			[_elementSequences setObject:[NSNumber numberWithInteger:element.sequence]
-								  forKey:@(element.contentsType)];
-			
 			[_textHistories addObject:((TextElement*)element).text];
 		}
 	}
@@ -83,7 +80,7 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 - (void)copyFrom:(SaveData*)other {
 	[self reset];
 	
-	_section = other.section;
+	_sectionIndex = other.sectionIndex;
 	_sequence = other.sequence;
 	_textHistories = other.textHistories;
 	_elementSequences = other.elementSequences;
@@ -120,7 +117,7 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 }
 
 - (void)reset {
-	_section = -1;
+	_sectionIndex = -1;
 	_sequence = -1;
 	
 	if (!_textHistories) {

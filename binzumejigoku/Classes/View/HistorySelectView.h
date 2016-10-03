@@ -49,9 +49,10 @@
  * @param	frame		Viewを初期化するためのバウンディングボックス
  * @param	closable	Viewを閉じる(非表示にする)ボタンをつけるならYES
  * @param	loadOnly	ロード専用(Viewのセーブ・ロードを切り替えるボタンをつけない)ならYES
+ * @param	autoSave	自動セーブデータも含むかどうか(loadOnly=YESのときのみ有効)
  * @return	初期化されたインスタンス
  */
-- (id)initWithFrame:(CGRect)frame closable:(BOOL)closable loadOnly:(BOOL)loadOnly;
+- (id)initWithFrame:(CGRect)frame closable:(BOOL)closable loadOnly:(BOOL)loadOnly autoSave:(BOOL)autoSave;
 
 - (void)showAnimated:(BOOL)animated completion:(void (^)(void))completion;
 - (void)dismissAnimated:(BOOL)animated completion:(void (^)(void))completion;

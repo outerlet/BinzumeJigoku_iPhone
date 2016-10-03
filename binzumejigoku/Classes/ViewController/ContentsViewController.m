@@ -30,7 +30,7 @@
 const CGFloat kHeightOfIndicator		= 40.0f;
 const CGFloat kSideMarginOfViews		= 10.0f;
 const CGFloat kLongPressActionLength	= 10.0f;
-const CGFloat kLongPressAvailableLength	= 10.0f;
+const CGFloat kLongPressAvailableLength	= 20.0f;
 const NSInteger kAlertTagEndOfSection	= 10001;
 const NSInteger kAlertTagEndOfContents	= 10002;
 const NSInteger	kAlertTagConfirmNext	= 10010;
@@ -43,10 +43,13 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 @property (nonatomic, readwrite) NSInteger	sectionIndex;
 
 // CoreDataに保存したコンテンツを読み込む
-- (void)loadContentsFromCoreData;
-	
+- (void)loadContentsAt:(NSInteger)sectionIndex;
+
 // コンテンツを先にひとつ進める
 - (void)advanceContents:(ContentsElement*)element;
+
+// セーブデータが保存された時点でのView等の表示状態を復元する
+- (void)restoreSavedCondition:(SaveData*)saveData;
 
 // NSManagedObjectからContentsElementオブジェクトを生成する
 - (ContentsElement*)elementByManagedObject:(NSManagedObject*)managedObject;
@@ -73,17 +76,29 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 
 @synthesize sectionIndex = _sectionIndex;
 
+#pragma mark - Initializer
+
 - (id)initWithSectionIndex:(NSInteger)sectionIndex {
 	if (self = [super init]) {
-		_sectionIndex = sectionIndex;
-		_currentIndex = -1;
+		[self loadContentsAt:sectionIndex];
+		
+		_saveData = nil;
 		_isContentsOngoing = NO;
 		
-		_beganPoint = CGPointZero;
-		_endPoint = CGPointZero;
+		_longPressBeganPoint = CGPointZero;
+		_longPressEndPoint = CGPointZero;
 	}
 	return self;
 }
+
+- (id)initWithSaveData:(SaveData*)saveData {
+	if (self = [self initWithSectionIndex:saveData.sectionIndex]) {
+		_saveData = saveData;
+	}
+	return self;
+}
+
+#pragma mark - ViewController Lifecycle & Overwrite
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -126,12 +141,12 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 	[self.view addGestureRecognizer:_gestureRecognizer];
 	
 	// セーブデータ選択用View
-	_historyView = [[HistorySelectView alloc] initWithFrame:self.view.bounds closable:YES loadOnly:NO];
+	_historyView = [[HistorySelectView alloc] initWithFrame:self.view.bounds closable:YES loadOnly:NO autoSave:NO];
 	_historyView.saveMode = YES;
 	[_historyView dismissAnimated:NO completion:nil];
 	[self.view addSubview:_historyView];
-
-	[self loadContentsFromCoreData];
+	
+	[self restoreSavedCondition:_saveData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -142,9 +157,10 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 	[self advanceContents:nil];
 }
 
-- (void)loadContentsFromCoreData {
-	CoreDataHandler* handler = [CoreDataHandler sharedInstance];
-	NSFetchedResultsController* result = [handler fetch:_sectionIndex];
+#pragma mark - Convenience Method
+
+- (void)loadContentsAt:(NSInteger)sectionIndex {
+	NSFetchedResultsController* result = [[CoreDataHandler sharedInstance] fetch:sectionIndex];
 	
 	NSMutableArray* contents = [[NSMutableArray alloc] init];
 
@@ -156,29 +172,10 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 	}
 	
 	_contents = [NSArray arrayWithArray:contents];
+	_sectionIndex = sectionIndex;
+	_currentIndex = -1;
 	
-	[[ContentsInterface sharedInstance] saveDataAtSlotNumber:0].section = _sectionIndex;
-}
-
-- (void)alertDidConfirmAt:(NSInteger)alertTag action:(NSInteger)actionTag {
-	// 章の終了時に発生するアラート
-	if (alertTag == kAlertTagEndOfSection) {
-		// 次へ行く場合
-		if (actionTag == kAlertTagConfirmNext) {
-			++_sectionIndex;
-			_currentIndex = -1;
-			_isContentsOngoing = NO;
-			
-			[self loadContentsFromCoreData];
-			[self advanceContents:nil];
-		// 前の画面に戻る場合
-		} else {
-			[self dismissViewControllerAnimated:YES completion:nil];
-		}
-	// 物語の終了時に発生するアラート(常に前の画面に戻る)
-	} else if (alertTag == kAlertTagEndOfContents) {
-		[self dismissViewControllerAnimated:YES completion:nil];
-	}
+	[[ContentsInterface sharedInstance] saveDataAtSlotNumber:0].sectionIndex = sectionIndex;
 }
 
 - (void)advanceContents:(ContentsElement*)element {
@@ -215,25 +212,43 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 			
 			ContentsInterface* cif = [ContentsInterface sharedInstance];
 			if (element.section < cif.maxSectionIndex) {
-				NSString* msg = NSLocalizedString(@"message_section_finished", @"END-OF-SECTION");
+				NSString* msg = NSLocalizedString(@"message_section_finished", nil);
 				handler = [[AlertControllerHandler alloc] initWithTitle:nil
 																message:msg
 														  preferrdStyle:UIAlertControllerStyleAlert
 																	tag:kAlertTagEndOfSection];
-				[handler addAction:NSLocalizedString(@"phrase_next_section", @"GO-NEXT-SECTION") style:UIAlertActionStyleDefault tag:kAlertTagConfirmNext];
-				[handler addAction:NSLocalizedString(@"phrase_back", @"GO-BACK") style:UIAlertActionStyleCancel tag:kAlertTagConfirmBack];
+				[handler addAction:NSLocalizedString(@"phrase_next_section", nil) style:UIAlertActionStyleDefault tag:kAlertTagConfirmNext];
+				[handler addAction:NSLocalizedString(@"phrase_back", nil) style:UIAlertActionStyleCancel tag:kAlertTagConfirmBack];
 			} else {
-				NSString* msg = NSLocalizedString(@"message_last_section_finished", @"END-OF-SECTION");
+				NSString* msg = NSLocalizedString(@"message_last_section_finished", nil);
 				handler = [[AlertControllerHandler alloc] initWithTitle:nil
 																message:msg
 														  preferrdStyle:UIAlertControllerStyleAlert
 																	tag:kAlertTagEndOfContents];
-				[handler addAction:NSLocalizedString(@"phrase_ok", @"OK") style:UIAlertActionStyleDefault tag:kAlertTagConfirmFinish];
+				[handler addAction:NSLocalizedString(@"phrase_ok", nil) style:UIAlertActionStyleDefault tag:kAlertTagConfirmFinish];
 			}
 			
 			handler.delegate = self;
 			
 			[self presentViewController:[handler build] animated:YES completion:nil];
+		}
+	}
+}
+
+- (void)restoreSavedCondition:(SaveData*)saveData {
+	if (saveData) {
+		_currentIndex = saveData.sequence;
+		
+		for (NSNumber* key in saveData.elementSequences.allKeys) {
+			ContentsType type = [key integerValue];
+			
+			if (type == ContentsTypeImage) {
+				NSInteger seq = [[saveData.elementSequences objectForKey:key] integerValue];
+				ImageElement* elm = [_contents objectAtIndex:seq];
+				
+				[_imageView setNextImage:elm.image];
+				[_imageView showImmediate];
+			}
 		}
 	}
 }
@@ -333,40 +348,62 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 	}
 }
 
+#pragma mark - Delegate Method
+
+- (void)alertDidConfirmAt:(NSInteger)alertTag action:(NSInteger)actionTag {
+	// 章の終了時に発生するアラート
+	if (alertTag == kAlertTagEndOfSection) {
+		// 次へ行く場合
+		if (actionTag == kAlertTagConfirmNext) {
+			_isContentsOngoing = NO;
+			
+			[self loadContentsAt:_sectionIndex + 1];
+			
+			[self advanceContents:nil];
+			// 前の画面に戻る場合
+		} else {
+			[self dismissViewControllerAnimated:YES completion:nil];
+		}
+		// 物語の終了時に発生するアラート(常に前の画面に戻る)
+	} else if (alertTag == kAlertTagEndOfContents) {
+		[self dismissViewControllerAnimated:YES completion:nil];
+	}
+}
+
 - (void)longPressDidDetect:(UILongPressGestureRecognizer*)gestureRecognizer {
 	if (_historyView.shown || _isContentsOngoing) {
 		return;
 	}
 	
 	if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-		_beganPoint = [gestureRecognizer locationInView:self.view];
+		_longPressBeganPoint = [gestureRecognizer locationInView:self.view];
 
-		BOOL isLeft = (_beganPoint.x < self.view.bounds.size.width / 2.0f);
-		CGFloat saveX = isLeft ? _beganPoint.x + 120.0f : _beganPoint.x - 120.0f;
+		BOOL isLeft = (_longPressBeganPoint.x < self.view.bounds.size.width / 2.0f);
+		CGFloat saveX = isLeft ? _longPressBeganPoint.x + 120.0f : _longPressBeganPoint.x - 120.0f;
 		
-		[_gestureHintView setCenterAtIndex:0 center:CGPointMake(_beganPoint.x, _beganPoint.y - 120.0f)];
-		[_gestureHintView setCenterAtIndex:1 center:CGPointMake(saveX, _beganPoint.y)];
-		[_gestureHintView setCenterAtIndex:2 center:CGPointMake(_beganPoint.x, _beganPoint.y + 120.0f)];
+		[_gestureHintView setCenterAtIndex:0 center:CGPointMake(_longPressBeganPoint.x, _longPressBeganPoint.y - 120.0f)];
+		[_gestureHintView setCenterAtIndex:1 center:CGPointMake(saveX, _longPressBeganPoint.y)];
+		[_gestureHintView setCenterAtIndex:2 center:CGPointMake(_longPressBeganPoint.x, _longPressBeganPoint.y + 120.0f)];
 		[_gestureHintView showWithDuration:0.6f hint:0.1f];
 	} else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-		_endPoint = [gestureRecognizer locationInView:self.view];
+		_longPressEndPoint = [gestureRecognizer locationInView:self.view];
 
 		[_gestureHintView hideWithDuration:0.6f hint:0.1f];
 		
 		// 上方向(テキスト履歴)
-		if (_beganPoint.y - _endPoint.y >= kLongPressActionLength && fabs(_endPoint.x - _beganPoint.x) <= kLongPressAvailableLength) {
+		if (_longPressBeganPoint.y - _longPressEndPoint.y >= kLongPressActionLength && fabs(_longPressEndPoint.x - _longPressBeganPoint.x) <= kLongPressAvailableLength) {
 			NSLog(@"Open Text History.");
 		// 下方向(閉じる)
-		} else if (_endPoint.y - _beganPoint.y >= kLongPressActionLength && fabs(_endPoint.x - _beganPoint.x) <= kLongPressAvailableLength) {
+		} else if (_longPressEndPoint.y - _longPressBeganPoint.y >= kLongPressActionLength && fabs(_longPressEndPoint.x - _longPressBeganPoint.x) <= kLongPressAvailableLength) {
 			[self dismissViewControllerAnimated:YES completion:nil];
 		} else {
-			BOOL isLeft = (_beganPoint.x < self.view.bounds.size.width / 2.0f);
+			BOOL isLeft = (_longPressBeganPoint.x < self.view.bounds.size.width / 2.0f);
 			
 			// 画面左側でロングタップが開始された場合、右方向ならセーブ
-			if (isLeft && (_endPoint.x - _beganPoint.x) >= kLongPressActionLength && fabs(_endPoint.y - _beganPoint.y) <= kLongPressAvailableLength) {
+			if (isLeft && (_longPressEndPoint.x - _longPressBeganPoint.x) >= kLongPressActionLength && fabs(_longPressEndPoint.y - _longPressBeganPoint.y) <= kLongPressAvailableLength) {
 				[_historyView showAnimated:YES completion:nil];
 			// 画面右側でロングタップが開始された場合、左方向ならセーブ
-			} else if (!isLeft && (_beganPoint.x - _endPoint.x) >= kLongPressActionLength && fabs(_beganPoint.y - _endPoint.y) <= kLongPressAvailableLength) {
+			} else if (!isLeft && (_longPressBeganPoint.x - _longPressEndPoint.x) >= kLongPressActionLength && fabs(_longPressBeganPoint.y - _longPressEndPoint.y) <= kLongPressAvailableLength) {
 				[_historyView showAnimated:YES completion:nil];
 			} else {
 				// そのまま離したら何もしない

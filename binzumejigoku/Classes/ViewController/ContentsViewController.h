@@ -16,6 +16,7 @@
 @class ContentsWaitingIndicatorView;
 @class GestureHintView;
 @class HistorySelectView;
+@class SaveData;
 
 @interface ContentsViewController : UIViewController <AlertControllerHandlerDelegate> {
 	@private
@@ -26,21 +27,30 @@
 	GestureHintView*				_gestureHintView;
 	HistorySelectView*				_historyView;
 	
-	NSArray*						_contents;
-	NSInteger						_currentIndex;
-	BOOL							_isContentsOngoing;
+	NSArray*	_contents;
+	NSInteger	_currentIndex;
+	BOOL		_isContentsOngoing;
+	SaveData*	_saveData;
 	
 	UILongPressGestureRecognizer*	_gestureRecognizer;
-	CGPoint							_beganPoint;
-	CGPoint							_endPoint;
+	CGPoint							_longPressBeganPoint;
+	CGPoint							_longPressEndPoint;
 }
 
 @property (nonatomic, readonly) NSInteger sectionIndex;
 
 /**
  * イニシャライザ<br />
- * セクション番号からインスタンスを生成する
+ * セクション番号でインスタンスを初期化する
+ * @param	sectionIndex	0から始まるセクション番号
  */
 - (id)initWithSectionIndex:(NSInteger)sectionIndex;
+
+/**
+ * イニシャライザ<br />
+ * セーブデータでインスタンスを初期化する
+ * @param	saveData	セーブデータ
+ */
+- (id)initWithSaveData:(SaveData*)saveData;
 
 @end

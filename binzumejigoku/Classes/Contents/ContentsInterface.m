@@ -54,7 +54,7 @@ static ContentsInterface*	_instance;
 		BOOL saved = [saveData load];
 		
 		if (saved) {
-			NSLog(@"SLOT = %ld, SECTION = %ld, SEQUENCE = %ld", (long)saveData.slotNumber, (long)saveData.section, (long)saveData.sequence);
+			NSLog(@"SLOT = %ld, SECTION = %ld, SEQUENCE = %ld", (long)saveData.slotNumber, (long)saveData.sectionIndex, (long)saveData.sequence);
 		}
 		
 		[saveDatas addObject:saveData];

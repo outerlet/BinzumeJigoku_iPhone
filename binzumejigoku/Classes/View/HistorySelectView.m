@@ -10,7 +10,7 @@
 #import "ContentsInterface.h"
 #import "UIView+Adjustment.h"
 
-static const CGFloat kSaveButtonHeight			= 100.0f;
+static const CGFloat kSaveButtonHeight			= 80.0f;
 static const CGFloat kOptionalButtonSideLength	= 36.0f;
 static const CGFloat kOptionalButtonMargin		= 24.0f;
 static const CGFloat kModeLabelTextSize			= 30.0f;
@@ -28,9 +28,9 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 
 @implementation HistorySelectView
 
-- (id)initWithFrame:(CGRect)frame closable:(BOOL)closable loadOnly:(BOOL)loadOnly {
+- (id)initWithFrame:(CGRect)frame closable:(BOOL)closable loadOnly:(BOOL)loadOnly autoSave:(BOOL)autoSave {
 	if (self = [super initWithFrame:frame]) {
-		self.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.5f];
+		self.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
 		
 		ContentsInterface* cif = [ContentsInterface sharedInstance];
 		
@@ -38,6 +38,7 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 		_modeLabel.font = [UIFont fontWithName:cif.fontName size:kModeLabelTextSize];
 		_modeLabel.textColor = [UIColor whiteColor];
 		[self addSubview:_modeLabel];
+		
 		self.saveMode = YES;
 
 		CGRect frm = CGRectMake(0.0f, self.marginTop, kOptionalButtonSideLength, kOptionalButtonSideLength);
@@ -65,19 +66,30 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 			[self addSubview:_switchButton];
 		}
 		
-		CGRect buttonFrame = CGRectMake(0.0f, 0.0f, self.bounds.size.width * 0.8f, kSaveButtonHeight);
-		
 		NSInteger numberOfHistories = [cif integerSetting:@"NumberOfHistories"];
 		
+		if (loadOnly && autoSave) {
+			++numberOfHistories;
+		}
+		
+		CGFloat verticalMargin = _modeLabel.frame.origin.y + _modeLabel.frame.size.height;
+		CGFloat buttonInterval = (self.bounds.size.height - verticalMargin * 2) / (numberOfHistories + 1);
+		CGRect buttonFrame = CGRectMake(0.0f, 0.0f, self.bounds.size.width * 0.8f, kSaveButtonHeight);
+		
 		for (NSInteger idx = 0 ; idx < numberOfHistories ; idx++) {
-			UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+			CGPoint center = CGPointMake(self.bounds.size.width / 2.0f, verticalMargin + buttonInterval * (idx + 1));
+			
+			UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
 			button.titleLabel.font = [UIFont fontWithName:cif.fontName
 													 size:kHistoryButtonTextSize];
 			[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 			[button setTitle:[NSString stringWithFormat:@"BUTTON %ld", idx] forState:UIControlStateNormal];
-			[button setBackgroundImage:[UIImage imageNamed:@"save_button.png"] forState:UIControlStateNormal];
+			[button setBackgroundImage:[UIImage imageNamed:@"save_button_normal.png"]
+							  forState:UIControlStateNormal];
+			[button setBackgroundImage:[UIImage imageNamed:@"save_button_press.png"]
+							  forState:UIControlStateHighlighted];
 			button.frame = buttonFrame;
-			button.center = CGPointMake(self.bounds.size.width / 2.0f, (self.bounds.size.height * 0.25f) * (idx + 1));
+			button.center = center;
 			button.tag = idx;
 			[button addTarget:self action:@selector(saveButtonDidPush:) forControlEvents:UIControlEventTouchUpInside];
 			[self addSubview:button];
