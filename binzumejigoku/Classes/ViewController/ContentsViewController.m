@@ -25,6 +25,7 @@
 #import "GestureHintView.h"
 #import "SaveData.h"
 #import "HistorySelectView.h"
+#import "TextHistoryViewController.h"
 #import "NSString+CustomDecoder.h"
 
 const CGFloat kHeightOfIndicator		= 40.0f;
@@ -175,7 +176,7 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 	_sectionIndex = sectionIndex;
 	_currentIndex = -1;
 	
-	[[ContentsInterface sharedInstance] saveDataAtSlotNumber:0].sectionIndex = sectionIndex;
+	[[ContentsInterface sharedInstance] saveDataAt:0].sectionIndex = sectionIndex;
 }
 
 - (void)advanceContents:(ContentsElement*)element {
@@ -336,7 +337,7 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 }
 
 - (void)contentsElementDidConsume:(ContentsElement*)element {
-	SaveData* autoSave = [[ContentsInterface sharedInstance] saveDataAtSlotNumber:0];
+	SaveData* autoSave = [[ContentsInterface sharedInstance] saveDataAt:0];
 	[autoSave addElement:element];
 	[autoSave save];
 	
@@ -392,7 +393,9 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 		
 		// 上方向(テキスト履歴)
 		if (_longPressBeganPoint.y - _longPressEndPoint.y >= kLongPressActionLength && fabs(_longPressEndPoint.x - _longPressBeganPoint.x) <= kLongPressAvailableLength) {
-			NSLog(@"Open Text History.");
+			SaveData* saveData = [[ContentsInterface sharedInstance] saveDataAt:0];
+			TextHistoryViewController* vc = [[TextHistoryViewController alloc] initWithTextHistories:saveData.textHistories];
+			[self presentViewController:vc animated:YES completion:nil];
 		// 下方向(閉じる)
 		} else if (_longPressEndPoint.y - _longPressBeganPoint.y >= kLongPressActionLength && fabs(_longPressEndPoint.x - _longPressBeganPoint.x) <= kLongPressAvailableLength) {
 			[self dismissViewControllerAnimated:YES completion:nil];

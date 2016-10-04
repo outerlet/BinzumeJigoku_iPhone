@@ -51,10 +51,9 @@ static ContentsInterface*	_instance;
 	NSMutableArray* saveDatas = [[NSMutableArray alloc] init];
 	for (NSInteger idx = 0 ; idx <= 3 ; idx++) {
 		SaveData* saveData = [[SaveData alloc] initWithSlotNumber:idx];
-		BOOL saved = [saveData load];
-		
-		if (saved) {
-			NSLog(@"SLOT = %ld, SECTION = %ld, SEQUENCE = %ld", (long)saveData.slotNumber, (long)saveData.sectionIndex, (long)saveData.sequence);
+		if (![saveData load]) {
+			NSString* key = [NSString stringWithFormat:@"save_data_title_%ld", (long)idx];
+			saveData.title = NSLocalizedString(key, nil);
 		}
 		
 		[saveDatas addObject:saveData];
@@ -62,7 +61,7 @@ static ContentsInterface*	_instance;
 	_saveDatas = [NSArray arrayWithArray:saveDatas];
 }
 
-- (SaveData*)saveDataAtSlotNumber:(NSInteger)slotNumber {
+- (SaveData*)saveDataAt:(NSInteger)slotNumber {
 	return [_saveDatas objectAtIndex:slotNumber];
 }
 

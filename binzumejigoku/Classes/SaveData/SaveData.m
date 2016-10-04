@@ -7,12 +7,15 @@
 //
 
 #import "SaveData.h"
+#import "ContentsInterface.h"
 #import "ContentsElement.h"
 #import "ImageElement.h"
 #import "TextElement.h"
 #import "Utility.h"
 
 static NSString* const kEncodeKeyForSaveData			= @"BINZUMEJIGOKU_SAVE_DATA";
+static NSString* const kEncodeKeyForTitle				= @"TITLE";
+static NSString* const kEncodeKeyForDate				= @"DATE";
 static NSString* const kEncodeKeyForSectionIndex		= @"SECTION_INDEX";
 static NSString* const kEncodeKeyForSequence			= @"SEQUENCE";
 static NSString* const kEncodeKeyForTextHistories		= @"TEXT_HISTORIES";
@@ -22,6 +25,7 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 @interface SaveData ()
 
 @property (nonatomic, readwrite)	NSInteger									slotNumber;
+@property (nonatomic, readwrite)	NSDate*										date;
 @property (nonatomic, readwrite)	NSInteger									sequence;
 @property (nonatomic, readwrite)	NSMutableDictionary<NSNumber*, NSNumber*>*	elementSequences;
 @property (nonatomic, readwrite)	NSMutableArray<NSString*>*					textHistories;
@@ -30,6 +34,8 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 
 @implementation SaveData
 
+@synthesize title = _title;
+@synthesize date = _date;
 @synthesize slotNumber = _slotNumber;
 @synthesize sectionIndex = _sectionIndex;
 @synthesize sequence = _sequence;
@@ -47,6 +53,8 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 
 - (id)initWithCoder:(NSCoder*)aDecoder {
 	if (self = [super init]) {
+		_title = [aDecoder decodeObjectForKey:kEncodeKeyForTitle];
+		_date = [aDecoder decodeObjectForKey:kEncodeKeyForDate];
 		_sectionIndex = [aDecoder decodeIntegerForKey:kEncodeKeyForSectionIndex];
 		_sequence = [aDecoder decodeIntegerForKey:kEncodeKeyForSequence];
 		_textHistories = [aDecoder decodeObjectForKey:kEncodeKeyForTextHistories];
@@ -56,10 +64,16 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
+	[aCoder encodeObject:_title forKey:kEncodeKeyForTitle];
+	[aCoder encodeObject:_date forKey:kEncodeKeyForDate];
 	[aCoder encodeInteger:_sectionIndex forKey:kEncodeKeyForSectionIndex];
 	[aCoder encodeInteger:_sequence forKey:kEncodeKeyForSequence];
 	[aCoder encodeObject:_textHistories forKey:kEncodeKeyForTextHistories];
 	[aCoder encodeObject:_elementSequences forKey:kEncodeKeyForElementSequences];
+}
+
+- (BOOL)isSaved {
+	return (_date != nil);
 }
 
 - (void)addElement:(ContentsElement*)element {
@@ -72,14 +86,31 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 									  forKey:@(element.contentsType)];
 			}
 		} else if (element.contentsType == ContentsTypeText) {
-			[_textHistories addObject:((TextElement*)element).text];
+			ContentsInterface* cif = [ContentsInterface sharedInstance];
+
+			NSMutableString* history = [[NSMutableString alloc] init];
+			
+			NSString* text = ((TextElement*)element).text;
+			for (NSString* str in [text componentsSeparatedByString:cif.rubyClosure]) {
+				if ([str containsString:cif.rubyDelimiter]) {
+					[history appendString:[[str componentsSeparatedByString:cif.rubyDelimiter] objectAtIndex:0]];
+				} else {
+					[history appendString:str];
+				}
+			}
+			
+			[_textHistories addObject:[NSString stringWithString:history]];
 		}
+		
+		_date = [NSDate date];
 	}
 }
 
 - (void)copyFrom:(SaveData*)other {
 	[self reset];
 	
+	_title = other.title;
+	_date = other.date;
 	_sectionIndex = other.sectionIndex;
 	_sequence = other.sequence;
 	_textHistories = other.textHistories;
@@ -117,6 +148,8 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 }
 
 - (void)reset {
+	_title = nil;
+	_date = nil;
 	_sectionIndex = -1;
 	_sequence = -1;
 	

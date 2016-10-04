@@ -8,6 +8,7 @@
 
 #import "HistorySelectView.h"
 #import "ContentsInterface.h"
+#import "SaveData.h"
 #import "UIView+Adjustment.h"
 
 static const CGFloat kSaveButtonHeight			= 80.0f;
@@ -66,9 +67,11 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 			[self addSubview:_switchButton];
 		}
 		
+		NSInteger firstIndex = 1;
 		NSInteger numberOfHistories = [cif integerSetting:@"NumberOfHistories"];
 		
 		if (loadOnly && autoSave) {
+			firstIndex = 0;
 			++numberOfHistories;
 		}
 		
@@ -76,21 +79,26 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 		CGFloat buttonInterval = (self.bounds.size.height - verticalMargin * 2) / (numberOfHistories + 1);
 		CGRect buttonFrame = CGRectMake(0.0f, 0.0f, self.bounds.size.width * 0.8f, kSaveButtonHeight);
 		
-		for (NSInteger idx = 0 ; idx < numberOfHistories ; idx++) {
+		for (NSInteger idx = firstIndex ; idx < numberOfHistories ; idx++) {
+			SaveData* saveData = [cif saveDataAt:idx];
+			
 			CGPoint center = CGPointMake(self.bounds.size.width / 2.0f, verticalMargin + buttonInterval * (idx + 1));
 			
 			UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
 			button.titleLabel.font = [UIFont fontWithName:cif.fontName
 													 size:kHistoryButtonTextSize];
 			[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-			[button setTitle:[NSString stringWithFormat:@"BUTTON %ld", idx] forState:UIControlStateNormal];
+			[button setTitle:saveData.title forState:UIControlStateNormal];
 			[button setBackgroundImage:[UIImage imageNamed:@"save_button_normal.png"]
 							  forState:UIControlStateNormal];
 			[button setBackgroundImage:[UIImage imageNamed:@"save_button_press.png"]
 							  forState:UIControlStateHighlighted];
+			[button setBackgroundImage:[UIImage imageNamed:@"save_button_press.png"]
+							  forState:UIControlStateDisabled];
 			button.frame = buttonFrame;
 			button.center = center;
 			button.tag = idx;
+			button.enabled = saveData.isSaved;
 			[button addTarget:self action:@selector(saveButtonDidPush:) forControlEvents:UIControlEventTouchUpInside];
 			[self addSubview:button];
 		}
@@ -187,7 +195,7 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 
 - (void)saveButtonDidPush:(UIButton*)sender {
 	if (self.delegate) {
-		SaveData* saveData = [[ContentsInterface sharedInstance] saveDataAtSlotNumber:sender.tag];
+		SaveData* saveData = [[ContentsInterface sharedInstance] saveDataAt:sender.tag];
 		[self.delegate historyDidSelected:saveData forSave:_isSaveMode];
 	}
 }

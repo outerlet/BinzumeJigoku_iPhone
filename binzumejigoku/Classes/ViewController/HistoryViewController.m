@@ -45,7 +45,7 @@
 		NSLog(actionTag == 0 ? @"OK" : @"Cancel");
 		NSLog(@"selected : %ld", _selected.slotNumber);
 		
-		SaveData* saveData = [[ContentsInterface sharedInstance] saveDataAtSlotNumber:0];
+		SaveData* saveData = [[ContentsInterface sharedInstance] saveDataAt:0];
 		
 		NSLog(@"Slot = %ld, Section = %ld, Sequence = %ld", saveData.slotNumber, saveData.sectionIndex, saveData.sequence);
 		

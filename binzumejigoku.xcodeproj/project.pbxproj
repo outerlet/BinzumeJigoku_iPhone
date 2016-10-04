@@ -46,6 +46,7 @@
 		5C9C8F711D6C7F3000E80264 /* CoreDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9C8F701D6C7F3000E80264 /* CoreDataHandler.m */; };
 		5CA7EE771D91155300A41B1D /* ContentsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA7EE761D91155300A41B1D /* ContentsTextView.m */; };
 		5CA7EE7D1D91504200A41B1D /* ContentsInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA7EE7C1D91504200A41B1D /* ContentsInterface.m */; };
+		5CAB18601DA3DB580065B8AC /* TextHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB185F1DA3DB580065B8AC /* TextHistoryViewController.m */; };
 		5CBF62AC1D97F98800D9C880 /* SaveData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CBF62AB1D97F98800D9C880 /* SaveData.m */; };
 		5CBF62AF1D980A5E00D9C880 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CBF62AE1D980A5E00D9C880 /* Utility.m */; };
 		5CC1B8A11D4F74F30003DD38 /* contents_binzume_jigoku.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CC1B8A01D4F74F30003DD38 /* contents_binzume_jigoku.xml */; };
@@ -125,6 +126,8 @@
 		5CA7EE761D91155300A41B1D /* ContentsTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsTextView.m; path = Classes/View/ContentsTextView.m; sourceTree = "<group>"; };
 		5CA7EE7B1D91504200A41B1D /* ContentsInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsInterface.h; path = Classes/Contents/ContentsInterface.h; sourceTree = "<group>"; };
 		5CA7EE7C1D91504200A41B1D /* ContentsInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsInterface.m; path = Classes/Contents/ContentsInterface.m; sourceTree = "<group>"; };
+		5CAB185E1DA3DB580065B8AC /* TextHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextHistoryViewController.h; path = Classes/ViewController/TextHistoryViewController.h; sourceTree = "<group>"; };
+		5CAB185F1DA3DB580065B8AC /* TextHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextHistoryViewController.m; path = Classes/ViewController/TextHistoryViewController.m; sourceTree = "<group>"; };
 		5CBF62AA1D97F98800D9C880 /* SaveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveData.h; sourceTree = "<group>"; };
 		5CBF62AB1D97F98800D9C880 /* SaveData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveData.m; sourceTree = "<group>"; };
 		5CBF62AD1D980A5E00D9C880 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = Classes/Util/Utility.h; sourceTree = "<group>"; };
@@ -357,6 +360,8 @@
 				5CC6E31B1D4B97FB0073FC30 /* HistoryViewController.m */,
 				5C7575C51D4DEA910094D5B3 /* ContentsViewController.h */,
 				5C7575C61D4DEA910094D5B3 /* ContentsViewController.m */,
+				5CAB185E1DA3DB580065B8AC /* TextHistoryViewController.h */,
+				5CAB185F1DA3DB580065B8AC /* TextHistoryViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -489,6 +494,7 @@
 				5CC6E30D1D4B91E00073FC30 /* AppDelegate.m in Sources */,
 				5C0B101A1D686B3A00148096 /* WaitElement.m in Sources */,
 				5C7C44861D6F172D00C6DFAA /* ContentsTitleView.m in Sources */,
+				5CAB18601DA3DB580065B8AC /* TextHistoryViewController.m in Sources */,
 				5C0B10191D686B3A00148096 /* TitleElement.m in Sources */,
 				5C20B5D71D4B8B3C0014E6F9 /* main.m in Sources */,
 				5C0E49671D9AA4840030D584 /* GestureHintView.m in Sources */,

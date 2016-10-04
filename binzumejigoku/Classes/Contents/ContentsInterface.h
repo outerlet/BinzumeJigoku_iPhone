@@ -64,7 +64,7 @@
  * @param	slotNumber	セーブスロット番号
  * @return	スロット番号に対応するセーブデータ
  */
-- (SaveData*)saveDataAtSlotNumber:(NSInteger)slotNumber;
+- (SaveData*)saveDataAt:(NSInteger)slotNumber;
 
 /**
  * AppSetting.plistから任意のキー文字列に対応するNSInteger値を取得する
