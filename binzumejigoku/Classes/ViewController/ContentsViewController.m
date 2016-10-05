@@ -24,7 +24,6 @@
 #import "ContentsWaitingIndicatorView.h"
 #import "GestureHintView.h"
 #import "SaveData.h"
-#import "HistorySelectView.h"
 #import "TextHistoryViewController.h"
 #import "NSString+CustomDecoder.h"
 
@@ -32,16 +31,22 @@ const CGFloat kHeightOfIndicator		= 40.0f;
 const CGFloat kSideMarginOfViews		= 10.0f;
 const CGFloat kLongPressActionLength	= 10.0f;
 const CGFloat kLongPressAvailableLength	= 20.0f;
+const CGFloat kContentsTitleTextSize	= 36.0f;
+
 const NSInteger kAlertTagEndOfSection	= 10001;
 const NSInteger kAlertTagEndOfContents	= 10002;
+const NSInteger kAlertTagSaveHistory	= 10003;
+const NSInteger kAlertTagLoadHistory	= 10004;
 const NSInteger	kAlertTagConfirmNext	= 10010;
 const NSInteger	kAlertTagConfirmBack	= 10011;
 const NSInteger	kAlertTagConfirmFinish	= 10020;
-const CGFloat kContentsTitleTextSize	= 36.0f;
+const NSInteger kAlertTagConfirmOk		= 10030;
+const NSInteger kAlertTagConfirmCancel	= 10031;
 
 @interface ContentsViewController ()
 
-@property (nonatomic, readwrite) NSInteger	sectionIndex;
+@property (nonatomic, readwrite)	NSInteger	sectionIndex;
+@property (nonatomic)				SaveData*	autoSaveData;
 
 // CoreDataに保存したコンテンツを読み込む
 - (void)loadContentsAt:(NSInteger)sectionIndex;
@@ -83,8 +88,11 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 	if (self = [super init]) {
 		[self loadContentsAt:sectionIndex];
 		
-		_saveData = nil;
+		[self.autoSaveData reset];
+		self.autoSaveData.sectionIndex = sectionIndex;
+		
 		_isContentsOngoing = NO;
+		_isAdvanceLocked = NO;
 		
 		_longPressBeganPoint = CGPointZero;
 		_longPressEndPoint = CGPointZero;
@@ -93,8 +101,18 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 }
 
 - (id)initWithSaveData:(SaveData*)saveData {
-	if (self = [self initWithSectionIndex:saveData.sectionIndex]) {
-		_saveData = saveData;
+	if (self = [super init]) {
+		[self loadContentsAt:saveData.sectionIndex];
+		
+		if (self.autoSaveData.slotNumber != saveData.slotNumber) {
+			[self.autoSaveData copyFrom:saveData includeTitle:NO];
+		}
+		
+		_isContentsOngoing = NO;
+		_isAdvanceLocked = NO;
+		
+		_longPressBeganPoint = CGPointZero;
+		_longPressEndPoint = CGPointZero;
 	}
 	return self;
 }
@@ -144,18 +162,31 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 	// セーブデータ選択用View
 	_historyView = [[HistorySelectView alloc] initWithFrame:self.view.bounds closable:YES loadOnly:NO autoSave:NO];
 	_historyView.saveMode = YES;
+	_historyView.delegate = self;
 	[_historyView dismissAnimated:NO completion:nil];
 	[self.view addSubview:_historyView];
 	
-	[self restoreSavedCondition:_saveData];
+	if (self.autoSaveData.isSaved) {
+		[self restoreSavedCondition:self.autoSaveData];
+	}
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-	[self advanceContents:nil];
+	if (!_isAdvanceLocked) {
+		[self advanceContents:nil];
+	} else {
+		_isAdvanceLocked = NO;
+	}
 }
 
 - (void)touchesEnded:(NSSet<UITouch*>*)touches withEvent:(UIEvent *)event {
 	[self advanceContents:nil];
+}
+
+#pragma mark - Properties
+
+- (SaveData*)autoSaveData {
+	return [[ContentsInterface sharedInstance] saveDataAt:0];
 }
 
 #pragma mark - Convenience Method
@@ -176,7 +207,7 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 	_sectionIndex = sectionIndex;
 	_currentIndex = -1;
 	
-	[[ContentsInterface sharedInstance] saveDataAt:0].sectionIndex = sectionIndex;
+	self.autoSaveData.sectionIndex = sectionIndex;
 }
 
 - (void)advanceContents:(ContentsElement*)element {
@@ -337,9 +368,8 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 }
 
 - (void)contentsElementDidConsume:(ContentsElement*)element {
-	SaveData* autoSave = [[ContentsInterface sharedInstance] saveDataAt:0];
-	[autoSave addElement:element];
-	[autoSave save];
+	[self.autoSaveData addElement:element];
+	[self.autoSaveData save];
 	
 	if (element.chainType != ChainTypeNone) {
 		[self advanceContents:element];
@@ -365,10 +395,45 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 		} else {
 			[self dismissViewControllerAnimated:YES completion:nil];
 		}
-		// 物語の終了時に発生するアラート(常に前の画面に戻る)
+	// 物語の終了時に発生するアラート(常に前の画面に戻る)
 	} else if (alertTag == kAlertTagEndOfContents) {
 		[self dismissViewControllerAnimated:YES completion:nil];
+	// セーブ
+	} else if (alertTag == kAlertTagSaveHistory) {
+		if (actionTag == kAlertTagConfirmOk) {
+			[_targetSaveData copyFrom:self.autoSaveData includeTitle:NO];
+			[_targetSaveData save];
+			
+			NSLog(@"セーブしました : SLOT = %ld", (long)_targetSaveData.slotNumber);
+		}
+	// ロード
+	} else if (alertTag == kAlertTagLoadHistory) {
+		if (actionTag == kAlertTagConfirmOk) {
+			
+		}
 	}
+}
+
+- (void)historyDidSelected:(SaveData *)saveData forSave:(BOOL)forSave {
+	NSString* msg = forSave ? NSLocalizedString(@"message_save_confirmation", nil) : NSLocalizedString(@"message_load_confirmation", nil);
+	
+	NSInteger tag = forSave ? kAlertTagSaveHistory : kAlertTagLoadHistory;
+	
+	_targetSaveData = saveData;
+	
+	AlertControllerHandler* handler = [[AlertControllerHandler alloc] initWithTitle:nil
+																			message:msg
+																	  preferrdStyle:UIAlertControllerStyleAlert
+																				tag:tag];
+	[handler addAction:NSLocalizedString(@"phrase_ok", nil)
+				 style:UIAlertActionStyleDefault
+				   tag:kAlertTagConfirmOk];
+	[handler addAction:NSLocalizedString(@"phrase_cancel", nil)
+				 style:UIAlertActionStyleCancel
+				   tag:kAlertTagConfirmCancel];
+	handler.delegate = self;
+	
+	[self presentViewController:[handler build] animated:YES completion:nil];
 }
 
 - (void)longPressDidDetect:(UILongPressGestureRecognizer*)gestureRecognizer {
@@ -393,6 +458,8 @@ const CGFloat kContentsTitleTextSize	= 36.0f;
 		
 		// 上方向(テキスト履歴)
 		if (_longPressBeganPoint.y - _longPressEndPoint.y >= kLongPressActionLength && fabs(_longPressEndPoint.x - _longPressBeganPoint.x) <= kLongPressAvailableLength) {
+			_isAdvanceLocked = YES;
+
 			SaveData* saveData = [[ContentsInterface sharedInstance] saveDataAt:0];
 			TextHistoryViewController* vc = [[TextHistoryViewController alloc] initWithTextHistories:saveData.textHistories];
 			[self presentViewController:vc animated:YES completion:nil];

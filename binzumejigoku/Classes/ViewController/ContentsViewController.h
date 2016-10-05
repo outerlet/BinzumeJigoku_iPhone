@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AlertControllerHandler.h"
+#import "HistorySelectView.h"
 
 @class TitleView;
 @class ContentsTitleView;
@@ -15,10 +16,9 @@
 @class ContentsTextView;
 @class ContentsWaitingIndicatorView;
 @class GestureHintView;
-@class HistorySelectView;
 @class SaveData;
 
-@interface ContentsViewController : UIViewController <AlertControllerHandlerDelegate> {
+@interface ContentsViewController : UIViewController <AlertControllerHandlerDelegate, HistorySelectViewDelegate> {
 	@private
 	ContentsTitleView*				_titleView;
 	ContentsImageView*				_imageView;
@@ -30,7 +30,8 @@
 	NSArray*	_contents;
 	NSInteger	_currentIndex;
 	BOOL		_isContentsOngoing;
-	SaveData*	_saveData;
+	BOOL		_isAdvanceLocked;
+	SaveData*	_targetSaveData;
 	
 	UILongPressGestureRecognizer*	_gestureRecognizer;
 	CGPoint							_longPressBeganPoint;

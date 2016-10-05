@@ -23,7 +23,7 @@
 
 - (id)initWithSlotNumber:(NSInteger)slotNumber;
 - (void)addElement:(ContentsElement*)element;
-- (void)copyFrom:(SaveData*)other;
+- (void)copyFrom:(SaveData*)other includeTitle:(BOOL)includeTitle;
 - (void)save;
 - (BOOL)load;
 - (void)reset;

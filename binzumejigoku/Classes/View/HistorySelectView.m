@@ -40,7 +40,7 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 		_modeLabel.textColor = [UIColor whiteColor];
 		[self addSubview:_modeLabel];
 		
-		self.saveMode = YES;
+		self.saveMode = !loadOnly;
 
 		CGRect frm = CGRectMake(0.0f, self.marginTop, kOptionalButtonSideLength, kOptionalButtonSideLength);
 		frm.origin.x = self.bounds.size.width - frm.size.width - kOptionalButtonMargin;
@@ -67,22 +67,22 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 			[self addSubview:_switchButton];
 		}
 		
-		NSInteger firstIndex = 1;
+		BOOL containsAutoSave = (loadOnly && autoSave);
+		NSInteger firstIndex = containsAutoSave ? 0 : 1;
 		NSInteger numberOfHistories = [cif integerSetting:@"NumberOfHistories"];
 		
-		if (loadOnly && autoSave) {
-			firstIndex = 0;
-			++numberOfHistories;
-		}
+		CGFloat marginTop = _modeLabel.frame.origin.y + _modeLabel.frame.size.height;
+		CGRect frame = CGRectMake(0.0f, 0.0f, self.bounds.size.width * 0.8f, kSaveButtonHeight);
+		CGFloat interval = (self.bounds.size.height - marginTop * 2) / ((numberOfHistories - firstIndex + 1) * 2);
 		
-		CGFloat verticalMargin = _modeLabel.frame.origin.y + _modeLabel.frame.size.height;
-		CGFloat buttonInterval = (self.bounds.size.height - verticalMargin * 2) / (numberOfHistories + 1);
-		CGRect buttonFrame = CGRectMake(0.0f, 0.0f, self.bounds.size.width * 0.8f, kSaveButtonHeight);
+		NSMutableArray* buttons = [[NSMutableArray alloc] init];
 		
-		for (NSInteger idx = firstIndex ; idx < numberOfHistories ; idx++) {
+		for (NSInteger idx = firstIndex ; idx <= numberOfHistories ; idx++) {
 			SaveData* saveData = [cif saveDataAt:idx];
 			
-			CGPoint center = CGPointMake(self.bounds.size.width / 2.0f, verticalMargin + buttonInterval * (idx + 1));
+			CGPoint center = CGPointZero;
+			center.x = self.bounds.size.width / 2.0f;
+			center.y = marginTop + (interval * 2 * (idx - firstIndex)) + interval;
 			
 			UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
 			button.titleLabel.font = [UIFont fontWithName:cif.fontName
@@ -95,13 +95,17 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 							  forState:UIControlStateHighlighted];
 			[button setBackgroundImage:[UIImage imageNamed:@"save_button_press.png"]
 							  forState:UIControlStateDisabled];
-			button.frame = buttonFrame;
+			button.frame = frame;
 			button.center = center;
 			button.tag = idx;
-			button.enabled = saveData.isSaved;
+			button.enabled = self.saveMode || saveData.isSaved;
 			[button addTarget:self action:@selector(saveButtonDidPush:) forControlEvents:UIControlEventTouchUpInside];
 			[self addSubview:button];
+			
+			[buttons addObject:button];
 		}
+		
+		_historyButtons = [NSArray arrayWithArray:buttons];
 	}
 	return self;
 }
@@ -120,6 +124,11 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 	_modeLabel.text = saveMode ? NSLocalizedString(@"phrase_save", nil) : NSLocalizedString(@"phrase_load", nil);
 	[_modeLabel sizeToFit];
 	[_modeLabel moveTo:CGPointMake((self.bounds.size.width - _modeLabel.frame.size.width) / 2.0f, self.marginTop)];
+
+	for (NSInteger idx = 0 ; idx < _historyButtons.count ; idx++) {
+		SaveData* saveData = [[ContentsInterface sharedInstance] saveDataAt:idx];
+		[_historyButtons objectAtIndex:idx].enabled = self.saveMode || saveData.isSaved;
+	}
 }
 
 - (BOOL)saveMode {

@@ -14,6 +14,8 @@ static const CGFloat kTextHistoryTextSize	= 20.0f;
 static const CGFloat kTextHistoryLineSize	= 32.0f;
 static const CGFloat kCloseButtonSideLength	= 36.0f;
 static const CGFloat kCloseButtonMargin		= 24.0f;
+static const CGFloat kLabelTopMargin		= 12.0f;
+static const CGFloat kLabelSideMargin		= 8.0f;
 
 @interface TextHistoryViewController ()
 
@@ -58,7 +60,7 @@ static const CGFloat kCloseButtonMargin		= 24.0f;
 	
 	UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f, scrollOriginY, self.view.bounds.size.width, self.view.bounds.size.height - scrollOriginY)];
 	
-	CGFloat nextOriginY = 0.0f;
+	CGFloat height = kLabelTopMargin;
 	
 	for (NSInteger idx = 0 ; idx < _textHistories.count ; idx++) {
 		NSString* history = [_textHistories objectAtIndex:idx];
@@ -69,20 +71,26 @@ static const CGFloat kCloseButtonMargin		= 24.0f;
 		
 		NSDictionary* attrs = @{ NSFontAttributeName: [UIFont fontWithName:cif.fontName size:kTextHistoryTextSize], NSForegroundColorAttributeName: [UIColor whiteColor], NSParagraphStyleAttributeName: style };
 		
-		UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, nextOriginY, self.view.bounds.size.width, 0.0f)];
+		UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(kLabelSideMargin, height, self.view.bounds.size.width - kLabelSideMargin * 2, 0.0f)];
 		label.backgroundColor = [UIColor clearColor];
 		label.numberOfLines = 0;
 		label.attributedText = [[NSAttributedString alloc] initWithString:history attributes:attrs];
 		[label sizeToFit];
 		[scrollView addSubview:label];
 		
-		NSLog(@"%@", history);
-		
-		nextOriginY += label.frame.size.height;
+		height += (label.frame.size.height + kLabelTopMargin);
 	}
 	
-	scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, nextOriginY);
+	CGSize contentSize = CGSizeMake(self.view.bounds.size.width, height);
+	CGFloat offsetY = (contentSize.height <= scrollView.bounds.size.height) ? 0.0f : contentSize.height - scrollView.bounds.size.height;
+
+	scrollView.contentSize = contentSize;
+	[scrollView setContentOffset:CGPointMake(0.0f, offsetY) animated:NO];
 	[self.view addSubview:scrollView];
+}
+
+- (UIModalPresentationStyle)modalPresentationStyle {
+	return UIModalPresentationOverCurrentContext;
 }
 
 - (void)closeButtonDidPush:(id)sender {

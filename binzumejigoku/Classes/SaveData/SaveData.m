@@ -106,10 +106,13 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 	}
 }
 
-- (void)copyFrom:(SaveData*)other {
+- (void)copyFrom:(SaveData*)other includeTitle:(BOOL)includeTitle {
 	[self reset];
 	
-	_title = other.title;
+	if (includeTitle) {
+		_title = other.title;
+	}
+	
 	_date = other.date;
 	_sectionIndex = other.sectionIndex;
 	_sequence = other.sequence;
@@ -139,7 +142,7 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 		SaveData* saveData = [decoder decodeObjectForKey:kEncodeKeyForSaveData];
 		[decoder finishDecoding];
 		
-		[self copyFrom:saveData];
+		[self copyFrom:saveData includeTitle:YES];
 		
 		return YES;
 	}
@@ -148,7 +151,6 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 }
 
 - (void)reset {
-	_title = nil;
 	_date = nil;
 	_sectionIndex = -1;
 	_sequence = -1;
