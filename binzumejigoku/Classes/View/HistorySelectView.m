@@ -78,8 +78,6 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 		NSMutableArray* buttons = [[NSMutableArray alloc] init];
 		
 		for (NSInteger idx = firstIndex ; idx <= numberOfHistories ; idx++) {
-			SaveData* saveData = [cif saveDataAt:idx];
-			
 			CGPoint center = CGPointZero;
 			center.x = self.bounds.size.width / 2.0f;
 			center.y = marginTop + (interval * 2 * (idx - firstIndex)) + interval;
@@ -88,7 +86,6 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 			button.titleLabel.font = [UIFont fontWithName:cif.fontName
 													 size:kHistoryButtonTextSize];
 			[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-			[button setTitle:saveData.title forState:UIControlStateNormal];
 			[button setBackgroundImage:[UIImage imageNamed:@"save_button_normal.png"]
 							  forState:UIControlStateNormal];
 			[button setBackgroundImage:[UIImage imageNamed:@"save_button_press.png"]
@@ -98,7 +95,6 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 			button.frame = frame;
 			button.center = center;
 			button.tag = idx;
-			button.enabled = self.saveMode || saveData.isSaved;
 			[button addTarget:self action:@selector(saveButtonDidPush:) forControlEvents:UIControlEventTouchUpInside];
 			[self addSubview:button];
 			
@@ -194,12 +190,22 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 	}
 }
 
+- (void)refresh {
+	for (UIButton* button in _historyButtons) {
+		SaveData* saveData = [[ContentsInterface sharedInstance] saveDataAt:button.tag];
+		
+		[button setTitle:saveData.title forState:UIControlStateNormal];
+		button.enabled = self.saveMode || saveData.isSaved;
+	}
+}
+
 - (void)closeButtonDidPush:(UIImageView*)sender {
 	[self dismissAnimated:YES completion:nil];
 }
 
 - (void)switchButtonDidPush:(UIImageView*)sender {
 	self.saveMode = !self.saveMode;
+	[self refresh];
 }
 
 - (void)saveButtonDidPush:(UIButton*)sender {

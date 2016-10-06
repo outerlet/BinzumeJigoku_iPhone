@@ -31,7 +31,6 @@ const CGFloat kHeightOfIndicator		= 40.0f;
 const CGFloat kSideMarginOfViews		= 10.0f;
 const CGFloat kLongPressActionLength	= 10.0f;
 const CGFloat kLongPressAvailableLength	= 20.0f;
-const CGFloat kContentsTitleTextSize	= 36.0f;
 
 const NSInteger kAlertTagEndOfSection	= 10001;
 const NSInteger kAlertTagEndOfContents	= 10002;
@@ -60,14 +59,8 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 // NSManagedObjectからContentsElementオブジェクトを生成する
 - (ContentsElement*)elementByManagedObject:(NSManagedObject*)managedObject;
 
-// handle~で始まるメソッド群ではそれぞれのContentsElementに対応した処理を実行する
-- (void)handleTitleElement:(TitleElement*)titleElement;
-- (void)handleImageElement:(ImageElement*)imageElement;
-- (void)handleTextElement:(TextElement*)textElement;
-- (void)handleWaitElement:(WaitElement*)waitElement;
-
 // handle~で始まるメソッドが、その中で呼び出す共通処理
-- (void)commonElementHandle:(ContentsElement*)element;
+- (void)advanceIfImmediateChain:(ContentsElement*)element;
 
 // handle~で始まるメソッド群がそれぞれの処理を終了した時に共通で呼び出すメソッド
 // 各メソッドにある完了ブロックで定義すると同じ処理が複数箇所に分散してしまうので
@@ -217,25 +210,36 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 			
 			ContentsElement* e = [_contents objectAtIndex:_currentIndex];
 			
-			switch (e.contentsType) {
-				case ContentsTypeImage:
-					[self handleImageElement:(ImageElement*)e];
-					break;
-				case ContentsTypeText:
-					[self handleTextElement:(TextElement*)e];
-					break;
-				case ContentsTypeTitle:
-					[self handleTitleElement:(TitleElement*)e];
-					break;
-				case ContentsTypeWait:
-					[self handleWaitElement:(WaitElement*)e];
-					break;
-				case ContentsTypeClearText:
-					[_textView clearAllTexts];
-					[self contentsElementDidConsume:e];
-					return;
-				default:
-					return;
+			if (e.contentsType == ContentsTypeImage) {
+				[_imageView handleElement:e
+							   completion:^(void) {
+								   [self contentsElementDidConsume:e];
+							   }];
+				
+				[self advanceIfImmediateChain:e];
+			} else if (e.contentsType == ContentsTypeText || e.contentsType == ContentsTypeClearText) {
+				[_textView handleElement:e
+							  completion:^(void) {
+								  [_indicatorView startAnimation];
+								  [self contentsElementDidConsume:e];
+							  }];
+				
+				if (e.contentsType == ContentsTypeText) {
+					[self advanceIfImmediateChain:e];
+				}
+			} else if (e.contentsType == ContentsTypeTitle) {
+				[_titleView handleElement:e
+							   completion:^(void) {
+								   [self contentsElementDidConsume:e];
+							   }];
+				
+				[self advanceIfImmediateChain:e];
+			} else if (e.contentsType == ContentsTypeWait) {
+				[NSTimer scheduledTimerWithTimeInterval:((WaitElement*)e).duration
+												repeats:NO
+												  block:^(NSTimer* timer) {
+													  [self contentsElementDidConsume:e];
+												  }];
 			}
 			
 			_isContentsOngoing = YES;
@@ -311,57 +315,7 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 	return [[cls alloc] initWithManagedObject:managedObject];
 }
 
-- (void)handleTitleElement:(TitleElement *)titleElement {
-	ContentsInterface* cif = [ContentsInterface sharedInstance];
-	
-	[_titleView setTitle:titleElement.title font:[UIFont fontWithName:cif.fontName
-																 size:kContentsTitleTextSize]];
-	
-	[_titleView startAnimationWithDuration:3.0f
-								completion:^(void) {
-									NSLog(@"TitleView Animation Did Finish.");
-									[self contentsElementDidConsume:titleElement];
-								}];
-	
-	[self commonElementHandle:titleElement];
-}
-
-- (void)handleImageElement:(ImageElement*)imageElement {
-	[_imageView setNextImage:imageElement.image];
-	
-	[_imageView startAnimationWithEffect:imageElement.imageEffect
-								duration:imageElement.duration
-							  completion:^(void) {
-								  NSLog(@"ImageView Animation Did Finish.");
-								  [self contentsElementDidConsume:imageElement];
-							  }];
-	
-	[self commonElementHandle:imageElement];
-}
-
-- (void)handleTextElement:(TextElement*)textElement {
-	[_textView setTextElement:textElement];
-	
-	[_textView startStreamingWithInterval:[ContentsInterface sharedInstance].textSpeedInterval
-							   completion:^(void) {
-								   NSLog(@"TextView Animation Did Finish.");
-								   [_indicatorView startAnimation];
-								   [self contentsElementDidConsume:textElement];
-							   }];
-	
-	[self commonElementHandle:textElement];
-}
-
-- (void)handleWaitElement:(WaitElement *)waitElement {
-	[NSTimer scheduledTimerWithTimeInterval:waitElement.duration
-									repeats:NO
-									  block:^(NSTimer* timer) {
-										  NSLog(@"Wait Interval Did Pass.");
-										  [self contentsElementDidConsume:waitElement];
-									  }];
-}
-
-- (void)commonElementHandle:(ContentsElement*)element {
+- (void)advanceIfImmediateChain:(ContentsElement*)element {
 	if (element.chainType == ChainTypeImmediate) {
 		[self advanceContents:element];
 	}
@@ -391,7 +345,7 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 			[self loadContentsAt:_sectionIndex + 1];
 			
 			[self advanceContents:nil];
-			// 前の画面に戻る場合
+		// 前の画面に戻る場合
 		} else {
 			[self dismissViewControllerAnimated:YES completion:nil];
 		}
@@ -404,12 +358,22 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 			[_targetSaveData copyFrom:self.autoSaveData includeTitle:NO];
 			[_targetSaveData save];
 			
-			NSLog(@"セーブしました : SLOT = %ld", (long)_targetSaveData.slotNumber);
+			[_historyView dismissAnimated:YES completion:nil];
 		}
 	// ロード
 	} else if (alertTag == kAlertTagLoadHistory) {
 		if (actionTag == kAlertTagConfirmOk) {
+			[_imageView reset];
+			[_textView clearAllTexts];
 			
+			[self loadContentsAt:_targetSaveData.sectionIndex];
+			[self restoreSavedCondition:_targetSaveData];
+			[self.autoSaveData copyFrom:_targetSaveData includeTitle:NO];
+			
+			[_historyView dismissAnimated:YES
+							   completion:^(void) {
+								   [self advanceContents:nil];
+							   }];
 		}
 	}
 }
@@ -471,9 +435,11 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 			
 			// 画面左側でロングタップが開始された場合、右方向ならセーブ
 			if (isLeft && (_longPressEndPoint.x - _longPressBeganPoint.x) >= kLongPressActionLength && fabs(_longPressEndPoint.y - _longPressBeganPoint.y) <= kLongPressAvailableLength) {
+				[_historyView refresh];
 				[_historyView showAnimated:YES completion:nil];
 			// 画面右側でロングタップが開始された場合、左方向ならセーブ
 			} else if (!isLeft && (_longPressBeganPoint.x - _longPressEndPoint.x) >= kLongPressActionLength && fabs(_longPressBeganPoint.y - _longPressEndPoint.y) <= kLongPressAvailableLength) {
+				[_historyView refresh];
 				[_historyView showAnimated:YES completion:nil];
 			} else {
 				// そのまま離したら何もしない

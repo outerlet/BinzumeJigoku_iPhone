@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "ContentsInterface.h"
 #import "TextElement.h"
+#import "ClearTextElement.h"
 #import "RubyTextView.h"
 #import "UIView+Adjustment.h"
 
@@ -95,6 +96,20 @@
 	}
 	
 	[_subviews removeAllObjects];
+}
+
+- (void)handleElement:(id)element completion:(void (^)(void))completion {
+	if ([element isMemberOfClass:[TextElement class]]) {
+		TextElement* textElement = element;
+		
+		[self setTextElement:textElement];
+		
+		[self startStreamingWithInterval:[ContentsInterface sharedInstance].textSpeedInterval
+							  completion:completion];
+	} else if ([element isMemberOfClass:[ClearTextElement class]]) {
+		[self clearAllTexts];
+		completion();
+	}
 }
 
 @end

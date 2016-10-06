@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ContentsView.h"
 
 @class RubyTextView;
 @class TextElement;
 
-@interface ContentsTextView : UIView {
+@interface ContentsTextView : UIView <ContentsView> {
 	@private
 	NSMutableArray<RubyTextView*>*	_subviews;
 	

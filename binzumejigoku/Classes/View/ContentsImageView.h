@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ContentsView.h"
 #import "ImageElement.h"
 
 @class ContentsImageView;
@@ -14,7 +15,7 @@
 /**
  * 画像を表示するためのView
  */
-@interface ContentsImageView : UIView {
+@interface ContentsImageView : UIView <ContentsView> {
 	@private
 	NSArray*	_imageViews;
 	UIImage*	_nextImage;
@@ -32,5 +33,7 @@
 - (void)startAnimationWithEffect:(ImageEffect)effect duration:(NSTimeInterval)duration completion:(void (^)(void))completion;
 
 - (void)showImmediate;
+
+- (void)reset;
 
 @end

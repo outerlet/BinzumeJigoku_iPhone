@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ContentsView.h"
 
 /**
  * 章のタイトルを表示するView
  */
-@interface ContentsTitleView : UIView {
+@interface ContentsTitleView : UIView <ContentsView> {
 	@private
 	NSArray*		_titleLabels;
 	NSTimeInterval	_sequenceTime;

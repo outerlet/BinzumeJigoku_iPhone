@@ -126,6 +126,7 @@
 		5CA7EE761D91155300A41B1D /* ContentsTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsTextView.m; path = Classes/View/ContentsTextView.m; sourceTree = "<group>"; };
 		5CA7EE7B1D91504200A41B1D /* ContentsInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsInterface.h; path = Classes/Contents/ContentsInterface.h; sourceTree = "<group>"; };
 		5CA7EE7C1D91504200A41B1D /* ContentsInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsInterface.m; path = Classes/Contents/ContentsInterface.m; sourceTree = "<group>"; };
+		5CA84E611DA67959000B5EB5 /* ContentsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ContentsView.h; path = Classes/View/ContentsView.h; sourceTree = "<group>"; };
 		5CAB185E1DA3DB580065B8AC /* TextHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextHistoryViewController.h; path = Classes/ViewController/TextHistoryViewController.h; sourceTree = "<group>"; };
 		5CAB185F1DA3DB580065B8AC /* TextHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextHistoryViewController.m; path = Classes/ViewController/TextHistoryViewController.m; sourceTree = "<group>"; };
 		5CBF62AA1D97F98800D9C880 /* SaveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveData.h; sourceTree = "<group>"; };
@@ -377,6 +378,7 @@
 				5CC1B8AC1D4F7F7B0003DD38 /* SettingTableViewCell.m */,
 				5CC6E31E1D4B9D540073FC30 /* MainPageView.h */,
 				5CC6E31F1D4B9D540073FC30 /* MainPageView.m */,
+				5CA84E611DA67959000B5EB5 /* ContentsView.h */,
 				5C7C44841D6F172D00C6DFAA /* ContentsTitleView.h */,
 				5C7C44851D6F172D00C6DFAA /* ContentsTitleView.m */,
 				5C4849531D718EE90045068C /* ContentsImageView.h */,

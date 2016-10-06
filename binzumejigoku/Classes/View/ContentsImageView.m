@@ -109,6 +109,20 @@ static const NSInteger IMAGE_VIEW_NUMBER = 2;
 	next.hidden = NO;
 }
 
+- (void)handleElement:(id)element completion:(void (^)(void))completion {
+	if (![element isMemberOfClass:[ImageElement class]]) {
+		return;
+	}
+	
+	ImageElement* imageElement = element;
+		
+	[self setNextImage:imageElement.image];
+		
+	[self startAnimationWithEffect:imageElement.imageEffect
+						  duration:imageElement.duration
+						completion:completion];
+}
+
 - (UIImageView*)imageViewByHidden:(BOOL)hidden {
 	for (NSInteger idx = 0 ; idx < _imageViews.count ; idx++) {
 		UIImageView* imageView = [_imageViews objectAtIndex:idx];
@@ -117,6 +131,13 @@ static const NSInteger IMAGE_VIEW_NUMBER = 2;
 		}
 	}
 	return nil;
+}
+
+- (void)reset {
+	for (UIImageView* imageView in _imageViews) {
+		imageView.hidden = YES;
+		imageView.alpha = 0.0f;
+	}
 }
 
 @end

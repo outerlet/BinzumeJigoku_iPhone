@@ -14,7 +14,8 @@
 
 @interface HistoryViewController : UIViewController <HistorySelectViewDelegate, AlertControllerHandlerDelegate> {
 	@private
-	SaveData*	_selected;
+	HistorySelectView*	_historyView;
+	SaveData*			_selected;
 }
 
 @end

@@ -23,10 +23,16 @@
 	imageView.image = [UIImage imageNamed:@"title_00.jpg"];
 	[self.view addSubview:imageView];
 	
-	HistorySelectView* historyView = [[HistorySelectView alloc] initWithFrame:self.view.bounds closable:NO loadOnly:YES autoSave:YES];
-	historyView.saveMode = NO;
-	historyView.delegate = self;
-	[self.view addSubview:historyView];
+	_historyView = [[HistorySelectView alloc] initWithFrame:self.view.bounds closable:NO loadOnly:YES autoSave:YES];
+	_historyView.saveMode = NO;
+	_historyView.delegate = self;
+	[self.view addSubview:_historyView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	[_historyView refresh];
 }
 
 - (void)historyDidSelected:(SaveData*)saveData forSave:(BOOL)forSave {

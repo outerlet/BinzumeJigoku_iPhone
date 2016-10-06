@@ -7,6 +7,10 @@
 //
 
 #import "ContentsTitleView.h"
+#import "ContentsInterface.h"
+#import "TitleElement.h"
+
+const CGFloat kContentsTitleTextSize	= 36.0f;
 
 @interface ContentsTitleView ()
 
@@ -96,6 +100,21 @@
 							 }
 						 }];
 	}
+}
+
+- (void)handleElement:(id)element completion:(void (^)(void))completion {
+	if (![element isMemberOfClass:[TitleElement class]]) {
+		return;
+	}
+	
+	TitleElement* titleElement = element;
+		
+	ContentsInterface* cif = [ContentsInterface sharedInstance];
+		
+	[self setTitle:titleElement.title font:[UIFont fontWithName:cif.fontName
+														   size:kContentsTitleTextSize]];
+	
+	[self startAnimationWithDuration:3.0f completion:completion];
 }
 
 @end
