@@ -54,8 +54,23 @@
  */
 - (id)initWithFrame:(CGRect)frame closable:(BOOL)closable loadOnly:(BOOL)loadOnly autoSave:(BOOL)autoSave;
 
+/**
+ * このViewを表示する
+ * @param	animated	アニメーション付きで表示するか
+ * @param	completion	表示が完了した時に呼び出すコールバック
+ */
 - (void)showAnimated:(BOOL)animated completion:(void (^)(void))completion;
+
+/**
+ * このViewを非表示にする
+ * @param	animated	アニメーション付きで非表示にするか
+ * @param	completion	非表示にし終わった時に呼び出すコールバック
+ */
 - (void)dismissAnimated:(BOOL)animated completion:(void (^)(void))completion;
+
+/**
+ * セーブデータの内容に応じてボタンの文言や活性/非活性を設定する
+ */
 - (void)refresh;
 
 @end

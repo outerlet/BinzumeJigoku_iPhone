@@ -41,6 +41,12 @@ static NSString* const AttributeNameText		= @"text";
 @property (nonatomic, readonly) ContentsType	contentsType;
 
 /**
+ * Core DataのManaged Objectから、コンテンツの種類に見合ったインスタンスを生成する
+ * @param	managedObject	CoreDataから取得したManaged Object
+ */
++ (ContentsElement*)contentsElementWithManagedObject:(NSManagedObject*)managedObject;
+
+/**
  * イニシャライザ<br />
  * XMLをパースした結果からオブジェクトを生成するときはこちらを使う
  */

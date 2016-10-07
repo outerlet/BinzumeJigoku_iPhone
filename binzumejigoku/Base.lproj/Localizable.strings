@@ -33,10 +33,11 @@
 "message_force_application"			= "アプリを終了します。";
 
 // Save Data Titles
-"save_data_title_0"	= "前回の続き";
-"save_data_title_1"	= "第一の記録";
-"save_data_title_2"	= "第二の記録";
-"save_data_title_3"	= "第三の記録";
+"save_data_title_0"			= "前回の続き";
+"save_data_title_1"			= "第一の記録";
+"save_data_title_2"			= "第二の記録";
+"save_data_title_3"			= "第三の記録";
+"save_data_title_not_saved"	= "記録されていません";
 
 // MainViewController
 "section_name_0" = "前置き";

@@ -11,11 +11,12 @@
 #import "SaveData.h"
 #import "UIView+Adjustment.h"
 
-static const CGFloat kSaveButtonHeight			= 80.0f;
-static const CGFloat kOptionalButtonSideLength	= 36.0f;
-static const CGFloat kOptionalButtonMargin		= 24.0f;
-static const CGFloat kModeLabelTextSize			= 30.0f;
-static const CGFloat kHistoryButtonTextSize		= 18.0f;
+static const CGFloat kSaveButtonHeight				= 100.0f;
+static const CGFloat kOptionalButtonSideLength		= 36.0f;
+static const CGFloat kOptionalButtonMargin			= 24.0f;
+static const CGFloat kModeLabelTextSize				= 30.0f;
+static const CGFloat kHistoryButtonTitleTextSize	= 20.0f;
+static const CGFloat kHistoryButtonDetailTextSize	= 16.0f;
 
 @interface HistorySelectView ()
 
@@ -83,8 +84,8 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 			center.y = marginTop + (interval * 2 * (idx - firstIndex)) + interval;
 			
 			UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-			button.titleLabel.font = [UIFont fontWithName:cif.fontName
-													 size:kHistoryButtonTextSize];
+			button.titleLabel.numberOfLines = 3;
+			button.titleLabel.textAlignment = NSTextAlignmentCenter;
 			[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 			[button setBackgroundImage:[UIImage imageNamed:@"save_button_normal.png"]
 							  forState:UIControlStateNormal];
@@ -192,9 +193,39 @@ static const CGFloat kHistoryButtonTextSize		= 18.0f;
 
 - (void)refresh {
 	for (UIButton* button in _historyButtons) {
-		SaveData* saveData = [[ContentsInterface sharedInstance] saveDataAt:button.tag];
+		ContentsInterface* cif = [ContentsInterface sharedInstance];
 		
-		[button setTitle:saveData.title forState:UIControlStateNormal];
+		SaveData* saveData = [cif saveDataAt:button.tag];
+
+		NSString* title = nil;
+		
+		if (saveData.isSaved) {
+			NSString* key = [NSString stringWithFormat:@"section_name_%ld", (long)saveData.sectionIndex];
+			
+			NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+			formatter.dateFormat = @"yyyy/MM/dd hh:mm:ss";
+			formatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+			NSString* datestr = [formatter stringFromDate:saveData.date];
+			
+			title = [NSString stringWithFormat:@"%@\n%@\n(%@)", saveData.title, NSLocalizedString(key, nil), datestr];
+		} else {
+			title = [NSString stringWithFormat:@"%@\n%@", saveData.title, NSLocalizedString(@"save_data_title_not_saved", nil)];
+		}
+		
+		UIFont* titleFont = [UIFont fontWithName:cif.fontName size:kHistoryButtonTitleTextSize];
+		UIFont* detailFont = [UIFont fontWithName:cif.fontName size:kHistoryButtonDetailTextSize];
+		
+		NSMutableParagraphStyle* style = [[NSMutableParagraphStyle alloc] init];
+		style.paragraphSpacing = titleFont.lineHeight * 0.5f;
+		style.alignment = NSTextAlignmentCenter;
+		
+		NSMutableAttributedString* attributed = [[NSMutableAttributedString alloc] initWithString:title];
+		[attributed addAttribute:NSFontAttributeName value:titleFont range:NSMakeRange(0, saveData.title.length)];
+		[attributed addAttribute:NSFontAttributeName value:detailFont range:NSMakeRange(saveData.title.length, title.length - saveData.title.length)];
+		[attributed addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, title.length)];
+		[attributed addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, title.length)];
+
+		[button setAttributedTitle:attributed forState:UIControlStateNormal];
 		button.enabled = self.saveMode || saveData.isSaved;
 	}
 }

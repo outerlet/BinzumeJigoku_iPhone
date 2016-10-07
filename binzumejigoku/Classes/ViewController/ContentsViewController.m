@@ -56,9 +56,6 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 // セーブデータが保存された時点でのView等の表示状態を復元する
 - (void)restoreSavedCondition:(SaveData*)saveData;
 
-// NSManagedObjectからContentsElementオブジェクトを生成する
-- (ContentsElement*)elementByManagedObject:(NSManagedObject*)managedObject;
-
 // handle~で始まるメソッドが、その中で呼び出す共通処理
 - (void)advanceIfImmediateChain:(ContentsElement*)element;
 
@@ -190,7 +187,7 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 	NSMutableArray* contents = [[NSMutableArray alloc] init];
 
 	for (NSManagedObject* obj in result.fetchedObjects) {
-		ContentsElement* e = [self elementByManagedObject:obj];
+		ContentsElement* e = [ContentsElement contentsElementWithManagedObject:obj];
 		if (e) {
 			[contents addObject:e];
 		}
@@ -287,32 +284,6 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 			}
 		}
 	}
-}
-
-- (ContentsElement*)elementByManagedObject:(NSManagedObject*)managedObject {
-	ContentsType type = [[managedObject valueForKey:AttributeNameType] decodeToContentsType];
-	id cls = nil;
-	switch (type) {
-		case ContentsTypeImage:
-			cls = [ImageElement class];
-			break;
-		case ContentsTypeWait:
-			cls = [WaitElement class];
-			break;
-		case ContentsTypeTitle:
-			cls = [TitleElement class];
-			break;
-		case ContentsTypeText:
-			cls = [TextElement class];
-			break;
-		case ContentsTypeClearText:
-			cls = [ClearTextElement class];
-			break;
-		default:
-			return nil;
-	}
-	
-	return [[cls alloc] initWithManagedObject:managedObject];
 }
 
 - (void)advanceIfImmediateChain:(ContentsElement*)element {
@@ -435,10 +406,12 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 			
 			// 画面左側でロングタップが開始された場合、右方向ならセーブ
 			if (isLeft && (_longPressEndPoint.x - _longPressBeganPoint.x) >= kLongPressActionLength && fabs(_longPressEndPoint.y - _longPressBeganPoint.y) <= kLongPressAvailableLength) {
+				_historyView.saveMode = YES;
 				[_historyView refresh];
 				[_historyView showAnimated:YES completion:nil];
 			// 画面右側でロングタップが開始された場合、左方向ならセーブ
 			} else if (!isLeft && (_longPressBeganPoint.x - _longPressEndPoint.x) >= kLongPressActionLength && fabs(_longPressBeganPoint.y - _longPressEndPoint.y) <= kLongPressAvailableLength) {
+				_historyView.saveMode = YES;
 				[_historyView refresh];
 				[_historyView showAnimated:YES completion:nil];
 			} else {

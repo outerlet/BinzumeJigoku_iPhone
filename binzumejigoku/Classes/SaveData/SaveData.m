@@ -102,7 +102,7 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 			[_textHistories addObject:[NSString stringWithString:history]];
 		}
 		
-		_date = [NSDate date];
+		_date = [NSDate dateWithTimeIntervalSinceNow:[[NSTimeZone systemTimeZone] secondsFromGMT]];
 	}
 }
 

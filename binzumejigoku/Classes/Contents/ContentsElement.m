@@ -8,8 +8,13 @@
 
 #import "ContentsElement.h"
 #import "AppDelegate.h"
-#import "NSString+CustomDecoder.h"
 #import "CoreDataHandler.h"
+#import "ImageElement.h"
+#import "WaitElement.h"
+#import "TitleElement.h"
+#import "TextElement.h"
+#import "ClearTextElement.h"
+#import "NSString+CustomDecoder.h"
 
 @interface ContentsElement ()
 
@@ -20,6 +25,32 @@
 @end
 
 @implementation ContentsElement
+
++ (ContentsElement*)contentsElementWithManagedObject:(NSManagedObject*)managedObject {
+	ContentsType type = [[managedObject valueForKey:AttributeNameType] decodeToContentsType];
+	id cls = nil;
+	switch (type) {
+		case ContentsTypeImage:
+			cls = [ImageElement class];
+			break;
+		case ContentsTypeWait:
+			cls = [WaitElement class];
+			break;
+		case ContentsTypeTitle:
+			cls = [TitleElement class];
+			break;
+		case ContentsTypeText:
+			cls = [TextElement class];
+			break;
+		case ContentsTypeClearText:
+			cls = [ClearTextElement class];
+			break;
+		default:
+			return nil;
+	}
+	
+	return [[cls alloc] initWithManagedObject:managedObject];
+}
 
 - (id)initWithSection:(NSInteger)section sequence:(NSInteger)sequence attribute:(NSDictionary *)attrs object:(id)obj {
 	if (self = [super init]) {
