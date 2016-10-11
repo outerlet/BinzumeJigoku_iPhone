@@ -82,11 +82,19 @@
 	[self addSubview:newView];
 }
 
-- (void)startStreamingWithInterval:(NSTimeInterval)interval completion:(void (^)(void))completion {
+- (void)executeAnimationWithInterval:(NSTimeInterval)interval completion:(void (^)(void))completion {
 	RubyTextView* latestView = [_subviews lastObject];
 	
 	if (latestView) {
-		[latestView startStreamingByInterval:interval completion:completion];
+		[latestView executeAnimationWithInterval:interval completion:completion];
+	}
+}
+
+- (void)cancelAnimation {
+	RubyTextView* latestView = [_subviews lastObject];
+	
+	if (latestView) {
+		[latestView cancelAnimation];
 	}
 }
 
@@ -104,8 +112,8 @@
 		
 		[self setTextElement:textElement];
 		
-		[self startStreamingWithInterval:[ContentsInterface sharedInstance].textSpeedInterval
-							  completion:completion];
+		[self executeAnimationWithInterval:[ContentsInterface sharedInstance].textSpeedInterval
+								completion:completion];
 	} else if ([element isMemberOfClass:[ClearTextElement class]]) {
 		[self clearAllTexts];
 		completion();

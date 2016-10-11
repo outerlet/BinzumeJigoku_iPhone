@@ -90,21 +90,29 @@ static const CGFloat kOnelineHeight		= 48.0f;
 	[self addNewLine];
 }
 
-- (void)startStreamingByInterval:(NSTimeInterval)interval completion:(void (^)(void))completion {
+- (void)executeAnimationWithInterval:(NSTimeInterval)interval completion:(void (^)(void))completion {
 	if (completion) {
 		_completion = completion;
 	}
 
 	RubyOnelineTextView* textView = [_subviews objectAtIndex:_index];
 	
-	[textView startStreamingWithDuration:interval * textView.textLength
-							  completion:^(void) {
-								  if (_index++ < _subviews.count - 1) {
-									  [self startStreamingByInterval:interval completion:nil];
-								  } else {
-									  _completion();
-								  }
-							  }];
+	[textView executeAnimationWithDuration:interval * textView.textLength
+								completion:^(void) {
+									if (++_index < _subviews.count) {
+										[self executeAnimationWithInterval:interval completion:nil];
+									} else {
+										_completion();
+									}
+								}];
+}
+
+- (void)cancelAnimation {
+	[[_subviews objectAtIndex:_index] cancelAnimation];
+	
+	for (NSInteger idx = _index + 1 ; idx < _subviews.count ; idx++) {
+		[[_subviews objectAtIndex:idx] sizeToFit];
+	}
 }
 
 - (RubyOnelineTextView*)addNewLine {

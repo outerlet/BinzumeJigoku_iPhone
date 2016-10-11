@@ -14,11 +14,7 @@
 @interface ContentsWaitingIndicatorView : UIView {
 	@private
 	UIImageView*	_imageView;
-	NSInteger		_animationCount;
 }
-
-/** アニメーション中か */
-@property (nonatomic, readonly)	BOOL	animating;
 
 /**
  * 点滅アニメーションを開始する

@@ -15,7 +15,7 @@
 "phrase_small"			= "小さい";
 "phrase_fast"			= "早い";
 "phrase_slow"			= "遅い";
-"phrase_text_history"	= "テキスト履歴";
+"phrase_text_history"	= "既読の文章";
 "phrase_save"			= "記録";
 "phrase_load"			= "読込";
 

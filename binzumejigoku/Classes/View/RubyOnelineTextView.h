@@ -17,6 +17,7 @@
 	CGRect	_initializedFrame;
 	CGFloat	_rubyHeight;
 	CGFloat	_textHeight;
+	BOOL	_cancelled;
 	
 	NSMutableDictionary<NSValue*, NSAttributedString*>*	_attributedRubys;
 	NSMutableAttributedString*							_attributedText;
@@ -45,6 +46,11 @@
  * @param	duration	ストリーム表示にかける時間(sec)
  * @param	completion	ストリーム表示が完了したら呼び出されるブロック
  */
-- (void)startStreamingWithDuration:(NSTimeInterval)duration completion:(void (^)(void))completion;
+- (void)executeAnimationWithDuration:(NSTimeInterval)duration completion:(void (^)(void))completion;
+
+/**
+ * テキストのストリーム表示を途中で停止し、全てのテキストを表示する
+ */
+- (void)cancelAnimation;
 
 @end

@@ -19,7 +19,8 @@
 	NSMutableArray<RubyOnelineTextView*>*	_subviews;
 	
 	NSInteger	_index;
-	void		(^_completion)(void);
+	
+	void	(^_completion)(void);
 }
 
 /** テキスト色 */
@@ -63,6 +64,11 @@
  * @param	interval	テキスト1文字あたりの描画にかける時間(sec)
  * @param	completion	ストリーム表示が完了した時に呼び出されるブロック
  */
-- (void)startStreamingByInterval:(NSTimeInterval)interval completion:(void (^)(void))completion;
+- (void)executeAnimationWithInterval:(NSTimeInterval)interval completion:(void (^)(void))completion;
+
+/**
+ * テキストのストリーム表示を停止し、全てのテキストを表示する
+ */
+- (void)cancelAnimation;
 
 @end

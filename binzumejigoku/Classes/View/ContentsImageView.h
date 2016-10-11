@@ -32,8 +32,14 @@
  */
 - (void)startAnimationWithEffect:(ImageEffect)effect duration:(NSTimeInterval)duration completion:(void (^)(void))completion;
 
+/**
+ * startAnimationWithEffectのようにアニメーションによってではなく、すぐに画像を表示させる
+ */
 - (void)showImmediate;
 
+/**
+ * このViewを何も表示されていない、最初の状態にリセットする
+ */
 - (void)reset;
 
 @end

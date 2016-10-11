@@ -162,6 +162,7 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+	// テキスト履歴など、別のViewControllerに遷移する前にフラグを立てておいた場合は進行させない
 	if (!_isAdvanceLocked) {
 		[self advanceContents:nil];
 	} else {
@@ -170,7 +171,20 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 }
 
 - (void)touchesEnded:(NSSet<UITouch*>*)touches withEvent:(UIEvent *)event {
-	[self advanceContents:nil];
+	ContentsElement* e = [_contents objectAtIndex:_currentIndex];
+
+	// テキストが進行中(アニメーション実行中)であればそれをキャンセルして
+	// 表示する予定のテキストをすべて表示する
+	if (_isContentsOngoing && e.contentsType == ContentsTypeText) {
+		[_textView cancelAnimation];
+		[_indicatorView startAnimation];
+		
+		[self advanceIfImmediateChain:e];
+		
+		[self contentsElementDidConsume:e];
+	} else {
+		[self advanceContents:nil];
+	}
 }
 
 #pragma mark - Properties
@@ -244,6 +258,8 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 			AlertControllerHandler* handler;
 			
 			ContentsInterface* cif = [ContentsInterface sharedInstance];
+			
+			// 章(section)が終了したので次に行くか、戻るか、終了するか
 			if (element.section < cif.maxSectionIndex) {
 				NSString* msg = NSLocalizedString(@"message_section_finished", nil);
 				handler = [[AlertControllerHandler alloc] initWithTitle:nil
@@ -252,6 +268,7 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 																	tag:kAlertTagEndOfSection];
 				[handler addAction:NSLocalizedString(@"phrase_next_section", nil) style:UIAlertActionStyleDefault tag:kAlertTagConfirmNext];
 				[handler addAction:NSLocalizedString(@"phrase_back", nil) style:UIAlertActionStyleCancel tag:kAlertTagConfirmBack];
+			// 最後の章が終了したので戻る
 			} else {
 				NSString* msg = NSLocalizedString(@"message_last_section_finished", nil);
 				handler = [[AlertControllerHandler alloc] initWithTitle:nil
@@ -313,7 +330,11 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 		if (actionTag == kAlertTagConfirmNext) {
 			_isContentsOngoing = NO;
 			
-			[self loadContentsAt:_sectionIndex + 1];
+			NSInteger nextIndex = _sectionIndex + 1;
+			[self loadContentsAt:nextIndex];
+			
+			[self.autoSaveData reset];
+			self.autoSaveData.sectionIndex = nextIndex;
 			
 			[self advanceContents:nil];
 		// 前の画面に戻る場合

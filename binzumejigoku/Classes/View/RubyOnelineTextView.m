@@ -7,6 +7,7 @@
 //
 
 #import "RubyOnelineTextView.h"
+#import <QuartzCore/QuartzCore.h>
 #import "UIView+Adjustment.h"
 
 @interface RubyOnelineTextView ()
@@ -32,6 +33,7 @@
 		_rubyHeight = frame.size.height * 0.4f;
 		_textHeight = frame.size.height - _rubyHeight;
 		_initializedFrame = frame;
+		_cancelled = NO;
 	}
 	return self;
 }
@@ -97,7 +99,7 @@
 	return appended;
 }
 
-- (void)startStreamingWithDuration:(NSTimeInterval)duration completion:(void (^)(void))completion {
+- (void)executeAnimationWithDuration:(NSTimeInterval)duration completion:(void (^)(void))completion {
 	[self setNeedsLayout];
 	
 	[UIView animateWithDuration:duration
@@ -106,8 +108,15 @@
 						 [self setNeedsLayout];
 					 }
 					 completion:^(BOOL finished) {
-						 completion();
+						 if (!_cancelled) {
+							 completion();
+						 }
 					 }];
+}
+
+- (void)cancelAnimation {
+	_cancelled = YES;
+	[self.layer removeAllAnimations];
 }
 
 - (NSMutableAttributedString*)createAttributedString:(NSString*)string isRuby:(BOOL)isRuby {

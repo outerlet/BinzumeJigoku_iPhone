@@ -20,8 +20,28 @@
 	NSString*	_rubyDelimiter;
 }
 
+/**
+ * 表示するテキストを保持するTextElement要素をセットする
+ * @param	textElement	表示するテキストを保持するTextElement要素
+ */
 - (void)setTextElement:(TextElement*)textElement;
-- (void)startStreamingWithInterval:(NSTimeInterval)interval completion:(void (^)(void))completion;
+
+/**
+ * テキストのストリーム表示を開始する
+ * @param	interval	テキスト1文字あたりの描画にかける時間(sec)
+ * @param	completion	ストリーム表示が完了した時に呼び出されるブロック
+ */
+- (void)executeAnimationWithInterval:(NSTimeInterval)interval completion:(void (^)(void))completion;
+
+/**
+ * テキストのストリーム表示が実行中であれば停止して全てのテキストを表示する
+ */
+- (void)cancelAnimation;
+
+/**
+ * 現在表示されているテキストを全て破棄する<br />
+ * (何も表示されていない状態にする)
+ */
 - (void)clearAllTexts;
 
 @end
