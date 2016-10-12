@@ -66,6 +66,8 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 // ロングプレスを検知したイベントをハンドリングする
 - (void)longPressDidDetect:(UILongPressGestureRecognizer*)gestureRecognizer;
 
+- (void)openTextHistory;
+
 @end
 
 @implementation ContentsViewController
@@ -136,10 +138,12 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 	[self.view addSubview:_titleView];
 	
 	// ジェスチャ(=ロングプレス)のヒントを表示するView
-	UIFont* font = [UIFont fontWithName:[ContentsInterface sharedInstance].fontName size:20.0f];
-	_gestureHintView = [[GestureHintView alloc] initWithFrame:self.view.bounds
-														 font:font
-														hints:NSLocalizedString(@"phrase_text_history", nil), NSLocalizedString(@"phrase_save", nil), NSLocalizedString(@"phrase_back", nil), nil];
+	_gestureHintView = [[GestureHintView alloc] initWithFrame:self.view.bounds];
+	[_gestureHintView setHint:NSLocalizedString(@"phrase_text_history", nil) direction:GestureDirectionNorth];
+	[_gestureHintView setHint:NSLocalizedString(@"phrase_load", nil) direction:GestureDirectionEast];
+	[_gestureHintView setHint:NSLocalizedString(@"phrase_back", nil) direction:GestureDirectionSouth];
+	[_gestureHintView setHint:NSLocalizedString(@"phrase_save", nil) direction:GestureDirectionWest];
+	_gestureHintView.delegate = self;
 	[self.view addSubview:_gestureHintView];
 	
 	// ジェスチャレコグナイザの設定
@@ -159,6 +163,14 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 	if (self.autoSaveData.isSaved) {
 		[self restoreSavedCondition:self.autoSaveData];
 	}
+}
+
+- (void)openTextHistory {
+	_isAdvanceLocked = YES;
+	
+	SaveData* saveData = [[ContentsInterface sharedInstance] saveDataAt:0];
+	TextHistoryViewController* vc = [[TextHistoryViewController alloc] initWithTextHistories:saveData.textHistories];
+	[self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -392,53 +404,39 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 	[self presentViewController:[handler build] animated:YES completion:nil];
 }
 
+- (void)gestureDidForm:(GestureDirection)direction {
+	if (direction == GestureDirectionNorth) {
+		_isAdvanceLocked = YES;
+			
+		SaveData* saveData = [[ContentsInterface sharedInstance] saveDataAt:0];
+		TextHistoryViewController* vc = [[TextHistoryViewController alloc] initWithTextHistories:saveData.textHistories];
+		[self presentViewController:vc animated:YES completion:nil];
+	} else if (direction == GestureDirectionEast) {
+		_historyView.saveMode = YES;
+		[_historyView refresh];
+		[_historyView showAnimated:YES completion:nil];
+	} else if (direction == GestureDirectionSouth) {
+		[self dismissViewControllerAnimated:YES completion:nil];
+	} else if (direction == GestureDirectionWest) {
+		_historyView.saveMode = YES;
+		[_historyView refresh];
+		[_historyView showAnimated:YES completion:nil];
+	}
+}
+
+#pragma mark - Selector
+
 - (void)longPressDidDetect:(UILongPressGestureRecognizer*)gestureRecognizer {
 	if (_historyView.shown || _isContentsOngoing) {
 		return;
 	}
 	
+	CGPoint point = [gestureRecognizer locationInView:_gestureHintView];
+	
 	if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-		_longPressBeganPoint = [gestureRecognizer locationInView:self.view];
-
-		BOOL isLeft = (_longPressBeganPoint.x < self.view.bounds.size.width / 2.0f);
-		CGFloat saveX = isLeft ? _longPressBeganPoint.x + 120.0f : _longPressBeganPoint.x - 120.0f;
-		
-		[_gestureHintView setCenterAtIndex:0 center:CGPointMake(_longPressBeganPoint.x, _longPressBeganPoint.y - 120.0f)];
-		[_gestureHintView setCenterAtIndex:1 center:CGPointMake(saveX, _longPressBeganPoint.y)];
-		[_gestureHintView setCenterAtIndex:2 center:CGPointMake(_longPressBeganPoint.x, _longPressBeganPoint.y + 120.0f)];
-		[_gestureHintView showWithDuration:0.6f hint:0.1f];
+		[_gestureHintView startGestureAt:point];
 	} else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-		_longPressEndPoint = [gestureRecognizer locationInView:self.view];
-
-		[_gestureHintView hideWithDuration:0.6f hint:0.1f];
-		
-		// 上方向(テキスト履歴)
-		if (_longPressBeganPoint.y - _longPressEndPoint.y >= kLongPressActionLength && fabs(_longPressEndPoint.x - _longPressBeganPoint.x) <= kLongPressAvailableLength) {
-			_isAdvanceLocked = YES;
-
-			SaveData* saveData = [[ContentsInterface sharedInstance] saveDataAt:0];
-			TextHistoryViewController* vc = [[TextHistoryViewController alloc] initWithTextHistories:saveData.textHistories];
-			[self presentViewController:vc animated:YES completion:nil];
-		// 下方向(閉じる)
-		} else if (_longPressEndPoint.y - _longPressBeganPoint.y >= kLongPressActionLength && fabs(_longPressEndPoint.x - _longPressBeganPoint.x) <= kLongPressAvailableLength) {
-			[self dismissViewControllerAnimated:YES completion:nil];
-		} else {
-			BOOL isLeft = (_longPressBeganPoint.x < self.view.bounds.size.width / 2.0f);
-			
-			// 画面左側でロングタップが開始された場合、右方向ならセーブ
-			if (isLeft && (_longPressEndPoint.x - _longPressBeganPoint.x) >= kLongPressActionLength && fabs(_longPressEndPoint.y - _longPressBeganPoint.y) <= kLongPressAvailableLength) {
-				_historyView.saveMode = YES;
-				[_historyView refresh];
-				[_historyView showAnimated:YES completion:nil];
-			// 画面右側でロングタップが開始された場合、左方向ならセーブ
-			} else if (!isLeft && (_longPressBeganPoint.x - _longPressEndPoint.x) >= kLongPressActionLength && fabs(_longPressBeganPoint.y - _longPressEndPoint.y) <= kLongPressAvailableLength) {
-				_historyView.saveMode = YES;
-				[_historyView refresh];
-				[_historyView showAnimated:YES completion:nil];
-			} else {
-				// そのまま離したら何もしない
-			}
-		}
+		[_gestureHintView endGestureAt:point];
 	}
 }
 

@@ -9,16 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "AlertControllerHandler.h"
 #import "HistorySelectView.h"
+#import "GestureHintView.h"
 
 @class TitleView;
 @class ContentsTitleView;
 @class ContentsImageView;
 @class ContentsTextView;
 @class ContentsWaitingIndicatorView;
-@class GestureHintView;
 @class SaveData;
 
-@interface ContentsViewController : UIViewController <AlertControllerHandlerDelegate, HistorySelectViewDelegate> {
+@interface ContentsViewController : UIViewController <AlertControllerHandlerDelegate, HistorySelectViewDelegate, GestureHintViewDelegate> {
 	@private
 	ContentsTitleView*				_titleView;
 	ContentsImageView*				_imageView;

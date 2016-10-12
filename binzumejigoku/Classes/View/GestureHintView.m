@@ -10,46 +10,121 @@
 #import "ContentsInterface.h"
 #import "UIView+Adjustment.h"
 
+static const CGFloat	kDistanceFromTouchToHint	= 120.0f;
+static const CGFloat	kDistanceTouchAccept		= 60.0f;
+static const CGFloat	kLengthTouchCancel			= 10.0f;
+
+@interface GestureHintView ()
+
+// このViewを表示する
+- (void)showWithDuration:(NSTimeInterval)duration hint:(NSTimeInterval)hintDuration;
+
+// このViewを非表示にする
+- (void)hideWithDuration:(NSTimeInterval)duration hint:(NSTimeInterval)hintDuration;
+
+@end
+
 @implementation GestureHintView
 
-- (id)initWithFrame:(CGRect)frame font:(UIFont*)font hints:(NSString*)hintTexts, ...NS_REQUIRES_NIL_TERMINATION {
+- (id)initWithFrame:(CGRect)frame {
 	if (self = [super initWithFrame:frame]) {
-		self.backgroundColor = [UIColor clearColor];
+		self.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
+		self.alpha = 0.0f;
+		
+		_hintLabels = [[NSMutableDictionary alloc] init];
+		_startPoint = CGPointZero;
+		
 		self.hidden = YES;
-		
-		ContentsInterface* cif = [ContentsInterface sharedInstance];
-		
-		_backgroundView = [[UIView alloc] initWithFrame:self.bounds];
-		_backgroundView.backgroundColor = [UIColor blackColor];
-		_backgroundView.alpha = 0.0f;
-		[self addSubview:_backgroundView];
-		
-		NSMutableArray* labels = [[NSMutableArray alloc] init];
-		va_list texts;
-		va_start(texts, hintTexts);
-		for (NSString* text = hintTexts; text != nil; text = va_arg(texts, NSString*)) {
-			NSDictionary* attrs = @{ NSFontAttributeName: font, NSForegroundColorAttributeName: [UIColor whiteColor] };
-			
-			UILabel* label = [[UILabel alloc] initWithFrame:CGRectZero];
-			label.font = [UIFont fontWithName:cif.fontName size:32.0f];
-			label.backgroundColor = [UIColor clearColor];
-			label.attributedText = [[NSAttributedString alloc] initWithString:text attributes:attrs];
-			label.numberOfLines = 2;
-			label.alpha = 0.0f;
-			[label sizeToFit];
-			[self addSubview:label];
-			
-			[labels addObject:label];
-		}
-		va_end(texts);
-		
-		_hintLabels = [NSArray arrayWithArray:labels];
 	}
 	return self;
 }
 
-- (void)setCenterAtIndex:(NSInteger)index center:(CGPoint)center {
-	[_hintLabels objectAtIndex:index].center = center;
+- (void)setHint:(NSString*)hintText direction:(GestureDirection)direction {
+	NSNumber* key = [NSNumber numberWithInteger:direction];
+	
+	if (hintText) {
+		UILabel* label = [[UILabel alloc] initWithFrame:CGRectZero];
+		label.backgroundColor = [UIColor clearColor];
+		label.textColor = [UIColor whiteColor];
+		label.font = [UIFont fontWithName:[ContentsInterface sharedInstance].fontName size:20.0f];
+		label.text = hintText;
+		label.alpha = 0.0f;
+		[label sizeToFit];
+		[self addSubview:label];
+		
+		[_hintLabels setObject:label forKey:key];
+	} else {
+		[_hintLabels removeObjectForKey:key];
+	}
+}
+
+- (void)startGestureAt:(CGPoint)startPoint {
+	_startPoint = startPoint;
+	
+	// ジェスチャ開始位置から各ラベルを適切な位置に配置する
+	for (NSNumber* key in _hintLabels.allKeys) {
+		UILabel* label = [_hintLabels objectForKey:key];
+		
+		GestureDirection direction = [key integerValue];
+		switch (direction) {
+			case GestureDirectionNorth:
+				label.center = CGPointMake(startPoint.x, startPoint.y - kDistanceFromTouchToHint);
+				break;
+			case GestureDirectionEast:
+				label.center = CGPointMake(startPoint.x + kDistanceFromTouchToHint, startPoint.y);
+				break;
+			case GestureDirectionSouth:
+				label.center = CGPointMake(startPoint.x, startPoint.y + kDistanceFromTouchToHint);
+				break;
+			case GestureDirectionWest:
+				label.center = CGPointMake(startPoint.x - kDistanceFromTouchToHint, startPoint.y);
+				break;
+			default:
+				return;
+		}
+		
+		CGRect frame = label.frame;
+		
+		// ラベルが画面外にはみ出してしまうようなら表示しない
+		label.hidden = (frame.origin.x < 0.0f
+						|| frame.origin.y < 0.0f
+						|| frame.origin.x + frame.size.width > self.bounds.size.width
+						|| frame.origin.y + frame.size.height > self.bounds.size.height);
+	}
+	
+	[self showWithDuration:0.6f hint:0.1f];
+}
+
+- (void)endGestureAt:(CGPoint)endPoint {
+	GestureDirection direction = GestureDirectionUnknown;
+	
+	CGFloat distanceX = endPoint.x - _startPoint.x;
+	CGFloat distanceY = endPoint.y - _startPoint.y;
+	
+	// X軸方向に規定の距離以上の移動を認めた場合
+	if (fabs(distanceX) > kDistanceTouchAccept) {
+		if (fabs(distanceY) < kLengthTouchCancel) {
+			direction = (distanceX < 0.0f) ? GestureDirectionWest : GestureDirectionEast;
+		}
+	}
+	
+	// Y軸方向に規定の距離以上の移動を認めた場合
+	if (fabs(distanceY) > kDistanceTouchAccept) {
+		if (fabs(distanceX) < kLengthTouchCancel) {
+			direction = (distanceY < 0.0f) ? GestureDirectionNorth : GestureDirectionSouth;
+		}
+	}
+	
+	// 正しい方向が選択され、かつその方向のラベルが表示されていればコマンドは有効
+	if (direction != GestureDirectionUnknown) {
+		UILabel* label = [_hintLabels objectForKey:[NSNumber numberWithInteger:direction]];
+		
+		if (self.delegate && !label.hidden) {
+			[self.delegate gestureDidForm:direction];
+		}
+	}
+	
+	[self hideWithDuration:0.6f hint:0.1f];
 }
 
 - (void)showWithDuration:(NSTimeInterval)duration hint:(NSTimeInterval)hintDuration {
@@ -57,10 +132,12 @@
 	
 	[UIView animateWithDuration:duration
 					 animations:^(void) {
-						 _backgroundView.alpha = 0.5f;
+						 self.alpha = 1.0f;
 					 }
 					 completion:^(BOOL finished) {
-						 for (UILabel* label in _hintLabels) {
+						 for (NSNumber* key in _hintLabels.allKeys) {
+							 UILabel* label = [_hintLabels objectForKey:key];
+							 
 							 [UIView animateWithDuration:hintDuration
 											  animations:^(void) {
 												  label.alpha = 1.0f;
@@ -70,24 +147,27 @@
 }
 
 - (void)hideWithDuration:(NSTimeInterval)duration hint:(NSTimeInterval)hintDuration {
-	for (NSInteger idx = 0 ; idx < _hintLabels.count ; idx++) {
-		UILabel* label = [_hintLabels objectAtIndex:idx];
+	NSInteger index = 0;
+	for (NSNumber* key in _hintLabels.allKeys) {
+		UILabel* label = [_hintLabels objectForKey:key];
 		
 		[UIView animateWithDuration:hintDuration
 						 animations:^(void) {
 							 label.alpha = 0.0f;
 						 }
 						 completion:^(BOOL finished) {
-							 if (idx == _hintLabels.count - 1) {
+							 if (index == _hintLabels.count - 1) {
 								 [UIView animateWithDuration:duration
 												  animations:^(void) {
-													  _backgroundView.alpha = 0.0f;
+													  self.alpha = 0.0f;
 												  }
 												  completion:^(BOOL finished) {
 													  self.hidden = YES;
 												  }];
 							 }
 						 }];
+		
+		++index;
 	}
 }
 

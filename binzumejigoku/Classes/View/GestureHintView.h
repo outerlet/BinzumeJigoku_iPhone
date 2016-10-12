@@ -9,42 +9,67 @@
 #import <UIKit/UIKit.h>
 
 /**
+ * ジェスチャが行われた方向
+ */
+typedef NS_ENUM(NSUInteger, GestureDirection) {
+	GestureDirectionUnknown	= 0,	// 不明(=未確定)
+	GestureDirectionNorth	= 1,	// 上方向
+	GestureDirectionEast	= 2,	// 右方向
+	GestureDirectionSouth	= 3,	// 下方向
+	GestureDirectionWest	= 4,	// 左方向
+};
+
+/**
+ * ジェスチャが成立したイベントを補足するデリゲート
+ */
+@protocol GestureHintViewDelegate <NSObject>
+
+/**
+ * ジェスチャが成立したイベントを通知するデリゲートメソッド
+ * @param	direction	ジェスチャが成立した方向
+ */
+- (void)gestureDidForm:(GestureDirection)direction;
+
+@end
+
+/**
  * ロングタップのジェスチャに関するヒントを表示するView
  */
 @interface GestureHintView : UIView {
 	@private
-	UIView*				_backgroundView;
-	NSArray<UILabel*>*	_hintLabels;
+	NSMutableDictionary<NSNumber*, UILabel*>*	_hintLabels;
+	CGPoint	_startPoint;
 }
+
+/** ジェスチャが成立したイベントを捕捉するデリゲート */
+@property (nonatomic)	id<GestureHintViewDelegate>	delegate;
 
 /**
  * イニシャライザ
  * @param	frame		Viewを初期化するバウンディングボックス
- * @param	font		フォント
- * @param	hintTexts	操作のヒントとなる文字列。ここで与えた順番がそのまま他のメソッドで指定すべきインデックス値になる
  * @return	初期化されたインスタンス
  */
-- (id)initWithFrame:(CGRect)frame font:(UIFont*)font hints:(NSString*)hintTexts, ...NS_REQUIRES_NIL_TERMINATION;
+- (id)initWithFrame:(CGRect)frame;
 
 /**
- * 指定したindexに該当するテキストの中心位置を指定する
- * @param	index	中心位置を設定したいテキストを特定するためのインデックス値
- * @param	center	テキストの中心位置
+ *
+ * @param	hintText
+ * @param	direction
  */
-- (void)setCenterAtIndex:(NSInteger)index center:(CGPoint)center;
+- (void)setHint:(NSString*)hintText direction:(GestureDirection)direction;
 
 /**
- * 透過状態の黒を背景にヒントの文字列を白文字で表示させる
- * @param	duration		背景を表示させる時間
- * @param	hintDuration	ヒントの文字列を表示させる時間
+ * ジェスチャをこの位置から開始する<br />
+ * このViewを表示させ、setHint:direction:で追加したヒントを表示する
+ * @param	startPoint	ジェスチャを開始する位置
  */
-- (void)showWithDuration:(NSTimeInterval)duration hint:(NSTimeInterval)hintDuration;
+- (void)startGestureAt:(CGPoint)startPoint;
 
 /**
- * showWithDurationで表示したヒントを非表示にする
- * @param	duration		背景を非表示にする時間
- * @param	hintDuration	ヒントの文字列を非表示にする時間
+ * ジェスチャをこの位置で終了させる<br />
+ * デリゲートメソッドを呼び出し、このViewを非表示にする
+ * @param	endPoint	ジェスチャを終了させる位置
  */
-- (void)hideWithDuration:(NSTimeInterval)duration hint:(NSTimeInterval)hintDuration;
+- (void)endGestureAt:(CGPoint)endPoint;
 
 @end
