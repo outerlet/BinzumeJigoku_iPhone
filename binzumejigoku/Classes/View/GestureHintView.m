@@ -120,7 +120,7 @@ static const CGFloat	kLengthTouchCancel			= 10.0f;
 		UILabel* label = [_hintLabels objectForKey:[NSNumber numberWithInteger:direction]];
 		
 		if (self.delegate && !label.hidden) {
-			[self.delegate gestureDidForm:direction];
+			[self.delegate hintGestureDidDetect:direction];
 		}
 	}
 	

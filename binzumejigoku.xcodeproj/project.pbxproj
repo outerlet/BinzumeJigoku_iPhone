@@ -23,7 +23,12 @@
 		5C3E23951D8591E900760EA7 /* UIView+Adjustment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E23941D8591E900760EA7 /* UIView+Adjustment.m */; };
 		5C3E239A1D85921C00760EA7 /* RubyOnelineTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E23971D85921C00760EA7 /* RubyOnelineTextView.m */; };
 		5C3E239B1D85921C00760EA7 /* RubyTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E23991D85921C00760EA7 /* RubyTextView.m */; };
+		5C41031B1DAFBB7400053429 /* tutorial_swipe.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4103191DAFBB7400053429 /* tutorial_swipe.png */; };
+		5C41031C1DAFBB7400053429 /* tutorial_tap.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C41031A1DAFBB7400053429 /* tutorial_tap.png */; };
 		5C4849551D718EE90045068C /* ContentsImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4849541D718EE90045068C /* ContentsImageView.m */; };
+		5C6131B51DB101F700E46615 /* TutorialImageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6131B41DB101F700E46615 /* TutorialImageTextView.m */; };
+		5C6131B81DB1023B00E46615 /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6131B71DB1023B00E46615 /* TutorialViewController.m */; };
+		5C6131BB1DB1044600E46615 /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6131BA1DB1044600E46615 /* OverlayViewController.m */; };
 		5C7575B11D4DD9260094D5B3 /* section0_00.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575A91D4DD9260094D5B3 /* section0_00.jpg */; };
 		5C7575B21D4DD9260094D5B3 /* section0_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575AA1D4DD9260094D5B3 /* section0_01.jpg */; };
 		5C7575B31D4DD9260094D5B3 /* section1_00.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575AB1D4DD9260094D5B3 /* section1_00.jpg */; };
@@ -94,8 +99,16 @@
 		5C3E23971D85921C00760EA7 /* RubyOnelineTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RubyOnelineTextView.m; path = Classes/View/RubyOnelineTextView.m; sourceTree = "<group>"; };
 		5C3E23981D85921C00760EA7 /* RubyTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RubyTextView.h; path = Classes/View/RubyTextView.h; sourceTree = "<group>"; };
 		5C3E23991D85921C00760EA7 /* RubyTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RubyTextView.m; path = Classes/View/RubyTextView.m; sourceTree = "<group>"; };
+		5C4103191DAFBB7400053429 /* tutorial_swipe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tutorial_swipe.png; path = Resources/Images/tutorial_swipe.png; sourceTree = "<group>"; };
+		5C41031A1DAFBB7400053429 /* tutorial_tap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tutorial_tap.png; path = Resources/Images/tutorial_tap.png; sourceTree = "<group>"; };
 		5C4849531D718EE90045068C /* ContentsImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsImageView.h; path = Classes/View/ContentsImageView.h; sourceTree = "<group>"; };
 		5C4849541D718EE90045068C /* ContentsImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsImageView.m; path = Classes/View/ContentsImageView.m; sourceTree = "<group>"; };
+		5C6131B31DB101F700E46615 /* TutorialImageTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialImageTextView.h; path = Classes/View/TutorialImageTextView.h; sourceTree = "<group>"; };
+		5C6131B41DB101F700E46615 /* TutorialImageTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialImageTextView.m; path = Classes/View/TutorialImageTextView.m; sourceTree = "<group>"; };
+		5C6131B61DB1023B00E46615 /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialViewController.h; path = Classes/ViewController/TutorialViewController.h; sourceTree = "<group>"; };
+		5C6131B71DB1023B00E46615 /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialViewController.m; path = Classes/ViewController/TutorialViewController.m; sourceTree = "<group>"; };
+		5C6131B91DB1044600E46615 /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OverlayViewController.h; path = Classes/ViewController/OverlayViewController.h; sourceTree = "<group>"; };
+		5C6131BA1DB1044600E46615 /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OverlayViewController.m; path = Classes/ViewController/OverlayViewController.m; sourceTree = "<group>"; };
 		5C7575A91D4DD9260094D5B3 /* section0_00.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section0_00.jpg; path = Resources/Images/section0_00.jpg; sourceTree = "<group>"; };
 		5C7575AA1D4DD9260094D5B3 /* section0_01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section0_01.jpg; path = Resources/Images/section0_01.jpg; sourceTree = "<group>"; };
 		5C7575AB1D4DD9260094D5B3 /* section1_00.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section1_00.jpg; path = Resources/Images/section1_00.jpg; sourceTree = "<group>"; };
@@ -222,6 +235,8 @@
 		5C7575A81D4DD9040094D5B3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C4103191DAFBB7400053429 /* tutorial_swipe.png */,
+				5C41031A1DAFBB7400053429 /* tutorial_tap.png */,
 				5CF8697A1DA28074001EB437 /* save_button_normal.png */,
 				5CF8697B1DA28074001EB437 /* save_button_press.png */,
 				5C0583F51D9BF07500815912 /* ic_cancel_white.png */,
@@ -361,8 +376,12 @@
 				5CC6E31B1D4B97FB0073FC30 /* HistoryViewController.m */,
 				5C7575C51D4DEA910094D5B3 /* ContentsViewController.h */,
 				5C7575C61D4DEA910094D5B3 /* ContentsViewController.m */,
+				5C6131B91DB1044600E46615 /* OverlayViewController.h */,
+				5C6131BA1DB1044600E46615 /* OverlayViewController.m */,
 				5CAB185E1DA3DB580065B8AC /* TextHistoryViewController.h */,
 				5CAB185F1DA3DB580065B8AC /* TextHistoryViewController.m */,
+				5C6131B61DB1023B00E46615 /* TutorialViewController.h */,
+				5C6131B71DB1023B00E46615 /* TutorialViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -391,6 +410,8 @@
 				5C0E49661D9AA4840030D584 /* GestureHintView.m */,
 				5C0583F21D9BEB9700815912 /* HistorySelectView.h */,
 				5C0583F31D9BEB9700815912 /* HistorySelectView.m */,
+				5C6131B31DB101F700E46615 /* TutorialImageTextView.h */,
+				5C6131B41DB101F700E46615 /* TutorialImageTextView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -457,9 +478,11 @@
 				5C7575B41D4DD9260094D5B3 /* section1_01.jpg in Resources */,
 				5C7DD3DA1D9407FD00C0B6DC /* ic_wait_advance.png in Resources */,
 				5CF8697D1DA28074001EB437 /* save_button_press.png in Resources */,
+				5C41031C1DAFBB7400053429 /* tutorial_tap.png in Resources */,
 				5CC1B8AA1D4F7E790003DD38 /* AppSetting.plist in Resources */,
 				5C7575B71D4DD9260094D5B3 /* section3_00.jpg in Resources */,
 				5C7575B11D4DD9260094D5B3 /* section0_00.jpg in Resources */,
+				5C41031B1DAFBB7400053429 /* tutorial_swipe.png in Resources */,
 				5C8CBD801D9565CF009A7C02 /* section2_02.jpg in Resources */,
 				5C8722FF1D86D770001AAF22 /* LaunchScreen.storyboard in Resources */,
 				5C8CBD811D9565CF009A7C02 /* section2_03.jpg in Resources */,
@@ -486,6 +509,7 @@
 			files = (
 				5CC1B8AD1D4F7F7B0003DD38 /* SettingTableViewCell.m in Sources */,
 				5C7575C71D4DEA910094D5B3 /* ContentsViewController.m in Sources */,
+				5C6131B81DB1023B00E46615 /* TutorialViewController.m in Sources */,
 				5CBF62AC1D97F98800D9C880 /* SaveData.m in Sources */,
 				5C9C8F711D6C7F3000E80264 /* CoreDataHandler.m in Sources */,
 				5CBF62AF1D980A5E00D9C880 /* Utility.m in Sources */,
@@ -513,8 +537,10 @@
 				5C3D6B121D6B222700F24098 /* BinzumeJigoku.xcdatamodeld in Sources */,
 				5C7DD3DD1D9408B700C0B6DC /* ContentsWaitingIndicatorView.m in Sources */,
 				5C0B10161D686B3A00148096 /* ContentsParser.m in Sources */,
+				5C6131BB1DB1044600E46615 /* OverlayViewController.m in Sources */,
 				5CC6E3191D4B97E30073FC30 /* SettingViewController.m in Sources */,
 				5C7575D61D4E300D0094D5B3 /* AlertControllerHandler.m in Sources */,
+				5C6131B51DB101F700E46615 /* TutorialImageTextView.m in Sources */,
 				5CC6E31C1D4B97FB0073FC30 /* HistoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

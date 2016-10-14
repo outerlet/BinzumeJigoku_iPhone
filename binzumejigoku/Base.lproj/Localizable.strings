@@ -31,6 +31,8 @@
 "message_load_successful"			= "読込しました。";
 "message_load_failure"				= "読込に失敗しました。";
 "message_force_application"			= "アプリを終了します。";
+"message_tutorial_for_long_tap"		= "物語のテキストが進んでいない時に画面をしばらくタップし続けると、メニューが表示されます";
+"message_tutorial_for_swipe"		= "表示されたメニューの示す方向へ指をスワイプして放すと、そのメニューが開きます";
 
 // Save Data Titles
 "save_data_title_0"			= "前回の続き";

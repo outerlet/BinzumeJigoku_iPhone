@@ -10,6 +10,7 @@
 #import "AlertControllerHandler.h"
 #import "HistorySelectView.h"
 #import "GestureHintView.h"
+#import "OverlayViewController.h"
 
 @class TitleView;
 @class ContentsTitleView;
@@ -18,7 +19,7 @@
 @class ContentsWaitingIndicatorView;
 @class SaveData;
 
-@interface ContentsViewController : UIViewController <AlertControllerHandlerDelegate, HistorySelectViewDelegate, GestureHintViewDelegate> {
+@interface ContentsViewController : UIViewController <AlertControllerHandlerDelegate, HistorySelectViewDelegate, GestureHintViewDelegate, OverlayViewControllerDelegate> {
 	@private
 	ContentsTitleView*				_titleView;
 	ContentsImageView*				_imageView;
@@ -30,7 +31,7 @@
 	NSArray*	_contents;
 	NSInteger	_currentIndex;
 	BOOL		_isContentsOngoing;
-	BOOL		_isAdvanceLocked;
+	
 	SaveData*	_targetSaveData;
 	
 	UILongPressGestureRecognizer*	_gestureRecognizer;

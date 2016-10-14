@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, GestureDirection) {
  * ジェスチャが成立したイベントを通知するデリゲートメソッド
  * @param	direction	ジェスチャが成立した方向
  */
-- (void)gestureDidForm:(GestureDirection)direction;
+- (void)hintGestureDidDetect:(GestureDirection)direction;
 
 @end
 

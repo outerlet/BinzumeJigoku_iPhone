@@ -25,12 +25,11 @@
 #import "GestureHintView.h"
 #import "SaveData.h"
 #import "TextHistoryViewController.h"
+#import "TutorialViewController.h"
 #import "NSString+CustomDecoder.h"
 
-const CGFloat kHeightOfIndicator		= 40.0f;
-const CGFloat kSideMarginOfViews		= 10.0f;
-const CGFloat kLongPressActionLength	= 10.0f;
-const CGFloat kLongPressAvailableLength	= 20.0f;
+const CGFloat kHeightOfIndicator	= 40.0f;
+const CGFloat kSideMarginOfViews	= 10.0f;
 
 const NSInteger kAlertTagEndOfSection	= 10001;
 const NSInteger kAlertTagEndOfContents	= 10002;
@@ -64,9 +63,7 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 - (void)contentsElementDidConsume:(ContentsElement*)element;
 
 // ロングプレスを検知したイベントをハンドリングする
-- (void)longPressDidDetect:(UILongPressGestureRecognizer*)gestureRecognizer;
-
-- (void)openTextHistory;
+- (void)respondsToLongPress:(UILongPressGestureRecognizer*)gestureRecognizer;
 
 @end
 
@@ -84,7 +81,6 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 		self.autoSaveData.sectionIndex = sectionIndex;
 		
 		_isContentsOngoing = NO;
-		_isAdvanceLocked = NO;
 		
 		_longPressBeganPoint = CGPointZero;
 		_longPressEndPoint = CGPointZero;
@@ -101,7 +97,6 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 		}
 		
 		_isContentsOngoing = NO;
-		_isAdvanceLocked = NO;
 		
 		_longPressBeganPoint = CGPointZero;
 		_longPressEndPoint = CGPointZero;
@@ -148,7 +143,7 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 	
 	// ジェスチャレコグナイザの設定
 	_gestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
-																	   action:@selector(longPressDidDetect:)];
+																	   action:@selector(respondsToLongPress:)];
 	_gestureRecognizer.minimumPressDuration = 0.6f;
 	_gestureRecognizer.enabled = NO;
 	[self.view addGestureRecognizer:_gestureRecognizer];
@@ -165,20 +160,13 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 	}
 }
 
-- (void)openTextHistory {
-	_isAdvanceLocked = YES;
-	
-	SaveData* saveData = [[ContentsInterface sharedInstance] saveDataAt:0];
-	TextHistoryViewController* vc = [[TextHistoryViewController alloc] initWithTextHistories:saveData.textHistories];
-	[self presentViewController:vc animated:YES completion:nil];
-}
-
 - (void)viewDidAppear:(BOOL)animated {
-	// テキスト履歴など、別のViewControllerに遷移する前にフラグを立てておいた場合は進行させない
-	if (!_isAdvanceLocked) {
-		[self advanceContents:nil];
+	if (![ContentsInterface sharedInstance].tutorialFinished) {
+		TutorialViewController* vc = [[TutorialViewController alloc] init];
+		vc.delegate = self;
+		[self presentViewController:vc animated:YES completion:nil];
 	} else {
-		_isAdvanceLocked = NO;
+		[self advanceContents:nil];
 	}
 }
 
@@ -404,10 +392,8 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 	[self presentViewController:[handler build] animated:YES completion:nil];
 }
 
-- (void)gestureDidForm:(GestureDirection)direction {
+- (void)hintGestureDidDetect:(GestureDirection)direction {
 	if (direction == GestureDirectionNorth) {
-		_isAdvanceLocked = YES;
-			
 		SaveData* saveData = [[ContentsInterface sharedInstance] saveDataAt:0];
 		TextHistoryViewController* vc = [[TextHistoryViewController alloc] initWithTextHistories:saveData.textHistories];
 		[self presentViewController:vc animated:YES completion:nil];
@@ -424,9 +410,17 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 	}
 }
 
+- (void)overlayViewControllerDismissed:(id)sender {
+	if ([sender isMemberOfClass:[TutorialViewController class]]) {
+		[ContentsInterface sharedInstance].tutorialFinished = YES;
+	}
+	
+	[self advanceContents:nil];
+}
+
 #pragma mark - Selector
 
-- (void)longPressDidDetect:(UILongPressGestureRecognizer*)gestureRecognizer {
+- (void)respondsToLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
 	if (_historyView.shown || _isContentsOngoing) {
 		return;
 	}

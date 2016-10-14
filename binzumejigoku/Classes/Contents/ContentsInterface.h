@@ -21,6 +21,7 @@
 	NSString*			_rubyDelimiter;
 	CGFloat				_textSpeedInterval;
 	CGFloat				_textSize;
+	BOOL				_tutorialFinished;
 	NSArray<SaveData*>*	_saveDatas;
 }
 
@@ -46,6 +47,9 @@
 
 /** テキストサイズ(pt) */
 @property (nonatomic)	CGFloat	textSize;
+
+/** チュートリアルが終了したかどうか */
+@property (nonatomic)	BOOL	tutorialFinished;
 
 /**
  * アプリに唯一のContentsInterfaceのオブジェクトを取得する<br />

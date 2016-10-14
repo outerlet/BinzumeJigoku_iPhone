@@ -15,6 +15,7 @@ NSString* const kKeyOfRubyDelimiter		= @"KEY_OF_RUBY_DELIMITER"; 		// NSUserDefa
 NSString* const kKeyOfFontName			= @"KEY_OF_FONT_NAME";				// NSUserDefaultsのキー文字列(フォント名)
 NSString* const kKeyOfTextSpeedInterval	= @"KEY_OF_TEXT_SPEED_INTERVAL";	// NSUserDefaultsのキー文字列(テキストスピード)
 NSString* const kKeyOfTextSize			= @"KEY_OF_TEXT_SIZE";				// NSUserDefaultsのキー文字列(テキストサイズ)
+NSString* const kKeyOfTutorialFinished	= @"KEY_OF_TUTORIAL_FINISHED";		// NSUserDefaultsのキー文字列(チュートリアルが終了したか)
 
 static NSString* const SettingPlistName	= @"AppSetting";
 
@@ -47,6 +48,8 @@ static ContentsInterface*	_instance;
 	if (_textSize == 0.0f) {
 		self.textSize = (CGFloat)[[[self.settings objectForKey:@"TextSize"] objectAtIndex:1] floatValue];
 	}
+	
+	_tutorialFinished = [defaults boolForKey:kKeyOfTutorialFinished];
 	
 	NSMutableArray* saveDatas = [[NSMutableArray alloc] init];
 	for (NSInteger idx = 0 ; idx <= 3 ; idx++) {
@@ -141,6 +144,18 @@ static ContentsInterface*	_instance;
 	
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setFloat:_textSize forKey:kKeyOfTextSize];
+	[defaults synchronize];
+}
+
+- (BOOL)tutorialFinished {
+	return _tutorialFinished;
+}
+
+- (void)setTutorialFinished:(BOOL)tutorialFinished {
+	_tutorialFinished = tutorialFinished;
+	
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setBool:_tutorialFinished forKey:kKeyOfTutorialFinished];
 	[defaults synchronize];
 }
 

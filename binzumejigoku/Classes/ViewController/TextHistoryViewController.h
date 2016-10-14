@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OverlayViewController.h"
 
-@interface TextHistoryViewController : UIViewController {
+@interface TextHistoryViewController : OverlayViewController {
 	@private
 	NSArray<NSString*>*	_textHistories;
 }
