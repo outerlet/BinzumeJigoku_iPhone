@@ -6,11 +6,13 @@
 //  Copyright © 2016年 1-Take. All rights reserved.
 //
 
-#import "MainViewController.h"
+#import "ContentsSelectViewController.h"
+#import "ContentsInterface.h"
 #import "ContentsViewController.h"
 #import "MainPageView.h"
+#import "TutorialViewController.h"
 
-@implementation MainViewController
+@implementation ContentsSelectViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

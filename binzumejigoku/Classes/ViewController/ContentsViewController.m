@@ -161,8 +161,8 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-	if (![ContentsInterface sharedInstance].tutorialFinished) {
-		TutorialViewController* vc = [[TutorialViewController alloc] init];
+	if ([ContentsInterface sharedInstance].tutorialStatus < TutorialStatusHowToControl) {
+		TutorialViewController* vc = [[TutorialViewController alloc] initWithTutorialType:TutorialTypeHowToControl];
 		vc.delegate = self;
 		[self presentViewController:vc animated:YES completion:nil];
 	} else {
@@ -412,7 +412,7 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 
 - (void)overlayViewControllerDismissed:(id)sender {
 	if ([sender isMemberOfClass:[TutorialViewController class]]) {
-		[ContentsInterface sharedInstance].tutorialFinished = YES;
+		[ContentsInterface sharedInstance].tutorialStatus = TutorialStatusHowToControl;
 	}
 	
 	[self advanceContents:nil];

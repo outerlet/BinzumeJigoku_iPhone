@@ -13,7 +13,7 @@
  * 読む章を選択するためのViewController<br />
  * アプリケーションのメイン画面
  */
-@interface MainViewController : UIViewController <MainPageViewDelegate> {
+@interface ContentsSelectViewController : UIViewController <MainPageViewDelegate> {
     @private
     UIScrollView*   _scrollView;
 }

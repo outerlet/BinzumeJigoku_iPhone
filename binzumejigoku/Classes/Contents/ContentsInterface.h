@@ -12,6 +12,20 @@
 @class SaveData;
 
 /**
+ * チュートリアルの進行状況
+ */
+typedef NS_ENUM(NSUInteger, TutorialStatus) {
+	/** 始まってない */
+	TutorialStatusNotStarted		= 0,
+	/** アプリ初回起動時の説明を終了 */
+	TutorialStatusAboutApplication	= 1,
+	/** 物語を開始したときの操作方法の説明を終了 */
+	TutorialStatusHowToControl		= 2,
+	/** 全てのチュートリアルを終了 */
+	TutorialStatusAll				= TutorialStatusHowToControl,
+};
+
+/**
  * コンテンツの表示に関係する共通機能やプロパティを提供するシングルトンクラス
  */
 @interface ContentsInterface : NSObject {
@@ -21,7 +35,7 @@
 	NSString*			_rubyDelimiter;
 	CGFloat				_textSpeedInterval;
 	CGFloat				_textSize;
-	BOOL				_tutorialFinished;
+	TutorialStatus		_tutorialStatus;
 	NSArray<SaveData*>*	_saveDatas;
 }
 
@@ -49,7 +63,7 @@
 @property (nonatomic)	CGFloat	textSize;
 
 /** チュートリアルが終了したかどうか */
-@property (nonatomic)	BOOL	tutorialFinished;
+@property (nonatomic)	TutorialStatus	tutorialStatus;
 
 /**
  * アプリに唯一のContentsInterfaceのオブジェクトを取得する<br />

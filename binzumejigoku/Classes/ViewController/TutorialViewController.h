@@ -9,6 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "OverlayViewController.h"
 
-@interface TutorialViewController : OverlayViewController
+typedef NS_ENUM(NSUInteger, TutorialType) {
+	TutorialTypeAll,
+	TutorialTypeAboutApplication,
+	TutorialTypeHowToControl,
+};
+
+@interface TutorialViewController : OverlayViewController <UIScrollViewDelegate> {
+	@private
+	TutorialType		_tutorialType;
+	NSArray<UIView*>*	_tutorialViews;
+}
+
+- (id)initWithTutorialType:(TutorialType)tutorialType;
 
 @end

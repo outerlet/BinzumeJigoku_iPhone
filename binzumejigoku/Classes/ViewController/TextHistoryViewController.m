@@ -9,7 +9,6 @@
 #import "TextHistoryViewController.h"
 #import "ContentsInterface.h"
 
-static const CGFloat kTitleTextSize			= 28.0f;
 static const CGFloat kHistoryTextSize		= 20.0f;
 static const CGFloat kHistoryLineSize		= 32.0f;
 static const CGFloat kHistorySideMargin		= 8.0f;
@@ -29,14 +28,7 @@ static const CGFloat kSpaceBetweenHistories	= 12.0f;
 	
 	ContentsInterface* cif = [ContentsInterface sharedInstance];
 	
-	UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-	titleLabel.backgroundColor = [UIColor clearColor];
-	titleLabel.textColor = [UIColor whiteColor];
-	titleLabel.font = [UIFont fontWithName:cif.fontName size:kTitleTextSize];
-	titleLabel.text = NSLocalizedString(@"phrase_text_history", nil);
-	[titleLabel sizeToFit];
-	titleLabel.center = CGPointMake(self.view.bounds.size.width / 2.0f, self.closeButton.center.y);
-	[self.view addSubview:titleLabel];
+	self.titleText = NSLocalizedString(@"phrase_text_history", nil);
 	
 	UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.contentView.bounds.size.width, self.contentView.bounds.size.height)];
 	

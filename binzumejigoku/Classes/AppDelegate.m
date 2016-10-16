@@ -8,7 +8,8 @@
 
 #import "AppDelegate.h"
 #import "ContentsInterface.h"
-#import "MainViewController.h"
+#import "MainMenuTabBarController.h"
+#import "ContentsSelectViewController.h"
 #import "HistoryViewController.h"
 #import "SettingViewController.h"
 
@@ -32,12 +33,12 @@
 }
 
 - (void)parseDidFinished:(BOOL)executed {
-	UITabBarController* tabController = [[UITabBarController alloc] init];
+	MainMenuTabBarController* tabController = [[MainMenuTabBarController alloc] init];
 	
 	// 物語を選択する、メインとなるViewController
-	MainViewController* mainController = [[MainViewController alloc] init];
-	mainController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:0];
-	[tabController addChildViewController:mainController];
+	ContentsSelectViewController* selectController = [[ContentsSelectViewController alloc] init];
+	selectController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:0];
+	[tabController addChildViewController:selectController];
 	
 	// セーブ&ロードを担当するViewController
 	HistoryViewController* historyController = [[HistoryViewController alloc] init];
@@ -48,6 +49,8 @@
 	SettingViewController* settingController = [[SettingViewController alloc] init];
 	settingController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:2];
 	[tabController addChildViewController:settingController];
+	
+	tabController.selectedIndex = 0;
 	
 	self.window.rootViewController = tabController;
 	[self.window makeKeyAndVisible];

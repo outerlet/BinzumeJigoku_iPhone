@@ -25,12 +25,18 @@
  * チュートリアルやテキスト履歴など、他のViewControllerの上に被さって表示などするViewController<br />
  * このクラスを継承すれば背景は(0.0f, 0.0f, 0.0f, 0.8f)で、閉じるボタンが配置された画面となる
  */
-@interface OverlayViewController : UIViewController
+@interface OverlayViewController : UIViewController {
+	@private
+	UILabel*	_titleLabel;
+}
 
 @property (nonatomic)	id<OverlayViewControllerDelegate>	delegate;
 
 /** 閉じるボタン */
 @property (nonatomic, readonly)	UIButton*	closeButton;
+
+/** タイトル */
+@property (nonatomic)	NSString*	titleText;
 
 /** 閉じるボタンの直下から画面下端までの領域を占めるView */
 @property (nonatomic, readonly)	UIView*		contentView;

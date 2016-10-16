@@ -19,6 +19,7 @@
 		5C0B101A1D686B3A00148096 /* WaitElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B10131D686B3A00148096 /* WaitElement.m */; };
 		5C0E49671D9AA4840030D584 /* GestureHintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0E49661D9AA4840030D584 /* GestureHintView.m */; };
 		5C20B5D71D4B8B3C0014E6F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C20B5D61D4B8B3C0014E6F9 /* main.m */; };
+		5C271E3F1DB3C25D00003FA2 /* MainMenuTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C271E3E1DB3C25D00003FA2 /* MainMenuTabBarController.m */; };
 		5C3D6B121D6B222700F24098 /* BinzumeJigoku.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C3D6B101D6B222700F24098 /* BinzumeJigoku.xcdatamodeld */; };
 		5C3E23951D8591E900760EA7 /* UIView+Adjustment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E23941D8591E900760EA7 /* UIView+Adjustment.m */; };
 		5C3E239A1D85921C00760EA7 /* RubyOnelineTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E23971D85921C00760EA7 /* RubyOnelineTextView.m */; };
@@ -58,7 +59,7 @@
 		5CC1B8AA1D4F7E790003DD38 /* AppSetting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CC1B8A91D4F7E790003DD38 /* AppSetting.plist */; };
 		5CC1B8AD1D4F7F7B0003DD38 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC1B8AC1D4F7F7B0003DD38 /* SettingTableViewCell.m */; };
 		5CC6E30D1D4B91E00073FC30 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6E30C1D4B91E00073FC30 /* AppDelegate.m */; };
-		5CC6E3161D4B97D00073FC30 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6E3151D4B97D00073FC30 /* MainViewController.m */; };
+		5CC6E3161D4B97D00073FC30 /* ContentsSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6E3151D4B97D00073FC30 /* ContentsSelectViewController.m */; };
 		5CC6E3191D4B97E30073FC30 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6E3181D4B97E30073FC30 /* SettingViewController.m */; };
 		5CC6E31C1D4B97FB0073FC30 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6E31B1D4B97FB0073FC30 /* HistoryViewController.m */; };
 		5CC6E3201D4B9D540073FC30 /* MainPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6E31F1D4B9D540073FC30 /* MainPageView.m */; };
@@ -92,6 +93,8 @@
 		5C20B5D21D4B8B3C0014E6F9 /* binzumejigoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = binzumejigoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C20B5D61D4B8B3C0014E6F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5C20B5E61D4B8B3C0014E6F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = binzumejigoku/Info.plist; sourceTree = "<group>"; };
+		5C271E3D1DB3C25D00003FA2 /* MainMenuTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainMenuTabBarController.h; path = Classes/ViewController/MainMenuTabBarController.h; sourceTree = "<group>"; };
+		5C271E3E1DB3C25D00003FA2 /* MainMenuTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainMenuTabBarController.m; path = Classes/ViewController/MainMenuTabBarController.m; sourceTree = "<group>"; };
 		5C3D6B111D6B222700F24098 /* BinzumeJigoku.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BinzumeJigoku.xcdatamodel; sourceTree = "<group>"; };
 		5C3E23931D8591E900760EA7 /* UIView+Adjustment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Adjustment.h"; sourceTree = "<group>"; };
 		5C3E23941D8591E900760EA7 /* UIView+Adjustment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Adjustment.m"; sourceTree = "<group>"; };
@@ -152,8 +155,8 @@
 		5CC1B8AC1D4F7F7B0003DD38 /* SettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingTableViewCell.m; path = Classes/View/SettingTableViewCell.m; sourceTree = "<group>"; };
 		5CC6E30B1D4B91E00073FC30 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		5CC6E30C1D4B91E00073FC30 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
-		5CC6E3141D4B97D00073FC30 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/ViewController/MainViewController.h; sourceTree = "<group>"; };
-		5CC6E3151D4B97D00073FC30 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/ViewController/MainViewController.m; sourceTree = "<group>"; };
+		5CC6E3141D4B97D00073FC30 /* ContentsSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsSelectViewController.h; path = Classes/ViewController/ContentsSelectViewController.h; sourceTree = "<group>"; };
+		5CC6E3151D4B97D00073FC30 /* ContentsSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsSelectViewController.m; path = Classes/ViewController/ContentsSelectViewController.m; sourceTree = "<group>"; };
 		5CC6E3171D4B97E30073FC30 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingViewController.h; path = Classes/ViewController/SettingViewController.h; sourceTree = "<group>"; };
 		5CC6E3181D4B97E30073FC30 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingViewController.m; path = Classes/ViewController/SettingViewController.m; sourceTree = "<group>"; };
 		5CC6E31A1D4B97FB0073FC30 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HistoryViewController.h; path = Classes/ViewController/HistoryViewController.h; sourceTree = "<group>"; };
@@ -368,8 +371,10 @@
 		5CC6E30A1D4B91D00073FC30 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				5CC6E3141D4B97D00073FC30 /* MainViewController.h */,
-				5CC6E3151D4B97D00073FC30 /* MainViewController.m */,
+				5C271E3D1DB3C25D00003FA2 /* MainMenuTabBarController.h */,
+				5C271E3E1DB3C25D00003FA2 /* MainMenuTabBarController.m */,
+				5CC6E3141D4B97D00073FC30 /* ContentsSelectViewController.h */,
+				5CC6E3151D4B97D00073FC30 /* ContentsSelectViewController.m */,
 				5CC6E3171D4B97E30073FC30 /* SettingViewController.h */,
 				5CC6E3181D4B97E30073FC30 /* SettingViewController.m */,
 				5CC6E31A1D4B97FB0073FC30 /* HistoryViewController.h */,
@@ -527,13 +532,14 @@
 				5CA7EE771D91155300A41B1D /* ContentsTextView.m in Sources */,
 				5C0B10171D686B3A00148096 /* ImageElement.m in Sources */,
 				5CC6E3201D4B9D540073FC30 /* MainPageView.m in Sources */,
-				5CC6E3161D4B97D00073FC30 /* MainViewController.m in Sources */,
+				5CC6E3161D4B97D00073FC30 /* ContentsSelectViewController.m in Sources */,
 				5CA7EE7D1D91504200A41B1D /* ContentsInterface.m in Sources */,
 				5C0B10181D686B3A00148096 /* TextElement.m in Sources */,
 				5C0B10151D686B3A00148096 /* ContentsElement.m in Sources */,
 				5C3E23951D8591E900760EA7 /* UIView+Adjustment.m in Sources */,
 				5C3E239A1D85921C00760EA7 /* RubyOnelineTextView.m in Sources */,
 				5C4849551D718EE90045068C /* ContentsImageView.m in Sources */,
+				5C271E3F1DB3C25D00003FA2 /* MainMenuTabBarController.m in Sources */,
 				5C3D6B121D6B222700F24098 /* BinzumeJigoku.xcdatamodeld in Sources */,
 				5C7DD3DD1D9408B700C0B6DC /* ContentsWaitingIndicatorView.m in Sources */,
 				5C0B10161D686B3A00148096 /* ContentsParser.m in Sources */,
