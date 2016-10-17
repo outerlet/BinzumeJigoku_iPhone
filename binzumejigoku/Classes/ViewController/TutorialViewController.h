@@ -19,6 +19,7 @@ typedef NS_ENUM(NSUInteger, TutorialType) {
 	@private
 	TutorialType		_tutorialType;
 	NSArray<UIView*>*	_tutorialViews;
+	UIPageControl*		_pageControl;
 }
 
 - (id)initWithTutorialType:(TutorialType)tutorialType;

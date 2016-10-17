@@ -56,10 +56,12 @@
 "setting_subject_text_speed"		= "文字送りの早さ";
 "setting_subject_text_size"			= "文字の大きさ";
 "setting_subject_purchase"			= "投げ銭 (任意)";
+"setting_subject_tutorial"			= "チュートリアル";
 "setting_subject_about_work"		= "このアプリについて";
 "setting_description_text_size"		= "文字の大きさを設定します";
 "setting_description_text_speed"	= "文字送りの早さを設定します";
 "setting_description_purchase"		= "このアプリを気に入って貰えたらご寄付頂けると嬉しいです";
+"setting_description_tutorial"		= "チュートリアルを確認します";
 "setting_description_about_work"	= "『瓶詰地獄』についての簡単な情報です";
 "setting_detail_about_work"			= "【底本】\n「夢野久作怪奇幻想傑作選　あやかしの鼓」角川ホラー文庫、角川書店\n1998（平成10）年4月10日初版発行\n\n【初出】\n「猟奇」\n1928（昭和3）年10月\n\n【入力】\n林裕司\n\n【校正】\n浜野　智\n1998年11月10日公開\n2012年12月19日修正\n\n【青空文庫作成ファイル】\nこのファイルは、インターネットの図書館、青空文庫 ( http://www.aozora.gr.jp/ ) で作られました。入力、校正、制作にあたったのは、ボランティアの皆さんです。";
 

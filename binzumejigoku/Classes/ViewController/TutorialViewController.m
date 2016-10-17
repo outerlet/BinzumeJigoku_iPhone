@@ -13,6 +13,7 @@
 
 static const CGFloat kContentMarginVertical		= 4.0f;
 static const CGFloat kContentMarginHorizontal	= 6.0f;
+static const CGFloat kHeightOfPageControl		= 30.0f;
 static const CGFloat kLineSpaceAboutApplication	= 12.0f;
 
 @interface TutorialViewController ()
@@ -39,6 +40,8 @@ static const CGFloat kLineSpaceAboutApplication	= 12.0f;
 	self.titleText = NSLocalizedString(key, nil);
 	
 	CGRect frame = CGRectInset(self.contentView.bounds, kContentMarginHorizontal, kContentMarginVertical);
+	frame.size.height -= kHeightOfPageControl;
+	
 	UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:frame];
 	scrollView.pagingEnabled = YES;
 	scrollView.delegate = self;
@@ -78,12 +81,27 @@ static const CGFloat kLineSpaceAboutApplication	= 12.0f;
 	
 	scrollView.contentSize = contentSize;
 	[self.contentView addSubview:scrollView];
+	
+	_pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(frame.origin.x, frame.size.height, frame.size.width, kHeightOfPageControl)];
+	_pageControl.backgroundColor = [UIColor clearColor];
+	_pageControl.numberOfPages = _tutorialViews.count;
+	_pageControl.currentPage = 0;
+	_pageControl.hidesForSinglePage = NO;
+	[self.contentView addSubview:_pageControl];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 	if (_tutorialType == TutorialTypeAll) {
 		NSString* key = (scrollView.contentOffset.x >= [_tutorialViews lastObject].frame.origin.x) ? @"tutorial_title_how_to_control" : @"tutorial_title_about_application";
 		self.titleText = NSLocalizedString(key, nil);
+	}
+	
+	// contentOffsetのX軸が同じページとPageControlのcurrentPageを合わせる
+	for (NSInteger idx = 0 ; idx < _tutorialViews.count ; idx++) {
+		if (scrollView.contentOffset.x == [_tutorialViews objectAtIndex:idx].frame.origin.x) {
+			_pageControl.currentPage = idx;
+			break;
+		}
 	}
 }
 

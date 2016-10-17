@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "AlertControllerHandler.h"
 
-@class WorkDetailView;
+@class AboutWorkView;
 
 @interface SettingViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, AlertControllerHandlerDelegate> {
 	@private
-	WorkDetailView*	_workDetailView;
+	AboutWorkView*	_aboutWorkView;
 }
 
 @end

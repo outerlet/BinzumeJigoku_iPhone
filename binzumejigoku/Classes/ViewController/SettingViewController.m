@@ -10,9 +10,10 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ContentsInterface.h"
 #import "SettingTableViewCell.h"
+#import "TutorialViewController.h"
 #import "UIView+Adjustment.h"
 
-static NSString* const kCellIdPrefix			= @"CELL-ID_%02ld_%02ld";
+static NSString* const kCellIdPrefix = @"CELL-ID_%02ld_%02ld";
 
 static const CGFloat kHeightForSectionHeader	= 40.0f;
 static const CGFloat kHeightForRow				= 80.0f;
@@ -28,35 +29,45 @@ static const NSInteger kAlertActionTagTextSizeSmall		= 0;
 static const NSInteger kAlertActionTagTextSizeNormal	= 1;
 static const NSInteger kAlertActionTagTextSizeLarge		= 2;
 
-@interface WorkDetailView : UIView
+@interface AboutWorkView : UIView
 
 @end
 
-@implementation WorkDetailView
+@implementation AboutWorkView
 
 - (id)initWithFrame:(CGRect)frame {
 	if (self = [super initWithFrame:frame]) {
-		self.backgroundColor = [UIColor whiteColor];
-		self.layer.borderWidth = 1.0f;
-		self.layer.borderColor = [UIColor blackColor].CGColor;
-		self.layer.cornerRadius = 4.0f;
+		self.backgroundColor = [UIColor clearColor];
 		
-		ContentsInterface* cif = [ContentsInterface sharedInstance];
+		UIView* baseView = [[UIView alloc] initWithFrame:CGRectInset(self.bounds, 10.0f, 100.0f)];
+		baseView.backgroundColor = [UIColor whiteColor];
+		baseView.layer.borderWidth = 1.0f;
+		baseView.layer.borderColor = [UIColor blackColor].CGColor;
+		baseView.layer.cornerRadius = 4.0f;
+		[self addSubview:baseView];
+
+		NSMutableParagraphStyle* style = [[NSMutableParagraphStyle alloc] init];
+		style.minimumLineHeight = style.maximumLineHeight = 22.0f;
+
+		UIFont* font = [UIFont fontWithName:[ContentsInterface sharedInstance].fontName size:kSettingSubviewTextSize];
+		NSDictionary* attrs = @{ NSFontAttributeName: font, NSForegroundColorAttributeName: [UIColor blackColor], NSParagraphStyleAttributeName: style };
 		
-		UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.bounds.size.width - 20.0f, 0.0f)];
+		UILabel* label = [[UILabel alloc] initWithFrame:CGRectInset(self.bounds, 20.0f, 110.0f)];
 		label.backgroundColor = [UIColor clearColor];
-		label.textColor = [UIColor blackColor];
-		label.font = [UIFont fontWithName:cif.fontName size:kSettingSubviewTextSize];
 		label.textAlignment = NSTextAlignmentLeft;
 		label.numberOfLines = 0;
 		label.userInteractionEnabled = NO;
-		label.text = NSLocalizedString(@"setting_detail_about_work", nil);
+		label.attributedText = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"setting_detail_about_work", nil) attributes:attrs];
 		[label sizeToFit];
 		[label moveTo:CGPointMake((self.bounds.size.width - label.frame.size.width) / 2.0f, (self.bounds.size.height - label.frame.size.height) / 2.0f)];
 		[self addSubview:label];
 	}
 	return self;
 }
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {}
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {}
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {}
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 	if (!self.hidden) {
@@ -94,9 +105,9 @@ static const NSInteger kAlertActionTagTextSizeLarge		= 2;
 		self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 		[self.view addSubview:self.tableView];
 		
-		_workDetailView = [[WorkDetailView alloc] initWithFrame:CGRectInset(self.view.bounds, 10.0f, 100.0f)];
-		[self.view addSubview:_workDetailView];
-		_workDetailView.hidden = YES;
+		_aboutWorkView = [[AboutWorkView alloc] initWithFrame:self.view.bounds];
+		[self.view addSubview:_aboutWorkView];
+		_aboutWorkView.hidden = YES;
 	}
 	return self;
 }
@@ -104,13 +115,13 @@ static const NSInteger kAlertActionTagTextSizeLarge		= 2;
 #pragma mark - UITableView & UITableViewDataSource Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	// 設定項目2、アプリの紹介1
+	// 設定項目とその他の2セクション
 	return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	// 設定項目だけ2行、その他は1行
-	return (section != 0) ? 1 : 2;
+	// セクションごとに2項目ずつ
+	return 2;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -164,9 +175,16 @@ static const NSInteger kAlertActionTagTextSizeLarge		= 2;
 			
 			[self presentViewController:[handler build] animated:YES completion:nil];
 		}
-	// このアプリについて
+	// その他
 	} else if (indexPath.section == 1) {
-		_workDetailView.hidden = NO;
+		// チュートリアル
+		if (indexPath.row == 0) {
+			TutorialViewController* vc = [[TutorialViewController alloc] initWithTutorialType:TutorialTypeAll];
+			[self presentViewController:vc animated:YES completion:nil];
+		// このアプリについて
+		} else if (indexPath.row == 1) {
+			_aboutWorkView.hidden = NO;
+		}
 	}
 }
 
@@ -214,7 +232,12 @@ static const NSInteger kAlertActionTagTextSizeLarge		= 2;
 				return NSLocalizedString(@"setting_subject_text_size", nil);
 		}
 	} else if (indexPath.section == 1) {
-		return NSLocalizedString(@"setting_subject_about_work", nil);
+		switch (indexPath.row) {
+			case 0:
+				return NSLocalizedString(@"setting_subject_tutorial", nil);
+			case 1:
+				return NSLocalizedString(@"setting_subject_about_work", nil);
+		}
 	}
 	
 	return nil;
@@ -229,7 +252,12 @@ static const NSInteger kAlertActionTagTextSizeLarge		= 2;
 				return NSLocalizedString(@"setting_description_text_size", nil);
 		}
 	} else if (indexPath.section == 1) {
-		return NSLocalizedString(@"setting_description_about_work", nil);
+		switch (indexPath.row) {
+			case 0:
+				return NSLocalizedString(@"setting_description_tutorial", nil);
+			case 1:
+				return NSLocalizedString(@"setting_description_about_work", nil);
+		}
 	}
 	
 	return nil;
