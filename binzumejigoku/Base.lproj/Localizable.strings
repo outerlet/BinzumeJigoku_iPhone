@@ -19,6 +19,11 @@
 "phrase_save"			= "記録";
 "phrase_load"			= "読込";
 
+// Tab Icon
+"tab_name_story"	= "話の選択";
+"tab_name_load"		= "読込";
+"tab_name_settings"	= "設定";
+
 // General Messages
 "message_confirm_back"				= "物語を中断して前の画面に戻りますか？";
 "message_section_finished"			= "章が終了しました。";

@@ -18,6 +18,13 @@
 		5C0B10191D686B3A00148096 /* TitleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B10111D686B3A00148096 /* TitleElement.m */; };
 		5C0B101A1D686B3A00148096 /* WaitElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B10131D686B3A00148096 /* WaitElement.m */; };
 		5C0E49671D9AA4840030D584 /* GestureHintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0E49661D9AA4840030D584 /* GestureHintView.m */; };
+		5C163D491DB649E700FA5C52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C163D481DB649E700FA5C52 /* Assets.xcassets */; };
+		5C163D5C1DB652FC00FA5C52 /* ic_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C163D561DB652FC00FA5C52 /* ic_play.png */; };
+		5C163D5D1DB652FC00FA5C52 /* ic_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C163D571DB652FC00FA5C52 /* ic_play@2x.png */; };
+		5C163D5E1DB652FC00FA5C52 /* ic_save.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C163D581DB652FC00FA5C52 /* ic_save.png */; };
+		5C163D5F1DB652FC00FA5C52 /* ic_save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C163D591DB652FC00FA5C52 /* ic_save@2x.png */; };
+		5C163D601DB652FC00FA5C52 /* ic_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C163D5A1DB652FC00FA5C52 /* ic_settings.png */; };
+		5C163D611DB652FC00FA5C52 /* ic_settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C163D5B1DB652FC00FA5C52 /* ic_settings@2x.png */; };
 		5C20B5D71D4B8B3C0014E6F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C20B5D61D4B8B3C0014E6F9 /* main.m */; };
 		5C271E3F1DB3C25D00003FA2 /* MainMenuTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C271E3E1DB3C25D00003FA2 /* MainMenuTabBarController.m */; };
 		5C3D6B121D6B222700F24098 /* BinzumeJigoku.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C3D6B101D6B222700F24098 /* BinzumeJigoku.xcdatamodeld */; };
@@ -90,6 +97,13 @@
 		5C0B10131D686B3A00148096 /* WaitElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaitElement.m; path = Classes/Contents/WaitElement.m; sourceTree = "<group>"; };
 		5C0E49651D9AA4840030D584 /* GestureHintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GestureHintView.h; path = Classes/View/GestureHintView.h; sourceTree = "<group>"; };
 		5C0E49661D9AA4840030D584 /* GestureHintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GestureHintView.m; path = Classes/View/GestureHintView.m; sourceTree = "<group>"; };
+		5C163D481DB649E700FA5C52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = binzumejigoku/Assets.xcassets; sourceTree = "<group>"; };
+		5C163D561DB652FC00FA5C52 /* ic_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_play.png; path = Resources/Images/ic_play.png; sourceTree = "<group>"; };
+		5C163D571DB652FC00FA5C52 /* ic_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ic_play@2x.png"; path = "Resources/Images/ic_play@2x.png"; sourceTree = "<group>"; };
+		5C163D581DB652FC00FA5C52 /* ic_save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_save.png; path = Resources/Images/ic_save.png; sourceTree = "<group>"; };
+		5C163D591DB652FC00FA5C52 /* ic_save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ic_save@2x.png"; path = "Resources/Images/ic_save@2x.png"; sourceTree = "<group>"; };
+		5C163D5A1DB652FC00FA5C52 /* ic_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_settings.png; path = Resources/Images/ic_settings.png; sourceTree = "<group>"; };
+		5C163D5B1DB652FC00FA5C52 /* ic_settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ic_settings@2x.png"; path = "Resources/Images/ic_settings@2x.png"; sourceTree = "<group>"; };
 		5C20B5D21D4B8B3C0014E6F9 /* binzumejigoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = binzumejigoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C20B5D61D4B8B3C0014E6F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5C20B5E61D4B8B3C0014E6F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = binzumejigoku/Info.plist; sourceTree = "<group>"; };
@@ -184,6 +198,7 @@
 				5C20B5D41D4B8B3C0014E6F9 /* binzumejigoku */,
 				5C20B5E61D4B8B3C0014E6F9 /* Info.plist */,
 				5CC1B8A91D4F7E790003DD38 /* AppSetting.plist */,
+				5C163D481DB649E700FA5C52 /* Assets.xcassets */,
 				5C20B5D31D4B8B3C0014E6F9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -238,6 +253,12 @@
 		5C7575A81D4DD9040094D5B3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C163D561DB652FC00FA5C52 /* ic_play.png */,
+				5C163D571DB652FC00FA5C52 /* ic_play@2x.png */,
+				5C163D581DB652FC00FA5C52 /* ic_save.png */,
+				5C163D591DB652FC00FA5C52 /* ic_save@2x.png */,
+				5C163D5A1DB652FC00FA5C52 /* ic_settings.png */,
+				5C163D5B1DB652FC00FA5C52 /* ic_settings@2x.png */,
 				5C4103191DAFBB7400053429 /* tutorial_swipe.png */,
 				5C41031A1DAFBB7400053429 /* tutorial_tap.png */,
 				5CF8697A1DA28074001EB437 /* save_button_normal.png */,
@@ -480,12 +501,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C163D5D1DB652FC00FA5C52 /* ic_play@2x.png in Resources */,
 				5C7575B41D4DD9260094D5B3 /* section1_01.jpg in Resources */,
 				5C7DD3DA1D9407FD00C0B6DC /* ic_wait_advance.png in Resources */,
 				5CF8697D1DA28074001EB437 /* save_button_press.png in Resources */,
 				5C41031C1DAFBB7400053429 /* tutorial_tap.png in Resources */,
+				5C163D491DB649E700FA5C52 /* Assets.xcassets in Resources */,
 				5CC1B8AA1D4F7E790003DD38 /* AppSetting.plist in Resources */,
 				5C7575B71D4DD9260094D5B3 /* section3_00.jpg in Resources */,
+				5C163D5C1DB652FC00FA5C52 /* ic_play.png in Resources */,
 				5C7575B11D4DD9260094D5B3 /* section0_00.jpg in Resources */,
 				5C41031B1DAFBB7400053429 /* tutorial_swipe.png in Resources */,
 				5C8CBD801D9565CF009A7C02 /* section2_02.jpg in Resources */,
@@ -495,10 +519,14 @@
 				5CC1B8A11D4F74F30003DD38 /* contents_binzume_jigoku.xml in Resources */,
 				5C0583F61D9BF07500815912 /* ic_cancel_white.png in Resources */,
 				5C8CBD821D9565CF009A7C02 /* section2_04.jpg in Resources */,
+				5C163D601DB652FC00FA5C52 /* ic_settings.png in Resources */,
 				5C7575C11D4DDC130094D5B3 /* Localizable.strings in Resources */,
 				5C7575B81D4DD9260094D5B3 /* title_00.jpg in Resources */,
 				5C7575B31D4DD9260094D5B3 /* section1_00.jpg in Resources */,
+				5C163D611DB652FC00FA5C52 /* ic_settings@2x.png in Resources */,
 				5CF8697C1DA28074001EB437 /* save_button_normal.png in Resources */,
+				5C163D5E1DB652FC00FA5C52 /* ic_save.png in Resources */,
+				5C163D5F1DB652FC00FA5C52 /* ic_save@2x.png in Resources */,
 				5C7575B21D4DD9260094D5B3 /* section0_01.jpg in Resources */,
 				5C0583F81D9BF56500815912 /* ic_swap_horiz_white.png in Resources */,
 				5C7575B61D4DD9260094D5B3 /* section2_01.jpg in Resources */,

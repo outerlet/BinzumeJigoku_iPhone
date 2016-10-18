@@ -37,17 +37,17 @@
 	
 	// 物語を選択する、メインとなるViewController
 	ContentsSelectViewController* selectController = [[ContentsSelectViewController alloc] init];
-	selectController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:0];
+	selectController.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"tab_name_story", nil) image:[UIImage imageNamed:@"ic_play.png"] tag:0];
 	[tabController addChildViewController:selectController];
 	
 	// セーブ&ロードを担当するViewController
 	HistoryViewController* historyController = [[HistoryViewController alloc] init];
-	historyController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:1];
+	historyController.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"tab_name_load", nil) image:[UIImage imageNamed:@"ic_save.png"] tag:1];
 	[tabController addChildViewController:historyController];
 	
 	// 設定画面を表示するViewController
 	SettingViewController* settingController = [[SettingViewController alloc] init];
-	settingController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:2];
+	settingController.tabBarItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"tab_name_settings", nil) image:[UIImage imageNamed:@"ic_settings.png"] tag:2];
 	[tabController addChildViewController:settingController];
 	
 	tabController.selectedIndex = 0;
