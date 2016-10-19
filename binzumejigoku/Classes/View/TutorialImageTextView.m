@@ -32,12 +32,16 @@ static NSString* const kDictionaryKeyImageAlignment	= @"DICTIONARY_KEY_IMAGE_ALI
 	[_tutorials addObject:@{ kDictionaryKeyText: text, kDictionaryKeyImage: image, kDictionaryKeyImageAlignment: [NSNumber numberWithInt:imageAlignment] }];
 }
 
+- (void)addTutorial:(NSString *)text {
+	[_tutorials addObject:@{ kDictionaryKeyText: text}];
+}
+
 - (void)compose {
 	CGFloat viewHeight = self.bounds.size.height / _tutorials.count;
 	
-	CGSize labelSize = CGSizeMake(self.bounds.size.width * 0.6f, viewHeight);
-	CGSize imageViewSize = CGSizeMake(self.bounds.size.width * 0.3f, viewHeight);
-	CGFloat spaceOfViews = (self.bounds.size.width - (labelSize.width + imageViewSize.width)) / 3.0f;
+	CGFloat labelWidth = self.bounds.size.width * 0.6f;
+	CGFloat imageWidth = self.bounds.size.width * 0.3f;
+	CGFloat spaceOfViews = (self.bounds.size.width - (labelWidth + imageWidth)) / 3.0f;
 	
 	for (NSInteger idx = 0 ; idx < _tutorials.count ; idx++) {
 		NSDictionary* tutorial = [_tutorials objectAtIndex:idx];
@@ -45,26 +49,37 @@ static NSString* const kDictionaryKeyImageAlignment	= @"DICTIONARY_KEY_IMAGE_ALI
 		NSString* text = [tutorial objectForKey:kDictionaryKeyText];
 		UIImage* image = [tutorial objectForKey:kDictionaryKeyImage];
 		NSNumber* number = [tutorial objectForKey:kDictionaryKeyImageAlignment];
-		TutorialImageAlignment alignment = [number integerValue];
+
+		BOOL textOnly = (!image || !number);
 		
-		UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, labelSize.width, labelSize.height)];
+		CGRect frame = CGRectZero;
+		frame.size.width = textOnly ? self.bounds.size.width * 0.9f : labelWidth;
+		frame.size.height = viewHeight;
+		
+		UILabel* label = [[UILabel alloc] initWithFrame:frame];
 		label.backgroundColor = [UIColor clearColor];
 		label.textAlignment = NSTextAlignmentLeft;
 		label.numberOfLines = 0;
 		label.attributedText = [self attributeString:text];
 		[self addSubview:label];
 		
-		UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, imageViewSize.width, imageViewSize.height)];
-		imageView.contentMode = UIViewContentModeScaleAspectFit;
-		imageView.image = image;
-		[self addSubview:imageView];
-		
-		if (alignment == TutorialImageAlignmentLeft) {
-			[imageView moveTo:CGPointMake(spaceOfViews, viewHeight * idx)];
-			[label moveTo:CGPointMake(imageView.frame.size.width + spaceOfViews * 2.0f, viewHeight * idx)];
+		if (!textOnly) {
+			UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, imageWidth, viewHeight)];
+			imageView.contentMode = UIViewContentModeScaleAspectFit;
+			imageView.image = image;
+			[self addSubview:imageView];
+			
+			TutorialImageAlignment alignment = [number integerValue];
+			
+			if (alignment == TutorialImageAlignmentLeft) {
+				[imageView moveTo:CGPointMake(spaceOfViews, viewHeight * idx)];
+				[label moveTo:CGPointMake(imageView.frame.size.width + spaceOfViews * 2.0f, viewHeight * idx)];
+			} else {
+				[label moveTo:CGPointMake(spaceOfViews, viewHeight * idx)];
+				[imageView moveTo:CGPointMake(label.frame.size.width + spaceOfViews * 2.0f, viewHeight * idx)];
+			}
 		} else {
 			[label moveTo:CGPointMake(spaceOfViews, viewHeight * idx)];
-			[imageView moveTo:CGPointMake(label.frame.size.width + spaceOfViews * 2.0f, viewHeight * idx)];
 		}
 	}
 }

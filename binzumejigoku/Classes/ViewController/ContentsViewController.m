@@ -259,7 +259,10 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 			
 			ContentsInterface* cif = [ContentsInterface sharedInstance];
 			
-			// 章(section)が終了したので次に行くか、戻るか、終了するか
+			// 章(section)が終了したらオートセーブはリセットして再開できないようにしておく
+			[[cif saveDataAt:0] reset];
+			
+			// 次に行くか、戻るか、終了するか
 			if (element.section < cif.maxSectionIndex) {
 				NSString* msg = NSLocalizedString(@"message_section_finished", nil);
 				handler = [[AlertControllerHandler alloc] initWithTitle:nil
@@ -268,7 +271,7 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 																	tag:kAlertTagEndOfSection];
 				[handler addAction:NSLocalizedString(@"phrase_next_section", nil) style:UIAlertActionStyleDefault tag:kAlertTagConfirmNext];
 				[handler addAction:NSLocalizedString(@"phrase_back", nil) style:UIAlertActionStyleCancel tag:kAlertTagConfirmBack];
-			// 最後の章が終了したので戻る
+			// 最後の章が終了したなら戻る
 			} else {
 				NSString* msg = NSLocalizedString(@"message_last_section_finished", nil);
 				handler = [[AlertControllerHandler alloc] initWithTitle:nil
@@ -398,7 +401,7 @@ const NSInteger kAlertTagConfirmCancel	= 10031;
 		TextHistoryViewController* vc = [[TextHistoryViewController alloc] initWithTextHistories:saveData.textHistories];
 		[self presentViewController:vc animated:YES completion:nil];
 	} else if (direction == GestureDirectionEast) {
-		_historyView.saveMode = YES;
+		_historyView.saveMode = NO;
 		[_historyView refresh];
 		[_historyView showAnimated:YES completion:nil];
 	} else if (direction == GestureDirectionSouth) {

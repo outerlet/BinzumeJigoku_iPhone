@@ -8,6 +8,7 @@
 
 #import "OverlayViewController.h"
 #import "ContentsInterface.h"
+#import "UIColor+CustomColor.h"
 
 static const CGFloat kCloseButtonEdgeLength	= 36.0f;
 static const CGFloat kCloseButtonMargin		= 24.0f;
@@ -29,7 +30,7 @@ static const CGFloat kTitleDefaultTextSize	= 28.0f;
 	
 	ContentsInterface* cif = [ContentsInterface sharedInstance];
 	
-	self.view.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
+	self.view.backgroundColor = [UIColor translucentBlackColor];
 	
 	// 閉じるボタン
 	self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];

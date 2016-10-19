@@ -22,6 +22,7 @@ typedef NS_ENUM(NSUInteger, TutorialImageAlignment) {
 @property (nonatomic)	UIColor*	textColor;
 
 - (void)addTutorial:(NSString*)text image:(UIImage*)image imageAlignment:(TutorialImageAlignment)imageAlignment;
+- (void)addTutorial:(NSString*)text;
 - (void)compose;
 
 @end

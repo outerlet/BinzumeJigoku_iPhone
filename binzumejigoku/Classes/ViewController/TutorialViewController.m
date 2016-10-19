@@ -113,7 +113,7 @@ static const CGFloat kLineSpaceAboutApplication	= 12.0f;
 	
 	CGFloat posY = 0.0f;
 	
-	for (NSInteger idx = 1 ; idx <= 14 ; idx++) {
+	for (NSInteger idx = 1 ; idx <= 13 ; idx++) {
 		UIView* currentView = [views lastObject];
 		
 		NSMutableParagraphStyle* style = [[NSMutableParagraphStyle alloc] init];
@@ -151,10 +151,11 @@ static const CGFloat kLineSpaceAboutApplication	= 12.0f;
 	tutorialView.backgroundColor = [UIColor clearColor];
 	tutorialView.font = [self commonFont];
 	tutorialView.textColor = [UIColor whiteColor];
-	[tutorialView addTutorial:NSLocalizedString(@"tutorial_for_long_tap", nil)
+	[tutorialView addTutorial:NSLocalizedString(@"tutorial_long_tap", nil)
 						image:[UIImage imageNamed:@"tutorial_tap.png"]
 			   imageAlignment:TutorialImageAlignmentRight];
-	[tutorialView addTutorial:NSLocalizedString(@"tutorial_for_swipe", nil)
+	[tutorialView addTutorial:NSLocalizedString(@"tutorial_kind_of_menus", nil)];
+	[tutorialView addTutorial:NSLocalizedString(@"tutorial_swipe", nil)
 						image:[UIImage imageNamed:@"tutorial_swipe.png"]
 			   imageAlignment:TutorialImageAlignmentLeft];
 	[tutorialView compose];

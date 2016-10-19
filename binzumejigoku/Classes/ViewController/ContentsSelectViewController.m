@@ -12,6 +12,8 @@
 #import "MainPageView.h"
 #import "TutorialViewController.h"
 
+static const CGFloat kHeightOfPageControl	= 30.0f;
+
 @implementation ContentsSelectViewController
 
 - (void)viewDidLoad {
@@ -24,9 +26,11 @@
     
     _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     _scrollView.pagingEnabled = YES;
+	_scrollView.delegate = self;
     
     CGFloat totalWidth = 0.0f;
- 
+	NSMutableArray* mainPageViews = [[NSMutableArray alloc] init];
+
     for (NSInteger idx = 0 ; idx < images.count ; idx++) {
 		NSString* imageName = [NSString stringWithFormat:@"section%ld_%02d.jpg", (long)idx, (idx < 3) ? 1 : 0];
 		
@@ -43,17 +47,39 @@
         totalWidth += view.frame.size.width;
         
         [_scrollView addSubview:view];
+		
+		[mainPageViews addObject:view];
     }
-    
-    _scrollView.contentSize = CGSizeMake(totalWidth, self.view.bounds.size.height);
 	
+    _scrollView.contentSize = CGSizeMake(totalWidth, self.view.bounds.size.height);
     [self.view addSubview:_scrollView];
+	
+	_mainPageViews = [NSArray arrayWithArray:mainPageViews];
+	
+	_pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0.0f, self.view.bounds.size.height - self.tabBarController.tabBar.frame.size.height - kHeightOfPageControl, self.view.bounds.size.width, kHeightOfPageControl)];
+	_pageControl.backgroundColor = [UIColor clearColor];
+	_pageControl.pageIndicatorTintColor = [UIColor colorWithRed:0.8f green:0.8f blue:0.8f alpha:1.0f];
+	_pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:0.4f green:0.4f blue:0.4f alpha:1.0f];
+	_pageControl.numberOfPages = _mainPageViews.count;
+	_pageControl.currentPage = 0;
+	[self.view addSubview:_pageControl];
 }
 
 - (void)viewDidTouch:(MainPageView *)view {
 	[self presentViewController:[[ContentsViewController alloc] initWithSectionIndex:view.tag]
 					   animated:YES
 					 completion:nil];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+	for (NSInteger idx = 0 ; idx < _mainPageViews.count ; idx++) {
+		MainPageView* view = [_mainPageViews objectAtIndex:idx];
+		
+		if (scrollView.contentOffset.x == view.frame.origin.x) {
+			_pageControl.currentPage = idx;
+			break;
+		}
+	}
 }
 
 @end

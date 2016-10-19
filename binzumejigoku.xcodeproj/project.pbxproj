@@ -37,6 +37,7 @@
 		5C6131B51DB101F700E46615 /* TutorialImageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6131B41DB101F700E46615 /* TutorialImageTextView.m */; };
 		5C6131B81DB1023B00E46615 /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6131B71DB1023B00E46615 /* TutorialViewController.m */; };
 		5C6131BB1DB1044600E46615 /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6131BA1DB1044600E46615 /* OverlayViewController.m */; };
+		5C6C577B1DB7A3B20046B6B3 /* UIColor+CustomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6C577A1DB7A3B20046B6B3 /* UIColor+CustomColor.m */; };
 		5C7575B11D4DD9260094D5B3 /* section0_00.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575A91D4DD9260094D5B3 /* section0_00.jpg */; };
 		5C7575B21D4DD9260094D5B3 /* section0_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575AA1D4DD9260094D5B3 /* section0_01.jpg */; };
 		5C7575B31D4DD9260094D5B3 /* section1_00.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575AB1D4DD9260094D5B3 /* section1_00.jpg */; };
@@ -126,6 +127,8 @@
 		5C6131B71DB1023B00E46615 /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialViewController.m; path = Classes/ViewController/TutorialViewController.m; sourceTree = "<group>"; };
 		5C6131B91DB1044600E46615 /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OverlayViewController.h; path = Classes/ViewController/OverlayViewController.h; sourceTree = "<group>"; };
 		5C6131BA1DB1044600E46615 /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OverlayViewController.m; path = Classes/ViewController/OverlayViewController.m; sourceTree = "<group>"; };
+		5C6C57791DB7A3B20046B6B3 /* UIColor+CustomColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColor.h"; sourceTree = "<group>"; };
+		5C6C577A1DB7A3B20046B6B3 /* UIColor+CustomColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColor.m"; sourceTree = "<group>"; };
 		5C7575A91D4DD9260094D5B3 /* section0_00.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section0_00.jpg; path = Resources/Images/section0_00.jpg; sourceTree = "<group>"; };
 		5C7575AA1D4DD9260094D5B3 /* section0_01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section0_01.jpg; path = Resources/Images/section0_01.jpg; sourceTree = "<group>"; };
 		5C7575AB1D4DD9260094D5B3 /* section1_00.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section1_00.jpg; path = Resources/Images/section1_00.jpg; sourceTree = "<group>"; };
@@ -315,6 +318,8 @@
 				5C3E23941D8591E900760EA7 /* UIView+Adjustment.m */,
 				5C9706291D6869D000A14813 /* NSString+CustomDecoder.h */,
 				5C97062A1D6869D000A14813 /* NSString+CustomDecoder.m */,
+				5C6C57791DB7A3B20046B6B3 /* UIColor+CustomColor.h */,
+				5C6C577A1DB7A3B20046B6B3 /* UIColor+CustomColor.m */,
 			);
 			name = Category;
 			path = Classes/Category;
@@ -548,6 +553,7 @@
 				5CBF62AF1D980A5E00D9C880 /* Utility.m in Sources */,
 				5C3E239B1D85921C00760EA7 /* RubyTextView.m in Sources */,
 				5C0583F41D9BEB9700815912 /* HistorySelectView.m in Sources */,
+				5C6C577B1DB7A3B20046B6B3 /* UIColor+CustomColor.m in Sources */,
 				5C97062B1D6869D000A14813 /* NSString+CustomDecoder.m in Sources */,
 				5C0B10141D686B3A00148096 /* ClearTextElement.m in Sources */,
 				5CC6E30D1D4B91E00073FC30 /* AppDelegate.m in Sources */,

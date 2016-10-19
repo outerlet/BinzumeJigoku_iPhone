@@ -10,6 +10,7 @@
 #import "ContentsInterface.h"
 #import "SaveData.h"
 #import "UIView+Adjustment.h"
+#import "UIColor+CustomColor.h"
 
 static const CGFloat kSaveButtonHeight				= 100.0f;
 static const CGFloat kOptionalButtonSideLength		= 36.0f;
@@ -32,7 +33,7 @@ static const CGFloat kHistoryButtonDetailTextSize	= 16.0f;
 
 - (id)initWithFrame:(CGRect)frame closable:(BOOL)closable loadOnly:(BOOL)loadOnly autoSave:(BOOL)autoSave {
 	if (self = [super initWithFrame:frame]) {
-		self.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
+		self.backgroundColor = [UIColor translucentBlackColor];
 		
 		ContentsInterface* cif = [ContentsInterface sharedInstance];
 		

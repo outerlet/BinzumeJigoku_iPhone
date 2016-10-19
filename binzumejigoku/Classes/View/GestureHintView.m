@@ -9,6 +9,7 @@
 #import "GestureHintView.h"
 #import "ContentsInterface.h"
 #import "UIView+Adjustment.h"
+#import "UIColor+CustomColor.h"
 
 static const CGFloat	kDistanceFromTouchToHint	= 120.0f;
 static const CGFloat	kDistanceTouchAccept		= 60.0f;
@@ -28,7 +29,7 @@ static const CGFloat	kLengthTouchCancel			= 10.0f;
 
 - (id)initWithFrame:(CGRect)frame {
 	if (self = [super initWithFrame:frame]) {
-		self.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
+		self.backgroundColor = [UIColor translucentBlackColor];
 		self.alpha = 0.0f;
 		
 		_hintLabels = [[NSMutableDictionary alloc] init];
@@ -124,11 +125,15 @@ static const CGFloat	kLengthTouchCancel			= 10.0f;
 		}
 	}
 	
-	[self hideWithDuration:0.6f hint:0.1f];
+	[self hideWithDuration:0.4f hint:0.2f];
 }
 
 - (void)showWithDuration:(NSTimeInterval)duration hint:(NSTimeInterval)hintDuration {
 	self.hidden = NO;
+	
+	for (NSNumber* key in _hintLabels.allKeys) {
+		[_hintLabels objectForKey:key].textColor = [UIColor colorWithRed:0.5f green:0.5f blue:0.5f alpha:1.0f];
+	}
 	
 	[UIView animateWithDuration:duration
 					 animations:^(void) {
@@ -141,6 +146,9 @@ static const CGFloat	kLengthTouchCancel			= 10.0f;
 							 [UIView animateWithDuration:hintDuration
 											  animations:^(void) {
 												  label.alpha = 1.0f;
+											  }
+											  completion:^(BOOL finished) {
+												  label.textColor = [UIColor whiteColor];
 											  }];
 						 }
 					 }];
