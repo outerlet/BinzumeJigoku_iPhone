@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "TutorialViewController.h"
 
+/**
+ * アプリのメインメニューをタブで表示するTabBarController
+ */
 @interface MainMenuTabBarController : UITabBarController <OverlayViewControllerDelegate>
 
 @end

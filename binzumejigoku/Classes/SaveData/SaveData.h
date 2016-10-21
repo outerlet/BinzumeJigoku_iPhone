@@ -10,6 +10,9 @@
 
 @class ContentsElement;
 
+/**
+ * セーブデータの保存や読み出しを担当する
+ */
 @interface SaveData : UIView <NSCoding>
 
 /** スロット番号 */

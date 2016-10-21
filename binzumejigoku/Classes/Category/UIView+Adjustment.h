@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ * 位置やサイズなど、UIViewに関するプロパティを操作するためのカテゴリ
+ */
 @interface UIView (Adjustment)
 
 /**

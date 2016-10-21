@@ -16,9 +16,9 @@
 @protocol AlertControllerHandlerDelegate <NSObject>
 
 /**
- * アラートに対してインタラクションが発生したというイベントを受け取る
- * @param	alertTag	イニシャライザで指定した、アラートを一意に特定するためのタグ
- * @param	actionTag	addAction:style:tag:で指定した、インタラクションを一意に特定するためのタグ
+ * AlertControllerHandlerで生成したアラートに対してインタラクションが発生した、というイベントを受け取る
+ * @param	alertTag	AlertControllerHandlerのイニシャライザで指定した、アラートを一意に特定するためのタグ
+ * @param	actionTag	AlertControllerHandlerのaddAction:style:tag:で指定した、インタラクションを一意に特定するためのタグ
  */
 - (void)alertDidConfirmAt:(NSInteger)alertTag action:(NSInteger)actionTag;
 

@@ -93,7 +93,7 @@ static const CGFloat	kLengthTouchCancel			= 10.0f;
 						|| frame.origin.y + frame.size.height > self.bounds.size.height);
 	}
 	
-	[self showWithDuration:0.6f hint:0.1f];
+	[self showWithDuration:0.4f hint:0.1f];
 }
 
 - (void)endGestureAt:(CGPoint)endPoint {
@@ -101,31 +101,31 @@ static const CGFloat	kLengthTouchCancel			= 10.0f;
 	
 	CGFloat distanceX = endPoint.x - _startPoint.x;
 	CGFloat distanceY = endPoint.y - _startPoint.y;
-	
-	// X軸方向に規定の距離以上の移動を認めた場合
-	if (fabs(distanceX) > kDistanceTouchAccept) {
-		if (fabs(distanceY) < kLengthTouchCancel) {
+
+	// 2点間の距離を算出し、一定の距離以上動いていればメニューを実行する
+	CGFloat distance = sqrtf(powf(fabs(distanceX), 2) + powf(fabs(distanceY), 2));
+	if (distance >= kLengthTouchCancel) {
+		// X軸方向に規定の距離以上の移動を認めた場合
+		if (fabs(distanceX) > kDistanceTouchAccept) {
 			direction = (distanceX < 0.0f) ? GestureDirectionWest : GestureDirectionEast;
+		} else {
+			// Y軸方向に規定の距離以上の移動を認めた場合
+			if (fabs(distanceY) > kDistanceTouchAccept) {
+				direction = (distanceY < 0.0f) ? GestureDirectionNorth : GestureDirectionSouth;
+			}
 		}
-	}
-	
-	// Y軸方向に規定の距離以上の移動を認めた場合
-	if (fabs(distanceY) > kDistanceTouchAccept) {
-		if (fabs(distanceX) < kLengthTouchCancel) {
-			direction = (distanceY < 0.0f) ? GestureDirectionNorth : GestureDirectionSouth;
-		}
-	}
-	
-	// 正しい方向が選択され、かつその方向のラベルが表示されていればコマンドは有効
-	if (direction != GestureDirectionUnknown) {
-		UILabel* label = [_hintLabels objectForKey:[NSNumber numberWithInteger:direction]];
 		
-		if (self.delegate && !label.hidden) {
-			[self.delegate hintGestureDidDetect:direction];
+		// 正しい方向が選択され、かつその方向のラベルが表示されていればコマンドは有効
+		if (direction != GestureDirectionUnknown) {
+			UILabel* label = [_hintLabels objectForKey:[NSNumber numberWithInteger:direction]];
+			
+			if (self.delegate && !label.hidden) {
+				[self.delegate hintGestureDidDetect:direction];
+			}
 		}
 	}
 	
-	[self hideWithDuration:0.4f hint:0.2f];
+	[self hideWithDuration:0.4f hint:0.1f];
 }
 
 - (void)showWithDuration:(NSTimeInterval)duration hint:(NSTimeInterval)hintDuration {

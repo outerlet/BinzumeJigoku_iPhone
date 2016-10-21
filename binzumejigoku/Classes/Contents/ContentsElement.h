@@ -12,6 +12,7 @@
 #import "ContentsType.h"
 #import "ChainType.h"
 
+// Core Dataにデータを挿入するときのカラム名
 static NSString* const AttributeNameSection		= @"section";
 static NSString* const AttributeNameSequence	= @"sequence";
 static NSString* const AttributeNameType		= @"type";
@@ -30,15 +31,25 @@ static NSString* const AttributeNameValue8		= @"value8";
 static NSString* const AttributeNameValue9		= @"value9";
 static NSString* const AttributeNameText		= @"text";
 
+/**
+ * コンテンツの各要素が共通で継承する基底クラス
+ */
 @interface ContentsElement : NSObject {
 	@private
 	NSString*	_chainString;
 }
 
-@property (nonatomic, readonly)	NSInteger		section;
-@property (nonatomic, readonly)	NSInteger		sequence;
-@property (nonatomic, readonly) ChainType		chainType;
-@property (nonatomic, readonly) ContentsType	contentsType;
+/** セクション(=章)番号 */
+@property (nonatomic, readonly)	NSInteger section;
+
+/** セクションを構成する要素の通し番号 */
+@property (nonatomic, readonly)	NSInteger sequence;
+
+/** ユーザーの操作を待つことなく次の要素に進むかどうかを示すchain属性の種類 */
+@property (nonatomic, readonly) ChainType chainType;
+
+/** 「テキスト」や「画像」など要素の種類 */
+@property (nonatomic, readonly) ContentsType contentsType;
 
 /**
  * Core DataのManaged Objectから、コンテンツの種類に見合ったインスタンスを生成する

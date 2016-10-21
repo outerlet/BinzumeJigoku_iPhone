@@ -28,6 +28,9 @@
 
 @end
 
+/**
+ * XMLファイルをパースしてコンテンツの中身をCore Dataに記録する
+ */
 @interface ContentsParser : NSObject <NSXMLParserDelegate> {
 	@private
 	NSXMLParser*	_parser;

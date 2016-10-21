@@ -13,6 +13,10 @@
 #import "SaveData.h"
 #import "ContentsInterface.h"
 
+static const NSInteger kAlertTagConfirm		= 0;
+static const NSInteger kAlertActionTagYes	= 11;
+static const NSInteger kAlertActionTagNo	= 12;
+
 @implementation HistoryViewController
 
 - (void)viewDidLoad {
@@ -36,26 +40,19 @@
 }
 
 - (void)historyDidSelected:(SaveData*)saveData forSave:(BOOL)forSave {
-	_selected = saveData;
+	_selectedData = saveData;
 	
-	AlertControllerHandler* alert = [[AlertControllerHandler alloc] initWithTitle:nil message:NSLocalizedString(@"history_confirm_load", nil) preferrdStyle:UIAlertControllerStyleAlert tag:0];
+	AlertControllerHandler* alert = [[AlertControllerHandler alloc] initWithTitle:nil message:NSLocalizedString(@"history_confirm_load", nil) preferrdStyle:UIAlertControllerStyleAlert tag:kAlertTagConfirm];
 	alert.delegate = self;
-	[alert addAction:NSLocalizedString(@"phrase_ok", nil) style:UIAlertActionStyleDefault tag:0];
-	[alert addAction:NSLocalizedString(@"phrase_cancel", nil) style:UIAlertActionStyleCancel tag:1];
+	[alert addAction:NSLocalizedString(@"phrase_ok", nil) style:UIAlertActionStyleDefault tag:kAlertActionTagYes];
+	[alert addAction:NSLocalizedString(@"phrase_cancel", nil) style:UIAlertActionStyleCancel tag:kAlertActionTagNo];
 	
 	[self presentViewController:[alert build] animated:YES completion:nil];
 }
 
 - (void)alertDidConfirmAt:(NSInteger)alertTag action:(NSInteger)actionTag {
-	if (alertTag == 0) {
-		NSLog(actionTag == 0 ? @"OK" : @"Cancel");
-		NSLog(@"selected : %ld", _selected.slotNumber);
-		
-		SaveData* saveData = [[ContentsInterface sharedInstance] saveDataAt:0];
-		
-		NSLog(@"Slot = %ld, Section = %ld, Sequence = %ld", saveData.slotNumber, saveData.sectionIndex, saveData.sequence);
-		
-		ContentsViewController* vc = [[ContentsViewController alloc] initWithSaveData:saveData];
+	if (alertTag == kAlertTagConfirm && actionTag == kAlertActionTagYes && _selectedData) {
+		ContentsViewController* vc = [[ContentsViewController alloc] initWithSaveData:_selectedData];
 		[self presentViewController:vc animated:YES completion:nil];
 	}
 }

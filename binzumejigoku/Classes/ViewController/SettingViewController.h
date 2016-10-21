@@ -11,6 +11,9 @@
 
 @class AboutWorkView;
 
+/**
+ * 設定画面を表示するViewController
+ */
 @interface SettingViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, AlertControllerHandlerDelegate> {
 	@private
 	AboutWorkView*	_aboutWorkView;

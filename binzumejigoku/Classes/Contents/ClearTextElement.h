@@ -8,6 +8,9 @@
 
 #import "ContentsElement.h"
 
+/**
+ * 現在表示されているテキストを全て消す要素オブジェクト
+ */
 @interface ClearTextElement : ContentsElement
 
 @end

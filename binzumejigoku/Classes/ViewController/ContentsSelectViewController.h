@@ -10,8 +10,7 @@
 #import "MainPageView.h"
 
 /**
- * 読む章を選択するためのViewController<br />
- * アプリケーションのメイン画面
+ * 読むセクションを選択するためのViewController
  */
 @interface ContentsSelectViewController : UIViewController <MainPageViewDelegate, UIScrollViewDelegate> {
     @private

@@ -8,8 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ * 便利メソッドを集めたユーティリティクラス
+ */
 @interface Utility : NSObject
 
+/**
+ * アプリが使用するドキュメントディレクトリの場所を示すURLオブジェクトを返却する
+ * @return	ドキュメントディレクトリを示すURL
+ */
 + (NSURL*)applicationDocumentDirectory;
 
 @end

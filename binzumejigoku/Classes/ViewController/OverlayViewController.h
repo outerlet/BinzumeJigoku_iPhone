@@ -23,7 +23,7 @@
 
 /**
  * チュートリアルやテキスト履歴など、他のViewControllerの上に被さって表示などするViewController<br />
- * このクラスを継承すれば背景は(0.0f, 0.0f, 0.0f, 0.8f)で、閉じるボタンが配置された画面となる
+ * このクラスを継承すれば背景はUIColor.translucentBlackColorで、かつ閉じるボタンが配置された画面となる
  */
 @interface OverlayViewController : UIViewController {
 	@private

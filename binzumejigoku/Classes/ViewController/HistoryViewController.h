@@ -12,10 +12,13 @@
 
 @class SaveData;
 
+/**
+ * 任意の箇所から再開するためにセーブデータを選択させるViewController
+ */
 @interface HistoryViewController : UIViewController <HistorySelectViewDelegate, AlertControllerHandlerDelegate> {
 	@private
 	HistorySelectView*	_historyView;
-	SaveData*			_selected;
+	SaveData*			_selectedData;
 }
 
 @end

@@ -9,14 +9,19 @@
 #import <UIKit/UIKit.h>
 
 /**
- * ジェスチャが行われた方向
+ * ジェスチャが行われた方向を示す列挙値
  */
 typedef NS_ENUM(NSUInteger, GestureDirection) {
-	GestureDirectionUnknown	= 0,	// 不明(=未確定)
-	GestureDirectionNorth	= 1,	// 上方向
-	GestureDirectionEast	= 2,	// 右方向
-	GestureDirectionSouth	= 3,	// 下方向
-	GestureDirectionWest	= 4,	// 左方向
+	/** 不明(=未確定) */
+	GestureDirectionUnknown	= 0,
+	/** 上方向 */
+	GestureDirectionNorth	= 1,
+	/** 右方向 */
+	GestureDirectionEast	= 2,
+	/** 下方向 */
+	GestureDirectionSouth	= 3,
+	/** 左方向 */
+	GestureDirectionWest	= 4,
 };
 
 /**

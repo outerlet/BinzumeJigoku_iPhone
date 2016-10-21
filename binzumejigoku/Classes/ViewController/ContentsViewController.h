@@ -19,6 +19,10 @@
 @class ContentsWaitingIndicatorView;
 @class SaveData;
 
+/**
+ * 物語の進行を制御するViewController<br />
+ * 本アプリの核となるクラス
+ */
 @interface ContentsViewController : UIViewController <AlertControllerHandlerDelegate, HistorySelectViewDelegate, GestureHintViewDelegate, OverlayViewControllerDelegate> {
 	@private
 	ContentsTitleView*				_titleView;
@@ -39,6 +43,7 @@
 	CGPoint							_longPressEndPoint;
 }
 
+/** 進行中のセクション番号 */
 @property (nonatomic, readonly) NSInteger sectionIndex;
 
 /**

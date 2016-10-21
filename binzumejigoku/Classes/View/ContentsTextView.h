@@ -12,6 +12,9 @@
 @class RubyTextView;
 @class TextElement;
 
+/**
+ * ルビ付きのテキストを表示するView
+ */
 @interface ContentsTextView : UIView <ContentsView> {
 	@private
 	NSMutableArray<RubyTextView*>*	_subviews;

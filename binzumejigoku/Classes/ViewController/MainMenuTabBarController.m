@@ -9,15 +9,12 @@
 #import "MainMenuTabBarController.h"
 #import "ContentsInterface.h"
 
-@interface MainMenuTabBarController ()
-
-@end
-
 @implementation MainMenuTabBarController
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	
+	// チュートリアルを表示したことがなければ表示する
 	if ([ContentsInterface sharedInstance].tutorialStatus == TutorialStatusNotStarted) {
 		TutorialViewController* vc = [[TutorialViewController alloc] initWithTutorialType:TutorialTypeAboutApplication];
 		vc.delegate = self;

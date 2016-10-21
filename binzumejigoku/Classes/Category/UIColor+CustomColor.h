@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/**
+ * このアプリで共通に使用する色をUIColorのクラスメソッドとして生成できるようにしたカテゴリ
+ */
 @interface UIColor (CustomColor)
 
 /**
