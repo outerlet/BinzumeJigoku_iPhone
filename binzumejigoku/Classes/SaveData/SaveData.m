@@ -121,7 +121,7 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 }
 
 - (void)save {
-	NSString* fileName = [NSString stringWithFormat:@"%@_%ld.dat", kFilePrefixOfSaveData, _slotNumber];
+	NSString* fileName = [NSString stringWithFormat:@"%@_%ld.dat", kFilePrefixOfSaveData, (long)_slotNumber];
 	NSURL* fileURL = [[Utility applicationDocumentDirectory] URLByAppendingPathComponent:fileName];
 	
 	NSMutableData* data = [[NSMutableData alloc] init];
@@ -133,7 +133,7 @@ static NSString* const kFilePrefixOfSaveData			= @"binzumejigoku_save";
 }
 
 - (BOOL)load {
-	NSString* fileName = [NSString stringWithFormat:@"%@_%ld.dat", kFilePrefixOfSaveData, _slotNumber];
+	NSString* fileName = [NSString stringWithFormat:@"%@_%ld.dat", kFilePrefixOfSaveData, (long)_slotNumber];
 	NSURL* fileURL = [[Utility applicationDocumentDirectory] URLByAppendingPathComponent:fileName];
 	
 	NSData* data = [NSData dataWithContentsOfURL:fileURL];

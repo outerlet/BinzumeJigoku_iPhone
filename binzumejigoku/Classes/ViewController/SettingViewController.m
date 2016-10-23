@@ -220,7 +220,7 @@ static const NSInteger kAlertActionTagTextSizeLarge		= 2;
 #pragma mark - Original Convenience Method
 
 - (NSString*)cellIdentifierForIndexPath:(NSIndexPath*)indexPath {
-	return [NSString stringWithFormat:@"%@_%02ld_%02ld", kCellIdPrefix, indexPath.section, indexPath.row];
+	return [NSString stringWithFormat:@"%@_%02ld_%02ld", kCellIdPrefix, (long)indexPath.section, (long)indexPath.row];
 }
 
 - (NSString*)cellSubjectForIndexPath:(NSIndexPath*)indexPath {

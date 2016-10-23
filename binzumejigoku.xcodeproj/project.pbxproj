@@ -479,6 +479,7 @@
 					5C20B5D11D4B8B3C0014E6F9 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 44UZBLNCCX;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -691,12 +692,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Shizuo Ichitake (TSK5D8BC43)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 44UZBLNCCX;
 				INFOPLIST_FILE = binzumejigoku/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.onetake.binzumejigoku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "683261bb-98e6-4548-99cc-7295ce7fd075";
+				PROVISIONING_PROFILE_SPECIFIER = "1Take_iPhone6s+";
 			};
 			name = Debug;
 		};
@@ -704,12 +709,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Shizuo Ichitake (44UZBLNCCX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shizuo Ichitake (44UZBLNCCX)";
+				DEVELOPMENT_TEAM = 44UZBLNCCX;
 				INFOPLIST_FILE = binzumejigoku/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.onetake.binzumejigoku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "aa0a20e8-999b-466d-9fe4-210245f7b737";
+				PROVISIONING_PROFILE_SPECIFIER = BinzumeJigoku_Distribution;
 			};
 			name = Release;
 		};
