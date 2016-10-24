@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>BinzumeJigoku: /Users/outerlet/XcodeProject/binzumejigoku/binzumejigoku/Classes/Contents/ContentsInterface.h ソースファイル</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">BinzumeJigoku
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>総合概要</span></a></li>
+      <li><a href="../../annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="../../files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('d6/de6/_contents_interface_8h_source.html','../../');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">ContentsInterface.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">//  ContentsInterface.h</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//  binzumejigoku</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">//  Created by Shizuo Ichitake on 2016/09/20.</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//  Copyright © 2016年 1-Take. All rights reserved.</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#import &lt;UIKit/UIKit.h&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">@class</span> <a class="code" href="../../d2/d59/interface_save_data.html">SaveData</a>;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">typedef</span> NS_ENUM(NSUInteger, TutorialStatus) {</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    TutorialStatusNotStarted        = 0,</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    TutorialStatusAboutApplication  = 1,</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    TutorialStatusHowToControl      = 2,</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    TutorialStatusAll               = TutorialStatusHowToControl,</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;};</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div><div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="../../d3/d6a/interface_contents_interface.html">   31</a></span>&#160;<span class="keyword">@interface </span><a class="code" href="../../d3/d6a/interface_contents_interface.html">ContentsInterface</a> : NSObject {</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">@private</span></div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    NSInteger           _maxSectionIndex;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    NSString*           _rubyClosure;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    NSString*           _rubyDelimiter;</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    CGFloat             _textSpeedInterval;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    CGFloat             _textSize;</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    TutorialStatus      _tutorialStatus;</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    NSArray&lt;SaveData*&gt;* _saveDatas;</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">@property</span> (nonatomic, readonly) NSDictionary*   settings;</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div><div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="../../d3/d6a/interface_contents_interface.html#a5e83f692164d5b38d9f0b5ac93c057e5">   45</a></span>&#160;<span class="keyword">@property</span> (nonatomic)   NSInteger   <a class="code" href="../../d3/d6a/interface_contents_interface.html#a5e83f692164d5b38d9f0b5ac93c057e5">maxSectionIndex</a>;</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div><div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="../../d3/d6a/interface_contents_interface.html#ac858ff78d5fcb364191137f1e7b1b3e8">   48</a></span>&#160;<span class="keyword">@property</span> (nonatomic)   NSString*   <a class="code" href="../../d3/d6a/interface_contents_interface.html#ac858ff78d5fcb364191137f1e7b1b3e8">rubyClosure</a>;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div><div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="../../d3/d6a/interface_contents_interface.html#adab2d1a3d025ca76715a391701010e44">   51</a></span>&#160;<span class="keyword">@property</span> (nonatomic)   NSString*   <a class="code" href="../../d3/d6a/interface_contents_interface.html#adab2d1a3d025ca76715a391701010e44">rubyDelimiter</a>;</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div><div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="../../d3/d6a/interface_contents_interface.html#aeb6f8e72b9ff25101352267d7f3ba30b">   54</a></span>&#160;<span class="keyword">@property</span> (nonatomic, readonly) NSURL*  <a class="code" href="../../d3/d6a/interface_contents_interface.html#aeb6f8e72b9ff25101352267d7f3ba30b">contentsFileUrl</a>;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div><div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="../../d3/d6a/interface_contents_interface.html#a7d7684f5f32f4d5c47529728f718469b">   57</a></span>&#160;<span class="keyword">@property</span> (nonatomic, readonly) NSString*   <a class="code" href="../../d3/d6a/interface_contents_interface.html#a7d7684f5f32f4d5c47529728f718469b">fontName</a>;</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div><div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="../../d3/d6a/interface_contents_interface.html#aabce32841a389fc9ecc8de2b4f4c0b2f">   60</a></span>&#160;<span class="keyword">@property</span> (nonatomic)   CGFloat <a class="code" href="../../d3/d6a/interface_contents_interface.html#aabce32841a389fc9ecc8de2b4f4c0b2f">textSpeedInterval</a>;</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div><div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="../../d3/d6a/interface_contents_interface.html#ad81d4d632f93dd6b2da6942491d949a0">   63</a></span>&#160;<span class="keyword">@property</span> (nonatomic)   CGFloat <a class="code" href="../../d3/d6a/interface_contents_interface.html#ad81d4d632f93dd6b2da6942491d949a0">textSize</a>;</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div><div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="../../d3/d6a/interface_contents_interface.html#aa27012ecf25f1240eaddb379b5e7b490">   66</a></span>&#160;<span class="keyword">@property</span> (nonatomic)   TutorialStatus  <a class="code" href="../../d3/d6a/interface_contents_interface.html#aa27012ecf25f1240eaddb379b5e7b490">tutorialStatus</a>;</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;+ (<a class="code" href="../../d3/d6a/interface_contents_interface.html">ContentsInterface</a>*)<a class="code" href="../../d3/d6a/interface_contents_interface.html#ab2fbd432b89756279cffee44aa4213a9">sharedInstance</a>;</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;- (void)<a class="code" href="../../d3/d6a/interface_contents_interface.html#a8b8101be170e1d45ad49c3e980519c9d">initialize</a>;</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;- (<a class="code" href="../../d2/d59/interface_save_data.html">SaveData</a>*)saveDataAt:(NSInteger)slotNumber;</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;- (NSInteger)integerSetting:(NSString*)key;</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;- (CGFloat)floatSetting:(NSString*)key;</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">@end</span></div><div class="ttc" id="interface_contents_interface_html_ab2fbd432b89756279cffee44aa4213a9"><div class="ttname"><a href="../../d3/d6a/interface_contents_interface.html#ab2fbd432b89756279cffee44aa4213a9">+[ContentsInterface sharedInstance]</a></div><div class="ttdeci">ContentsInterface * sharedInstance()</div><div class="ttdoc">アプリに唯一のContentsInterfaceのオブジェクトを取得する  このクラスのオブジェクトを使う場合はこれを使...</div><div class="ttdef"><b>Definition:</b> ContentsInterface.m:26</div></div>
+<div class="ttc" id="interface_contents_interface_html_aa27012ecf25f1240eaddb379b5e7b490"><div class="ttname"><a href="../../d3/d6a/interface_contents_interface.html#aa27012ecf25f1240eaddb379b5e7b490">ContentsInterface::tutorialStatus</a></div><div class="ttdeci">TutorialStatus tutorialStatus</div><div class="ttdoc">チュートリアルが終了したかどうか </div><div class="ttdef"><b>Definition:</b> ContentsInterface.h:66</div></div>
+<div class="ttc" id="interface_contents_interface_html"><div class="ttname"><a href="../../d3/d6a/interface_contents_interface.html">ContentsInterface</a></div><div class="ttdoc">コンテンツの表示に関係する共通機能やプロパティを提供するシングルトンクラス </div><div class="ttdef"><b>Definition:</b> ContentsInterface.h:31</div></div>
+<div class="ttc" id="interface_contents_interface_html_adab2d1a3d025ca76715a391701010e44"><div class="ttname"><a href="../../d3/d6a/interface_contents_interface.html#adab2d1a3d025ca76715a391701010e44">ContentsInterface::rubyDelimiter</a></div><div class="ttdeci">NSString * rubyDelimiter</div><div class="ttdoc">ルビありテキストで、ルビとテキストを区別するための区切り文字 </div><div class="ttdef"><b>Definition:</b> ContentsInterface.h:51</div></div>
+<div class="ttc" id="interface_contents_interface_html_a7d7684f5f32f4d5c47529728f718469b"><div class="ttname"><a href="../../d3/d6a/interface_contents_interface.html#a7d7684f5f32f4d5c47529728f718469b">ContentsInterface::fontName</a></div><div class="ttdeci">NSString * fontName</div><div class="ttdoc">フォント名 </div><div class="ttdef"><b>Definition:</b> ContentsInterface.h:57</div></div>
+<div class="ttc" id="interface_contents_interface_html_ad81d4d632f93dd6b2da6942491d949a0"><div class="ttname"><a href="../../d3/d6a/interface_contents_interface.html#ad81d4d632f93dd6b2da6942491d949a0">ContentsInterface::textSize</a></div><div class="ttdeci">CGFloat textSize</div><div class="ttdoc">テキストサイズ(pt) </div><div class="ttdef"><b>Definition:</b> ContentsInterface.h:63</div></div>
+<div class="ttc" id="interface_contents_interface_html_aeb6f8e72b9ff25101352267d7f3ba30b"><div class="ttname"><a href="../../d3/d6a/interface_contents_interface.html#aeb6f8e72b9ff25101352267d7f3ba30b">ContentsInterface::contentsFileUrl</a></div><div class="ttdeci">NSURL * contentsFileUrl</div><div class="ttdoc">コンテンツを記録したXMLファイルの場所を示すURL </div><div class="ttdef"><b>Definition:</b> ContentsInterface.h:54</div></div>
+<div class="ttc" id="interface_contents_interface_html_ac858ff78d5fcb364191137f1e7b1b3e8"><div class="ttname"><a href="../../d3/d6a/interface_contents_interface.html#ac858ff78d5fcb364191137f1e7b1b3e8">ContentsInterface::rubyClosure</a></div><div class="ttdeci">NSString * rubyClosure</div><div class="ttdoc">ルビ無しテキストとルビありテキストを区別するための区切り文字 </div><div class="ttdef"><b>Definition:</b> ContentsInterface.h:48</div></div>
+<div class="ttc" id="interface_contents_interface_html_aabce32841a389fc9ecc8de2b4f4c0b2f"><div class="ttname"><a href="../../d3/d6a/interface_contents_interface.html#aabce32841a389fc9ecc8de2b4f4c0b2f">ContentsInterface::textSpeedInterval</a></div><div class="ttdeci">CGFloat textSpeedInterval</div><div class="ttdoc">1文字あたりのテキスト送り早さ(sec) </div><div class="ttdef"><b>Definition:</b> ContentsInterface.h:60</div></div>
+<div class="ttc" id="interface_save_data_html"><div class="ttname"><a href="../../d2/d59/interface_save_data.html">SaveData</a></div><div class="ttdoc">セーブデータの保存や読み出しを担当する </div><div class="ttdef"><b>Definition:</b> SaveData.h:16</div></div>
+<div class="ttc" id="interface_contents_interface_html_a5e83f692164d5b38d9f0b5ac93c057e5"><div class="ttname"><a href="../../d3/d6a/interface_contents_interface.html#a5e83f692164d5b38d9f0b5ac93c057e5">ContentsInterface::maxSectionIndex</a></div><div class="ttdeci">NSInteger maxSectionIndex</div><div class="ttdoc">最後のセクションを特定するインデックス値 </div><div class="ttdef"><b>Definition:</b> ContentsInterface.h:45</div></div>
+<div class="ttc" id="interface_contents_interface_html_a8b8101be170e1d45ad49c3e980519c9d"><div class="ttname"><a href="../../d3/d6a/interface_contents_interface.html#a8b8101be170e1d45ad49c3e980519c9d">-[ContentsInterface initialize]</a></div><div class="ttdeci">void initialize()</div><div class="ttdoc">オブジェクトを初期する </div><div class="ttdef"><b>Definition:</b> ContentsInterface.m:35</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../dir_0ba5448de4a8d08571425ec64206d40f.html">XcodeProject</a></li><li class="navelem"><a class="el" href="../../dir_afa056a71a0489c42c64d1cc4c547743.html">binzumejigoku</a></li><li class="navelem"><a class="el" href="../../dir_c92870bb824be81433403496436e8284.html">binzumejigoku</a></li><li class="navelem"><a class="el" href="../../dir_0f0db70bf04c62a434aabfd3554b0265.html">Classes</a></li><li class="navelem"><a class="el" href="../../dir_3e342beb56bb4f0c361a33e389ce1cee.html">Contents</a></li><li class="navelem"><b>ContentsInterface.h</b></li>
+    <li class="footer">構築:
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
+</body>
+</html>
