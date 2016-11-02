@@ -6,9 +6,8 @@
 //  Copyright © 2016年 1-Take. All rights reserved.
 
 #import <UIKit/UIKit.h>
-#import "ContentsParser.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, ContentsParserDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic)	UIWindow*	window;
 

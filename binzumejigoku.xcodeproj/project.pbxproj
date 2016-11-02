@@ -45,7 +45,6 @@
 		5C7575B51D4DD9260094D5B3 /* section2_00.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575AD1D4DD9260094D5B3 /* section2_00.jpg */; };
 		5C7575B61D4DD9260094D5B3 /* section2_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575AE1D4DD9260094D5B3 /* section2_01.jpg */; };
 		5C7575B71D4DD9260094D5B3 /* section3_00.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575AF1D4DD9260094D5B3 /* section3_00.jpg */; };
-		5C7575B81D4DD9260094D5B3 /* title_00.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575B01D4DD9260094D5B3 /* title_00.jpg */; };
 		5C7575C11D4DDC130094D5B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5C7575C31D4DDC130094D5B3 /* Localizable.strings */; };
 		5C7575C71D4DEA910094D5B3 /* ContentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7575C61D4DEA910094D5B3 /* ContentsViewController.m */; };
 		5C7575D61D4E300D0094D5B3 /* AlertControllerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7575D51D4E300D0094D5B3 /* AlertControllerHandler.m */; };
@@ -71,6 +70,9 @@
 		5CC6E3191D4B97E30073FC30 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6E3181D4B97E30073FC30 /* SettingViewController.m */; };
 		5CC6E31C1D4B97FB0073FC30 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6E31B1D4B97FB0073FC30 /* HistoryViewController.m */; };
 		5CC6E3201D4B9D540073FC30 /* MainPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6E31F1D4B9D540073FC30 /* MainPageView.m */; };
+		5CD8A1751DC77C040068A44F /* app_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD8A1741DC77C040068A44F /* app_title.png */; };
+		5CF83BE71DCA15D800352A35 /* launch_00.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5CF83BE51DCA15D800352A35 /* launch_00.jpg */; };
+		5CF83BE81DCA15D800352A35 /* launch_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5CF83BE61DCA15D800352A35 /* launch_01.jpg */; };
 		5CF8697C1DA28074001EB437 /* save_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF8697A1DA28074001EB437 /* save_button_normal.png */; };
 		5CF8697D1DA28074001EB437 /* save_button_press.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF8697B1DA28074001EB437 /* save_button_press.png */; };
 /* End PBXBuildFile section */
@@ -136,7 +138,6 @@
 		5C7575AD1D4DD9260094D5B3 /* section2_00.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section2_00.jpg; path = Resources/Images/section2_00.jpg; sourceTree = "<group>"; };
 		5C7575AE1D4DD9260094D5B3 /* section2_01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section2_01.jpg; path = Resources/Images/section2_01.jpg; sourceTree = "<group>"; };
 		5C7575AF1D4DD9260094D5B3 /* section3_00.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section3_00.jpg; path = Resources/Images/section3_00.jpg; sourceTree = "<group>"; };
-		5C7575B01D4DD9260094D5B3 /* title_00.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = title_00.jpg; path = Resources/Images/title_00.jpg; sourceTree = "<group>"; };
 		5C7575C41D4DDC140094D5B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5C7575C51D4DEA910094D5B3 /* ContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsViewController.h; path = Classes/ViewController/ContentsViewController.h; sourceTree = "<group>"; };
 		5C7575C61D4DEA910094D5B3 /* ContentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsViewController.m; path = Classes/ViewController/ContentsViewController.m; sourceTree = "<group>"; };
@@ -180,6 +181,9 @@
 		5CC6E31B1D4B97FB0073FC30 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryViewController.m; path = Classes/ViewController/HistoryViewController.m; sourceTree = "<group>"; };
 		5CC6E31E1D4B9D540073FC30 /* MainPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainPageView.h; path = Classes/View/MainPageView.h; sourceTree = "<group>"; };
 		5CC6E31F1D4B9D540073FC30 /* MainPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainPageView.m; path = Classes/View/MainPageView.m; sourceTree = "<group>"; };
+		5CD8A1741DC77C040068A44F /* app_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = app_title.png; path = Resources/Images/app_title.png; sourceTree = "<group>"; };
+		5CF83BE51DCA15D800352A35 /* launch_00.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = launch_00.jpg; path = Resources/Images/launch_00.jpg; sourceTree = "<group>"; };
+		5CF83BE61DCA15D800352A35 /* launch_01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = launch_01.jpg; path = Resources/Images/launch_01.jpg; sourceTree = "<group>"; };
 		5CF8697A1DA28074001EB437 /* save_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = save_button_normal.png; path = Resources/Images/save_button_normal.png; sourceTree = "<group>"; };
 		5CF8697B1DA28074001EB437 /* save_button_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = save_button_press.png; path = Resources/Images/save_button_press.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -256,6 +260,7 @@
 		5C7575A81D4DD9040094D5B3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5CD8A1741DC77C040068A44F /* app_title.png */,
 				5C163D561DB652FC00FA5C52 /* ic_play.png */,
 				5C163D571DB652FC00FA5C52 /* ic_play@2x.png */,
 				5C163D581DB652FC00FA5C52 /* ic_save.png */,
@@ -269,6 +274,8 @@
 				5C0583F51D9BF07500815912 /* ic_cancel_white.png */,
 				5C0583F71D9BF56500815912 /* ic_swap_horiz_white.png */,
 				5C7DD3D91D9407FD00C0B6DC /* ic_wait_advance.png */,
+				5CF83BE51DCA15D800352A35 /* launch_00.jpg */,
+				5CF83BE61DCA15D800352A35 /* launch_01.jpg */,
 				5C7575A91D4DD9260094D5B3 /* section0_00.jpg */,
 				5C7575AA1D4DD9260094D5B3 /* section0_01.jpg */,
 				5C7575AB1D4DD9260094D5B3 /* section1_00.jpg */,
@@ -279,7 +286,6 @@
 				5C8CBD7E1D9565CF009A7C02 /* section2_03.jpg */,
 				5C8CBD7F1D9565CF009A7C02 /* section2_04.jpg */,
 				5C7575AF1D4DD9260094D5B3 /* section3_00.jpg */,
-				5C7575B01D4DD9260094D5B3 /* title_00.jpg */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -509,11 +515,13 @@
 			files = (
 				5C163D5D1DB652FC00FA5C52 /* ic_play@2x.png in Resources */,
 				5C7575B41D4DD9260094D5B3 /* section1_01.jpg in Resources */,
+				5CD8A1751DC77C040068A44F /* app_title.png in Resources */,
 				5C7DD3DA1D9407FD00C0B6DC /* ic_wait_advance.png in Resources */,
 				5CF8697D1DA28074001EB437 /* save_button_press.png in Resources */,
 				5C41031C1DAFBB7400053429 /* tutorial_tap.png in Resources */,
 				5C163D491DB649E700FA5C52 /* Assets.xcassets in Resources */,
 				5CC1B8AA1D4F7E790003DD38 /* AppSetting.plist in Resources */,
+				5CF83BE71DCA15D800352A35 /* launch_00.jpg in Resources */,
 				5C7575B71D4DD9260094D5B3 /* section3_00.jpg in Resources */,
 				5C163D5C1DB652FC00FA5C52 /* ic_play.png in Resources */,
 				5C7575B11D4DD9260094D5B3 /* section0_00.jpg in Resources */,
@@ -527,9 +535,9 @@
 				5C8CBD821D9565CF009A7C02 /* section2_04.jpg in Resources */,
 				5C163D601DB652FC00FA5C52 /* ic_settings.png in Resources */,
 				5C7575C11D4DDC130094D5B3 /* Localizable.strings in Resources */,
-				5C7575B81D4DD9260094D5B3 /* title_00.jpg in Resources */,
 				5C7575B31D4DD9260094D5B3 /* section1_00.jpg in Resources */,
 				5C163D611DB652FC00FA5C52 /* ic_settings@2x.png in Resources */,
+				5CF83BE81DCA15D800352A35 /* launch_01.jpg in Resources */,
 				5CF8697C1DA28074001EB437 /* save_button_normal.png in Resources */,
 				5C163D5E1DB652FC00FA5C52 /* ic_save.png in Resources */,
 				5C163D5F1DB652FC00FA5C52 /* ic_save@2x.png in Resources */,
@@ -700,8 +708,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.onetake.binzumejigoku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "683261bb-98e6-4548-99cc-7295ce7fd075";
-				PROVISIONING_PROFILE_SPECIFIER = "1Take_iPhone6s+";
+				PROVISIONING_PROFILE = "8397bb43-fa68-443a-ba7e-97a805703a4c";
+				PROVISIONING_PROFILE_SPECIFIER = 1Take_Developement;
 			};
 			name = Debug;
 		};
