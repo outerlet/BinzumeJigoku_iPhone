@@ -12,7 +12,7 @@
 
 const CGFloat	kTitleTextSize				= 40.0f;	// タイトルのテキストサイズ
 const CGFloat	kSubtitleTextSize			= 20.0f;	// サブタイトルのテキストサイズ
-const CGFloat	kInteractionTextSize		= 24.0f;	// ユーザーのインタラクションを待つ旨のテキストサイズ
+const CGFloat	kInteractionTextSize		= 20.0f;	// ユーザーのインタラクションを待つ旨のテキストサイズ
 const CGFloat	kDistanceOfTitleAndSubtitle	= 20.0f;	// タイトルとサブタイトルの間隔
 
 @interface LauncherView ()
