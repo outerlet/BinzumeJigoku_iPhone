@@ -8,8 +8,6 @@
 	<string>contents_binzume_jigoku</string>
 	<key>FontName</key>
 	<string>Hiragino Mincho ProN W3</string>
-	<key>TitleTextSize</key>
-	<integer>36</integer>
 	<key>TextSpeed</key>
 	<array>
 		<real>0.05</real>

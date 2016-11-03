@@ -52,6 +52,7 @@
 		5C7DD3DA1D9407FD00C0B6DC /* ic_wait_advance.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7DD3D91D9407FD00C0B6DC /* ic_wait_advance.png */; };
 		5C7DD3DD1D9408B700C0B6DC /* ContentsWaitingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7DD3DC1D9408B700C0B6DC /* ContentsWaitingIndicatorView.m */; };
 		5C8722FF1D86D770001AAF22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C8722FE1D86D770001AAF22 /* LaunchScreen.storyboard */; };
+		5C8C30D61DCB04D600A21AE7 /* LauncherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8C30D51DCB04D600A21AE7 /* LauncherView.m */; };
 		5C8CBD801D9565CF009A7C02 /* section2_02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C8CBD7D1D9565CF009A7C02 /* section2_02.jpg */; };
 		5C8CBD811D9565CF009A7C02 /* section2_03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C8CBD7E1D9565CF009A7C02 /* section2_03.jpg */; };
 		5C8CBD821D9565CF009A7C02 /* section2_04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C8CBD7F1D9565CF009A7C02 /* section2_04.jpg */; };
@@ -149,6 +150,8 @@
 		5C7DD3DB1D9408B700C0B6DC /* ContentsWaitingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentsWaitingIndicatorView.h; path = Classes/View/ContentsWaitingIndicatorView.h; sourceTree = "<group>"; };
 		5C7DD3DC1D9408B700C0B6DC /* ContentsWaitingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentsWaitingIndicatorView.m; path = Classes/View/ContentsWaitingIndicatorView.m; sourceTree = "<group>"; };
 		5C8722FE1D86D770001AAF22 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5C8C30D41DCB04D600A21AE7 /* LauncherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LauncherView.h; path = Classes/View/LauncherView.h; sourceTree = "<group>"; };
+		5C8C30D51DCB04D600A21AE7 /* LauncherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LauncherView.m; path = Classes/View/LauncherView.m; sourceTree = "<group>"; };
 		5C8CBD7D1D9565CF009A7C02 /* section2_02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section2_02.jpg; path = Resources/Images/section2_02.jpg; sourceTree = "<group>"; };
 		5C8CBD7E1D9565CF009A7C02 /* section2_03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section2_03.jpg; path = Resources/Images/section2_03.jpg; sourceTree = "<group>"; };
 		5C8CBD7F1D9565CF009A7C02 /* section2_04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = section2_04.jpg; path = Resources/Images/section2_04.jpg; sourceTree = "<group>"; };
@@ -426,6 +429,8 @@
 		5CC6E31D1D4B9D0E0073FC30 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5C8C30D41DCB04D600A21AE7 /* LauncherView.h */,
+				5C8C30D51DCB04D600A21AE7 /* LauncherView.m */,
 				5C3E23981D85921C00760EA7 /* RubyTextView.h */,
 				5C3E23991D85921C00760EA7 /* RubyTextView.m */,
 				5C3E23961D85921C00760EA7 /* RubyOnelineTextView.h */,
@@ -485,7 +490,7 @@
 					5C20B5D11D4B8B3C0014E6F9 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 44UZBLNCCX;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -589,6 +594,7 @@
 				5C6131BB1DB1044600E46615 /* OverlayViewController.m in Sources */,
 				5CC6E3191D4B97E30073FC30 /* SettingViewController.m in Sources */,
 				5C7575D61D4E300D0094D5B3 /* AlertControllerHandler.m in Sources */,
+				5C8C30D61DCB04D600A21AE7 /* LauncherView.m in Sources */,
 				5C6131B51DB101F700E46615 /* TutorialImageTextView.m in Sources */,
 				5CC6E31C1D4B97FB0073FC30 /* HistoryViewController.m in Sources */,
 			);
@@ -708,8 +714,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.onetake.binzumejigoku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8397bb43-fa68-443a-ba7e-97a805703a4c";
-				PROVISIONING_PROFILE_SPECIFIER = 1Take_Developement;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -718,15 +724,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Shizuo Ichitake (44UZBLNCCX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shizuo Ichitake (44UZBLNCCX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 44UZBLNCCX;
 				INFOPLIST_FILE = binzumejigoku/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.onetake.binzumejigoku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "aa0a20e8-999b-466d-9fe4-210245f7b737";
-				PROVISIONING_PROFILE_SPECIFIER = BinzumeJigoku_Distribution;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

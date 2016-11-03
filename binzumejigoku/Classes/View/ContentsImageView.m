@@ -41,7 +41,7 @@ static const NSInteger IMAGE_VIEW_NUMBER = 2;
 	_nextImage = image;
 }
 
-- (void)startAnimationWithEffect:(ImageEffect)effect duration:(NSTimeInterval)duration completion:(void (^)(void))completion {
+- (void)showWithEffect:(ImageEffect)effect duration:(NSTimeInterval)duration completion:(void (^)(void))completion {
 	UIImageView* current = [self imageViewByHidden:NO];
 	
 	// エラー対策。現在何の画像も表示しておらず次に表示すべきものも無い場合は何もしない
@@ -117,10 +117,8 @@ static const NSInteger IMAGE_VIEW_NUMBER = 2;
 	ImageElement* imageElement = element;
 		
 	[self setNextImage:imageElement.image];
-		
-	[self startAnimationWithEffect:imageElement.imageEffect
-						  duration:imageElement.duration
-						completion:completion];
+	
+	[self showWithEffect:imageElement.imageEffect duration:imageElement.duration completion:completion];
 }
 
 - (UIImageView*)imageViewByHidden:(BOOL)hidden {

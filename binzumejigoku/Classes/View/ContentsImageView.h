@@ -30,7 +30,7 @@
 /**
  * setNextImageでセットした画像を表示させるアニメーションを、effectに指定した効果で開始する
  */
-- (void)startAnimationWithEffect:(ImageEffect)effect duration:(NSTimeInterval)duration completion:(void (^)(void))completion;
+- (void)showWithEffect:(ImageEffect)effect duration:(NSTimeInterval)duration completion:(void (^)(void))completion;
 
 /**
  * startAnimationWithEffectのようにアニメーションによってではなく、すぐに画像を表示させる

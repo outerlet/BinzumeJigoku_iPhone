@@ -24,6 +24,11 @@
 "tab_name_load"		= "読込";
 "tab_name_settings"	= "設定";
 
+// Launcher
+"launcher_title"		= "読む瓶詰";
+"launcher_subtitle"		= "『瓶詰地獄』をアプリで読む";
+"launcher_interaction"	= "画面をタッチしてください";
+
 // General Messages
 "message_confirm_back"				= "物語を中断して前の画面に戻りますか？";
 "message_section_finished"			= "章が終了しました。";

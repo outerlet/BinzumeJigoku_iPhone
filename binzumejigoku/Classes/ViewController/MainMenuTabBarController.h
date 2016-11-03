@@ -9,15 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "ContentsParser.h"
 #import "TutorialViewController.h"
-
-@class LaunchImageView;
+#import "LauncherView.h"
 
 /**
  * アプリのメインメニューをタブで表示するTabBarController
  */
-@interface MainMenuTabBarController : UITabBarController <ContentsParserDelegate, OverlayViewControllerDelegate> {
+@interface MainMenuTabBarController : UITabBarController <ContentsParserDelegate, OverlayViewControllerDelegate, LauncherViewDelegate> {
     @private
-	LaunchImageView*			_imageView;
+	LauncherView*				_launcherView;
     UIActivityIndicatorView*    _indicator;
 }
 

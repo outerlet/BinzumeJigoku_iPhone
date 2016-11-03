@@ -29,6 +29,7 @@ static const NSInteger kAlertActionTagTextSizeSmall		= 0;
 static const NSInteger kAlertActionTagTextSizeNormal	= 1;
 static const NSInteger kAlertActionTagTextSizeLarge		= 2;
 
+// 青空文庫の図書カードを表示させるためのView
 @interface AboutWorkView : UIView
 
 @end
@@ -39,7 +40,7 @@ static const NSInteger kAlertActionTagTextSizeLarge		= 2;
 	if (self = [super initWithFrame:frame]) {
 		self.backgroundColor = [UIColor clearColor];
 		
-		UIView* baseView = [[UIView alloc] initWithFrame:CGRectInset(self.bounds, 10.0f, 100.0f)];
+		UIView* baseView = [[UIView alloc] initWithFrame:self.bounds];
 		baseView.backgroundColor = [UIColor whiteColor];
 		baseView.layer.borderWidth = 1.0f;
 		baseView.layer.borderColor = [UIColor blackColor].CGColor;
@@ -52,7 +53,7 @@ static const NSInteger kAlertActionTagTextSizeLarge		= 2;
 		UIFont* font = [UIFont fontWithName:[ContentsInterface sharedInstance].fontName size:kSettingSubviewTextSize];
 		NSDictionary* attrs = @{ NSFontAttributeName: font, NSForegroundColorAttributeName: [UIColor blackColor], NSParagraphStyleAttributeName: style };
 		
-		UILabel* label = [[UILabel alloc] initWithFrame:CGRectInset(self.bounds, 20.0f, 110.0f)];
+		UILabel* label = [[UILabel alloc] initWithFrame:CGRectInset(self.bounds, 10.0f, 0.0f)];
 		label.backgroundColor = [UIColor clearColor];
 		label.textAlignment = NSTextAlignmentLeft;
 		label.numberOfLines = 0;
@@ -93,19 +94,22 @@ static const NSInteger kAlertActionTagTextSizeLarge		= 2;
 
 - (id)init {
 	if (self = [super init]) {
-		CGRect tf = UIEdgeInsetsInsetRect(self.view.bounds, UIEdgeInsetsMake([UIApplication sharedApplication].statusBarFrame.size.height, 0.0f, 0.0f, 0.0f));
-		
 		// iOS7以降(?)ではUITableViewControllerを使うとステータスバーの下にセルが潜り込んで表示されてしまう
 		// StoryBoardでないとそれを解消するのが容易ではなさそうなので、ここでは敢えてUITableViewを使っている
-		self.tableView = [[UITableView alloc] initWithFrame:tf];
+		// (StoryBoard使えばええやん、とか野暮なことは言わない方向でひとつ...)
+		CGRect tblFrame = UIEdgeInsetsInsetRect(self.view.bounds, UIEdgeInsetsMake([UIApplication sharedApplication].statusBarFrame.size.height, 0.0f, 0.0f, 0.0f));
+		self.tableView = [[UITableView alloc] initWithFrame:tblFrame];
 		self.tableView.delegate = self;
 		self.tableView.dataSource = self;
 		self.tableView.sectionHeaderHeight = kHeightForSectionHeader;
 		self.tableView.rowHeight = kHeightForRow;
 		self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 		[self.view addSubview:self.tableView];
-		
-		_aboutWorkView = [[AboutWorkView alloc] initWithFrame:self.view.bounds];
+
+		// 青空文庫の図書カードを表示するためのView
+		// Bottom=49.0fをとっているのはタブバーの高さぶん
+		CGRect wkFrame = UIEdgeInsetsInsetRect(self.view.bounds, UIEdgeInsetsMake([UIApplication sharedApplication].statusBarFrame.size.height, 0.0f, 49.0f, 0.0f));
+		_aboutWorkView = [[AboutWorkView alloc] initWithFrame:CGRectInset(wkFrame, 10.0f, 10.0f)];
 		[self.view addSubview:_aboutWorkView];
 		_aboutWorkView.hidden = YES;
 	}
