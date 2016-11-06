@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>BinzumeJigoku: CoreDataHandler クラス</title>
+<title>読む瓶詰: CoreDataHandler クラス</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">BinzumeJigoku
+   <div id="projectname">読む瓶詰
    </div>
   </td>
  </tr>
@@ -129,47 +129,192 @@ CoreDataHandler の継承関係図</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 実体メソッド</h2></td></tr>
-<tr class="memitem:a6423ad6a11f215bd784277201bad9600"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6423ad6a11f215bd784277201bad9600"></a>
-(NSManagedObject *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="../../d7/d61/interface_core_data_handler.html#a6423ad6a11f215bd784277201bad9600">createManagedObject</a></td></tr>
-<tr class="memdesc:a6423ad6a11f215bd784277201bad9600"><td class="mdescLeft">&#160;</td><td class="mdescRight">エンティティ"Contents"に挿入するためのManaged Objectを生成して返す <br /></td></tr>
+<tr class="memitem:a6423ad6a11f215bd784277201bad9600"><td class="memItemLeft" align="right" valign="top">(NSManagedObject *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="../../d7/d61/interface_core_data_handler.html#a6423ad6a11f215bd784277201bad9600">createManagedObject</a></td></tr>
+<tr class="memdesc:a6423ad6a11f215bd784277201bad9600"><td class="mdescLeft">&#160;</td><td class="mdescRight">エンティティ"Contents"に挿入するためのManaged Objectを生成して返す  <a href="#a6423ad6a11f215bd784277201bad9600">[詳解]</a><br /></td></tr>
 <tr class="separator:a6423ad6a11f215bd784277201bad9600"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4b5a99a9e155f2aede66cb14e72068f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4b5a99a9e155f2aede66cb14e72068f"></a>
-(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="../../d7/d61/interface_core_data_handler.html#ae4b5a99a9e155f2aede66cb14e72068f">commit:</a></td></tr>
+<tr class="memitem:ae4b5a99a9e155f2aede66cb14e72068f"><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="../../d7/d61/interface_core_data_handler.html#ae4b5a99a9e155f2aede66cb14e72068f">commit:</a></td></tr>
 <tr class="memdesc:ae4b5a99a9e155f2aede66cb14e72068f"><td class="mdescLeft">&#160;</td><td class="mdescRight">これまでcreateManagedObjectで生成したManaged Objectをまとめて保存する<br />
- 保存処理の成否は戻り値で、その際のエラーはerrorに参照渡しで返る <br /></td></tr>
+ 保存処理の成否は戻り値で、その際のエラーはerrorに参照渡しで返る  <a href="#ae4b5a99a9e155f2aede66cb14e72068f">[詳解]</a><br /></td></tr>
 <tr class="separator:ae4b5a99a9e155f2aede66cb14e72068f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37583a36be25ba45b5304d284d52d75a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a37583a36be25ba45b5304d284d52d75a"></a>
-(NSFetchedResultsController *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="../../d7/d61/interface_core_data_handler.html#a37583a36be25ba45b5304d284d52d75a">fetch:</a></td></tr>
-<tr class="memdesc:a37583a36be25ba45b5304d284d52d75a"><td class="mdescLeft">&#160;</td><td class="mdescRight">エンティティ"Contents"をクエリして得られるFetched Results Controllerを返す <br /></td></tr>
+<tr class="memitem:a37583a36be25ba45b5304d284d52d75a"><td class="memItemLeft" align="right" valign="top">(NSFetchedResultsController *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="../../d7/d61/interface_core_data_handler.html#a37583a36be25ba45b5304d284d52d75a">fetch:</a></td></tr>
+<tr class="memdesc:a37583a36be25ba45b5304d284d52d75a"><td class="mdescLeft">&#160;</td><td class="mdescRight">エンティティ"Contents"をクエリして得られるFetched Results Controllerを返す  <a href="#a37583a36be25ba45b5304d284d52d75a">[詳解]</a><br /></td></tr>
 <tr class="separator:a37583a36be25ba45b5304d284d52d75a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 クラスメソッド</h2></td></tr>
-<tr class="memitem:a93d3db4cc81e5827171b4c42a217a85c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93d3db4cc81e5827171b4c42a217a85c"></a>
-(<a class="el" href="../../d7/d61/interface_core_data_handler.html">CoreDataHandler</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="../../d7/d61/interface_core_data_handler.html#a93d3db4cc81e5827171b4c42a217a85c">sharedInstance</a></td></tr>
-<tr class="memdesc:a93d3db4cc81e5827171b4c42a217a85c"><td class="mdescLeft">&#160;</td><td class="mdescRight">このクラスのシングルトンインスタンスを得る <br /></td></tr>
+<tr class="memitem:a93d3db4cc81e5827171b4c42a217a85c"><td class="memItemLeft" align="right" valign="top">(<a class="el" href="../../d7/d61/interface_core_data_handler.html">CoreDataHandler</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="../../d7/d61/interface_core_data_handler.html#a93d3db4cc81e5827171b4c42a217a85c">sharedInstance</a></td></tr>
+<tr class="memdesc:a93d3db4cc81e5827171b4c42a217a85c"><td class="mdescLeft">&#160;</td><td class="mdescRight">このクラスのシングルトンインスタンスを得る  <a href="#a93d3db4cc81e5827171b4c42a217a85c">[詳解]</a><br /></td></tr>
 <tr class="separator:a93d3db4cc81e5827171b4c42a217a85c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 プロパティ</h2></td></tr>
-<tr class="memitem:aa24a1ed556673746c2081b115d9db835"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa24a1ed556673746c2081b115d9db835"></a>
-NSManagedObjectContext *&#160;</td><td class="memItemRight" valign="bottom"><b>managedObjectContext</b></td></tr>
+<tr class="memitem:aa24a1ed556673746c2081b115d9db835"><td class="memItemLeft" align="right" valign="top">NSManagedObjectContext *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d61/interface_core_data_handler.html#aa24a1ed556673746c2081b115d9db835">managedObjectContext</a></td></tr>
 <tr class="separator:aa24a1ed556673746c2081b115d9db835"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a612eee72613548315222dbd6ce4e2448"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a612eee72613548315222dbd6ce4e2448"></a>
-NSManagedObjectModel *&#160;</td><td class="memItemRight" valign="bottom"><b>managedObjectModel</b></td></tr>
+<tr class="memitem:a612eee72613548315222dbd6ce4e2448"><td class="memItemLeft" align="right" valign="top">NSManagedObjectModel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d61/interface_core_data_handler.html#a612eee72613548315222dbd6ce4e2448">managedObjectModel</a></td></tr>
 <tr class="separator:a612eee72613548315222dbd6ce4e2448"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47273b3ca7213f0a40bc5b48c25295bb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47273b3ca7213f0a40bc5b48c25295bb"></a>
-NSPersistentStoreCoordinator *&#160;</td><td class="memItemRight" valign="bottom"><b>persistentStoreCoordinator</b></td></tr>
+<tr class="memitem:a47273b3ca7213f0a40bc5b48c25295bb"><td class="memItemLeft" align="right" valign="top">NSPersistentStoreCoordinator *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d61/interface_core_data_handler.html#a47273b3ca7213f0a40bc5b48c25295bb">persistentStoreCoordinator</a></td></tr>
 <tr class="separator:a47273b3ca7213f0a40bc5b48c25295bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa55a348286968974c732b3e1bc19778e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa55a348286968974c732b3e1bc19778e"></a>
-BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>contentsInstalled</b></td></tr>
+<tr class="memitem:aa55a348286968974c732b3e1bc19778e"><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d61/interface_core_data_handler.html#aa55a348286968974c732b3e1bc19778e">contentsInstalled</a></td></tr>
 <tr class="separator:aa55a348286968974c732b3e1bc19778e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>CoreData関連の処理を集中して扱うシングルトンクラス </p>
-</div><hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+</div><h2 class="groupheader">メソッド詳解</h2>
+<a class="anchor" id="ae4b5a99a9e155f2aede66cb14e72068f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) commit: </td>
+          <td></td>
+          <td class="paramtype">(NSError**)&#160;</td>
+          <td class="paramname"><em>error</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>これまでcreateManagedObjectで生成したManaged Objectをまとめて保存する<br />
+ 保存処理の成否は戻り値で、その際のエラーはerrorに参照渡しで返る </p>
+
+</div>
+</div>
+<a class="anchor" id="a6423ad6a11f215bd784277201bad9600"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSManagedObject *) createManagedObject </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>エンティティ"Contents"に挿入するためのManaged Objectを生成して返す </p>
+
+</div>
+</div>
+<a class="anchor" id="a37583a36be25ba45b5304d284d52d75a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSFetchedResultsController *) fetch: </td>
+          <td></td>
+          <td class="paramtype">(NSInteger)&#160;</td>
+          <td class="paramname"><em>sectionIndex</em></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>エンティティ"Contents"をクエリして得られるFetched Results Controllerを返す </p>
+
+</div>
+</div>
+<a class="anchor" id="a93d3db4cc81e5827171b4c42a217a85c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">+ (<a class="el" href="../../d7/d61/interface_core_data_handler.html">CoreDataHandler</a> *) sharedInstance </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>このクラスのシングルトンインスタンスを得る </p>
+
+</div>
+</div>
+<h2 class="groupheader">プロパティ詳解</h2>
+<a class="anchor" id="aa55a348286968974c732b3e1bc19778e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) contentsInstalled</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">nonatomic</span><span class="mlabel">assign</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa24a1ed556673746c2081b115d9db835"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSManagedObjectContext *) managedObjectContext</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">nonatomic</span><span class="mlabel">assign</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a612eee72613548315222dbd6ce4e2448"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSManagedObjectModel *) managedObjectModel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">nonatomic</span><span class="mlabel">assign</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a47273b3ca7213f0a40bc5b48c25295bb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (NSPersistentStoreCoordinator*) persistentStoreCoordinator</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">nonatomic</span><span class="mlabel">assign</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
 <li>/Users/outerlet/XcodeProject/binzumejigoku/binzumejigoku/Classes/CoreData/<a class="el" href="../../d0/d4f/_core_data_handler_8h_source.html">CoreDataHandler.h</a></li>
-<li>/Users/outerlet/XcodeProject/binzumejigoku/binzumejigoku/Classes/CoreData/CoreDataHandler.m</li>
+<li>/Users/outerlet/XcodeProject/binzumejigoku/binzumejigoku/Classes/CoreData/<a class="el" href="../../da/d12/_core_data_handler_8m.html">CoreDataHandler.m</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

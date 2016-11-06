@@ -1,29 +1,5 @@
 var searchData=
 [
-  ['cancelanimation',['cancelAnimation',['../d9/d2e/interface_contents_text_view.html#a339fb0ea7267b3a63d0d0306585661b0',1,'ContentsTextView::cancelAnimation()'],['../d9/db8/interface_ruby_oneline_text_view.html#a4616c8026c2367bf9086a53b2848ef7a',1,'RubyOnelineTextView::cancelAnimation()'],['../dc/d13/interface_ruby_text_view.html#ab061ba9adec1e62cd4499a1bf53e477a',1,'RubyTextView::cancelAnimation()']]],
-  ['chaintype',['chainType',['../dc/dec/interface_contents_element.html#a3abcb55bd72ea7479f4e617af010bd72',1,'ContentsElement']]],
-  ['clearalltexts',['clearAllTexts',['../d9/d2e/interface_contents_text_view.html#a207d3ec4c23ff9154814fe0b9df70b3d',1,'ContentsTextView']]],
-  ['cleartextelement',['ClearTextElement',['../d3/d00/interface_clear_text_element.html',1,'']]],
-  ['closebutton',['closeButton',['../d4/dc7/interface_overlay_view_controller.html#a6be87c631a9325d32867bd0567bf3194',1,'OverlayViewController']]],
-  ['color',['color',['../da/dfe/interface_text_element.html#aa483b2b0f3327bb62d0c47e721d834e9',1,'TextElement']]],
-  ['commit_3a',['commit:',['../d7/d61/interface_core_data_handler.html#ae4b5a99a9e155f2aede66cb14e72068f',1,'CoreDataHandler']]],
-  ['compose',['compose',['../dd/d09/interface_tutorial_image_text_view.html#a0ab04963ebeafc2c6031d38d13e886e8',1,'TutorialImageTextView']]],
-  ['contentselement',['ContentsElement',['../dc/dec/interface_contents_element.html',1,'']]],
-  ['contentselementwithmanagedobject_3a',['contentsElementWithManagedObject:',['../dc/dec/interface_contents_element.html#a7405d5c185b2a87e59c6d7ed5274245c',1,'ContentsElement']]],
-  ['contentsfileurl',['contentsFileUrl',['../d3/d6a/interface_contents_interface.html#aeb6f8e72b9ff25101352267d7f3ba30b',1,'ContentsInterface']]],
-  ['contentsimageview',['ContentsImageView',['../d2/d32/interface_contents_image_view.html',1,'']]],
-  ['contentsinterface',['ContentsInterface',['../d3/d6a/interface_contents_interface.html',1,'']]],
-  ['contentsparser',['ContentsParser',['../d3/daf/interface_contents_parser.html',1,'']]],
-  ['contentsparserdelegate_2dp',['ContentsParserDelegate-p',['../d3/dcb/protocol_contents_parser_delegate-p.html',1,'']]],
-  ['contentsselectviewcontroller',['ContentsSelectViewController',['../db/deb/interface_contents_select_view_controller.html',1,'']]],
-  ['contentstextview',['ContentsTextView',['../d9/d2e/interface_contents_text_view.html',1,'']]],
-  ['contentstitleview',['ContentsTitleView',['../dd/dcd/interface_contents_title_view.html',1,'']]],
-  ['contentstype',['contentsType',['../dc/dec/interface_contents_element.html#ae15a4c6bd026756166919a3e84d88163',1,'ContentsElement']]],
-  ['contentsview_2dp',['ContentsView-p',['../d8/d49/protocol_contents_view-p.html',1,'']]],
-  ['contentsviewcontroller',['ContentsViewController',['../d8/d9f/interface_contents_view_controller.html',1,'']]],
-  ['contentswaitingindicatorview',['ContentsWaitingIndicatorView',['../dd/dd7/interface_contents_waiting_indicator_view.html',1,'']]],
-  ['contentview',['contentView',['../d4/dc7/interface_overlay_view_controller.html#af99fca99281add71830b984587530483',1,'OverlayViewController']]],
-  ['copyfrom_3aincludetitle_3a',['copyFrom:includeTitle:',['../d2/d59/interface_save_data.html#abd27c839c4dffc433b85883dfac0d4d6',1,'SaveData']]],
-  ['coredatahandler',['CoreDataHandler',['../d7/d61/interface_core_data_handler.html',1,'']]],
-  ['createmanagedobject',['createManagedObject',['../dc/dec/interface_contents_element.html#a951737a60a9baa25550f366023e4c556',1,'ContentsElement::createManagedObject()'],['../d7/d61/interface_core_data_handler.html#a6423ad6a11f215bd784277201bad9600',1,'CoreDataHandler::createManagedObject()']]]
+  ['backgroundimage',['backgroundImage',['../d9/d49/interface_main_page_view.html#abf3492d52f9a6258da1ab370a59b38ea',1,'MainPageView::backgroundImage()'],['../dd/d8d/category_main_page_view_07_08.html#ac4461732dd26f397e2d635aef726651e',1,'MainPageView()::backgroundImage()']]],
+  ['build',['build',['../da/d04/interface_alert_controller_handler.html#a84457ffd05c7cdc9e65d6941b3074146',1,'AlertControllerHandler']]]
 ];

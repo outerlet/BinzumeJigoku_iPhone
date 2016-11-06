@@ -1,5 +1,16 @@
 var hierarchy =
 [
+    [ "AlertControllerHandler()", "dd/d9d/category_alert_controller_handler_07_08.html", null ],
+    [ "AppDelegate()", "d7/d3e/category_app_delegate_07_08.html", null ],
+    [ "ContentsElement()", "d7/dbc/category_contents_element_07_08.html", null ],
+    [ "ContentsImageView()", "d2/dc1/category_contents_image_view_07_08.html", null ],
+    [ "ContentsTitleView()", "d5/d96/category_contents_title_view_07_08.html", null ],
+    [ "ContentsViewController()", "db/d64/category_contents_view_controller_07_08.html", null ],
+    [ "GestureHintView()", "da/daf/category_gesture_hint_view_07_08.html", null ],
+    [ "HistorySelectView()", "d5/d96/category_history_select_view_07_08.html", null ],
+    [ "ImageElement()", "dd/d05/category_image_element_07_08.html", null ],
+    [ "LauncherView()", "d7/d15/category_launcher_view_07_08.html", null ],
+    [ "MainPageView()", "dd/d8d/category_main_page_view_07_08.html", null ],
     [ "<NSCoding>", null, [
       [ "SaveData", "d2/d59/interface_save_data.html", null ]
     ] ],
@@ -25,7 +36,7 @@ var hierarchy =
         [ "SettingViewController", "db/d17/interface_setting_view_controller.html", null ]
       ] ],
       [ "<ContentsParserDelegate>", "d3/dcb/protocol_contents_parser_delegate-p.html", [
-        [ "AppDelegate", "dd/d52/interface_app_delegate.html", null ]
+        [ "MainMenuTabBarController", "da/d36/interface_main_menu_tab_bar_controller.html", null ]
       ] ],
       [ "<ContentsView>", "d8/d49/protocol_contents_view-p.html", [
         [ "ContentsImageView", "d2/d32/interface_contents_image_view.html", null ],
@@ -39,6 +50,9 @@ var hierarchy =
         [ "ContentsViewController", "d8/d9f/interface_contents_view_controller.html", null ],
         [ "HistoryViewController", "d9/d2f/interface_history_view_controller.html", null ]
       ] ],
+      [ "<LauncherViewDelegate>", "de/dab/protocol_launcher_view_delegate-p.html", [
+        [ "MainMenuTabBarController", "da/d36/interface_main_menu_tab_bar_controller.html", null ]
+      ] ],
       [ "<MainPageViewDelegate>", "db/d46/protocol_main_page_view_delegate-p.html", [
         [ "ContentsSelectViewController", "db/deb/interface_contents_select_view_controller.html", null ]
       ] ],
@@ -51,6 +65,17 @@ var hierarchy =
     [ "<NSXMLParserDelegate>", null, [
       [ "ContentsParser", "d3/daf/interface_contents_parser.html", null ]
     ] ],
+    [ "OverlayViewController()", "da/d89/category_overlay_view_controller_07_08.html", null ],
+    [ "RubyOnelineTextView()", "d1/dfb/category_ruby_oneline_text_view_07_08.html", null ],
+    [ "RubyTextView()", "d5/d8e/category_ruby_text_view_07_08.html", null ],
+    [ "SaveData()", "df/ddd/category_save_data_07_08.html", null ],
+    [ "SettingTableViewCell()", "d8/dbb/category_setting_table_view_cell_07_08.html", null ],
+    [ "SettingViewController()", "d8/d1f/category_setting_view_controller_07_08.html", null ],
+    [ "TextElement()", "d2/d2a/category_text_element_07_08.html", null ],
+    [ "TextRubyPair()", "d7/d65/category_text_ruby_pair_07_08.html", null ],
+    [ "TitleElement()", "dd/d37/category_title_element_07_08.html", null ],
+    [ "TutorialImageTextView()", "d5/d3c/category_tutorial_image_text_view_07_08.html", null ],
+    [ "TutorialViewController()", "d5/ddf/category_tutorial_view_controller_07_08.html", null ],
     [ "<UIApplicationDelegate>", null, [
       [ "AppDelegate", "dd/d52/interface_app_delegate.html", null ]
     ] ],
@@ -78,12 +103,14 @@ var hierarchy =
       [ "SettingViewController", "db/d17/interface_setting_view_controller.html", null ]
     ] ],
     [ "UIView", null, [
+      [ "AboutWorkView", "d8/d79/interface_about_work_view.html", null ],
       [ "ContentsImageView", "d2/d32/interface_contents_image_view.html", null ],
       [ "ContentsTextView", "d9/d2e/interface_contents_text_view.html", null ],
       [ "ContentsTitleView", "dd/dcd/interface_contents_title_view.html", null ],
       [ "ContentsWaitingIndicatorView", "dd/dd7/interface_contents_waiting_indicator_view.html", null ],
       [ "GestureHintView", "df/d53/interface_gesture_hint_view.html", null ],
       [ "HistorySelectView", "d9/da3/interface_history_select_view.html", null ],
+      [ "LauncherView", "d3/d1b/interface_launcher_view.html", null ],
       [ "MainPageView", "d9/d49/interface_main_page_view.html", null ],
       [ "RubyTextView", "dc/d13/interface_ruby_text_view.html", null ],
       [ "SaveData", "d2/d59/interface_save_data.html", null ],
@@ -99,5 +126,6 @@ var hierarchy =
         [ "TutorialViewController", "d8/da3/interface_tutorial_view_controller.html", null ]
       ] ],
       [ "SettingViewController", "db/d17/interface_setting_view_controller.html", null ]
-    ] ]
+    ] ],
+    [ "WaitElement()", "db/d54/category_wait_element_07_08.html", null ]
 ];

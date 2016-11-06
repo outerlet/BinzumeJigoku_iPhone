@@ -4,6 +4,7 @@ var interface_contents_interface =
     [ "initialize", "d3/d6a/interface_contents_interface.html#a8b8101be170e1d45ad49c3e980519c9d", null ],
     [ "integerSetting:", "d3/d6a/interface_contents_interface.html#a344df8e73b08e8ee35fd28b889b89b32", null ],
     [ "saveDataAt:", "d3/d6a/interface_contents_interface.html#a7822f0aecd82d78764e09a800d910be6", null ],
+    [ "sharedInstance", "d3/d6a/interface_contents_interface.html#ab2fbd432b89756279cffee44aa4213a9", null ],
     [ "contentsFileUrl", "d3/d6a/interface_contents_interface.html#aeb6f8e72b9ff25101352267d7f3ba30b", null ],
     [ "fontName", "d3/d6a/interface_contents_interface.html#a7d7684f5f32f4d5c47529728f718469b", null ],
     [ "maxSectionIndex", "d3/d6a/interface_contents_interface.html#a5e83f692164d5b38d9f0b5ac93c057e5", null ],

@@ -1,0 +1,404 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>読む瓶詰: /Users/outerlet/XcodeProject/binzumejigoku/binzumejigoku/Classes/ViewController/SettingViewController.m ファイル</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">読む瓶詰
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>総合概要</span></a></li>
+      <li><a href="../../annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="../../files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="../../globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('d3/d3c/_setting_view_controller_8m.html','../../');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">クラス</a> &#124;
+<a href="#var-members">変数</a>  </div>
+  <div class="headertitle">
+<div class="title">SettingViewController.m ファイル</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#import &quot;<a class="el" href="../../dd/d25/_setting_view_controller_8h_source.html">SettingViewController.h</a>&quot;</code><br />
+<code>#import &lt;QuartzCore/QuartzCore.h&gt;</code><br />
+<code>#import &quot;<a class="el" href="../../d6/de6/_contents_interface_8h_source.html">ContentsInterface.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../d1/db1/_setting_table_view_cell_8h_source.html">SettingTableViewCell.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../d8/d13/_tutorial_view_controller_8h_source.html">TutorialViewController.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../d2/d18/_u_i_view_09_adjustment_8h_source.html">UIView+Adjustment.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+クラス</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d79/interface_about_work_view.html">AboutWorkView</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+変数</h2></td></tr>
+<tr class="memitem:a57e7cc4d664d07b02be0705820452323"><td class="memItemLeft" align="right" valign="top">static NSString *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d3c/_setting_view_controller_8m.html#a57e7cc4d664d07b02be0705820452323">kCellIdPrefix</a> = @&quot;CELL-ID_%02ld_%02ld&quot;</td></tr>
+<tr class="separator:a57e7cc4d664d07b02be0705820452323"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab91c1dd842002418212117f2fe776187"><td class="memItemLeft" align="right" valign="top">static const CGFloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d3c/_setting_view_controller_8m.html#ab91c1dd842002418212117f2fe776187">kHeightForSectionHeader</a> = 40.0f</td></tr>
+<tr class="separator:ab91c1dd842002418212117f2fe776187"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ff678d746f67ea612e1b703da748b83"><td class="memItemLeft" align="right" valign="top">static const CGFloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d3c/_setting_view_controller_8m.html#a1ff678d746f67ea612e1b703da748b83">kHeightForRow</a> = 80.0f</td></tr>
+<tr class="separator:a1ff678d746f67ea612e1b703da748b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab01c9ae3483c9539f0c4685ea272448a"><td class="memItemLeft" align="right" valign="top">static const CGFloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d3c/_setting_view_controller_8m.html#ab01c9ae3483c9539f0c4685ea272448a">kSettingSubviewTextSize</a> = 18.0f</td></tr>
+<tr class="separator:ab01c9ae3483c9539f0c4685ea272448a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1048714ba27e52e2433409671ac96e4"><td class="memItemLeft" align="right" valign="top">static const NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d3c/_setting_view_controller_8m.html#ad1048714ba27e52e2433409671ac96e4">kAlertTagTextSpeed</a> = 10001</td></tr>
+<tr class="separator:ad1048714ba27e52e2433409671ac96e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b495d64f18fed3eeab4f7688872e134"><td class="memItemLeft" align="right" valign="top">static const NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d3c/_setting_view_controller_8m.html#a5b495d64f18fed3eeab4f7688872e134">kAlertActionTagTextSpeedSlow</a> = 2</td></tr>
+<tr class="separator:a5b495d64f18fed3eeab4f7688872e134"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecc5b9936d55590eb592ecf913cad94e"><td class="memItemLeft" align="right" valign="top">static const NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d3c/_setting_view_controller_8m.html#aecc5b9936d55590eb592ecf913cad94e">kAlertActionTagTextSpeedNormal</a> = 1</td></tr>
+<tr class="separator:aecc5b9936d55590eb592ecf913cad94e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc863bfee3e9d37a92f98a51de534b59"><td class="memItemLeft" align="right" valign="top">static const NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d3c/_setting_view_controller_8m.html#abc863bfee3e9d37a92f98a51de534b59">kAlertActionTagTextSpeedFast</a> = 0</td></tr>
+<tr class="separator:abc863bfee3e9d37a92f98a51de534b59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a885cca140bcbab86f25a4834d98ea0f0"><td class="memItemLeft" align="right" valign="top">static const NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d3c/_setting_view_controller_8m.html#a885cca140bcbab86f25a4834d98ea0f0">kAlertTagTextSize</a> = 10002</td></tr>
+<tr class="separator:a885cca140bcbab86f25a4834d98ea0f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc8179c286716dae46b01af2de634ac3"><td class="memItemLeft" align="right" valign="top">static const NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d3c/_setting_view_controller_8m.html#adc8179c286716dae46b01af2de634ac3">kAlertActionTagTextSizeSmall</a> = 0</td></tr>
+<tr class="separator:adc8179c286716dae46b01af2de634ac3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ba95bf6d3c3c5c8dc125d067067485f"><td class="memItemLeft" align="right" valign="top">static const NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d3c/_setting_view_controller_8m.html#a4ba95bf6d3c3c5c8dc125d067067485f">kAlertActionTagTextSizeNormal</a> = 1</td></tr>
+<tr class="separator:a4ba95bf6d3c3c5c8dc125d067067485f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a399cb4dd037f9c7c6fb7e55967dd64cc"><td class="memItemLeft" align="right" valign="top">static const NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d3c/_setting_view_controller_8m.html#a399cb4dd037f9c7c6fb7e55967dd64cc">kAlertActionTagTextSizeLarge</a> = 2</td></tr>
+<tr class="separator:a399cb4dd037f9c7c6fb7e55967dd64cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">変数詳解</h2>
+<a class="anchor" id="a399cb4dd037f9c7c6fb7e55967dd64cc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NSInteger kAlertActionTagTextSizeLarge = 2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4ba95bf6d3c3c5c8dc125d067067485f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NSInteger kAlertActionTagTextSizeNormal = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="adc8179c286716dae46b01af2de634ac3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NSInteger kAlertActionTagTextSizeSmall = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abc863bfee3e9d37a92f98a51de534b59"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NSInteger kAlertActionTagTextSpeedFast = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aecc5b9936d55590eb592ecf913cad94e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NSInteger kAlertActionTagTextSpeedNormal = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5b495d64f18fed3eeab4f7688872e134"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NSInteger kAlertActionTagTextSpeedSlow = 2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a885cca140bcbab86f25a4834d98ea0f0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NSInteger kAlertTagTextSize = 10002</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad1048714ba27e52e2433409671ac96e4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NSInteger kAlertTagTextSpeed = 10001</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a57e7cc4d664d07b02be0705820452323"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NSString* const kCellIdPrefix = @&quot;CELL-ID_%02ld_%02ld&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1ff678d746f67ea612e1b703da748b83"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const CGFloat kHeightForRow = 80.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab91c1dd842002418212117f2fe776187"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const CGFloat kHeightForSectionHeader = 40.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab01c9ae3483c9539f0c4685ea272448a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const CGFloat kSettingSubviewTextSize = 18.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../dir_0ba5448de4a8d08571425ec64206d40f.html">XcodeProject</a></li><li class="navelem"><a class="el" href="../../dir_afa056a71a0489c42c64d1cc4c547743.html">binzumejigoku</a></li><li class="navelem"><a class="el" href="../../dir_c92870bb824be81433403496436e8284.html">binzumejigoku</a></li><li class="navelem"><a class="el" href="../../dir_0f0db70bf04c62a434aabfd3554b0265.html">Classes</a></li><li class="navelem"><a class="el" href="../../dir_b37b13608c94ee2abc749b5760444b67.html">ViewController</a></li><li class="navelem"><a class="el" href="../../d3/d3c/_setting_view_controller_8m.html">SettingViewController.m</a></li>
+    <li class="footer">構築:
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -7,5 +7,6 @@ var searchData=
   ['decodetoimageeffect',['decodeToImageEffect',['../da/d0d/category_n_s_string_07_custom_decoder_08.html#aa579c4010cd5994e4ac2ec7a3a4ec8bd',1,'NSString(CustomDecoder)']]],
   ['decodetotextalignment',['decodeToTextAlignment',['../da/d0d/category_n_s_string_07_custom_decoder_08.html#a13cadbe119ef21b470397789e8129bef',1,'NSString(CustomDecoder)']]],
   ['decodeutf16string',['decodeUTF16String',['../da/d0d/category_n_s_string_07_custom_decoder_08.html#a67565a74c047428744f15ec85a622d58',1,'NSString(CustomDecoder)']]],
-  ['dismissanimated_3acompletion_3a',['dismissAnimated:completion:',['../d9/da3/interface_history_select_view.html#a852495651c83539c94a4300db68b9b7b',1,'HistorySelectView']]]
+  ['dismissanimated_3acompletion_3a',['dismissAnimated:completion:',['../d9/da3/interface_history_select_view.html#a852495651c83539c94a4300db68b9b7b',1,'HistorySelectView']]],
+  ['dismisswithduration_3adelay_3a',['dismissWithDuration:delay:',['../d3/d1b/interface_launcher_view.html#af692132215ec3dd90169ac7a17de23b7',1,'LauncherView']]]
 ];

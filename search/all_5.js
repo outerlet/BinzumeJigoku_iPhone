@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['fetch_3a',['fetch:',['../d7/d61/interface_core_data_handler.html#a37583a36be25ba45b5304d284d52d75a',1,'CoreDataHandler']]],
-  ['floatsetting_3a',['floatSetting:',['../d3/d6a/interface_contents_interface.html#ac3d51ab4b64d6111b7514335928e6366',1,'ContentsInterface']]],
-  ['font',['font',['../dc/d13/interface_ruby_text_view.html#a15218ae1f5f0335735721a3111a8aa32',1,'RubyTextView::font()'],['../dd/d09/interface_tutorial_image_text_view.html#a1c1e899fb7a5405708ed7d133f1f171e',1,'TutorialImageTextView::font()']]],
-  ['fontname',['fontName',['../d3/d6a/interface_contents_interface.html#a7d7684f5f32f4d5c47529728f718469b',1,'ContentsInterface']]]
+  ['elementsequences',['elementSequences',['../d2/d59/interface_save_data.html#aad55910272f9c5f375eda477a9fb42c6',1,'SaveData::elementSequences()'],['../df/ddd/category_save_data_07_08.html#af8825084a1ba95db6cfa7bfa6910bb2e',1,'SaveData()::elementSequences()']]],
+  ['endgestureat_3a',['endGestureAt:',['../df/d53/interface_gesture_hint_view.html#a3675848c4bf42482fcd5adcc9ab0dcbc',1,'GestureHintView']]],
+  ['executeanimationwithduration_3acompletion_3a',['executeAnimationWithDuration:completion:',['../d9/db8/interface_ruby_oneline_text_view.html#a3aefda73a5f19297f5ae73ba9415b58f',1,'RubyOnelineTextView']]],
+  ['executeanimationwithinterval_3acompletion_3a',['executeAnimationWithInterval:completion:',['../d9/d2e/interface_contents_text_view.html#a81ba54c93927bd890ae20efb0cf0e378',1,'ContentsTextView::executeAnimationWithInterval:completion:()'],['../dc/d13/interface_ruby_text_view.html#a29abb2b2a1474437d9af80a42e697fe7',1,'RubyTextView::executeAnimationWithInterval:completion:()']]]
 ];

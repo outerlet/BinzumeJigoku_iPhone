@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>BinzumeJigoku: ContentsTitleView クラス</title>
+<title>読む瓶詰: ContentsTitleView クラス</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">BinzumeJigoku
+   <div id="projectname">読む瓶詰
    </div>
   </td>
  </tr>
@@ -128,13 +128,11 @@ ContentsTitleView の継承関係図</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 実体メソッド</h2></td></tr>
-<tr class="memitem:a8deeccd596131d50a3335e49c2590ce4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8deeccd596131d50a3335e49c2590ce4"></a>
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="../../dd/dcd/interface_contents_title_view.html#a8deeccd596131d50a3335e49c2590ce4">setTitle:font:</a></td></tr>
-<tr class="memdesc:a8deeccd596131d50a3335e49c2590ce4"><td class="mdescLeft">&#160;</td><td class="mdescRight">タイトルとフォントを設定する <br /></td></tr>
+<tr class="memitem:a8deeccd596131d50a3335e49c2590ce4"><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="../../dd/dcd/interface_contents_title_view.html#a8deeccd596131d50a3335e49c2590ce4">setTitle:font:</a></td></tr>
+<tr class="memdesc:a8deeccd596131d50a3335e49c2590ce4"><td class="mdescLeft">&#160;</td><td class="mdescRight">タイトルとフォントを設定する  <a href="#a8deeccd596131d50a3335e49c2590ce4">[詳解]</a><br /></td></tr>
 <tr class="separator:a8deeccd596131d50a3335e49c2590ce4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3da106ea4a3f5e8b3eee95e9740becd8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3da106ea4a3f5e8b3eee95e9740becd8"></a>
-(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="../../dd/dcd/interface_contents_title_view.html#a3da106ea4a3f5e8b3eee95e9740becd8">startAnimationWithDuration:completion:</a></td></tr>
-<tr class="memdesc:a3da106ea4a3f5e8b3eee95e9740becd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">タイトルのアニメーションをdurationに指定した時間で実行する <br /></td></tr>
+<tr class="memitem:a3da106ea4a3f5e8b3eee95e9740becd8"><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="../../dd/dcd/interface_contents_title_view.html#a3da106ea4a3f5e8b3eee95e9740becd8">startAnimationWithDuration:completion:</a></td></tr>
+<tr class="memdesc:a3da106ea4a3f5e8b3eee95e9740becd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">タイトルのアニメーションをdurationに指定した時間で実行する  <a href="#a3da106ea4a3f5e8b3eee95e9740becd8">[詳解]</a><br /></td></tr>
 <tr class="separator:a3da106ea4a3f5e8b3eee95e9740becd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_protocol_contents_view-p"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_protocol_contents_view-p')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../d8/d49/protocol_contents_view-p.html">&lt;ContentsView&gt;</a> に属する継承実体メソッド</td></tr>
 <tr class="memitem:a3fbef17a2239e2a840542f3b143e2420 inherit pub_methods_protocol_contents_view-p"><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="../../d8/d49/protocol_contents_view-p.html#a3fbef17a2239e2a840542f3b143e2420">handleElement:completion:</a></td></tr>
@@ -143,9 +141,66 @@ ContentsTitleView の継承関係図</div>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>章のタイトルを表示するView </p>
-</div><hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+</div><h2 class="groupheader">メソッド詳解</h2>
+<a class="anchor" id="a8deeccd596131d50a3335e49c2590ce4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) setTitle: </td>
+          <td></td>
+          <td class="paramtype">(NSString*)&#160;</td>
+          <td class="paramname"><em>title</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">font:</td>
+          <td></td>
+          <td class="paramtype">(UIFont*)&#160;</td>
+          <td class="paramname"><em>font</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>タイトルとフォントを設定する </p>
+
+</div>
+</div>
+<a class="anchor" id="a3da106ea4a3f5e8b3eee95e9740becd8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) startAnimationWithDuration: </td>
+          <td></td>
+          <td class="paramtype">(NSTimeInterval)&#160;</td>
+          <td class="paramname"><em>duration</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">completion:</td>
+          <td></td>
+          <td class="paramtype">(void(^)(void))&#160;</td>
+          <td class="paramname"><em>completion</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>タイトルのアニメーションをdurationに指定した時間で実行する </p>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
 <li>/Users/outerlet/XcodeProject/binzumejigoku/binzumejigoku/Classes/View/<a class="el" href="../../db/d53/_contents_title_view_8h_source.html">ContentsTitleView.h</a></li>
-<li>/Users/outerlet/XcodeProject/binzumejigoku/binzumejigoku/Classes/View/ContentsTitleView.m</li>
+<li>/Users/outerlet/XcodeProject/binzumejigoku/binzumejigoku/Classes/View/<a class="el" href="../../d7/dff/_contents_title_view_8m.html">ContentsTitleView.m</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

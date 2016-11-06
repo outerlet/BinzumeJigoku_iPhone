@@ -1,4 +1,29 @@
 var searchData=
 [
-  ['load',['load',['../d2/d59/interface_save_data.html#ae325baa4f14507dcf982e45f2782452b',1,'SaveData']]]
+  ['identifier',['identifier',['../dd/d8d/category_main_page_view_07_08.html#ab5041d3e2d56c40a51a16af6256782c7',1,'MainPageView()']]],
+  ['image',['image',['../de/d18/interface_image_element.html#a00422cff41dbd7d4315c170041de64a0',1,'ImageElement::image()'],['../dd/d05/category_image_element_07_08.html#acd3a6a364307e838a6f076385c096c14',1,'ImageElement()::image()']]],
+  ['image_5fview_5fnumber',['IMAGE_VIEW_NUMBER',['../d7/d8e/_contents_image_view_8m.html#ab86952f20e36d30f177ce24234b9396c',1,'ContentsImageView.m']]],
+  ['imageeffect',['imageEffect',['../de/d18/interface_image_element.html#afcdd59543daeaee13f8ed67c0412c567',1,'ImageElement::imageEffect()'],['../dd/d05/category_image_element_07_08.html#ab170d596e96137d2264f5654c85df062',1,'ImageElement()::imageEffect()']]],
+  ['imageelement',['ImageElement',['../de/d18/interface_image_element.html',1,'']]],
+  ['imageelement_28_29',['ImageElement()',['../dd/d05/category_image_element_07_08.html',1,'']]],
+  ['imageelement_2eh',['ImageElement.h',['../db/d3b/_image_element_8h.html',1,'']]],
+  ['imageelement_2em',['ImageElement.m',['../d6/ddf/_image_element_8m.html',1,'']]],
+  ['imageviewbyhidden_3a',['imageViewByHidden:',['../d2/dc1/category_contents_image_view_07_08.html#a0888e9d98ad0f180d7edf64c292f5e81',1,'ContentsImageView()']]],
+  ['indent',['indent',['../da/dfe/interface_text_element.html#a9d6853604e0a401a1dc05499ce9ee130',1,'TextElement::indent()'],['../d2/d2a/category_text_element_07_08.html#a4258177102563211ac32a37765338c39',1,'TextElement()::indent()']]],
+  ['initialize',['initialize',['../d3/d6a/interface_contents_interface.html#a8b8101be170e1d45ad49c3e980519c9d',1,'ContentsInterface']]],
+  ['initwithframe_3a',['initWithFrame:',['../df/d53/interface_gesture_hint_view.html#a440ced398fa82339aec60a43f789f86e',1,'GestureHintView']]],
+  ['initwithframe_3aclosable_3aloadonly_3aautosave_3a',['initWithFrame:closable:loadOnly:autoSave:',['../d9/da3/interface_history_select_view.html#a2c7358472b902917bed717a6b7d10842',1,'HistorySelectView']]],
+  ['initwithframe_3areuseidentifier_3a',['initWithFrame:reuseIdentifier:',['../dc/db0/interface_setting_table_view_cell.html#a2e7138fba3b0508775d669c24d870161',1,'SettingTableViewCell']]],
+  ['initwithframe_3awithtag_3a',['initWithFrame:withTag:',['../d9/d49/interface_main_page_view.html#a19246445dad1e8eff085c812e93068e7',1,'MainPageView']]],
+  ['initwithmanagedobject_3a',['initWithManagedObject:',['../dc/dec/interface_contents_element.html#ab0ffadfd268a12ad8b2713d32e0d90c6',1,'ContentsElement']]],
+  ['initwithsavedata_3a',['initWithSaveData:',['../d8/d9f/interface_contents_view_controller.html#ac31e2953b212888ca2c9277db366bdc1',1,'ContentsViewController']]],
+  ['initwithsection_3asequence_3aattribute_3aobject_3a',['initWithSection:sequence:attribute:object:',['../dc/dec/interface_contents_element.html#afdd98e155a576022b3f69dbd77f23332',1,'ContentsElement']]],
+  ['initwithsectionindex_3a',['initWithSectionIndex:',['../d8/d9f/interface_contents_view_controller.html#a9b2580948aac6ff3ada0e3747cd993cd',1,'ContentsViewController']]],
+  ['initwithslotnumber_3a',['initWithSlotNumber:',['../d2/d59/interface_save_data.html#a4250f21653ff6bbdf244ce958619da2a',1,'SaveData']]],
+  ['initwithtexthistories_3a',['initWithTextHistories:',['../d7/d17/interface_text_history_view_controller.html#a28abb2529c358b97b35512005b786f69',1,'TextHistoryViewController']]],
+  ['initwithtitle_3amessage_3apreferrdstyle_3atag_3a',['initWithTitle:message:preferrdStyle:tag:',['../da/d04/interface_alert_controller_handler.html#a758e82670754b41af6d6891d8c91addf',1,'AlertControllerHandler']]],
+  ['initwithtutorialtype_3a',['initWithTutorialType:',['../d8/da3/interface_tutorial_view_controller.html#a78d91f4f787b052c20e925de45e0ae21',1,'TutorialViewController']]],
+  ['initwithwidth_3a',['initWithWidth:',['../dc/d13/interface_ruby_text_view.html#a25c27ef5db59045529414a07f1ea1104',1,'RubyTextView']]],
+  ['integersetting_3a',['integerSetting:',['../d3/d6a/interface_contents_interface.html#a344df8e73b08e8ee35fd28b889b89b32',1,'ContentsInterface']]],
+  ['issaved',['isSaved',['../d2/d59/interface_save_data.html#a7f4740a85d0ddc294c9222ed9cf9f428',1,'SaveData']]]
 ];

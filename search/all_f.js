@@ -1,28 +1,8 @@
 var searchData=
 [
-  ['save',['save',['../d2/d59/interface_save_data.html#a16b165f1f6dec0edc518219385ea6923',1,'SaveData']]],
-  ['savedata',['SaveData',['../d2/d59/interface_save_data.html',1,'']]],
-  ['savedataat_3a',['saveDataAt:',['../d3/d6a/interface_contents_interface.html#a7822f0aecd82d78764e09a800d910be6',1,'ContentsInterface']]],
-  ['savemode',['saveMode',['../d9/da3/interface_history_select_view.html#aa46d34a53c67de25afa3a1e633702c06',1,'HistorySelectView']]],
-  ['section',['section',['../dc/dec/interface_contents_element.html#a9016bc4fd2760beaf2a95fc93e0599a0',1,'ContentsElement']]],
-  ['sectionindex',['sectionIndex',['../d2/d59/interface_save_data.html#a56635fd857626f4c2767822cf5bbda67',1,'SaveData::sectionIndex()'],['../d8/d9f/interface_contents_view_controller.html#ae195d84988dfed039be1b0302ce9a5af',1,'ContentsViewController::sectionIndex()']]],
-  ['sequence',['sequence',['../dc/dec/interface_contents_element.html#a1b8b4b69a11dee465a7605e9148d6d34',1,'ContentsElement::sequence()'],['../d2/d59/interface_save_data.html#ad66faa2f6db259bac85478f91e6d6466',1,'SaveData::sequence()']]],
-  ['sethint_3adirection_3a',['setHint:direction:',['../df/d53/interface_gesture_hint_view.html#adf9c115dd48144fa609ab7e868f7049a',1,'GestureHintView']]],
-  ['setnextimage_3a',['setNextImage:',['../d2/d32/interface_contents_image_view.html#ae1ca843357e62082b6e050528eb87372',1,'ContentsImageView']]],
-  ['settextelement_3a',['setTextElement:',['../d9/d2e/interface_contents_text_view.html#a86e2d810611d360572b446d69b510c03',1,'ContentsTextView']]],
-  ['settingtableviewcell',['SettingTableViewCell',['../dc/db0/interface_setting_table_view_cell.html',1,'']]],
-  ['settingviewcontroller',['SettingViewController',['../db/d17/interface_setting_view_controller.html',1,'']]],
-  ['settitle_3afont_3a',['setTitle:font:',['../dd/dcd/interface_contents_title_view.html#a8deeccd596131d50a3335e49c2590ce4',1,'ContentsTitleView']]],
-  ['sharedinstance',['sharedInstance',['../d3/d6a/interface_contents_interface.html#ab2fbd432b89756279cffee44aa4213a9',1,'ContentsInterface::sharedInstance()'],['../d7/d61/interface_core_data_handler.html#a93d3db4cc81e5827171b4c42a217a85c',1,'CoreDataHandler::sharedInstance()']]],
-  ['showanimated_3acompletion_3a',['showAnimated:completion:',['../d9/da3/interface_history_select_view.html#af87b54caff02fb8d6b5529233941b3ba',1,'HistorySelectView']]],
-  ['showimmediate',['showImmediate',['../d2/d32/interface_contents_image_view.html#a3b5a622665cdbaf3b068b0c6fb68669d',1,'ContentsImageView']]],
-  ['slotnumber',['slotNumber',['../d2/d59/interface_save_data.html#a974201cebc2ace4a08f146605e08c7b8',1,'SaveData']]],
-  ['startanimation',['startAnimation',['../dd/dd7/interface_contents_waiting_indicator_view.html#a86b9a8614e72560e87f6227d7e0cef9d',1,'ContentsWaitingIndicatorView']]],
-  ['startanimationwithduration_3acompletion_3a',['startAnimationWithDuration:completion:',['../dd/dcd/interface_contents_title_view.html#a3da106ea4a3f5e8b3eee95e9740becd8',1,'ContentsTitleView']]],
-  ['startanimationwitheffect_3aduration_3acompletion_3a',['startAnimationWithEffect:duration:completion:',['../d2/d32/interface_contents_image_view.html#a70bdbdae0f9582ba4fb828b61c8950e3',1,'ContentsImageView']]],
-  ['startgestureat_3a',['startGestureAt:',['../df/d53/interface_gesture_hint_view.html#ad7f613f05dbc2fa92716b72dc0b43af1',1,'GestureHintView']]],
-  ['stopanimation',['stopAnimation',['../dd/dd7/interface_contents_waiting_indicator_view.html#af6dd7238e9951ead039b95c53a9417d1',1,'ContentsWaitingIndicatorView']]],
-  ['stringvalue',['stringValue',['../dc/dec/interface_contents_element.html#a6ae9d72d347f3986c8ac0679821ee707',1,'ContentsElement']]],
-  ['stringwithcontentstype_3a',['stringWithContentsType:',['../da/d0d/category_n_s_string_07_custom_decoder_08.html#a42f86dde5aa7a2d72249d8161b1f9b46',1,'NSString(CustomDecoder)']]],
-  ['summary',['summary',['../d9/d49/interface_main_page_view.html#a4e7b638510d9689606bc9f4043ed015e',1,'MainPageView']]]
+  ['pairwithtext_3aruby_3a',['pairWithText:ruby:',['../da/d5f/interface_text_ruby_pair.html#afccc0ac83f30ce4ec5e199e2726808c2',1,'TextRubyPair']]],
+  ['parse',['parse',['../d3/daf/interface_contents_parser.html#aa784238f9d57422974233468c034619a',1,'ContentsParser']]],
+  ['parsedidfinished_3a',['parseDidFinished:',['../d3/dcb/protocol_contents_parser_delegate-p.html#a901926265f4224960da7722b7cd5dc1d',1,'ContentsParserDelegate-p']]],
+  ['parseerrordidoccurred_3a',['parseErrorDidOccurred:',['../d3/dcb/protocol_contents_parser_delegate-p.html#a4cb29d23f9a09f011151e5282a71cc90',1,'ContentsParserDelegate-p']]],
+  ['persistentstorecoordinator',['persistentStoreCoordinator',['../d7/d61/interface_core_data_handler.html#a47273b3ca7213f0a40bc5b48c25295bb',1,'CoreDataHandler']]]
 ];

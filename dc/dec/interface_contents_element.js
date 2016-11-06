@@ -1,5 +1,6 @@
 var interface_contents_element =
 [
+    [ "contentsElementWithManagedObject:", "dc/dec/interface_contents_element.html#a7405d5c185b2a87e59c6d7ed5274245c", null ],
     [ "createManagedObject", "dc/dec/interface_contents_element.html#a951737a60a9baa25550f366023e4c556", null ],
     [ "initWithManagedObject:", "dc/dec/interface_contents_element.html#ab0ffadfd268a12ad8b2713d32e0d90c6", null ],
     [ "initWithSection:sequence:attribute:object:", "dc/dec/interface_contents_element.html#afdd98e155a576022b3f69dbd77f23332", null ],

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['overlayviewcontroller',['OverlayViewController',['../d4/dc7/interface_overlay_view_controller.html',1,'']]],
-  ['overlayviewcontrollerdelegate_2dp',['OverlayViewControllerDelegate-p',['../df/d21/protocol_overlay_view_controller_delegate-p.html',1,'']]]
+  ['nsstring_28customdecoder_29',['NSString(CustomDecoder)',['../da/d0d/category_n_s_string_07_custom_decoder_08.html',1,'']]]
 ];

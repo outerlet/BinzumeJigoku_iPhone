@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['mainmenutabbarcontroller',['MainMenuTabBarController',['../da/d36/interface_main_menu_tab_bar_controller.html',1,'']]],
-  ['mainpageview',['MainPageView',['../d9/d49/interface_main_page_view.html',1,'']]],
-  ['mainpageviewdelegate_2dp',['MainPageViewDelegate-p',['../db/d46/protocol_main_page_view_delegate-p.html',1,'']]]
+  ['launcherview',['LauncherView',['../d3/d1b/interface_launcher_view.html',1,'']]],
+  ['launcherview_28_29',['LauncherView()',['../d7/d15/category_launcher_view_07_08.html',1,'']]],
+  ['launcherviewdelegate_2dp',['LauncherViewDelegate-p',['../de/dab/protocol_launcher_view_delegate-p.html',1,'']]]
 ];

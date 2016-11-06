@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>読む瓶詰: /Users/outerlet/XcodeProject/binzumejigoku/binzumejigoku/Classes/ViewController/ContentsViewController.m ファイル</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">読む瓶詰
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>総合概要</span></a></li>
+      <li><a href="../../annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="../../files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="../../globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('de/db4/_contents_view_controller_8m.html','../../');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">クラス</a> &#124;
+<a href="#var-members">変数</a>  </div>
+  <div class="headertitle">
+<div class="title">ContentsViewController.m ファイル</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#import &quot;<a class="el" href="../../d6/dcf/_contents_view_controller_8h_source.html">ContentsViewController.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../d5/db3/_app_delegate_8h_source.html">AppDelegate.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../d6/de6/_contents_interface_8h_source.html">ContentsInterface.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../d0/d4f/_core_data_handler_8h_source.html">CoreDataHandler.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../d5/d90/_contents_type_8h_source.html">ContentsType.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../df/d11/_contents_element_8h_source.html">ContentsElement.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../db/d3b/_image_element_8h_source.html">ImageElement.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../d1/dc2/_title_element_8h_source.html">TitleElement.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../d6/d9e/_text_element_8h_source.html">TextElement.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../d0/dea/_wait_element_8h_source.html">WaitElement.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../dc/d5d/_clear_text_element_8h_source.html">ClearTextElement.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../db/d53/_contents_title_view_8h_source.html">ContentsTitleView.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../dd/d0c/_contents_image_view_8h_source.html">ContentsImageView.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../dc/dad/_contents_text_view_8h_source.html">ContentsTextView.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../df/dae/_contents_waiting_indicator_view_8h_source.html">ContentsWaitingIndicatorView.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../d0/d69/_gesture_hint_view_8h_source.html">GestureHintView.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../df/de9/_save_data_8h_source.html">SaveData.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../d8/da5/_text_history_view_controller_8h_source.html">TextHistoryViewController.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../d8/d13/_tutorial_view_controller_8h_source.html">TutorialViewController.h</a>&quot;</code><br />
+<code>#import &quot;<a class="el" href="../../d4/d9d/_n_s_string_09_custom_decoder_8h_source.html">NSString+CustomDecoder.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+変数</h2></td></tr>
+<tr class="memitem:afd157f71e14654f21448f4260b64ed53"><td class="memItemLeft" align="right" valign="top">const CGFloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/db4/_contents_view_controller_8m.html#afd157f71e14654f21448f4260b64ed53">kHeightOfIndicator</a> = 40.0f</td></tr>
+<tr class="separator:afd157f71e14654f21448f4260b64ed53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab17c61ffcf8f89ceaf8a3afc3bf43a44"><td class="memItemLeft" align="right" valign="top">const CGFloat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/db4/_contents_view_controller_8m.html#ab17c61ffcf8f89ceaf8a3afc3bf43a44">kSideMarginOfViews</a> = 10.0f</td></tr>
+<tr class="separator:ab17c61ffcf8f89ceaf8a3afc3bf43a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad03f1e11f12b04b771acceff88045b4c"><td class="memItemLeft" align="right" valign="top">const NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/db4/_contents_view_controller_8m.html#ad03f1e11f12b04b771acceff88045b4c">kAlertTagEndOfSection</a> = 10001</td></tr>
+<tr class="separator:ad03f1e11f12b04b771acceff88045b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00ea45036995be904ccabec542b36726"><td class="memItemLeft" align="right" valign="top">const NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/db4/_contents_view_controller_8m.html#a00ea45036995be904ccabec542b36726">kAlertTagEndOfContents</a> = 10002</td></tr>
+<tr class="separator:a00ea45036995be904ccabec542b36726"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70d935d773fbddb30b8c31a4f977b094"><td class="memItemLeft" align="right" valign="top">const NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/db4/_contents_view_controller_8m.html#a70d935d773fbddb30b8c31a4f977b094">kAlertTagSaveHistory</a> = 10003</td></tr>
+<tr class="separator:a70d935d773fbddb30b8c31a4f977b094"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acddb43ba174d24de334f28c9a29c6d45"><td class="memItemLeft" align="right" valign="top">const NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/db4/_contents_view_controller_8m.html#acddb43ba174d24de334f28c9a29c6d45">kAlertTagLoadHistory</a> = 10004</td></tr>
+<tr class="separator:acddb43ba174d24de334f28c9a29c6d45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a900e0a89919dd264422d96082636c010"><td class="memItemLeft" align="right" valign="top">const NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/db4/_contents_view_controller_8m.html#a900e0a89919dd264422d96082636c010">kAlertTagConfirmNext</a> = 10010</td></tr>
+<tr class="separator:a900e0a89919dd264422d96082636c010"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b796cf0e6933c7cdc4eb4f28b8c3473"><td class="memItemLeft" align="right" valign="top">const NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/db4/_contents_view_controller_8m.html#a3b796cf0e6933c7cdc4eb4f28b8c3473">kAlertTagConfirmBack</a> = 10011</td></tr>
+<tr class="separator:a3b796cf0e6933c7cdc4eb4f28b8c3473"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91f95e1508d7c9493da1b9c3affa11f9"><td class="memItemLeft" align="right" valign="top">const NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/db4/_contents_view_controller_8m.html#a91f95e1508d7c9493da1b9c3affa11f9">kAlertTagConfirmFinish</a> = 10020</td></tr>
+<tr class="separator:a91f95e1508d7c9493da1b9c3affa11f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27f68309f8752050e88acc3f2bc447a1"><td class="memItemLeft" align="right" valign="top">const NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/db4/_contents_view_controller_8m.html#a27f68309f8752050e88acc3f2bc447a1">kAlertTagConfirmOk</a> = 10030</td></tr>
+<tr class="separator:a27f68309f8752050e88acc3f2bc447a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70566121943b044d13d9f534a1280379"><td class="memItemLeft" align="right" valign="top">const NSInteger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/db4/_contents_view_controller_8m.html#a70566121943b044d13d9f534a1280379">kAlertTagConfirmCancel</a> = 10031</td></tr>
+<tr class="separator:a70566121943b044d13d9f534a1280379"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">変数詳解</h2>
+<a class="anchor" id="a3b796cf0e6933c7cdc4eb4f28b8c3473"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NSInteger kAlertTagConfirmBack = 10011</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a70566121943b044d13d9f534a1280379"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NSInteger kAlertTagConfirmCancel = 10031</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a91f95e1508d7c9493da1b9c3affa11f9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NSInteger kAlertTagConfirmFinish = 10020</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a900e0a89919dd264422d96082636c010"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NSInteger kAlertTagConfirmNext = 10010</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a27f68309f8752050e88acc3f2bc447a1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NSInteger kAlertTagConfirmOk = 10030</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a00ea45036995be904ccabec542b36726"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NSInteger kAlertTagEndOfContents = 10002</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad03f1e11f12b04b771acceff88045b4c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NSInteger kAlertTagEndOfSection = 10001</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="acddb43ba174d24de334f28c9a29c6d45"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NSInteger kAlertTagLoadHistory = 10004</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a70d935d773fbddb30b8c31a4f977b094"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NSInteger kAlertTagSaveHistory = 10003</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="afd157f71e14654f21448f4260b64ed53"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const CGFloat kHeightOfIndicator = 40.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab17c61ffcf8f89ceaf8a3afc3bf43a44"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const CGFloat kSideMarginOfViews = 10.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../dir_0ba5448de4a8d08571425ec64206d40f.html">XcodeProject</a></li><li class="navelem"><a class="el" href="../../dir_afa056a71a0489c42c64d1cc4c547743.html">binzumejigoku</a></li><li class="navelem"><a class="el" href="../../dir_c92870bb824be81433403496436e8284.html">binzumejigoku</a></li><li class="navelem"><a class="el" href="../../dir_0f0db70bf04c62a434aabfd3554b0265.html">Classes</a></li><li class="navelem"><a class="el" href="../../dir_b37b13608c94ee2abc749b5760444b67.html">ViewController</a></li><li class="navelem"><a class="el" href="../../de/db4/_contents_view_controller_8m.html">ContentsViewController.m</a></li>
+    <li class="footer">構築:
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
+</body>
+</html>
